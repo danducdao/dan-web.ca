@@ -37,7 +37,7 @@
           </ul>
       </template>
       <hr>
-
+      <div id="canvas" v-on:mousemove="updateXY">{{x}},{{y}}</div>
   </div>
 </template>
 <script>
@@ -63,19 +63,30 @@ export default {
               {id:3,title:'Commis de bureau'},
               {id:4,title:'Technicien en informatique'},
               {id:5,title:'Commis comptable'}
-            ]
+            ],
+      x:0,
+      y:0
     }
   },
   methods:{
       getDate(){
          var now = new Date();
          return dateFormat(now, "yyyy/mm/d");
+      },
+      updateXY(event){
+          this.x = event.offsetX;
+          this.y = event.offsetY;
       }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-
+<style scoped>
+   #canvas{
+       width:600px;
+       padding:200px 20px;
+       text-align:center;
+       border:1px solid #333;
+   }
 </style>

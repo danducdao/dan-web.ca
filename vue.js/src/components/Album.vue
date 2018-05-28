@@ -3,13 +3,16 @@
        <form>
             <div>
                 <div class="form-group">
-                      <label for="title" class="control-label">Titre:</label><input type="text" ref="title" name="title" id="title" autofocus class="form-control" />
+                      <label for="title" class="control-label">Titre:</label>
+                      <input type="text" style="width:400px;" ref="title" name="title" id="title" autofocus class="form-control" />
                 </div>
                 <div class="form-group">
-                      <label for="artiste" class="control-label">Artiste:</label><input type="text" ref="artiste" name="artiste" id="artiste" class="form-control"/>
+                      <label for="artiste" class="control-label">Artiste:</label>
+                      <input type="text" style="width:400px;" ref="artiste" name="artiste" id="artiste" class="form-control"/>
                 </div>
                 <div class="form-group">
-                      <label for="comments" class="control-label">Commentaire:</label><textarea ref="comments" name="comments" id="comments" class="form-control" /></textarea>
+                      <label for="comments" class="control-label">Commentaire:</label>
+                      <textarea style="width:400px;" ref="comments" name="comments" id="comments" class="form-control" /></textarea>
                 </div>
                 <div class="form-group">
                     <input type="button" class="btn btn-primary" name="submit" value="Ajouter album" v-on:click="add()"/>

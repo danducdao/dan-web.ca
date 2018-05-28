@@ -1,40 +1,34 @@
 <template>
-  <div>
-  <form>
-      <div style="display:inline-block;padding-right:20px;border-right-style:solid;border-right-color:#ccc;border-right-width:1px;">
-      <table>
-        <tr><td>Title:</td><td> <input type="text" ref="title" name="title" autofocus /></td></tr>
-        <tr><td> Artiste: </td><td><input type="text" ref="artiste" name="artiste" /> </td></tr>
-        <tr><td> Commentaire:</td><td> <textarea ref="comments" name="comments" /></textarea></td></tr>
-        <tr><td><input type="button" name="submit" value="Add" v-on:click="add()"/> </td></tr>
-      </table>
-      </div>
-      <div style="display:inline-block;vertical-align:top;padding-left:20px;">
-      <table border="1">
-          <caption>
-              <strong>Quelques albums préférés</strong>
-          </caption>
-          <tr>
-              <th> Titre </th>
-              <th> Artiste </th>
-              <th> Commentaires </th>
-          </tr>
-         <template v-for="album in albums">
-            <tr>
-                <td> {{ album.title}} </td>
-                <td> {{ album.artiste }} </td>
-                <td> {{album.comments }} </td>
-            </tr>
-          </template>
-       </table>
-       </div>
-  </form>
-  </div>
+    <div>
+       <form>
+            <div>
+                <div class="form-group">
+                      <label for="title" class="control-label">Titre:</label><input type="text" ref="title" name="title" id="title" autofocus class="form-control" />
+                </div>
+                <div class="form-group">
+                      <label for="artiste" class="control-label">Artiste:</label><input type="text" ref="artiste" name="artiste" id="artiste" class="form-control"/>
+                </div>
+                <div class="form-group">
+                      <label for="comments" class="control-label">Commentaire:</label><textarea ref="comments" name="comments" id="comments" class="form-control" /></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn btn-primary" name="submit" value="Ajouter album" v-on:click="add()"/>
+                </div>
+            </div>
+            <div>
+                <app-listAlbum v-bind:albums="albums"></app-listAlbum>
+            </div>
+        </form>
+     </div>
 </template>
 
 <script>
+import ListAlbum from './ListAlbum.vue';
 export default {
   name: 'Album',
+  components:{
+      'app-listAlbum' : ListAlbum
+  },
   data(){
       return {
           albums:[]
@@ -74,7 +68,6 @@ export default {
   }
 }
 </script>
-
 <style>
 
 </style>

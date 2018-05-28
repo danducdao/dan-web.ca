@@ -14,20 +14,22 @@
         <li v-for="(pers,index) in persons">{{++index}} . {{pers.name}} - {{pers.age}} ans</li>
      </ul>
      <hr>
-     <table border="1">
+     <table class="table-striped">
         <thead>
-           <td>No.</td>
-           <td>Id</td>
-           <td>Titre</td>
+           <tr>
+             <th>No.</th>
+             <th>Id</th>
+             <th>Titre</th>
+           </tr>
         </thead>
         <tbody>
-         <template v-for="(job,index) in jobs">
-            <tr>
-                <td>{{++index}}</td>
-                <td>{{job.id}}</td>
-                <td>{{job.title}}</td>
-            </tr>
-        </template>
+             <template v-for="(job,index) in jobs">
+                <tr>
+                    <td>{{++index}}</td>
+                    <td>{{job.id}}</td>
+                    <td>{{job.title}}</td>
+                </tr>
+            </template>
          </tbody>
       </table>
       <hr>

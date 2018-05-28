@@ -31,5 +31,5 @@ class Person2{
     }
 }
 
-let aPerson2 : Person = new Person2("Charles Robert","Darwin");
+let aPerson2 : Person2 = new Person2("Charles Robert","Darwin");
 console.log(aPerson2.getNomComplete());

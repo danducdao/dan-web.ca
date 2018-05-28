@@ -1,3 +1,7 @@
+/*
+Program : Mon premier program
+Écrit par : Dan Duc Dao
+*/
 var a;
 var b;
 var c;
@@ -14,3 +18,9 @@ myArray = [1, 2, 3, 4, 5];
 var myTuple = [1, true];
 var myTuple2;
 myTuple2 = [2, false];
+//Function
+function additionner(a, b, c) {
+    if (c === void 0) { c = 0; }
+    return a + b + c;
+}
+console.log(additionner(2, 5));

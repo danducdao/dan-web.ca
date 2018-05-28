@@ -28,3 +28,11 @@ function additionner(a:number,b:number,c:number = 0) : number{
     return a + b + c;
 }
 console.log(additionner(2,5));
+
+//Union type
+var a : number | boolean;
+
+a = 2;
+console.log(a);
+a = true;
+console.log(a);

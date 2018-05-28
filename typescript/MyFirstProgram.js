@@ -24,3 +24,9 @@ function additionner(a, b, c) {
     return a + b + c;
 }
 console.log(additionner(2, 5));
+//Union type
+var a;
+a = 2;
+console.log(a);
+a = true;
+console.log(a);

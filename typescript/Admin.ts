@@ -4,6 +4,9 @@ Program : Inheritance classe
 */
 
 import {Person} from './Person';
+//import * as t from 'lodash/lodash';
+
+//t.re
 
 class Admin extends Person{
 

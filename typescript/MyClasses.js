@@ -1,7 +1,9 @@
+"use strict";
 /*
 Program : Mes premières classes
 Écrit par : Dan Duc Dao
 */
+exports.__esModule = true;
 //Classe Person
 var Person = /** @class */ (function () {
     function Person() {
@@ -11,6 +13,7 @@ var Person = /** @class */ (function () {
     };
     return Person;
 }());
+exports.Person = Person;
 var aPerson = new Person();
 aPerson.Nom = "Doe";
 aPerson.PreNom = "Jonh";
@@ -23,9 +26,10 @@ var Person2 = /** @class */ (function () {
         this.PreNom = prenom;
     }
     Person2.prototype.getNomComplete = function () {
-        return this.Nom + " " + this.PreNom;
+        return this.PreNom + " " + this.Nom;
     };
     return Person2;
 }());
-var aPerson2 = new Person2("Charles Robert", "Darwin");
+exports.Person2 = Person2;
+var aPerson2 = new Person2("Darwin", "Charles Robert");
 console.log(aPerson2.getNomComplete());

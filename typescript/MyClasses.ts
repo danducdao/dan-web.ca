@@ -27,9 +27,9 @@ class Person2{
        this.PreNom = prenom;
     }
     getNomComplete():string{
-        return this.Nom + " " + this.PreNom;
+        return this.PreNom + " " + this.Nom;
     }
 }
 
-let aPerson2 : Person2 = new Person2("Charles Robert","Darwin");
+let aPerson2 : Person2 = new Person2("Darwin","Charles Robert");
 console.log(aPerson2.getNomComplete());

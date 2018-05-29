@@ -31,7 +31,6 @@ console.log(additionner(2,5));
 
 //Union type
 var a : number | boolean;
-
 a = 2;
 console.log(a);
 a = true;

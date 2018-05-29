@@ -10,6 +10,10 @@ class Admin extends Person{
      private userName:string;
      private password:string;
 
+     constructor(nom:string,prenom:string){
+         super(nom,prenom);
+     }
+
      set UserName(username:string){
         this.userName = username;
      }
@@ -23,10 +27,6 @@ class Admin extends Person{
 
      get Password():string{
          return this.password;
-     }
-
-     constructor(nom:string,prenom:string){
-         super(nom,prenom);
      }
 
      getAdmminInfo(){

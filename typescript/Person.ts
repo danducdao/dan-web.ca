@@ -13,3 +13,6 @@ export class Person{
         return this.PreNom + " " + this.Nom;
     }
 }
+
+var p = new Pesron('tt','tt');
+p.

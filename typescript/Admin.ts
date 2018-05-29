@@ -3,7 +3,7 @@ Program : Inheritance classe
 Écrit par : Dan Duc Dao
 */
 
-import {Person} from './Person'
+import {Person} from './Person';
 
 class Admin extends Person{
 

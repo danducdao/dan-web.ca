@@ -1,4 +1,45 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <app-first-program></app-first-program>
+<div id="header">
+	<div class="color-line">
+	</div>
+	<div id="logo" class="light-version">
+			<span>
+					 Dan Duc Dao
+			</span>
+	</div>
+	<nav role="navigation">
+			<div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+			<div class="small-logo">
+					<span class="text-primary">Dan Duc Dao</span>
+			</div>
+	</nav>
+</div>
+<aside id="menu">
+	<div id="navigation">
+			<div class="profile-picture">
+							<img src="./assets/image/av1.png" class="img-circle m-b" alt="logo" />
+			</div>
+			<ul class="nav" id="side-menu">
+					<li>
+						<a routerLink="/">Home</a>
+					</li>
+					<li>
+							<a href="#"><span class="nav-label">Angular</span><span class="fa arrow"></span> </a>
+							<ul class="nav nav-second-level">
+									 <li><a routerLink="/first-program">Premier program</a></li>
+							</ul>
+					</li>
+			</ul>
+	</div>
+</aside>
+<div id="wrapper">
+		<div class="row">
+			  <div class="col-lg-12">
+				    <div class="hpanel">
+					       <div class="panel-body">
+                        <router-outlet></router-outlet>
+                  </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DataBindingComponent } from './data-binding/data-binding.component';
+import { ClassBindingComponent } from './class-binding/class-binding.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    DataBindingComponent,
+    ClassBindingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import FirstProgram from '@/components/first-program'
-import Album from '@/components/Album'
+import LoopProgram from '@/components/loop-program'
+import EventProgram from '@/components/event-program'
+import Album from '@/components/album'
 
 Vue.use(Router)
 
@@ -14,9 +16,20 @@ export default new Router({
       component: FirstProgram
     },
     {
-       path : '/Album',
+       path : '/loop-program',
+       name : 'Loop',
+       component : LoopProgram
+    },
+    {
+       path : '/event-program',
+       name : 'Event',
+       component : EventProgram
+    },
+    {
+       path : '/album',
        name : 'Album',
        component : Album
-    }
+    },
+
   ]
 })

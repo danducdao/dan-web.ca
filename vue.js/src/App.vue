@@ -27,7 +27,6 @@
      							<a href="#"><span class="nav-label">Vue.js</span><span class="fa arrow"></span> </a>
      							<ul class="nav nav-second-level">
      									 <li><router-link to="/first-program">Premier program</router-link></li>
-
      							</ul>
      					</li>
      			</ul>

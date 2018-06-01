@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

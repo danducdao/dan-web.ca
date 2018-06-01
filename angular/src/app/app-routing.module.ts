@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 import { FirstProgramComponent } from './first-program/first-program.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
 import { EmployeListComponent } from './employe-list/employe-list.component';
 
 const routes: Routes = [
+      {
+          path:'',
+          component:HomeComponent
+      },
       {
         path:'first-program',
         component:FirstProgramComponent

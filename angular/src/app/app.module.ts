@@ -5,19 +5,22 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
+import { EmployeListComponent } from './employe-list/employe-list.component';
 
+import { EmployeService } from './employe.service'
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     DataBindingComponent,
-    ClassBindingComponent
+    ClassBindingComponent,
+    EmployeListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [EmployeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

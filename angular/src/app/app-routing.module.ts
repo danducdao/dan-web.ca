@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FirstProgramComponent } from './first-program/first-program.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
+import { EmployeListComponent } from './employe-list/employe-list.component';
 
 const routes: Routes = [
       {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path:'class-binding',
         component:ClassBindingComponent
+      },
+      {
+        path:'employe-list',
+        component:EmployeListComponent
       }
 
 ];

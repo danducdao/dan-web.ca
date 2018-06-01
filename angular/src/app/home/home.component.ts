@@ -19,7 +19,6 @@ import { DomSanitizer } from '@angular/platform-browser';
       #next{
          float:right;
       }
-
     `]
 })
 export class HomeComponent implements OnInit {

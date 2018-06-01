@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ListAlbum from './ListAlbum.vue';
+import ListAlbum from './list-album';
 export default {
   name: 'Album',
   components:{

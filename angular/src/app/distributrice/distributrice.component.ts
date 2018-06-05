@@ -19,6 +19,14 @@ import { Component, OnInit } from '@angular/core';
               font-size:30px;
               background:blue;
          }
+
+         #logo{
+            opacity:1.0;
+            -moz-transition:all 1s ease; -webkit-transition:all 1s ease; transition:all 1s ease;
+            -o-transition:all 1s ease; -ms-transition:all 1s ease;
+         }
+
+
     `]
 })
 export class DistributriceComponent implements OnInit {

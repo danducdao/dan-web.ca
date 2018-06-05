@@ -9,6 +9,7 @@ import { ClassBindingComponent } from './class-binding/class-binding.component';
 import { EmployeListComponent } from './employe-list/employe-list.component';
 import { EmployeService } from './employe.service';
 import { DistributriceComponent } from './distributrice/distributrice.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DistributriceComponent } from './distributrice/distributrice.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [EmployeService],
   bootstrap: [AppComponent]

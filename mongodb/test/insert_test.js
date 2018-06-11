@@ -10,10 +10,6 @@ const Categorie = require('../model/categorie');
 const Utilisateur = require('../model/utilisateur');
 const Produit = require('../model/produit');
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 56b6cb06c7946d81f8e87ec4db0ee21ea7d3c494
 describe('Sauvegarder de données dans les collections',function(){
 
   beforeEach(function(done){
@@ -84,7 +80,6 @@ describe('Sauvegarder de données dans les collections',function(){
         });
   });
 
-<<<<<<< HEAD
   it('Sauvegarder de données dans collection personne', function(done){
           var pers = new Personne({
                nom:'Jonh Doe',
@@ -186,6 +181,7 @@ describe('Sauvegarder de données dans les collections',function(){
                 return util.save();
              }).then(function(){
                Categorie.findOne({nom:"Drinks"}).then(function(result){
+                    assert(result.nom === "Drinks");
                     var prod = new Produit({
                         nom:"Chai Tea",
                         categorieId:result._id,
@@ -341,7 +337,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                       Categorie.findOne({nom:"Condiments"}).then(function(result){
-
+                            assert(result.nom === "Condiments");
                             var prod = new Produit({
                                 nom:"Aniseed Syrup",
                                 categorieId:result._id,
@@ -393,6 +389,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                    return prod.save();
                                }).then(function(){
                                  Categorie.findOne({nom:"Confections"}).then(function(result){
+                                       assert(result.nom === "Confections");
                                        prod = new Produit({
                                            nom:"Teatime Chocolate Biscuits",
                                            categorieId:result._id,
@@ -430,130 +427,4 @@ describe('Sauvegarder de données dans les collections',function(){
              });
         });
     });
-=======
-  it('Sauvegarder de données dans les collections', function(done){
-
-         //Insérer des données dans collections
-         var util;
-         var prod;
-         var pers = new Personne({
-              nom:'Jonh Doe',
-              poids:68
-         });
-         pers.save().then(function(){
-             assert(pers.isNew === false);
-             util = new Utilisateur({
-                                       nom: "sue",
-                                       age: 19,
-                                       type: 1,
-                                       statut: "P",
-                                       favorites: { artiste: "Picasso", aliment: "pizza" },
-                                       termine: [ 17, 3 ],
-                                       badges: [ "blue", "black" ],
-                                       points: [
-                                        { points: 85, bonus: 20 },
-                                        { points: 85, bonus: 10 }
-                                       ]
-                                   });
-              return util.save();
-         }).then(function(){
-              assert(util.isNew === false);
-              util = new Utilisateur({
-                                        nom: "bob",
-                                        age: 42,
-                                        type: 1,
-                                        statut: "A",
-                                        favorites: { artiste: "Miro", aliment: "meringue" },
-                                        termine: [ 11, 25 ],
-                                        badges: [ "green" ],
-                                        points: [
-                                         { points: 85, bonus: 20 },
-                                         { points: 64, bonus: 12 }
-                                        ]
-                                   });
-               return util.save();
-         }).then(function(){
-              assert(util.isNew === false);
-              util = new Utilisateur({
-                                         nom: "ahn",
-                                         age: 22,
-                                         type: 2,
-                                         statut: "A",
-                                         favorites: { artiste: "Cassatt", aliment: "cake" },
-                                         termine: [ 6 ],
-                                         badges: [ "blue", "red" ],
-                                         points: [
-                                          { points: 81, bonus: 8 },
-                                          { points: 55, bonus: 20 }
-                                         ]
-                                    });
-               return util.save();
-         }).then(function(){
-              assert(util.isNew === false);
-              util = new Utilisateur({
-                                         nom: "xi",
-                                         age: 34,
-                                         type: 2,
-                                         statut: "D",
-                                         favorites: { artiste: "Chagall", aliment: "chocolate" },
-                                         termine: [ 5, 11 ],
-                                         badges: [ "red", "black" ],
-                                         points: [
-                                          { points: 53, bonus: 15 },
-                                          { points: 51, bonus: 15 }
-                                         ]
-                                    });
-               return util.save();
-         }).then(function(){
-               assert(util.isNew === false);
-               util = new Utilisateur({
-                                          nom: "xyz",
-                                          age: 23,
-                                          type: 2,
-                                          statut: "D",
-                                          favorites: { artiste: "Noguchi", aliment: "nougat" },
-                                          termine: [ 14, 6 ],
-                                          badges: [ "orange" ],
-                                          points: [
-                                           { points: 71, bonus: 20 }
-                                          ]
-                                     });
-                return util.save();
-         }).then(function(){
-           assert(util.isNew === false);
-           util = new Utilisateur({
-                                      nom: "abc",
-                                      age: 43,
-                                      type: 1,
-                                      statut: "A",
-                                      favorites: { aliment: "pizza", artiste: "Picasso" },
-                                      termine: [ 18, 12 ],
-                                      badges: [ "black", "blue" ],
-                                      points: [
-                                       { points: 78, bonus: 8 },
-                                       { points: 57, bonus: 7 }
-                                      ]
-                                });
-            return util.save();
-         }).then(function(){
-             assert(util.isNew === false);
-             Categorie.findOne({nom:"Drinks"}).then(function(result){
-                  prod = new Produit({
-                      nom:"Chai Tea",
-                      categorieId:result._id,
-                      quantite:"10 boxes x 20 bags",
-                      prix:18.00,
-                      quantiteRestante:39,
-                      quantiteCommande:0,
-                      reapprovisionnement:10,
-                      Discontinue:false
-                  });
-                  prod.save().then(function(){
-                      assert(prod.isNew === false);
-                      done();
-                  });
-             });
-         });
-     })
->>>>>>> 56b6cb06c7946d81f8e87ec4db0ee21ea7d3c494
 });

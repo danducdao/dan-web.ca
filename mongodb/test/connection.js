@@ -18,7 +18,7 @@ before(function(done){
 });
 
 //Drop collections personnes
-beforeEach(function(done){
+before(function(done){
      mongoose.connection.collections.personnes.drop(function(){
           done();
      });
@@ -26,21 +26,21 @@ beforeEach(function(done){
 });
 
 //Drop collection categories
-beforeEach(function(done){
+before(function(done){
      mongoose.connection.collections.categories.drop(function(){
           done();
      });
 });
 
 //Drop collection utilisateurs
-beforeEach(function(done){
+before(function(done){
      mongoose.connection.collections.utilisateurs.drop(function(){
           done();
      });
 });
 
 //Drop collection produit
-beforeEach(function(done){
+before(function(done){
      mongoose.connection.collections.produits.drop(function(){
           done();
      });

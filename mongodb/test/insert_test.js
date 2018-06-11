@@ -13,7 +13,7 @@ const Produit = require('../model/produit');
 describe('Sauvegarder de données dans les collections',function(){
 
   beforeEach(function(done){
-    
+
         var cat = new Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",

@@ -1,3 +1,8 @@
+/*
+* Program : Requête sur des collections
+* Écrit par : Dan Duc Dao
+*/
+
 const mocha = require('mocha');
 const assert = require('assert');
 const Produit = require('../model/produit');

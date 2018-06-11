@@ -424,7 +424,5 @@ describe('Sauvegarder de données dans les collections',function(){
                  });
              });
         });
-  });
-
-
+    });
 });

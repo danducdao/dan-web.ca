@@ -13,7 +13,7 @@ const Produit = require('../model/produit');
 describe('Sauvegarder de données dans les collections',function(){
 
   beforeEach(function(done){
-
+    
         var cat = new Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
@@ -81,28 +81,33 @@ describe('Sauvegarder de données dans les collections',function(){
   });
 
   it('Sauvegarder de données dans collection personne', function(done){
-          var pers = new Personne({
-               nom:'Jonh Doe',
-               poids:68
+        var pers = new Personne({
+             nom:'Jonh Doe',
+             poids:68
+        });
+        pers.save().then(function(){
+            assert(pers.isNew === false);
+            done();
           });
-          pers.save().then(function(){
-              assert(pers.isNew === false);
-              var util = new Utilisateur({
-                                         nom: "sue",
-                                         age: 19,
-                                         type: 1,
-                                         statut: "P",
-                                         favorites: { artiste: "Picasso", aliment: "pizza" },
-                                         termine: [ 17, 3 ],
-                                         badges: [ "blue", "black" ],
-                                         points: [
-                                          { points: 85, bonus: 20 },
-                                          { points: 85, bonus: 10 }
-                                         ]
-                                     });
-                util.save().then(function(){
-                assert(util.isNew === false);
-                util = new Utilisateur({
+  });
+  it('Sauvegarder de données dans collection utilisateur', function(done){
+
+            var util = new Utilisateur({
+                                           nom: "sue",
+                                           age: 19,
+                                           type: 1,
+                                           statut: "P",
+                                           favorites: { artiste: "Picasso", aliment: "pizza" },
+                                           termine: [ 17, 3 ],
+                                           badges: [ "blue", "black" ],
+                                           points: [
+                                            { points: 85, bonus: 20 },
+                                            { points: 85, bonus: 10 }
+                                           ]
+                                   });
+              util.save().then(function(){
+              assert(util.isNew === false);
+              util = new Utilisateur({
                                           nom: "bob",
                                           age: 42,
                                           type: 1,
@@ -114,73 +119,78 @@ describe('Sauvegarder de données dans les collections',function(){
                                            { points: 85, bonus: 20 },
                                            { points: 64, bonus: 12 }
                                           ]
-                                     });
+                                   });
+               return util.save();
+           }).then(function(){
+                assert(util.isNew === false);
+                util = new Utilisateur({
+                                           nom: "ahn",
+                                           age: 22,
+                                           type: 2,
+                                           statut: "A",
+                                           favorites: { artiste: "Cassatt", aliment: "cake" },
+                                           termine: [ 6 ],
+                                           badges: [ "blue", "red" ],
+                                           points: [
+                                            { points: 81, bonus: 8 },
+                                            { points: 55, bonus: 20 }
+                                           ]
+                                      });
                  return util.save();
-             }).then(function(){
-                  assert(util.isNew === false);
-                  util = new Utilisateur({
-                                             nom: "ahn",
-                                             age: 22,
-                                             type: 2,
-                                             statut: "A",
-                                             favorites: { artiste: "Cassatt", aliment: "cake" },
-                                             termine: [ 6 ],
-                                             badges: [ "blue", "red" ],
-                                             points: [
-                                              { points: 81, bonus: 8 },
-                                              { points: 55, bonus: 20 }
-                                             ]
-                                        });
-                   return util.save();
-             }).then(function(){
-                  assert(util.isNew === false);
-                  util = new Utilisateur({
-                                             nom: "xi",
-                                             age: 34,
-                                             type: 2,
-                                             statut: "D",
-                                             favorites: { artiste: "Chagall", aliment: "chocolate" },
-                                             termine: [ 5, 11 ],
-                                             badges: [ "red", "black" ],
-                                             points: [
-                                              { points: 53, bonus: 15 },
-                                              { points: 51, bonus: 15 }
-                                             ]
-                                        });
-                   return util.save();
-             }).then(function(){
-                   assert(util.isNew === false);
-                   util = new Utilisateur({
-                                              nom: "xyz",
-                                              age: 23,
-                                              type: 2,
-                                              statut: "D",
-                                              favorites: { artiste: "Noguchi", aliment: "nougat" },
-                                              termine: [ 14, 6 ],
-                                              badges: [ "orange" ],
-                                              points: [
-                                               { points: 71, bonus: 20 }
-                                              ]
-                                         });
-                    return util.save();
-             }).then(function(){
-               assert(util.isNew === false);
-               util = new Utilisateur({
-                                          nom: "abc",
-                                          age: 43,
-                                          type: 1,
-                                          statut: "A",
-                                          favorites: { aliment: "pizza", artiste: "Picasso" },
-                                          termine: [ 18, 12 ],
-                                          badges: [ "black", "blue" ],
-                                          points: [
-                                           { points: 78, bonus: 8 },
-                                           { points: 57, bonus: 7 }
-                                          ]
-                                    });
-                return util.save();
-             }).then(function(){
-               Categorie.findOne({nom:"Drinks"}).then(function(result){
+           }).then(function(){
+                assert(util.isNew === false);
+                util = new Utilisateur({
+                                           nom: "xi",
+                                           age: 34,
+                                           type: 2,
+                                           statut: "D",
+                                           favorites: { artiste: "Chagall", aliment: "chocolate" },
+                                           termine: [ 5, 11 ],
+                                           badges: [ "red", "black" ],
+                                           points: [
+                                            { points: 53, bonus: 15 },
+                                            { points: 51, bonus: 15 }
+                                           ]
+                                      });
+                 return util.save();
+           }).then(function(){
+                 assert(util.isNew === false);
+                 util = new Utilisateur({
+                                            nom: "xyz",
+                                            age: 23,
+                                            type: 2,
+                                            statut: "D",
+                                            favorites: { artiste: "Noguchi", aliment: "nougat" },
+                                            termine: [ 14, 6 ],
+                                            badges: [ "orange" ],
+                                            points: [
+                                             { points: 71, bonus: 20 }
+                                            ]
+                                       });
+                  return util.save();
+           }).then(function(){
+             assert(util.isNew === false);
+             util = new Utilisateur({
+                                        nom: "abc",
+                                        age: 43,
+                                        type: 1,
+                                        statut: "A",
+                                        favorites: { aliment: "pizza", artiste: "Picasso" },
+                                        termine: [ 18, 12 ],
+                                        badges: [ "black", "blue" ],
+                                        points: [
+                                         { points: 78, bonus: 8 },
+                                         { points: 57, bonus: 7 }
+                                        ]
+                                  });
+              return util.save();
+           }).then(function(){
+                     done();
+           });
+    });
+    it('Sauvegarder de données dans collection produits de catégorie Drinks', function(done){
+
+            Categorie.findOne({nom:"Drinks"}).then(function(result){
                     assert(result.nom === "Drinks");
                     var prod = new Produit({
                         nom:"Chai Tea",
@@ -336,95 +346,102 @@ describe('Sauvegarder de données dans les collections',function(){
                                           });
                         return prod.save();
                     }).then(function(){
-                      Categorie.findOne({nom:"Condiments"}).then(function(result){
-                            assert(result.nom === "Condiments");
-                            var prod = new Produit({
-                                nom:"Aniseed Syrup",
-                                categorieId:result._id,
-                                quantite:"12 - 550 ml bottles",
-                                prix:10.00,
-                                quantiteRestante:63,
-                                quantiteCommande:70,
-                                reapprovisionnement:25,
-                                Discontinue:false
-                            });
-                            prod.save().then(function(){
-                                assert(prod.isNew === false);
-                                prod = new Produit({
-                                        nom:"Original Frankfurter grüne Soße",
-                                        categorieId:result._id,
-                                        quantite:"12 boxes",
-                                        prix:13.00,
-                                        quantiteRestante:0,
-                                        quantiteCommande:25,
-                                        reapprovisionnement:25,
-                                        Discontinue:false
-                                    });
-                                 return prod.save();
-                             }).then(function(){
-                                 assert(prod.isNew === false);
-                                 prod = new Produit({
-                                         nom:"Sirop d'érable",
-                                         categorieId:result._id,
-                                         quantite:"24 - 500 ml bottles",
-                                         prix:28.50,
-                                         quantiteRestante:113,
-                                         quantiteCommande:0,
-                                         reapprovisionnement:25,
-                                         Discontinue:false
-                                     });
-                                  return prod.save();
-                              }).then(function(){
-                                  assert(prod.isNew === false);
-                                  prod = new Produit({
-                                          nom:"Vegie-spread",
-                                          categorieId:result._id,
-                                          quantite:"15 - 625 g jars",
-                                          prix:43.90,
-                                          quantiteRestante:24,
-                                          quantiteCommande:0,
-                                          reapprovisionnement:5,
-                                          Discontinue:false
-                                      });
-                                   return prod.save();
-                               }).then(function(){
-                                 Categorie.findOne({nom:"Confections"}).then(function(result){
-                                       assert(result.nom === "Confections");
-                                       prod = new Produit({
-                                           nom:"Teatime Chocolate Biscuits",
-                                           categorieId:result._id,
-                                           quantite:"10 boxes x 12 pieces",
-                                           prix:9.20,
-                                           quantiteRestante:25,
-                                           quantiteCommande:0,
-                                           reapprovisionnement:5,
-                                           Discontinue:false
-                                       });
-                                       prod.save().then(function(){
-                                           assert(prod.isNew === false);
-                                           Categorie.findOne({nom:"Dairy Products"}).then(function(result){
-                                                 prod = new Produit({
-                                                     nom:"Gorgonzola Telino",
-                                                     categorieId:result._id,
-                                                     quantite:"12 - 100 g pkgs",
-                                                     prix:12.50,
-                                                     quantiteRestante:0,
-                                                     quantiteCommande:70,
-                                                     reapprovisionnement:20,
-                                                     Discontinue:false
-                                                 });
-                                                 prod.save().then(function(){
-                                                     assert(prod.isNew === false);
-                                                     done();
-                                                 });
-                                           });
-                                       })
-                                 });
-                             })
-                        });
+                       done();
                     });
-                 });
-             });
-        });
+          });
     });
+
+    it('Sauvegarder de données dans collection produits de catégorie Condiments', function(done){
+
+            Categorie.findOne({nom:"Condiments"}).then(function(result){
+                        assert(result.nom === "Condiments");
+                        var prod = new Produit({
+                            nom:"Aniseed Syrup",
+                            categorieId:result._id,
+                            quantite:"12 - 550 ml bottles",
+                            prix:10.00,
+                            quantiteRestante:63,
+                            quantiteCommande:70,
+                            reapprovisionnement:25,
+                            Discontinue:false
+                        });
+                        prod.save().then(function(){
+                            assert(prod.isNew === false);
+                            prod = new Produit({
+                                    nom:"Original Frankfurter grüne Soße",
+                                    categorieId:result._id,
+                                    quantite:"12 boxes",
+                                    prix:13.00,
+                                    quantiteRestante:0,
+                                    quantiteCommande:25,
+                                    reapprovisionnement:25,
+                                    Discontinue:false
+                                });
+                             return prod.save();
+                         }).then(function(){
+                             assert(prod.isNew === false);
+                             prod = new Produit({
+                                     nom:"Sirop d'érable",
+                                     categorieId:result._id,
+                                     quantite:"24 - 500 ml bottles",
+                                     prix:28.50,
+                                     quantiteRestante:113,
+                                     quantiteCommande:0,
+                                     reapprovisionnement:25,
+                                     Discontinue:false
+                                 });
+                              return prod.save();
+                          }).then(function(){
+                              assert(prod.isNew === false);
+                              prod = new Produit({
+                                      nom:"Vegie-spread",
+                                      categorieId:result._id,
+                                      quantite:"15 - 625 g jars",
+                                      prix:43.90,
+                                      quantiteRestante:24,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:5,
+                                      Discontinue:false
+                                  });
+                               return prod.save();
+                           }).then(function(){
+                               done();
+                           });
+                });
+       });
+
+       it('Sauvegarder de données dans collection produits de catégorie Confections', function(done){
+              Categorie.findOne({nom:"Confections"}).then(function(result){
+                     assert(result.nom === "Confections");
+                     prod = new Produit({
+                         nom:"Teatime Chocolate Biscuits",
+                         categorieId:result._id,
+                         quantite:"10 boxes x 12 pieces",
+                         prix:9.20,
+                         quantiteRestante:25,
+                         quantiteCommande:0,
+                         reapprovisionnement:5,
+                         Discontinue:false
+                     });
+                     prod.save().then(function(){
+                         assert(prod.isNew === false);
+                         Categorie.findOne({nom:"Dairy Products"}).then(function(result){
+                               prod = new Produit({
+                                   nom:"Gorgonzola Telino",
+                                   categorieId:result._id,
+                                   quantite:"12 - 100 g pkgs",
+                                   prix:12.50,
+                                   quantiteRestante:0,
+                                   quantiteCommande:70,
+                                   reapprovisionnement:20,
+                                   Discontinue:false
+                               });
+                               prod.save().then(function(){
+                                   assert(prod.isNew === false);
+                                   done();
+                               });
+                        });
+                      });
+                });
+          });
 });

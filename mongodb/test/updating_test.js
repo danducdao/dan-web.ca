@@ -16,4 +16,13 @@ describe('Mettre à jour les données de la collection personne',function(){
                  });
             });
       });
+
+      it('Incrémente le poid de Jonh-Doe', function(done){
+            Personne.update({nom:'Jonh-Doe'},{$inc:{poids:1}}).then(function(){
+                 Personne.findOne({nom:"Jonh-Doe"}).then(function(result){
+                      assert(result.poids === 69);
+                      done();
+                 });
+            });
+      });
 });

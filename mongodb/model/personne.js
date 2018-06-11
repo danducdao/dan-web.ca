@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PersonneSchema = new Schema({
-      name:String,
+      nom:String,
       poids:Number
 });
 

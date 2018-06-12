@@ -1,0 +1,52 @@
+<article>
+  <div class="row">
+    <div class="col-md-2" ><img src="./assets/images/distributrice.jpg"  style="width:180px;" /></div>
+    <div class="col-md-2">
+         <div *ngFor="let item of produits; let i = index">
+               <input type="radio" name="produit" value="{{i}}" (click)="choisir($event)" />&nbsp;{{item.nom}}
+        </div>
+    </div>
+    <div class="col-md-3" *ngIf="isSelectedProduct">
+          <img style="max-height:150px;" src="{{produits[i].path}}" />
+          <h5>{{produits[i].nom}} - (${{ produits[i].prix | number:'1.2-2' }})</h5>
+    </div>
+  </div><br>
+  <div class="row">
+       <div class="col-md-1" style="width:80px;margin-top:8px;">
+           <label for="depot">Total</label>
+       </div>
+       <div class="col-md-7">
+           <div class="input-group m-b">
+            <span class="input-group-addon">$</span>
+            <input type="text" class="form-control" name="total" disabled=true style="width:100px;" value="{{montant | number:'1.2-2'}}" />
+          </div>
+       </div>
+  </div>
+  <div class="row" style="margin-bottom:10px;">
+        <div class="col-md-1" style="width:80px;margin-top:8px;">
+           <label for="depot">Monnaie</label>
+        </div>
+        <div class="col-md-2">
+            <div class="input-group m-b">
+             <span class="input-group-addon">$</span>
+             <input type="text" class="form-control" name="depot" style="width:100px;" maxlength="5" [(ngModel)]="depot"/>
+           </div>
+        </div>
+  </div>
+  <div class="row">
+       <div class="col-md-7">
+            <button name="payer" class="btn btn-primary" (click)="payer()">OK</button>
+       </div>
+  </div><br>
+ <div class="row">
+     <div class="col-md-7">
+          <label *ngIf="insuffisant > 0" style="color:red;">Désolé! Il manque ${{ insuffisant | number:'1.2-2' }}</label>
+          <label *ngIf="surplus > 0" style="color:green;">Transaction complété. Montant à rendre de ${{ surplus | number:'1.2-2' }}</label>
+          <label *ngIf="messages.isMatch" style="color:green;">Transaction complété.</label>
+          <label *ngIf="messages.isEmpty" style="color:red;">Erreur! Vous devez entrer un montant.</label>
+          <label *ngIf="messages.isNotDigit" style="color:red;">Erreur! Le montant doit être un digit.</label>
+          <label *ngIf="messages.isSelectedProduct" style="color:red;">Erreur! Vous devez sélectionner le produit.</label>
+     </div>
+ </div>
+
+</article>

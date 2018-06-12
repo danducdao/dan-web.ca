@@ -1,5 +1,5 @@
 /*
-Pogram : Youtube tutorial
+Program : Youtube tutorial
 Écrit par : Dan Duc Dao
 */
 
@@ -24,9 +24,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class HomeComponent implements OnInit {
 
   public safeURL;
-  private videosURLs = [];
-  private i:number = 0;
   public isDisabled = false;
+  private videosURLs:string[];
+  private i:number = 0;
+  private btnNext:HTMLElement;
+  private btnPrevious:HTMLElement;
+
   constructor(private _sanitizer: DomSanitizer) {
         this.videosURLs = [
            "https://www.youtube.com/embed/0eWrpsCLMJQ",
@@ -64,18 +67,20 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
       this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.videosURLs[this.i]);
+      this.btnNext = document.getElementById("next")
+      this.btnPrevious = document.getElementById("previous")
   }
 
   next(){
        if(this.i < this.videosURLs.length - 1)
        {
-         if(document.getElementById("previous").getAttribute("disabled"))
+         if(this.btnPrevious.getAttribute("disabled"))
          {
-           document.getElementById("previous").removeAttribute("disabled");
+           this.btnPrevious.removeAttribute("disabled");
          }
           this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.videosURLs[++this.i]);
        }else{
-          document.getElementById("next").setAttribute("disabled", "disabled");
+          this.btnNext.setAttribute("disabled", "disabled");
        }
   }
 
@@ -83,13 +88,13 @@ export class HomeComponent implements OnInit {
 
      if(this.i > 0)
      {
-        if(document.getElementById("next").getAttribute("disabled"))
+        if(this.btnNext.getAttribute("disabled"))
         {
-          document.getElementById("next").removeAttribute("disabled");
+           this.btnNext.removeAttribute("disabled");
         }
         this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.videosURLs[--this.i]);
      }else{
-         document.getElementById("previous").setAttribute("disabled", "disabled");
+         this.btnPrevious.setAttribute("disabled", "disabled");
      }
   }
 }

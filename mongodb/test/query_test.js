@@ -41,7 +41,7 @@ describe('Requête sur des collections',function(){
                   });
           });
 
-          it('Trouver les produits qui coûtent $18 et quantité restant égale à 57', function(done){
+          it('Trouver les produits qui coûtent $18 et quantité restante égale à 57', function(done){
               Produit.find({$and: [ { prix: { $eq:18 } }, { quantiteRestante: {$eq:57 } } ] }).then(function(result){
                   console.log('\r');
                   result.forEach(function(produit){

@@ -7,7 +7,7 @@ const express = require('express');
 const router = express.Router();
 const Produit = require('../model/produit');
 
-router.get('/produit/:prix',function(req,res){
+router.get('/produit',function(req,res){
     Produit.find({}).then(function(result){
            res.send(result);
     });

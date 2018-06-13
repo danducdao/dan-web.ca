@@ -5,6 +5,7 @@
 
 const express = require('express');
 const produit_route = require('./routes/produit_route');
+const categorie_route = require('./routes/categorie_route');
 const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -16,6 +17,7 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParse.json());
 app.use(produit_route);
+app.use(categorie_route);
 
 app.use(function(err,req,res,next){
     res.send({ erreur: err});

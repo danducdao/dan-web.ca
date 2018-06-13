@@ -8,8 +8,11 @@ import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
 import { EmployeListComponent } from './employe-list/employe-list.component';
 import { EmployeService } from './employe.service';
+import { ProduitService } from './produit.service';
 import { DistributriceComponent } from './distributrice/distributrice.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProduitListComponent } from './produit-list/produit-list.component';
+import { CustomPipePipe } from './custom-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     ClassBindingComponent,
     EmployeListComponent,
     HomeComponent,
-    DistributriceComponent
+    DistributriceComponent,
+    ProduitListComponent,
+    CustomPipePipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [EmployeService],
+  providers: [EmployeService,ProduitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@ import { ProduitService } from '../produit.service';
             <table class="table table-bordered" cellspacing="1" cellpadding="1">
                <thead>
                 <tr>
-                  <th>Catégorie Id</th>
+                  <th>Catégorie</th>
                   <th>Nom</th>
                   <th>Quantité</th>
                   <th>Prix</th>
@@ -25,7 +25,7 @@ import { ProduitService } from '../produit.service';
               </thead>
               <tbody *ngFor="let produit of produits">
                  <tr>
-                     <td>{{ produit.categorieId }}</td>
+                     <td>{{ produit.category[0].nom}}</td>
                      <td>{{ produit.nom }}</td>
                      <td>{{ produit.quantite }}</td>
                      <td style='text-align:right;'>{{ '$' + produit.prix }}</td>

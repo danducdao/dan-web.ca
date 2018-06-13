@@ -1,6 +1,6 @@
 export interface IProduit{
     nom:String,
-    categorieId:Object,
+    category:any[],
     quantite:String,
     prix:Number,
     quantiteRestante:Number,

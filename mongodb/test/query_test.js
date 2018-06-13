@@ -12,7 +12,7 @@ describe('Requête sur des collections',function(){
               Produit.find({prix :{ $eq: 18 }}).then(function(result){
                   console.log('\r');
                   result.forEach(function(produit){
-                      console.log(" - " + produit.nom + " coûte $" + produit.prix.toFixed(2));
+                      console.log(" - " + produit.category.nom + "---" + produit.nom + " coûte $" + produit.prix.toFixed(2));
                   })
                   console.log('\r');
                   done();

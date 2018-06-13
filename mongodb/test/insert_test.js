@@ -194,7 +194,12 @@ describe('Sauvegarder de données dans les collections',function(){
                     assert(result.nom === "Drinks");
                     var prod = new Produit({
                         nom:"Chai Tea",
-                        categorieId:result._id,
+                        category:[  {
+                                        nom:result.nom,
+                                        description:result.description,
+                                        image:result.image
+                                      }
+                                    ],
                         quantite:"10 boxes x 20 bags",
                         prix:18.00,
                         quantiteRestante:39,
@@ -206,7 +211,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Chang",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"24 - 12 oz bottles",
                                               prix:19.00,
                                               quantiteRestante:17,
@@ -219,7 +229,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Laughing Lumberjack Lager",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"24 - 12 oz bottles",
                                               prix:14.00,
                                               quantiteRestante:52,
@@ -232,7 +247,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Guaraná Fantástica",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"12 - 355 ml cans",
                                               prix:4.50,
                                               quantiteRestante:20,
@@ -245,7 +265,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Sasquatch Ale",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"24 - 12 oz bottles",
                                               prix:14.00,
                                               quantiteRestante:111,
@@ -258,7 +283,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Steeleye Stout",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"24 - 12 oz bottles",
                                               prix:18.00,
                                               quantiteRestante:20,
@@ -271,7 +301,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Côte de Blaye",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"12 - 75 cl bottles",
                                               prix:263.50,
                                               quantiteRestante:17,
@@ -284,7 +319,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Chartreuse verte",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"750 cc per bottle",
                                               prix:18.00,
                                               quantiteRestante:69,
@@ -297,7 +337,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Ipoh Coffee",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"16 - 500 g tins",
                                               prix:46.00,
                                               quantiteRestante:17,
@@ -310,7 +355,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Outback Lager",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"24 - 355 ml bottles",
                                               prix:15.00,
                                               quantiteRestante:15,
@@ -323,7 +373,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Rhönbräu Klosterbier",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"24 - 0.5 l bottles",
                                               prix:7.75,
                                               quantiteRestante:125,
@@ -336,7 +391,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(prod.isNew === false);
                         prod = new Produit({
                                               nom:"Lakkalikööri",
-                                              categorieId:result._id,
+                                              category:[  {
+                                                              nom:result.nom,
+                                                              description:result.description,
+                                                              image:result.image
+                                                            }
+                                                          ],
                                               quantite:"500 ml",
                                               prix:18.00,
                                               quantiteRestante:57,
@@ -357,7 +417,12 @@ describe('Sauvegarder de données dans les collections',function(){
                         assert(result.nom === "Condiments");
                         var prod = new Produit({
                             nom:"Aniseed Syrup",
-                            categorieId:result._id,
+                            category:[  {
+                                            nom:result.nom,
+                                            description:result.description,
+                                            image:result.image
+                                          }
+                                        ],
                             quantite:"12 - 550 ml bottles",
                             prix:10.00,
                             quantiteRestante:63,
@@ -369,7 +434,12 @@ describe('Sauvegarder de données dans les collections',function(){
                             assert(prod.isNew === false);
                             prod = new Produit({
                                     nom:"Original Frankfurter grüne Soße",
-                                    categorieId:result._id,
+                                    category:[  {
+                                                    nom:result.nom,
+                                                    description:result.description,
+                                                    image:result.image
+                                                  }
+                                                ],
                                     quantite:"12 boxes",
                                     prix:13.00,
                                     quantiteRestante:0,
@@ -382,7 +452,12 @@ describe('Sauvegarder de données dans les collections',function(){
                              assert(prod.isNew === false);
                              prod = new Produit({
                                      nom:"Sirop d'érable",
-                                     categorieId:result._id,
+                                     category:[  {
+                                                     nom:result.nom,
+                                                     description:result.description,
+                                                     image:result.image
+                                                   }
+                                                 ],
                                      quantite:"24 - 500 ml bottles",
                                      prix:28.50,
                                      quantiteRestante:113,
@@ -395,7 +470,12 @@ describe('Sauvegarder de données dans les collections',function(){
                               assert(prod.isNew === false);
                               prod = new Produit({
                                       nom:"Vegie-spread",
-                                      categorieId:result._id,
+                                      category:[  {
+                                                      nom:result.nom,
+                                                      description:result.description,
+                                                      image:result.image
+                                                    }
+                                                  ],
                                       quantite:"15 - 625 g jars",
                                       prix:43.90,
                                       quantiteRestante:24,
@@ -412,10 +492,16 @@ describe('Sauvegarder de données dans les collections',function(){
 
        it('Sauvegarder de données dans collection produits de catégorie Confections', function(done){
               Categorie.findOne({nom:"Confections"}).then(function(result){
+                     console.log('tre' + result.nom);
                      assert(result.nom === "Confections");
                      prod = new Produit({
                          nom:"Teatime Chocolate Biscuits",
-                         categorieId:result._id,
+                         category:[  {
+                                         nom:result.nom,
+                                         description:result.description,
+                                         image:result.image
+                                       }
+                                     ],
                          quantite:"10 boxes x 12 pieces",
                          prix:9.20,
                          quantiteRestante:25,
@@ -428,7 +514,12 @@ describe('Sauvegarder de données dans les collections',function(){
                          Categorie.findOne({nom:"Dairy Products"}).then(function(result){
                                prod = new Produit({
                                    nom:"Gorgonzola Telino",
-                                   categorieId:result._id,
+                                   category:[  {
+                                                   nom:result.nom,
+                                                   description:result.description,
+                                                   image:result.image
+                                                 }
+                                               ],
                                    quantite:"12 - 100 g pkgs",
                                    prix:12.50,
                                    quantiteRestante:0,

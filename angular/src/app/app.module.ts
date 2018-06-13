@@ -13,6 +13,7 @@ import { DistributriceComponent } from './distributrice/distributrice.component'
 import { HttpClientModule } from '@angular/common/http';
 import { ProduitListComponent } from './produit-list/produit-list.component';
 import { CustomPipePipe } from './custom-pipe.pipe';
+import { CategoryNamePipe } from './category-name.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CustomPipePipe } from './custom-pipe.pipe';
     HomeComponent,
     DistributriceComponent,
     ProduitListComponent,
-    CustomPipePipe
+    CustomPipePipe,
+    CategoryNamePipe
   ],
   imports: [
     BrowserModule,

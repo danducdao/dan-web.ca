@@ -5,10 +5,17 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Category = require('../model/categorie');
+
+const CategorieSchema = new Schema({
+      nom:String,
+      description:String,
+      image:String
+});
 
 const ProduitSchema = new Schema({
     nom:String,
-    categorieId:Object,
+    category:[CategorieSchema],
     quantite:String,
     prix:Number,
     quantiteRestante:Number,

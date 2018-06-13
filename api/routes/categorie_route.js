@@ -11,12 +11,10 @@ router.get('/categorie',function(req,res,next){
    res.setHeader('Access-Control-Allow-Origin', '*');
    if(!req.query.id)
    {
-     console.log('tessssxxxxx');
        Categorie.find({}).then(function(result){
             res.send(result);
        });
    }else{
-       console.log('tessss');
        Categorie.findOne({_id:req.query.id}).then(function(result){
             res.send(result);
        });

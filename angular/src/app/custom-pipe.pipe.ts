@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   pure: false
 })
 export class CustomPipePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer){}
+  constructor(private sanitizer: DomSanitizer = null){}
   transform(value:Boolean, args?: any): any {
        return value == true? this.sanitizer.bypassSecurityTrustHtml('<i class="fa fa-check"></i>') : '';
   }

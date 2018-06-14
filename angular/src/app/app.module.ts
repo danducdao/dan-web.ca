@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
-import { EmployeListComponent } from './employe-list/employe-list.component';
 import { EmployeService } from './employe.service';
 import { ProduitService } from './produit.service';
+import { CategorieService } from './categorie.service';
 import { DistributriceComponent } from './distributrice/distributrice.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProduitListComponent } from './produit-list/produit-list.component';
 import { CustomPipePipe } from './custom-pipe.pipe';
-import { CategoryNamePipe } from './category-name.pipe';
+import { ListeCategorieComponent } from './categorie/liste.component';
+import { ListeProduitComponent } from './produit/liste.component';
+import { ListeEmployeeComponent } from './employee/liste.component';
+
 
 @NgModule({
   declarations: [
@@ -21,12 +23,12 @@ import { CategoryNamePipe } from './category-name.pipe';
     routingComponents,
     DataBindingComponent,
     ClassBindingComponent,
-    EmployeListComponent,
     HomeComponent,
     DistributriceComponent,
-    ProduitListComponent,
     CustomPipePipe,
-    CategoryNamePipe
+    ListeCategorieComponent,
+    ListeProduitComponent,
+    ListeEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { CategoryNamePipe } from './category-name.pipe';
     FormsModule,
     HttpClientModule
   ],
-  providers: [EmployeService,ProduitService],
+  providers: [EmployeService,ProduitService,CategorieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

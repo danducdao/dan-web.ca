@@ -1,3 +1,8 @@
+/*
+* Program : Premier program
+* Écrit par : Dan Duc Dao
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

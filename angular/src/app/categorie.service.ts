@@ -1,25 +1,24 @@
-/*
-* Program : Appele REST API
-* Écrit par : Dan Duc Dao
-*/
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduit } from './produit';
+import { ICategorie } from './categorie';
 import { Service } from './service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProduitService extends Service{
+
+export class CategorieService extends Service {
 
   constructor(private http:HttpClient) {
        super();
   }
 
-  getProduitList(){
-      this.Path = "/produit";
-      return this.http.get<IProduit[]>(this.Url);
+  getCategorieList(){
+      this.Path = "/categorie";
+      return this.http.get<ICategorie[]>(this.Url);
+  }
+  test(){
+      return "test";
   }
 }

@@ -1,9 +1,0 @@
-<h2>Liste d'employé</h2>
-<ul *ngFor="let employe of employees">
-     <li>{{ employe.name }}</li>
-</ul>
-<hr>
-<h2>Liste détail d'employé </h2>
-<ul *ngFor="let employe of employeesDetail; let i = index">
-     <li>{{ i }} - {{ employe.name }} - {{ employe.age}} ans</li>
-</ul>

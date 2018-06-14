@@ -4,9 +4,10 @@ import { HomeComponent } from './home/home.component';
 import { FirstProgramComponent } from './first-program/first-program.component';
 import { DataBindingComponent } from './data-binding/data-binding.component';
 import { ClassBindingComponent } from './class-binding/class-binding.component';
-import { EmployeListComponent } from './employe-list/employe-list.component';
+import { ListeEmployeeComponent } from './employee/liste.component';
 import { DistributriceComponent } from './distributrice/distributrice.component';
-import { ProduitListComponent } from './produit-list/produit-list.component';
+import { ListeCategorieComponent } from './categorie/liste.component';
+import { ListeProduitComponent } from './produit/liste.component';
 
 const routes: Routes = [
       {
@@ -26,16 +27,20 @@ const routes: Routes = [
         component:ClassBindingComponent
       },
       {
-        path:'employe-list',
-        component:EmployeListComponent
+        path:'employee',
+        component:ListeEmployeeComponent
       },
       {
         path:'distributrice',
         component:DistributriceComponent
       },
       {
-        path:'produit-list',
-        component:ProduitListComponent
+        path:'categorie',
+        component:ListeCategorieComponent
+      },
+      {
+        path:'produit',
+        component:ListeProduitComponent
       }
 
 ];

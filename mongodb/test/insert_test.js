@@ -16,21 +16,21 @@ describe('Sauvegarder de données dans les collections',function(){
         var cat = new Produit.Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
-                                  image:""
+                                  image:"./assets/images/beverages.gif"
                                 });
         cat.save().then(function(){
               assert(cat.isNew === false);
               cat = new Produit.Categorie({
                                     nom:"Condiments",
                                     description:"Sweet and savory sauces, relishes, spreads, and seasonings",
-                                    image:""
+                                    image:"./assets/images/condiments.gif"
                                   });
               return cat.save();
         }).then(function(){
               cat = new Produit.Categorie({
                                     nom:"Confections",
                                     description:"Desserts, candies, and sweet breads",
-                                    image:""
+                                    image:"./assets/images/confections.gif"
                                   });
               return  cat.save();
         }).then(function(){
@@ -38,7 +38,7 @@ describe('Sauvegarder de données dans les collections',function(){
               cat = new Produit.Categorie({
                                     nom:"Dairy Products",
                                     description:"Cheeses",
-                                    image:""
+                                    image:"./assets/images/diary.gif"
                                   });
               return cat.save();
         }).then(function(){
@@ -46,7 +46,7 @@ describe('Sauvegarder de données dans les collections',function(){
                 cat = new Produit.Categorie({
                                       nom:"Grains/Cereals",
                                       description:"Breads, crackers, pasta, and cereal",
-                                      image:""
+                                      image:"./assets/images/cereals.gif"
                                     });
 
                 return cat.save();
@@ -55,7 +55,7 @@ describe('Sauvegarder de données dans les collections',function(){
                cat = new Produit.Categorie({
                                      nom:"Meat/Poultry",
                                      description:"Prepared meats",
-                                     image:""
+                                     image:"./assets/images/meat.gif"
                                    });
 
                   return cat.save();
@@ -64,7 +64,7 @@ describe('Sauvegarder de données dans les collections',function(){
               cat = new Produit.Categorie({
                                     nom:"Produce",
                                     description:"Dried fruit and bean curd",
-                                    image:""
+                                    image:"./assets/images/produce.gif"
                                   });
                 return cat.save();
         }).then(function(){
@@ -72,7 +72,7 @@ describe('Sauvegarder de données dans les collections',function(){
             cat = new Produit.Categorie({
                                   nom:"Seafood",
                                   description:"Seaweed and fish",
-                                  image:""
+                                  image:"./assets/images/seafood.gif"
                                 });
         }).then(function(){
             done();

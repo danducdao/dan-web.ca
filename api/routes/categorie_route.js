@@ -5,17 +5,17 @@
 
 const express = require('express');
 const router = express.Router();
-const Categorie = require('../model/categorie');
+const Produit = require('../model/produit');
 
 router.get('/categorie',function(req,res,next){
    res.setHeader('Access-Control-Allow-Origin', '*');
    if(!req.query.id)
    {
-       Categorie.find({}).then(function(result){
+       Produit.Categorie.find({}).then(function(result){
             res.send(result);
        });
    }else{
-       Categorie.findOne({_id:req.query.id}).then(function(result){
+       Produit.Categorie.findOne({_id:req.query.id}).then(function(result){
             res.send(result);
        });
    }

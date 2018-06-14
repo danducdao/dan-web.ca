@@ -6,7 +6,6 @@
 const mocha = require('mocha');
 const assert = require('assert');
 const Personne = require('../model/personne');
-const Categorie = require('../model/categorie');
 const Utilisateur = require('../model/utilisateur');
 const Produit = require('../model/produit');
 
@@ -14,21 +13,21 @@ describe('Sauvegarder de données dans les collections',function(){
 
   beforeEach(function(done){
 
-        var cat = new Categorie({
+        var cat = new Produit.Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
                                   image:""
                                 });
         cat.save().then(function(){
               assert(cat.isNew === false);
-              cat = new Categorie({
+              cat = new Produit.Categorie({
                                     nom:"Condiments",
                                     description:"Sweet and savory sauces, relishes, spreads, and seasonings",
                                     image:""
                                   });
               return cat.save();
         }).then(function(){
-              cat = new Categorie({
+              cat = new Produit.Categorie({
                                     nom:"Confections",
                                     description:"Desserts, candies, and sweet breads",
                                     image:""
@@ -36,7 +35,7 @@ describe('Sauvegarder de données dans les collections',function(){
               return  cat.save();
         }).then(function(){
               assert(cat.isNew === false);
-              cat = new Categorie({
+              cat = new Produit.Categorie({
                                     nom:"Dairy Products",
                                     description:"Cheeses",
                                     image:""
@@ -44,7 +43,7 @@ describe('Sauvegarder de données dans les collections',function(){
               return cat.save();
         }).then(function(){
                 assert(cat.isNew === false);
-                cat = new Categorie({
+                cat = new Produit.Categorie({
                                       nom:"Grains/Cereals",
                                       description:"Breads, crackers, pasta, and cereal",
                                       image:""
@@ -53,7 +52,7 @@ describe('Sauvegarder de données dans les collections',function(){
                 return cat.save();
         }).then(function(){
                assert(cat.isNew === false);
-               cat = new Categorie({
+               cat = new Produit.Categorie({
                                      nom:"Meat/Poultry",
                                      description:"Prepared meats",
                                      image:""
@@ -62,7 +61,7 @@ describe('Sauvegarder de données dans les collections',function(){
                   return cat.save();
         }).then(function(){
               assert(cat.isNew === false);
-              cat = new Categorie({
+              cat = new Produit.Categorie({
                                     nom:"Produce",
                                     description:"Dried fruit and bean curd",
                                     image:""
@@ -70,7 +69,7 @@ describe('Sauvegarder de données dans les collections',function(){
                 return cat.save();
         }).then(function(){
             assert(cat.isNew === false);
-            cat = new Categorie({
+            cat = new Produit.Categorie({
                                   nom:"Seafood",
                                   description:"Seaweed and fish",
                                   image:""
@@ -80,6 +79,153 @@ describe('Sauvegarder de données dans les collections',function(){
         });
   });
 
+  beforeEach(function(done){
+          var fournisseur = new Produit.Fournisseur({
+                                      compagnie:"Exotic Liquids",
+                                      contact:"Charlotte Cooper",
+                                      titre:"Purchasing Manager",
+                                      address:"49 Gilbert St.",
+                                      ville:"London",
+                                      region:"",
+                                      codePostal:"EC1 4SD",
+                                      pays:"UK",
+                                      telephone:"(171) 555-2222",
+                                      fax:"",
+                                      siteWeb:""
+                                  });
+          fournisseur.save().then(function(){
+                assert(fournisseur.isNew === false);
+                fournisseur = new Produit.Fournisseur({
+                                            compagnie:"New Orleans Cajun Delights",
+                                            contact:"Shelley Burke",
+                                            titre:"Order Administrator",
+                                            address:"P.O. Box 78934",
+                                            ville:"New Orleans",
+                                            region:"LA",
+                                            codePostal:"70117",
+                                            pays:"USA",
+                                            telephone:"(100) 555-4822",
+                                            fax:"",
+                                            siteWeb:""
+                                        });
+                        return fournisseur.save();
+                  }).then(function(){
+                      assert(fournisseur.isNew === false);
+                      fournisseur = new Produit.Fournisseur({
+                                                  compagnie:"Grandma Kelly's Homestead",
+                                                  contact:"Regina Murphy",
+                                                  titre:"Sales Representative",
+                                                  address:"707 Oxford Rd.",
+                                                  ville:"Ann Arbor",
+                                                  region:"MI",
+                                                  codePostal:"48104",
+                                                  pays:"USA",
+                                                  telephone:"(313) 555-5735",
+                                                  fax:"(313) 555-3349",
+                                                  siteWeb:""
+                                              });
+                        return fournisseur.save();
+                  }).then(function(){
+                        assert(fournisseur.isNew === false);
+                        fournisseur = new Produit.Fournisseur({
+                                                    compagnie:"Tokyo Traders",
+                                                    contact:"Yoshi Nagase",
+                                                    titre:"Marketing Manager",
+                                                    address:"9-8 Sekimai Musashino-shi",
+                                                    ville:"Tokyo",
+                                                    region:"",
+                                                    codePostal:"100",
+                                                    pays:"Japan",
+                                                    telephone:"(03) 3555-5011",
+                                                    fax:"",
+                                                    siteWeb:""
+                                                });
+                            return fournisseur.save();
+                  }).then(function(){
+                       assert(fournisseur.isNew === false);
+                       fournisseur = new Produit.Fournisseur({
+                                                   compagnie:"Cooperativa de Quesos 'Las Cabras'",
+                                                   contact:"Antonio del Valle Saavedra",
+                                                   titre:"Export Administrator",
+                                                   address:"Calle del Rosal 4",
+                                                   ville:"Oviedo",
+                                                   region:"Asturias",
+                                                   codePostal:"33007",
+                                                   pays:"Spain",
+                                                   telephone:"(98) 598 76 54",
+                                                   fax:"",
+                                                   siteWeb:""
+                                               });
+                           return fournisseur.save();
+
+                  }).then(function(){
+                       assert(fournisseur.isNew === false);
+                       fournisseur = new Produit.Fournisseur({
+                                                   compagnie:"Mayumi's",
+                                                   contact:"Antonio del Valle Saavedra",
+                                                   titre:"Marketing Representative",
+                                                   address:"92 Setsuko Chuo-ku",
+                                                   ville:"Osaka",
+                                                   region:"",
+                                                   codePostal:"545",
+                                                   pays:"Japan",
+                                                   telephone:"(06) 431-7877",
+                                                   fax:"",
+                                                   siteWeb:""
+                                               });
+                           return fournisseur.save();
+                  }).then(function(){
+                       assert(fournisseur.isNew === false);
+                       fournisseur = new Produit.Fournisseur({
+                                                   compagnie:"Pavlova, Ltd.",
+                                                   contact:"Ian Devling",
+                                                   titre:"Marketing Manager",
+                                                   address:"74 Rose St. Moonie Ponds",
+                                                   ville:"Melbourne",
+                                                   region:"Victoria",
+                                                   codePostal:"3058",
+                                                   pays:"Australia",
+                                                   telephone:"(03) 444-2343",
+                                                   fax:"(03) 444-6588",
+                                                   siteWeb:""
+                                               });
+                           return fournisseur.save();
+                  }).then(function(){
+                       assert(fournisseur.isNew === false);
+                       fournisseur = new Produit.Fournisseur({
+                                                   compagnie:"Specialty Biscuits, Ltd.",
+                                                   contact:"Peter Wilson",
+                                                   titre:"Sales Representative",
+                                                   address:"29 King's Way",
+                                                   ville:"Manchester",
+                                                   region:"",
+                                                   codePostal:"M14 GSD",
+                                                   pays:"UK",
+                                                   telephone:"(161) 555-4448",
+                                                   fax:"",
+                                                   siteWeb:""
+                                               });
+                           return fournisseur.save();
+                  }).then(function(){
+                         assert(fournisseur.isNew === false);
+                         fournisseur = new Produit.Fournisseur({
+                                                     compagnie:"PB Knäckebröd AB",
+                                                     contact:"Lars Peterson",
+                                                     titre:"Sales Agent",
+                                                     address:"Kaloadagatan 13",
+                                                     ville:"Göteborg",
+                                                     region:"",
+                                                     codePostal:"S-345 67",
+                                                     pays:"Sweden",
+                                                     telephone:"031-987 65 43",
+                                                     fax:"031-987 65 91",
+                                                     siteWeb:""
+                                                 });
+                             return fournisseur.save();
+                  }).then(function(){
+                       done();
+                  });
+  });
   it('Sauvegarder de données dans collection personne', function(done){
         var pers = new Personne({
              nom:'Jonh Doe',
@@ -190,9 +336,9 @@ describe('Sauvegarder de données dans les collections',function(){
     });
     it('Sauvegarder de données dans collection produits de catégorie Drinks', function(done){
 
-            Categorie.findOne({nom:"Drinks"}).then(function(result){
+            Produit.Categorie.findOne({nom:"Drinks"}).then(function(result){
                     assert(result.nom === "Drinks");
-                    var prod = new Produit({
+                    var prod = new Produit.Produit({
                         nom:"Chai Tea",
                         category:[  {
                                         nom:result.nom,
@@ -200,6 +346,19 @@ describe('Sauvegarder de données dans les collections',function(){
                                         image:result.image
                                       }
                                     ],
+                        fournisseur:{
+                                        compagnie:"Exotic Liquids",
+                                        contact:"Charlotte Cooper",
+                                        titre:"Purchasing Manager",
+                                        address:"49 Gilbert St.",
+                                        ville:"London",
+                                        region:"",
+                                        codePostal:"EC1 4SD",
+                                        pays:"UK",
+                                        telephone:"(171) 555-2222",
+                                        fax:"",
+                                        siteWeb:""
+                                    },
                         quantite:"10 boxes x 20 bags",
                         prix:18.00,
                         quantiteRestante:39,
@@ -209,7 +368,7 @@ describe('Sauvegarder de données dans les collections',function(){
                     });
                     prod.save().then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Chang",
                                               category:[  {
                                                               nom:result.nom,
@@ -217,6 +376,19 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:{
+                                                              compagnie:"Exotic Liquids",
+                                                              contact:"Charlotte Cooper",
+                                                              titre:"Purchasing Manager",
+                                                              address:"49 Gilbert St.",
+                                                              ville:"London",
+                                                              region:"",
+                                                              codePostal:"EC1 4SD",
+                                                              pays:"UK",
+                                                              telephone:"(171) 555-2222",
+                                                              fax:"",
+                                                              siteWeb:""
+                                                          },
                                               quantite:"24 - 12 oz bottles",
                                               prix:19.00,
                                               quantiteRestante:17,
@@ -227,7 +399,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Laughing Lumberjack Lager",
                                               category:[  {
                                                               nom:result.nom,
@@ -235,6 +407,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"24 - 12 oz bottles",
                                               prix:14.00,
                                               quantiteRestante:52,
@@ -245,7 +418,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Guaraná Fantástica",
                                               category:[  {
                                                               nom:result.nom,
@@ -253,6 +426,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"12 - 355 ml cans",
                                               prix:4.50,
                                               quantiteRestante:20,
@@ -263,7 +437,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Sasquatch Ale",
                                               category:[  {
                                                               nom:result.nom,
@@ -271,6 +445,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"24 - 12 oz bottles",
                                               prix:14.00,
                                               quantiteRestante:111,
@@ -281,7 +456,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Steeleye Stout",
                                               category:[  {
                                                               nom:result.nom,
@@ -289,6 +464,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"24 - 12 oz bottles",
                                               prix:18.00,
                                               quantiteRestante:20,
@@ -299,7 +475,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Côte de Blaye",
                                               category:[  {
                                                               nom:result.nom,
@@ -307,6 +483,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"12 - 75 cl bottles",
                                               prix:263.50,
                                               quantiteRestante:17,
@@ -317,7 +494,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Chartreuse verte",
                                               category:[  {
                                                               nom:result.nom,
@@ -325,6 +502,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"750 cc per bottle",
                                               prix:18.00,
                                               quantiteRestante:69,
@@ -335,7 +513,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Ipoh Coffee",
                                               category:[  {
                                                               nom:result.nom,
@@ -343,6 +521,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"16 - 500 g tins",
                                               prix:46.00,
                                               quantiteRestante:17,
@@ -353,7 +532,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Outback Lager",
                                               category:[  {
                                                               nom:result.nom,
@@ -361,6 +540,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"24 - 355 ml bottles",
                                               prix:15.00,
                                               quantiteRestante:15,
@@ -371,7 +551,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Rhönbräu Klosterbier",
                                               category:[  {
                                                               nom:result.nom,
@@ -379,6 +559,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"24 - 0.5 l bottles",
                                               prix:7.75,
                                               quantiteRestante:125,
@@ -389,7 +570,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         return prod.save();
                     }).then(function(){
                         assert(prod.isNew === false);
-                        prod = new Produit({
+                        prod = new Produit.Produit({
                                               nom:"Lakkalikööri",
                                               category:[  {
                                                               nom:result.nom,
@@ -397,6 +578,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                               image:result.image
                                                             }
                                                           ],
+                                              fournisseur:"",
                                               quantite:"500 ml",
                                               prix:18.00,
                                               quantiteRestante:57,
@@ -413,9 +595,9 @@ describe('Sauvegarder de données dans les collections',function(){
 
     it('Sauvegarder de données dans collection produits de catégorie Condiments', function(done){
 
-            Categorie.findOne({nom:"Condiments"}).then(function(result){
+            Produit.Categorie.findOne({nom:"Condiments"}).then(function(result){
                         assert(result.nom === "Condiments");
-                        var prod = new Produit({
+                        var prod = new Produit.Produit({
                             nom:"Aniseed Syrup",
                             category:[  {
                                             nom:result.nom,
@@ -423,6 +605,19 @@ describe('Sauvegarder de données dans les collections',function(){
                                             image:result.image
                                           }
                                         ],
+                            fournisseur:{
+                                            compagnie:"Exotic Liquids",
+                                            contact:"Charlotte Cooper",
+                                            titre:"Purchasing Manager",
+                                            address:"49 Gilbert St.",
+                                            ville:"London",
+                                            region:"",
+                                            codePostal:"EC1 4SD",
+                                            pays:"UK",
+                                            telephone:"(171) 555-2222",
+                                            fax:"",
+                                            siteWeb:""
+                                        },
                             quantite:"12 - 550 ml bottles",
                             prix:10.00,
                             quantiteRestante:63,
@@ -432,7 +627,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         });
                         prod.save().then(function(){
                             assert(prod.isNew === false);
-                            prod = new Produit({
+                            prod = new Produit.Produit({
                                     nom:"Original Frankfurter grüne Soße",
                                     category:[  {
                                                     nom:result.nom,
@@ -440,6 +635,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     image:result.image
                                                   }
                                                 ],
+                                    fournisseur:"",
                                     quantite:"12 boxes",
                                     prix:13.00,
                                     quantiteRestante:0,
@@ -450,7 +646,7 @@ describe('Sauvegarder de données dans les collections',function(){
                              return prod.save();
                          }).then(function(){
                              assert(prod.isNew === false);
-                             prod = new Produit({
+                             prod = new Produit.Produit({
                                      nom:"Sirop d'érable",
                                      category:[  {
                                                      nom:result.nom,
@@ -458,6 +654,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                      image:result.image
                                                    }
                                                  ],
+                                     fournisseur:"",
                                      quantite:"24 - 500 ml bottles",
                                      prix:28.50,
                                      quantiteRestante:113,
@@ -468,7 +665,7 @@ describe('Sauvegarder de données dans les collections',function(){
                               return prod.save();
                           }).then(function(){
                               assert(prod.isNew === false);
-                              prod = new Produit({
+                              prod = new Produit.Produit({
                                       nom:"Vegie-spread",
                                       category:[  {
                                                       nom:result.nom,
@@ -476,6 +673,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                       image:result.image
                                                     }
                                                   ],
+                                      fournisseur:"",
                                       quantite:"15 - 625 g jars",
                                       prix:43.90,
                                       quantiteRestante:24,
@@ -485,16 +683,142 @@ describe('Sauvegarder de données dans les collections',function(){
                                   });
                                return prod.save();
                            }).then(function(){
+                             assert(prod.isNew === false);
+                             prod = new Produit.Produit({
+                                     nom:"Chef Anton's Cajun Seasoning",
+                                     category:[  {
+                                                     nom:result.nom,
+                                                     description:result.description,
+                                                     image:result.image
+                                                   }
+                                                 ],
+                                     fournisseur:{
+                                                     compagnie:"New Orleans Cajun Delights",
+                                                     contact:"Shelley Burke",
+                                                     titre:"Order Administrator",
+                                                     address:"P.O. Box 78934",
+                                                     ville:"New Orleans",
+                                                     region:"LA",
+                                                     codePostal:"70117",
+                                                     pays:"USA",
+                                                     telephone:"(100) 555-4822",
+                                                     fax:"",
+                                                     siteWeb:""
+                                                 },
+                                     quantite:"48 - 6 oz jars",
+                                     prix:22.00,
+                                     quantiteRestante:53,
+                                     quantiteCommande:0,
+                                     reapprovisionnement:0,
+                                     Discontinue:false
+                                 });
+                                 return prod.save();
+
+                           }).then(function(){
+                             assert(prod.isNew === false);
+                             prod = new Produit.Produit({
+                                     nom:"Chef Anton's Gumbo Mix",
+                                     category:[  {
+                                                     nom:result.nom,
+                                                     description:result.description,
+                                                     image:result.image
+                                                   }
+                                                 ],
+                                     fournisseur:{
+                                                     compagnie:"New Orleans Cajun Delights",
+                                                     contact:"Shelley Burke",
+                                                     titre:"Order Administrator",
+                                                     address:"P.O. Box 78934",
+                                                     ville:"New Orleans",
+                                                     region:"LA",
+                                                     codePostal:"70117",
+                                                     pays:"USA",
+                                                     telephone:"(100) 555-4822",
+                                                     fax:"",
+                                                     siteWeb:""
+                                                 },
+                                     quantite:"36 boxes",
+                                     prix:21.35,
+                                     quantiteRestante:0,
+                                     quantiteCommande:0,
+                                     reapprovisionnement:0,
+                                     Discontinue:true
+                                 });
+                                 return prod.save();
+                           }).then(function(){
+                             assert(prod.isNew === false);
+                             prod = new Produit.Produit({
+                                     nom:"Grandma's Boysenberry Spread",
+                                     category:[  {
+                                                     nom:result.nom,
+                                                     description:result.description,
+                                                     image:result.image
+                                                   }
+                                                 ],
+                                     fournisseur:{
+                                                     compagnie:"Grandma Kelly's Homestead",
+                                                     contact:"Regina Murphy",
+                                                     titre:"Sales Representative",
+                                                     address:"707 Oxford Rd.",
+                                                     ville:"Ann Arbor",
+                                                     region:"MI",
+                                                     codePostal:"48104",
+                                                     pays:"USA",
+                                                     telephone:"(313) 555-5735",
+                                                     fax:"(313) 555-3349",
+                                                     siteWeb:""
+                                                 },
+                                     quantite:"12 - 8 oz jars",
+                                     prix:25.00,
+                                     quantiteRestante:120,
+                                     quantiteCommande:0,
+                                     reapprovisionnement:25,
+                                     Discontinue:false
+                                 });
+                                 return prod.save();
+
+                           }).then(function(){
+                             assert(prod.isNew === false);
+                             prod = new Produit.Produit({
+                                     nom:"Northwoods Cranberry Sauce",
+                                     category:[  {
+                                                     nom:result.nom,
+                                                     description:result.description,
+                                                     image:result.image
+                                                   }
+                                                 ],
+                                     fournisseur:{
+                                                     compagnie:"Grandma Kelly's Homestead",
+                                                     contact:"Regina Murphy",
+                                                     titre:"Sales Representative",
+                                                     address:"707 Oxford Rd.",
+                                                     ville:"Ann Arbor",
+                                                     region:"MI",
+                                                     codePostal:"48104",
+                                                     pays:"USA",
+                                                     telephone:"(313) 555-5735",
+                                                     fax:"(313) 555-3349",
+                                                     siteWeb:""
+                                                 },
+                                     quantite:"12 - 12 oz jars",
+                                     prix:40.00,
+                                     quantiteRestante:6,
+                                     quantiteCommande:0,
+                                     reapprovisionnement:0,
+                                     Discontinue:false
+                                 });
+                                 return prod.save();
+
+                           }).then(function(){
                                done();
-                           });
+                           })
                 });
        });
 
        it('Sauvegarder de données dans collection produits de catégorie Confections', function(done){
-              Categorie.findOne({nom:"Confections"}).then(function(result){
-                     console.log('tre' + result.nom);
+              Produit.Categorie.findOne({nom:"Confections"}).then(function(result){
                      assert(result.nom === "Confections");
-                     prod = new Produit({
+                     prod = new Produit.Produit({
                          nom:"Teatime Chocolate Biscuits",
                          category:[  {
                                          nom:result.nom,
@@ -502,6 +826,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                          image:result.image
                                        }
                                      ],
+                         fournisseur:"",
                          quantite:"10 boxes x 12 pieces",
                          prix:9.20,
                          quantiteRestante:25,
@@ -511,28 +836,127 @@ describe('Sauvegarder de données dans les collections',function(){
                      });
                      prod.save().then(function(){
                          assert(prod.isNew === false);
-                         Categorie.findOne({nom:"Dairy Products"}).then(function(result){
-                               prod = new Produit({
-                                   nom:"Gorgonzola Telino",
-                                   category:[  {
-                                                   nom:result.nom,
-                                                   description:result.description,
-                                                   image:result.image
-                                                 }
-                                               ],
-                                   quantite:"12 - 100 g pkgs",
-                                   prix:12.50,
-                                   quantiteRestante:0,
-                                   quantiteCommande:70,
-                                   reapprovisionnement:20,
-                                   Discontinue:false
-                               });
-                               prod.save().then(function(){
-                                   assert(prod.isNew === false);
-                                   done();
-                               });
+                         prod = new Produit.Produit({
+                             nom:"Teatime Chocolate Biscuits",
+                             category:[  {
+                                             nom:result.nom,
+                                             description:result.description,
+                                             image:result.image
+                                           }
+                                         ],
+                             fournisseur:{
+                                             compagnie:"Specialty Biscuits, Ltd.",
+                                             contact:"Peter Wilson",
+                                             titre:"Sales Representative",
+                                             address:"29 King's Way",
+                                             ville:"Manchester",
+                                             region:"",
+                                             codePostal:"M14 GSD",
+                                             pays:"UK",
+                                             telephone:"(161) 555-4448",
+                                             fax:"",
+                                             siteWeb:""
+                                         },
+                             quantite:"10 boxes x 12 pieces",
+                             prix:9.20,
+                             quantiteRestante:25,
+                             quantiteCommande:0,
+                             reapprovisionnement:5,
+                             Discontinue:false
+                         });
+                         return prod.save();
+
+                      }).then(function(){
+                         assert(prod.isNew === false);
+                         prod = new Produit.Produit({
+                            nom:"Sir Rodney's Marmalade",
+                            category:[  {
+                                            nom:result.nom,
+                                            description:result.description,
+                                            image:result.image
+                                          }
+                                        ],
+                            fournisseur:{
+                                            compagnie:"Specialty Biscuits, Ltd.",
+                                            contact:"Peter Wilson",
+                                            titre:"Sales Representative",
+                                            address:"29 King's Way",
+                                            ville:"Manchester",
+                                            region:"",
+                                            codePostal:"M14 GSD",
+                                            pays:"UK",
+                                            telephone:"(161) 555-4448",
+                                            fax:"",
+                                            siteWeb:""
+                                        },
+                            quantite:"30 gift boxes",
+                            prix:81.00,
+                            quantiteRestante:40,
+                            quantiteCommande:0,
+                            reapprovisionnement:0,
+                            Discontinue:false
                         });
-                      });
+                        return prod.save();
+
+                      }).then(function(){
+                        assert(prod.isNew === false);
+                        prod = new Produit.Produit({
+                           nom:"Sir Rodney's Scones",
+                           category:[  {
+                                           nom:result.nom,
+                                           description:result.description,
+                                           image:result.image
+                                         }
+                                       ],
+                           fournisseur:{
+                                           compagnie:"Specialty Biscuits, Ltd.",
+                                           contact:"Peter Wilson",
+                                           titre:"Sales Representative",
+                                           address:"29 King's Way",
+                                           ville:"Manchester",
+                                           region:"",
+                                           codePostal:"M14 GSD",
+                                           pays:"UK",
+                                           telephone:"(161) 555-4448",
+                                           fax:"",
+                                           siteWeb:""
+                                       },
+                           quantite:"24 pkgs. x 4 pieces",
+                           prix:10.00,
+                           quantiteRestante:3,
+                           quantiteCommande:40,
+                           reapprovisionnement:5,
+                           Discontinue:false
+                       });
+                       return prod.save();
+                      }).then(function(){
+                          done();
+                      })
                 });
           });
 });
+
+/*
+Produit.Categorie.findOne({nom:"Dairy Products"}).then(function(result){
+      prod = new Produit.Produit({
+          nom:"Gorgonzola Telino",
+          category:[  {
+                          nom:result.nom,
+                          description:result.description,
+                          image:result.image
+                        }
+                      ],
+          fournisseur:"",
+          quantite:"12 - 100 g pkgs",
+          prix:12.50,
+          quantiteRestante:0,
+          quantiteCommande:70,
+          reapprovisionnement:20,
+          Discontinue:false
+      });
+      prod.save().then(function(){
+          assert(prod.isNew === false);
+
+          done();
+      });
+});*/

@@ -5,7 +5,6 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Category = require('../model/categorie');
 
 const CategorieSchema = new Schema({
       nom:String,
@@ -13,9 +12,28 @@ const CategorieSchema = new Schema({
       image:String
 });
 
+const Categorie = mongoose.model('categorie',CategorieSchema);
+
+const FournisseurSchema = new Schema({
+      compagnie:String,
+      contact:String,
+      titre:String,
+      address:String,
+      ville:String,
+      region:String,
+      codePostal:String,
+      pays:String,
+      telephone:String,
+      fax:String,
+      siteWeb:String
+});
+
+const Fournisseur = mongoose.model('fournisseur',FournisseurSchema);
+
 const ProduitSchema = new Schema({
     nom:String,
     category:[CategorieSchema],
+    fournisseur:FournisseurSchema,
     quantite:String,
     prix:Number,
     quantiteRestante:Number,
@@ -26,4 +44,7 @@ const ProduitSchema = new Schema({
 
 const Produit = mongoose.model('produit',ProduitSchema);
 
-module.exports = Produit;
+module.exports = { Categorie : Categorie,
+                   Fournisseur : Fournisseur,
+                   Produit : Produit
+                 };

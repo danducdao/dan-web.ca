@@ -12,6 +12,8 @@ const CategorieSchema = new Schema({
       image:String
 });
 
+const Categorie = mongoose.model('categorie',CategorieSchema);
+
 const ProduitSchema = new Schema({
     nom:String,
     category:[CategorieSchema],
@@ -25,4 +27,7 @@ const ProduitSchema = new Schema({
 
 const Produit = mongoose.model('produit',ProduitSchema);
 
-module.exports = Produit;
+module.exports = {
+                   Produit:Produit,
+                   Categorie:Categorie
+                 }

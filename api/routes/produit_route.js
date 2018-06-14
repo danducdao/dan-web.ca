@@ -9,7 +9,7 @@ const Produit = require('../model/produit');
 
 router.get('/produit',function(req,res,next){
    res.setHeader('Access-Control-Allow-Origin', '*');
-   Produit.find({}).then(function(result){
+   Produit.Produit.find({}).then(function(result){
         res.send(result);
     });
 });

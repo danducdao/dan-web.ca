@@ -20,6 +20,7 @@ import { CategorieService } from '../categorie.service';
       </thead>
       <tbody *ngFor="let categorie of categories">
          <tr>
+            <td><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
             <td>{{ categorie.nom }}</td>
             <td>{{ categorie.description }}</td>
             <td><img [src]="categorie.image" /></td>
@@ -36,7 +37,7 @@ export class ListeCategorieComponent implements OnInit {
   constructor(private _categorieService:CategorieService) { }
 
   ngOnInit() {
-        this._categorieService.getCategorieList().subscribe(data =>{ this.categories = data});
+        this._categorieService.getCategorieList().subscribe( data =>this.categories = data );
   }
 
 }

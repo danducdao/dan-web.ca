@@ -18,7 +18,10 @@ export class CategorieService extends Service {
       this.Path = "/categorie";
       return this.http.get<ICategorie[]>(this.Url);
   }
-  test(){
-      return "test";
+
+  getCategorieById(id:String){
+      this.Path = "/categorie?id=" + id;
+      return this.http.get<ICategorie[]>(this.Url);
   }
+
 }

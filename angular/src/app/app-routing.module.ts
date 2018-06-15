@@ -7,6 +7,7 @@ import { ClassBindingComponent } from './class-binding/class-binding.component';
 import { ListeEmployeeComponent } from './employee/liste.component';
 import { DistributriceComponent } from './distributrice/distributrice.component';
 import { ListeCategorieComponent } from './categorie/liste.component';
+import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path:'categorie',
         component:ListeCategorieComponent
+      },
+      {
+        path:'categorie/:id',
+        component:DetailCategorieComponent
       },
       {
         path:'produit',

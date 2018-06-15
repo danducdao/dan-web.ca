@@ -13,6 +13,7 @@ import { DistributriceComponent } from './distributrice/distributrice.component'
 import { HttpClientModule } from '@angular/common/http';
 import { CustomPipePipe } from './custom-pipe.pipe';
 import { ListeCategorieComponent } from './categorie/liste.component';
+import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
 import { ListeEmployeeComponent } from './employee/liste.component';
 
@@ -27,6 +28,7 @@ import { ListeEmployeeComponent } from './employee/liste.component';
     DistributriceComponent,
     CustomPipePipe,
     ListeCategorieComponent,
+    DetailCategorieComponent,
     ListeProduitComponent,
     ListeEmployeeComponent
   ],

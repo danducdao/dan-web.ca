@@ -23,7 +23,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  public safeURL;
+  public safeURL:any;
   public isDisabled = false;
   private videosURLs:string[];
   private i:number = 0;

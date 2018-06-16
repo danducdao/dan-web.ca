@@ -1,27 +1,19 @@
-<div [hidden]="submitted">
+<article>
     <h1>Modifer la catégorie</h1>
-    <form (ngSubmit)="onSubmit()" #detailCategorieForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #categorieForm="ngForm">
          <div class="form-group">
-             <label for="nom">Name</label>
-             <input type="text" class="form-control" id="nom"
-                     required
-                     [(ngModel)]="model.nom" name="name"
-                     #name="ngModel">
-             <div [hidden]="nom.valid || nom.pristine"
-               class="alert alert-danger">
-               Nom est obligatoire
-             </div>
+             <label for="nom">Nom</label>
+             <input type="text" class="form-control" id="nom" required [(ngModel)]="model.nom" name="nom" #nom="ngModel">
+             <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger">Nom est obligatoire</div>
          </div>
          <div class="form-group">
               <label for="description">Description</label>
-              <input type="text" class="form-control" id="description"
-                     [(ngModel)]="model.description" name="description">
+              <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description">
          </div>
          <div class="form-group">
               <label for="image">Image</label>
-              <input type="text" class="form-control" id="image"
-                 [(ngModel)]="model.description" name="image">
+              <input type="text" class="form-control" id="image" [(ngModel)]="model.image" name="image">
          </div>
-         <button type="submit" class="btn btn-success">Submit</button>
+         <button type="submit" class="btn btn-success" [disabled]="!categorieForm.form.valid">OK</button>
     </form>
-</div>
+</article>

@@ -13,6 +13,7 @@ import { CategorieService } from '../categorie.service';
     <table class="table table-bordered" cellspacing="1" cellpadding="1">
        <thead>
         <tr>
+          <th></th>
           <th>Nom</th>
           <th>Description</th>
           <th>Image</th>
@@ -23,7 +24,7 @@ import { CategorieService } from '../categorie.service';
             <td><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
             <td>{{ categorie.nom }}</td>
             <td>{{ categorie.description }}</td>
-            <td><img [src]="categorie.image" /></td>
+            <td><img [src]="categorie.image" alt="categorie.nom" /></td>
           </tr>
        </tbody>
     </table>

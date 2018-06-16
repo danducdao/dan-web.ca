@@ -3,6 +3,8 @@
 * Écrit par : Dan Duc Dao
 */
 
+import { HttpHeaders } from '@angular/common/http';
+
 export class Service {
 
     private protocol:string;
@@ -28,4 +30,15 @@ export class Service {
     get Url():string{
         return this.url;
     }
+
+    get HttpOptions():any{
+        let httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':'application/json; charset=utf-8',
+              'Access-Control-Allow-Origin': 'http://localhost:4000'
+            })
+        };
+        return httpOptions;
+    }
+
 }

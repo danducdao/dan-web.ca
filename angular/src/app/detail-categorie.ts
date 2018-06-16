@@ -1,7 +1,7 @@
 export class DetailCategorie {
      constructor(
-                  public nom:string,
-                  public description:string,
-                  public image:string
+                  public nom?:String,
+                  public description?:String,
+                  public image?:String
                 ){ }
 }

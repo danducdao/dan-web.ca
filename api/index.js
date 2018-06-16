@@ -4,11 +4,10 @@
 */
 
 const express = require('express');
-const produit_route = require('./routes/produit_route');
-const categorie_route = require('./routes/categorie_route');
 const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const Produit = require('./model/produit');
 
 const app = express();
 
@@ -16,8 +15,63 @@ mongoose.connect('mongodb://localhost/test');
 mongoose.Promise = global.Promise;
 
 app.use(bodyParse.json());
-app.use(produit_route);
-app.use(categorie_route);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.get('/categorie',function(req,res,next){
+   if(!req.query.id)
+   {
+       Produit.Categorie.find({}).then(function(result){
+            res.send(result);
+       });
+   }else{
+       Produit.Categorie.findOne({_id:req.query.id}).then(function(result){
+            res.send(result);
+       });
+   }
+});
+
+app.post('/categorie',function(req,res,next){
+    res.send({type:"POST CATEGORIE"});
+});
+
+app.put('/categorie/:id',function(req,res,next){
+      Produit.Categorie.findByIdAndUpdate({_id:req.params.id},req.body).then(function(categorie){
+           res.send(categorie);
+      });
+});
+
+app.delete('/categorie/:id',function(req,res,next){
+     res.send({type:"DELETE CATEGORIE"});
+});
+
+app.get('/produit',function(req,res,next){
+   Produit.Produit.find({}).then(function(result){
+        res.send(result);
+    });
+});
+
+app.get('/produit',function(req,res,next){
+   Produit.Produit.find({}).then(function(result){
+        res.send(result);
+    });
+});
+
+app.post('/produit',function(req,res,next){
+    res.send({type:"POST PRODUIT"});
+});
+
+app.put('/produit/:id',function(req,res,next){
+     res.send({type:"PUT PRODUIT"});
+});
+
+app.delete('/produit/:id',function(req,res,next){
+     res.send({type:"DELETE PRODUIT"});
+});
 
 app.use(function(err,req,res,next){
     res.send({ erreur: err});

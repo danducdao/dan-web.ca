@@ -4,7 +4,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { EmployeService } from '../employe.service';
+import { EmployeService } from 'src/services/employe.service';
 
 @Component({
   selector: 'app-employee',

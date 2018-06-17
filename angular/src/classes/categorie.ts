@@ -3,7 +3,7 @@
 * Écrit par : Dan Duc Dao
 */
 
-export class DetailCategorie {
+export class Categorie {
 
      public nom:string;
      public description:string;

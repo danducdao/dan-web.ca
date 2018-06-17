@@ -4,9 +4,9 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { CategorieService } from '../categorie.service';
+import { CategorieService } from 'src/services/categorie.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailCategorie } from '../detail-categorie';
+import { Categorie } from 'src/classes/categorie';
 
 @Component({
   selector: 'app-categorie',
@@ -23,12 +23,12 @@ import { DetailCategorie } from '../detail-categorie';
 export class DetailCategorieComponent implements OnInit {
 
   private id:string;
-  public model:DetailCategorie;
+  public model:Categorie;
 
   constructor(private _categorieService:CategorieService,private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-      this.model = new DetailCategorie();
+      this.model = new Categorie();
       this.id = this.route.snapshot.params.id;
       this._categorieService.getCategorieById(this.id).subscribe(data => {
                                                                             this.model.nom = data.nom;

@@ -4,7 +4,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { CategorieService } from '../categorie.service';
+import { CategorieService } from 'src/services/categorie.service';
 
 @Component({
   selector: 'app-categorie',

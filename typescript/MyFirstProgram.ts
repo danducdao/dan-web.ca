@@ -3,8 +3,8 @@ Program : Mon premier program
 Écrit par : Dan Duc Dao
 */
 
-var a: number;
-var b: boolean;
+var a:number;
+var b:boolean;
 var c:string;
 
 a = 2;
@@ -19,8 +19,8 @@ var myArray : number[];
 myArray = [1,2,3,4,5];
 
 //Tuple
-var myTuple : [number,boolean] = [1 , true];
-var myTuple2 : [number,boolean];
+var myTuple:[number,boolean] = [1 , true];
+var myTuple2:[number,boolean];
 myTuple2 = [2, false];
 
 //Function
@@ -28,10 +28,3 @@ function additionner(a:number,b:number,c:number = 0) : number{
     return a + b + c;
 }
 console.log(additionner(2,5));
-
-//Union type
-var a : number | boolean;
-a = 2;
-console.log(a);
-a = true;
-console.log(a);

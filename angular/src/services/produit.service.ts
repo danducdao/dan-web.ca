@@ -6,9 +6,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IProduit } from './produit';
+import { IProduit } from '../interfaces/produit';
 import { Service } from './service';
-import { DetailProduit } from './detail-produit';
+import { Produit } from '../classes/produit';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class ProduitService extends Service{
       return this.http.get<IProduit>(this.Url);
   }
 
-  updateProduit(id:string,newProduit:DetailProduit){
+  updateProduit(id:string,newProduit:Produit){
     this.Path = "/produit/" + id;
     return this.http.put<IProduit>(this.Url, newProduit, this.HttpOptions);
   }

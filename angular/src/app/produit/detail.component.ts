@@ -4,12 +4,12 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { ProduitService } from '../produit.service';
-import { CategorieService } from '../categorie.service';
-import { FournisseurService } from '../fournisseur.service';
+import { ProduitService } from 'src/services/produit.service';
+import { CategorieService } from 'src/services/categorie.service';
+import { FournisseurService } from 'src/services//fournisseur.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailProduit } from '../detail-produit';
-import { IFournisseur } from '../fournisseur';
+import { Produit } from 'src/classes/produit';
+import { IFournisseur } from 'src/interfaces/fournisseur';
 
 @Component({
   selector: 'app-categorie',
@@ -21,12 +21,13 @@ import { IFournisseur } from '../fournisseur';
 
           .ng-invalid:not(form)  {
             border-left: 5px solid #a94442; /* red */
-          }`]
+          }
+          `]
 })
 export class DetailProduitComponent implements OnInit {
 
   private id:string;
-  public model:DetailProduit;
+  public model:Produit;
   public categories:any[];
   public fournisseurs:any[];
   constructor(
@@ -39,7 +40,7 @@ export class DetailProduitComponent implements OnInit {
               }
 
   ngOnInit() {
-      this.model = new DetailProduit();
+      this.model = new Produit();
       this._categorieService.getCategorieList().subscribe( data =>this.categories = data );
       this._fournisseurService.getFournisseurList().subscribe( data => this.fournisseurs = data);
       this.id = this.route.snapshot.params.id;

@@ -4,7 +4,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { ProduitService } from '../produit.service';
+import { ProduitService } from 'src/services/produit.service';
 
 @Component({
   selector: 'app-produit',

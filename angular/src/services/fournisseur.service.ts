@@ -6,7 +6,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IFournisseur } from './fournisseur';
+import { IFournisseur } from '../interfaces/fournisseur';
 import { Service } from './service';
 
 @Injectable({

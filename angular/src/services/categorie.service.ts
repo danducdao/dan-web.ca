@@ -6,10 +6,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ICategorie } from './categorie';
+import { ICategorie } from '../interfaces/categorie';
 import { Service } from './service';
-import { DetailCategorie } from './detail-categorie';
+import { DetailCategorie } from '../classes/detail-categorie';
 import { HttpHeaders,HttpParams } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })

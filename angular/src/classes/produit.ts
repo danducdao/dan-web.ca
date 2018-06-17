@@ -1,4 +1,4 @@
-export class DetailProduit {
+export class Produit {
 
   public nom:string;
   public category:any[];

@@ -13,6 +13,7 @@ import { ProduitService } from '../produit.service';
   <table class="table table-bordered" cellspacing="1" cellpadding="1">
      <thead>
       <tr>
+        <th></th>
         <th>Nom</th>
         <th>Catégorie</th>
         <th>Fournisseur</th>
@@ -26,6 +27,7 @@ import { ProduitService } from '../produit.service';
     </thead>
     <tbody *ngFor="let produit of produits">
        <tr>
+           <td><a routerLink="/produit/{{produit._id}}">Modifier</a></td>
            <td>{{ produit.nom }}</td>
            <td>{{ produit.category[0].nom}}</td>
            <td>{{ produit.fournisseur.compagnie}}</td>
@@ -34,7 +36,7 @@ import { ProduitService } from '../produit.service';
            <td style='text-align:right;'>{{ produit.quantiteRestante }}</td>
            <td style='text-align:right;'>{{ produit.quantiteCommande }}</td>
            <td style='text-align:right;'>{{ produit.reapprovisionnement }}</td>
-           <td><span [innerHTML]="produit.Discontinue | isDiscontinueChecked"></span></td>
+           <td style='text-align:center;'><span [innerHTML]="produit.discontinue | isDiscontinueChecked"></span></td>
         </tr>
      </tbody>
   </table>

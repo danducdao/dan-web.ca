@@ -38,7 +38,7 @@ export class ListeCategorieComponent implements OnInit {
   constructor(private _categorieService:CategorieService) { }
 
   ngOnInit() {
-        this._categorieService.getCategorieList().subscribe( data =>this.categories = data );
+        this._categorieService.getCategorieList().subscribe( data => this.categories = data );
   }
 
 }

@@ -4,7 +4,7 @@
 */
 
 export interface ICategorie{
-    nom:String,
-    description:String,
-    image:String
+    nom:string,
+    description:string,
+    image:string
 }

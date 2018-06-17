@@ -40,8 +40,8 @@ app.post('/categorie',function(req,res,next){
 });
 
 app.put('/categorie/:id',function(req,res,next){
-      Produit.Categorie.findByIdAndUpdate({_id:req.params.id},req.body).then(function(categorie){
-           res.send(categorie);
+      Produit.Categorie.findByIdAndUpdate({_id:req.params.id},req.body).then(function(result){
+           res.send(result);
       });
 });
 
@@ -50,15 +50,16 @@ app.delete('/categorie/:id',function(req,res,next){
 });
 
 app.get('/produit',function(req,res,next){
-   Produit.Produit.find({}).then(function(result){
-        res.send(result);
-    });
-});
-
-app.get('/produit',function(req,res,next){
-   Produit.Produit.find({}).then(function(result){
-        res.send(result);
-    });
+  if(!req.query.id)
+  {
+    Produit.Produit.find({}).then(function(result){
+         res.send(result);
+     });
+  }else{
+    Produit.Produit.findOne({_id:req.query.id}).then(function(result){
+         res.send(result);
+     });
+  }
 });
 
 app.post('/produit',function(req,res,next){
@@ -66,11 +67,26 @@ app.post('/produit',function(req,res,next){
 });
 
 app.put('/produit/:id',function(req,res,next){
-     res.send({type:"PUT PRODUIT"});
+    Produit.Produit.findByIdAndUpdate({_id:req.params.id},req.body).then(function(result){
+         res.send(result);
+    });
 });
 
 app.delete('/produit/:id',function(req,res,next){
      res.send({type:"DELETE PRODUIT"});
+});
+
+app.get('/fournisseur',function(req,res,next){
+  if(!req.query.id)
+  {
+    Produit.Fournisseur.find({}).then(function(result){
+         res.send(result);
+     });
+  }else{
+    Produit.Fournisseur.find({_id:req.query.id}).then(function(result){
+         res.send(result);
+     });
+  }
 });
 
 app.use(function(err,req,res,next){

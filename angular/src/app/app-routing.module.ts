@@ -9,6 +9,7 @@ import { DistributriceComponent } from './distributrice/distributrice.component'
 import { ListeCategorieComponent } from './categorie/liste.component';
 import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
+import { DetailProduitComponent } from './produit/detail.component';
 
 const routes: Routes = [
       {
@@ -46,7 +47,13 @@ const routes: Routes = [
       {
         path:'produit',
         component:ListeProduitComponent
+      },
+      {
+        path:'produit/:id',
+        component:DetailProduitComponent
       }
+
+
 
 ];
 

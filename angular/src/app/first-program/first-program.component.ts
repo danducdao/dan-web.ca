@@ -20,8 +20,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirstProgramComponent implements OnInit {
 
-  public name = "Angular 6";
-  public Url = window.location.href;
+  public name:string = "Angular 6";
+  public Url:string = window.location.href;
 
   constructor() { }
 

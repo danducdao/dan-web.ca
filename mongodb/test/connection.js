@@ -45,3 +45,10 @@ before(function(done){
           done();
      });
 });
+
+//Drop collection fournisseur
+before(function(done){
+     mongoose.connection.collections.fournisseurs.drop(function(){
+          done();
+     });
+});

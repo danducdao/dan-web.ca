@@ -1,3 +1,8 @@
+/*
+* Program : Manipuler class binding
+* Écrit par : Dan Duc Dao
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,9 +24,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassBindingComponent implements OnInit {
 
-  public hasError = true;
-  public isSpecial=true;
-  public messageClasses = {
+  public hasError:boolean = true;
+  public isSpecial:boolean= true;
+  public messageClasses:any = {
                              "text-success" : !this.hasError,
                              "text-danger"  : this.hasError,
                              "text-special" : this.isSpecial

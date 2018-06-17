@@ -23,8 +23,8 @@ import { EmployeService } from '../employe.service';
 })
 export class ListeEmployeeComponent implements OnInit {
 
-  public employees = [];
-  public employeesDetail = [];
+  public employees:any[];
+  public employeesDetail:any[];
 
   constructor(private _employeService:EmployeService) { }
 

@@ -4,13 +4,13 @@
 */
 
 export interface IProduit{
-    nom:String,
+    nom:string,
     category:any[],
-    fournisseur:Object,
-    quantite:String,
-    prix:Number,
-    quantiteRestante:Number,
-    quantiteCommande:Number,
-    reapprovisionnement:Number,
-    Discontinue:Boolean
+    fournisseur:any,
+    quantite:string,
+    prix:number,
+    quantiteRestante:number,
+    quantiteCommande:number,
+    reapprovisionnement:number,
+    discontinue:boolean
 }

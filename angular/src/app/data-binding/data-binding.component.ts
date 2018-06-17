@@ -17,11 +17,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataBindingComponent implements OnInit {
 
-  public myBinding = "Data Binding";
-  public myId = "Mon Id";
-  public myBinding2 = "Data Binding 2";
-  public myId2 = "Mon Id 2";
-  public isDisabled = true;
+  public myBinding:string = "Data Binding";
+  public myId:string = "Mon Id";
+  public myBinding2:string = "Data Binding 2";
+  public myId2:string = "Mon Id 2";
+  public isDisabled:boolean = true;
 
   constructor() { }
 

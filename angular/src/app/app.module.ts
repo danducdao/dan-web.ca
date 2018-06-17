@@ -15,6 +15,7 @@ import { CustomPipePipe } from './custom-pipe.pipe';
 import { ListeCategorieComponent } from './categorie/liste.component';
 import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
+import { DetailProduitComponent } from './produit/detail.component';
 import { ListeEmployeeComponent } from './employee/liste.component';
 
 
@@ -30,6 +31,7 @@ import { ListeEmployeeComponent } from './employee/liste.component';
     ListeCategorieComponent,
     DetailCategorieComponent,
     ListeProduitComponent,
+    DetailProduitComponent,
     ListeEmployeeComponent
   ],
   imports: [

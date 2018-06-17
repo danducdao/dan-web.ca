@@ -1,0 +1,61 @@
+nom:string,
+category:any[],
+fournisseur:any,
+quantite:string,
+prix:number,
+quantiteRestante:number,
+quantiteCommande:number,
+reapprovisionnement:number,
+Discontinue:boolean
+
+<article>
+    <h1>Modifer le produit</h1>
+    <form (ngSubmit)="onSubmit()" #produitForm="ngForm">
+         <div class="form-group">
+             <label for="nom">Nom</label>
+             <input type="text" class="form-control" id="nom" required [(ngModel)]="model.nom" name="nom" #nom="ngModel">
+             <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger">Nom est obligatoire</div>
+         </div>
+         <div class="form-group">
+              <label for="categorie">Catégorie</label>
+              <select class="form-control" id="categorie" name="categorie" [(ngModel)]="model.category[0].nom" (change)="filtreCategorie($event.target)">
+                      <option *ngFor="let categorie of categories">{{categorie.nom}}</option>
+              </select>
+         </div>
+         <div class="form-group">
+              <label for="fournisseur">Fournisseur</label>
+              <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="model.fournisseur.nom" (change)="filtreFournisseur($event.target)">
+                      <option *ngFor="let fournisseur of fournisseurs">{{fournisseur.compagnie}}</option>
+              </select>
+         </div>
+         <div class="form-group">
+              <label for="qty">Quantité</label>
+              <input type="text" class="form-control" id="qty" [(ngModel)]="model.quantite" name="qty">
+         </div>
+         <div class="form-group">
+              <label for="prix">Prix</label>
+              <input type="text" class="form-control" id="prix" [(ngModel)]="model.prix" name="prix">
+         </div>
+         <div class="form-group">
+              <label for="quantiteRestante">Quantité restante</label>
+              <input type="text" class="form-control" id="quantiteRestante" [(ngModel)]="model.quantiteRestante" name="quantiteRestante">
+         </div>
+         <div class="form-group">
+              <label for="quantiteCommande">Quantité commandée</label>
+              <input type="text" class="form-control" id="quantiteCommande" [(ngModel)]="model.quantiteCommande" name="quantiteCommande">
+         </div>
+         <div class="form-group">
+              <label for="reapprovisionnement">Réapprovisionnement</label>
+              <input type="text" class="form-control" id="reapprovisionnement" [(ngModel)]="model.reapprovisionnement" name="reapprovisionnement">
+         </div>
+         <div class="form-group">
+           <label class="form-check-inline">
+                <input class="form-check-input" type="radio" name="discontinue" [value]="true" [(ngModel)]="model.discontinue">&nbsp;Oui
+            </label>&nbsp;&nbsp;
+            <label class="form-check-inline">
+                 <input class="form-check-input" type="radio" name="discontinue" [value]="false" [(ngModel)]="model.discontinue">&nbsp;Non
+             </label>
+         </div>
+         <button type="submit" class="btn btn-success" [disabled]="!produitForm.form.valid">OK</button>
+    </form>
+</article>

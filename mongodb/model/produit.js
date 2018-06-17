@@ -39,7 +39,7 @@ const ProduitSchema = new Schema({
     quantiteRestante:Number,
     quantiteCommande:Number,
     reapprovisionnement:Number,
-    Discontinue:Boolean
+    discontinue:Boolean
 });
 
 const Produit = mongoose.model('produit',ProduitSchema);

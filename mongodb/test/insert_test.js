@@ -11,8 +11,7 @@ const Produit = require('../model/produit');
 
 describe('Sauvegarder de données dans les collections',function(){
 
-  beforeEach(function(done){
-
+  it('Sauvegarder de données dans collection categorie', function(done){
         var cat = new Produit.Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
@@ -79,7 +78,7 @@ describe('Sauvegarder de données dans les collections',function(){
         });
   });
 
-  beforeEach(function(done){
+  it('Sauvegarder de données dans collection fournisseur', function(done){
           var fournisseur = new Produit.Fournisseur({
                                       compagnie:"Exotic Liquids",
                                       contact:"Charlotte Cooper",
@@ -697,6 +696,7 @@ describe('Sauvegarder de données dans les collections',function(){
                      done();
            });
     });
+
     it('Sauvegarder de données dans collection produits de catégorie Drinks', function(done){
 
             Produit.Categorie.findOne({nom:"Drinks"}).then(function(categorie){
@@ -727,7 +727,7 @@ describe('Sauvegarder de données dans les collections',function(){
                         quantiteRestante:39,
                         quantiteCommande:0,
                         reapprovisionnement:10,
-                        Discontinue:false
+                        discontinue:false
                     });
                     prod.save().then(function(){
                         assert(prod.isNew === false);
@@ -757,7 +757,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:17,
                                               quantiteCommande:40,
                                               reapprovisionnement:25,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -788,7 +788,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:52,
                                               quantiteCommande:0,
                                               reapprovisionnement:10,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -819,7 +819,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:20,
                                               quantiteCommande:0,
                                               reapprovisionnement:0,
-                                              Discontinue:true
+                                              discontinue:true
                                           });
                         return prod.save();
                     }).then(function(){
@@ -850,7 +850,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:111,
                                               quantiteCommande:0,
                                               reapprovisionnement:15,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -881,7 +881,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:20,
                                               quantiteCommande:0,
                                               reapprovisionnement:15,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -912,7 +912,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:17,
                                               quantiteCommande:0,
                                               reapprovisionnement:15,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -943,7 +943,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:69,
                                               quantiteCommande:0,
                                               reapprovisionnement:5,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -974,7 +974,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:17,
                                               quantiteCommande:10,
                                               reapprovisionnement:25,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -1005,7 +1005,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:15,
                                               quantiteCommande:10,
                                               reapprovisionnement:30,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -1036,7 +1036,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:125,
                                               quantiteCommande:0,
                                               reapprovisionnement:25,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -1067,7 +1067,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                               quantiteRestante:57,
                                               quantiteCommande:0,
                                               reapprovisionnement:20,
-                                              Discontinue:false
+                                              discontinue:false
                                           });
                         return prod.save();
                     }).then(function(){
@@ -1106,7 +1106,7 @@ describe('Sauvegarder de données dans les collections',function(){
                             quantiteRestante:63,
                             quantiteCommande:70,
                             reapprovisionnement:25,
-                            Discontinue:false
+                            discontinue:false
                         });
                         prod.save().then(function(){
                             assert(prod.isNew === false);
@@ -1136,7 +1136,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                     quantiteRestante:0,
                                     quantiteCommande:25,
                                     reapprovisionnement:25,
-                                    Discontinue:false
+                                    discontinue:false
                                 });
                              return prod.save();
                          }).then(function(){
@@ -1167,7 +1167,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                      quantiteRestante:113,
                                      quantiteCommande:0,
                                      reapprovisionnement:25,
-                                     Discontinue:false
+                                     discontinue:false
                                  });
                               return prod.save();
                           }).then(function(){
@@ -1198,7 +1198,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                       quantiteRestante:24,
                                       quantiteCommande:0,
                                       reapprovisionnement:5,
-                                      Discontinue:false
+                                      discontinue:false
                                   });
                                return prod.save();
                            }).then(function(){
@@ -1229,7 +1229,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                      quantiteRestante:53,
                                      quantiteCommande:0,
                                      reapprovisionnement:0,
-                                     Discontinue:false
+                                     discontinue:false
                                  });
                                  return prod.save();
 
@@ -1261,7 +1261,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                      quantiteRestante:0,
                                      quantiteCommande:0,
                                      reapprovisionnement:0,
-                                     Discontinue:true
+                                     discontinue:true
                                  });
                                  return prod.save();
                            }).then(function(){
@@ -1292,7 +1292,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                      quantiteRestante:120,
                                      quantiteCommande:0,
                                      reapprovisionnement:25,
-                                     Discontinue:false
+                                     discontinue:false
                                  });
                                  return prod.save();
 
@@ -1324,7 +1324,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                      quantiteRestante:6,
                                      quantiteCommande:0,
                                      reapprovisionnement:0,
-                                     Discontinue:false
+                                     discontinue:false
                                  });
                                  return prod.save();
 
@@ -1363,7 +1363,7 @@ describe('Sauvegarder de données dans les collections',function(){
                          quantiteRestante:25,
                          quantiteCommande:0,
                          reapprovisionnement:5,
-                         Discontinue:false
+                         discontinue:false
                      });
                      prod.save().then(function(){
                          assert(prod.isNew === false);
@@ -1393,7 +1393,7 @@ describe('Sauvegarder de données dans les collections',function(){
                              quantiteRestante:25,
                              quantiteCommande:0,
                              reapprovisionnement:5,
-                             Discontinue:false
+                             discontinue:false
                          });
                          return prod.save();
 
@@ -1425,7 +1425,7 @@ describe('Sauvegarder de données dans les collections',function(){
                             quantiteRestante:40,
                             quantiteCommande:0,
                             reapprovisionnement:0,
-                            Discontinue:false
+                            discontinue:false
                         });
                         return prod.save();
 
@@ -1457,7 +1457,7 @@ describe('Sauvegarder de données dans les collections',function(){
                            quantiteRestante:3,
                            quantiteCommande:40,
                            reapprovisionnement:5,
-                           Discontinue:false
+                           discontinue:false
                        });
                        return prod.save();
                       }).then(function(){
@@ -1494,7 +1494,7 @@ describe('Sauvegarder de données dans les collections',function(){
                             quantiteRestante:22,
                             quantiteCommande:30,
                             reapprovisionnement:30,
-                            Discontinue:false
+                            discontinue:false
                         });
                         prod.save().then(function(){
                             assert(prod.isNew === false);
@@ -1524,7 +1524,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                 quantiteRestante:86,
                                 quantiteCommande:0,
                                 reapprovisionnement:0,
-                                Discontinue:false
+                                discontinue:false
                             });
                             return prod.save();
 

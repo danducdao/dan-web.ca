@@ -4,10 +4,10 @@ export class Produit {
   public category:any[];
   public fournisseur:any;
   public quantite:string;
-  public prix:number;
-  public quantiteRestante:number;
-  public quantiteCommande:number;
-  public reapprovisionnement:number;
+  public prix:any;
+  public quantiteRestante:any;
+  public quantiteCommande:any;
+  public reapprovisionnement:any;
   public discontinue:boolean;
 
   constructor(){
@@ -15,10 +15,10 @@ export class Produit {
     this.category = [""];
     this.fournisseur = {};
     this.quantite = "";
-    this.prix = 0;
-    this.quantiteRestante = 0;
-    this.quantiteCommande = 0;
-    this.reapprovisionnement = 0;
+    this.prix = "";
+    this.quantiteRestante = "";
+    this.quantiteCommande = "";
+    this.reapprovisionnement = "";
     this.discontinue = false;
 
    }

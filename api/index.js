@@ -63,7 +63,9 @@ app.get('/produit',function(req,res,next){
 });
 
 app.post('/produit',function(req,res,next){
-    res.send({type:"POST PRODUIT"});
+     Produit.Produit.create(req.body).then(function(result){
+         res.send(result);
+     });
 });
 
 app.put('/produit/:id',function(req,res,next){

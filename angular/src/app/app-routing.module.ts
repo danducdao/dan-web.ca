@@ -10,6 +10,7 @@ import { ListeCategorieComponent } from './categorie/liste.component';
 import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
 import { DetailProduitComponent } from './produit/detail.component';
+import { ComplexUrlMatcher } from 'src/functions/complex-url-matcher';
 
 const routes: Routes = [
       {
@@ -49,9 +50,18 @@ const routes: Routes = [
         component:ListeProduitComponent
       },
       {
+        path:'produit/new',
+        component:DetailProduitComponent
+      },
+      {
         path:'produit/:id',
         component:DetailProduitComponent
+      },
+      {
+        path:'**',
+        component:HomeComponent
       }
+
 
 
 
@@ -62,4 +72,13 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ FirstProgramComponent, DataBindingComponent ];
+export const routingComponents = [ FirstProgramComponent,
+                                   DataBindingComponent,
+                                   ClassBindingComponent,
+                                   ListeEmployeeComponent,
+                                   DistributriceComponent,
+                                   ListeCategorieComponent,
+                                   DetailCategorieComponent,
+                                   ListeProduitComponent,
+                                   DetailProduitComponent
+                                 ];

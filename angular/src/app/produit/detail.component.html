@@ -1,42 +1,84 @@
 <article class="col-sm-4">
     <h1>Modifer le produit</h1>
-    <form (ngSubmit)="onSubmit()" #produitForm="ngForm">
+    <form (ngSubmit)="onSubmit(categorie,fournisseur)" #produitForm="ngForm">
          <div class="form-group">
              <label for="nom">Nom</label>
-             <input type="text" class="form-control" id="nom" required [(ngModel)]="model.nom" name="nom" #nom="ngModel">
-             <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger">Nom est obligatoire</div>
+             <input type="text" class="form-control" id="nom" name="nom" #nom="ngModel" required [(ngModel)]="model.nom"  [pattern]="nodigitPattern">
+             <div *ngIf="nom.errors">
+                   <div [hidden]="!nom.errors.required || nom.pristine" class="alert alert-danger">
+                         Nom est obligatoire
+                   </div>
+                   <div [hidden]="!nom.errors.pattern" class="alert alert-danger">
+                         Nom contient seulement des caractères ou des caractères avec le tiret
+                   </div>
+             </div>
          </div>
          <div class="form-group">
               <label for="categorie">Catégorie</label>
-              <select class="form-control" id="categorie" name="categorie" [(ngModel)]="model.category[0].nom" (change)="filtreCategorie($event.target)">
+              <select class="form-control" id="categorie" name="categorie" required #categorie="ngModel" [(ngModel)]="model.category[0].nom" (change)="filtreCategorie($event.target)">
+                      <option value="" selected="selected" >--select--</option>
                       <option *ngFor="let categorie of categories">{{categorie.nom}}</option>
               </select>
+              <div [hidden]="categorie.valid" class="alert alert-danger">Catéorie est obligatoire</div>
          </div>
          <div class="form-group">
               <label for="fournisseur">Fournisseur</label>
-              <select class="form-control" id="fournisseur" name="fournisseur" [(ngModel)]="model.fournisseur.nom" (change)="filtreFournisseur($event.target)">
+              <select class="form-control" id="fournisseur" name="fournisseur" required #fournisseur="ngModel" [(ngModel)]="model.fournisseur.nom" (change)="filtreFournisseur($event.target)">
+                      <option value="" selected="selected" >--select--</option>
                       <option *ngFor="let fournisseur of fournisseurs">{{fournisseur.compagnie}}</option>
               </select>
+              <div [hidden]="fournisseur.valid" class="alert alert-danger">Fournisseur est obligatoire</div>
          </div>
          <div class="form-group">
               <label for="qty">Quantité</label>
-              <input type="text" class="form-control" id="qty" [(ngModel)]="model.quantite" name="qty">
+              <input type="text" class="form-control" id="qty" name="qty" #qty="ngModel" [(ngModel)]="model.quantite" required [pattern]="digitPattern">
+              <div *ngIf="qty.errors">
+                    <div [hidden]="!qty.errors.required || qty.pristine" class="alert alert-danger">
+              			      Quantité est obligatoire
+              			</div>
+                    <div [hidden]="!qty.errors.pattern" class="alert alert-danger">
+              				    Quantité doit être digit
+              			</div>
+              </div>
          </div>
          <div class="form-group">
               <label for="prix">Prix</label>
-              <input type="text" class="form-control" id="prix" [(ngModel)]="model.prix" name="prix">
+              <input type="text" class="form-control" id="prix" name="prix" #prix="ngModel" [(ngModel)]="model.prix" required [pattern]="decimalPattern">
+              <div *ngIf="prix.errors">
+                    <div [hidden]="!prix.errors.required || prix.pristine" class="alert alert-danger">
+                          Prix est obligatoire
+                    </div>
+                    <div [hidden]="!prix.errors.pattern" class="alert alert-danger">
+                          Prix doit être décimal
+                    </div>
+              </div>
          </div>
          <div class="form-group">
               <label for="quantiteRestante">Quantité restante</label>
-              <input type="text" class="form-control" id="quantiteRestante" [(ngModel)]="model.quantiteRestante" name="quantiteRestante">
+              <input type="text" class="form-control" id="quantiteRestante" name="quantiteRestante" #quantiteRestante="ngModel" [(ngModel)]="model.quantiteRestante" [pattern]="digitPattern">
+              <div *ngIf="quantiteRestante.errors">
+                  <div [hidden]="!quantiteRestante.errors.pattern" class="alert alert-danger">
+                        Quantité restante doit être digit
+                  </div>
+               </div>
          </div>
          <div class="form-group">
               <label for="quantiteCommande">Quantité commandée</label>
-              <input type="text" class="form-control" id="quantiteCommande" [(ngModel)]="model.quantiteCommande" name="quantiteCommande">
+              <input type="text" class="form-control" id="quantiteCommande" name="quantiteCommande" #quantiteCommande="ngModel" [(ngModel)]="model.quantiteCommande" [pattern]="digitPattern">
+              <div *ngIf="quantiteCommande.errors">
+                  <div [hidden]="!quantiteCommande.errors.pattern" class="alert alert-danger">
+                        Quantité de commande doit être digit
+                  </div>
+              </div>
          </div>
          <div class="form-group">
               <label for="reapprovisionnement">Réapprovisionnement</label>
-              <input type="text" class="form-control" id="reapprovisionnement" [(ngModel)]="model.reapprovisionnement" name="reapprovisionnement">
+              <input type="text" class="form-control" id="reapprovisionnement" name="reapprovisionnement" #reapprovisionnement="ngModel" [(ngModel)]="model.reapprovisionnement" [pattern]="digitPattern">
+              <div *ngIf="reapprovisionnement.errors">
+                  <div [hidden]="!reapprovisionnement.errors.pattern" class="alert alert-danger">
+                        Quantité réapprovisionnement doit être digit
+                  </div>
+              </div>
          </div>
          <div class="hpanel hblue">
                <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>

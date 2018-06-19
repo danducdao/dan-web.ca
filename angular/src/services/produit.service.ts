@@ -30,7 +30,11 @@ export class ProduitService extends Service{
   }
 
   updateProduit(id:string,newProduit:Produit){
-    this.Path = "/produit/" + id;
-    return this.http.put<IProduit>(this.Url, newProduit, this.HttpOptions);
+      this.Path = "/produit/" + id;
+      return this.http.put<IProduit>(this.Url, newProduit, this.HttpOptions);
+  }
+  saveProduit(newProduit:any){
+      this.Path = "/produit";
+      return this.http.post<IProduit>(this.Url,newProduit);
   }
 }

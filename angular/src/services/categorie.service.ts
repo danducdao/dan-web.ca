@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ICategorie } from '../interfaces/categorie';
 import { Service } from './service';
-import { DetailCategorie } from '../classes/detail-categorie';
+import { Categorie } from '../classes/categorie';
 import { HttpHeaders,HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class CategorieService extends Service {
       return this.http.get<ICategorie>(this.Url);
   }
 
-  updateCategorie(id:string,newCategorie:DetailCategorie){
+  updateCategorie(id:string,newCategorie:Categorie){
       this.Path = "/categorie/" + id;
       return this.http.put<ICategorie>(this.Url,newCategorie, this.HttpOptions);
   }

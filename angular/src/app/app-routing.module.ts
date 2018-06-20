@@ -46,6 +46,10 @@ const routes: Routes = [
         component:DetailCategorieComponent
       },
       {
+        path:'categorie/new',
+        component:DetailCategorieComponent
+      },
+      {
         path:'produit',
         component:ListeProduitComponent
       },

@@ -16,7 +16,7 @@ import { CategorieService } from 'src/services/categorie.service';
           <th></th>
           <th>Nom</th>
           <th>Description</th>
-          <th>Image</th>
+          <th><button class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
         </tr>
       </thead>
       <tbody *ngFor="let categorie of categories">
@@ -24,7 +24,7 @@ import { CategorieService } from 'src/services/categorie.service';
             <td><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
             <td>{{ categorie.nom }}</td>
             <td>{{ categorie.description }}</td>
-            <td><img [src]="categorie.image" alt="categorie.nom" /></td>
+            <td><img *ngIf="showImage" [src]="categorie.image" alt="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" /></td>
           </tr>
        </tbody>
     </table>
@@ -34,11 +34,18 @@ import { CategorieService } from 'src/services/categorie.service';
 export class ListeCategorieComponent implements OnInit {
 
   public categories = [];
+  public imgWidth:number = 50;
+  public imgMargin:number = 2;
+  public showImage:boolean = false;
 
   constructor(private _categorieService:CategorieService) { }
 
   ngOnInit() {
         this._categorieService.getCategorieList().subscribe( data => this.categories = data );
+  }
+
+  MCImage(){
+       this.showImage = !this.showImage;
   }
 
 }

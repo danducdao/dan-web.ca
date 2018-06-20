@@ -34,7 +34,7 @@ import { ProduitService } from 'src/services/produit.service';
                  <td>{{ produit.category[0].nom}}</td>
                  <td>{{ produit.fournisseur.compagnie}}</td>
                  <td>{{ produit.quantite }}</td>
-                 <td style='text-align:right;'>{{ '$' + produit.prix }}</td>
+                 <td style='text-align:right;'>{{ produit.prix | currency:'USD':true:'1.2-2'}}</td>
                  <td style='text-align:right;'>{{ produit.quantiteRestante }}</td>
                  <td style='text-align:right;'>{{ produit.quantiteCommande }}</td>
                  <td style='text-align:right;'>{{ produit.reapprovisionnement }}</td>

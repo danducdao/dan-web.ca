@@ -24,26 +24,29 @@ export class DetailCategorieComponent implements OnInit {
 
   private id:string;
   public model:Categorie;
+  public nodigitPattern:string = "^[a-zA-Z\\-]+$";
 
   constructor(private _categorieService:CategorieService,private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-      this.model = new Categorie();
-      this.id = this.route.snapshot.params.id;
-      this._categorieService.getCategorieById(this.id).subscribe(data => {
-                                                                            this.model.nom = data.nom;
-                                                                            this.model.description = data.description;
-                                                                            this.model.image = data.image
-                                                                         });
+        this.model = new Categorie();
+        this.id = this.route.snapshot.params.id;
+        this._categorieService.getCategorieById(this.id).subscribe(data => {
+                                                                              this.model.nom = data.nom;
+                                                                              this.model.description = data.description;
+                                                                              this.model.image = data.image
+                                                                            });
   }
 
   onSubmit() {
-        this._categorieService.updateCategorie(this.id,this.model).subscribe(data =>{
-                                                                                      if(data)
-                                                                                      {
-                                                                                         this.router.navigateByUrl('/categorie');
-                                                                                      }
-                                                                                    });
+        if(this.id)
+        this._categorieService.updateCategorie(this.id,this.model)
+                              .subscribe(data =>{
+                                                    if(data)
+                                                    {
+                                                       this.router.navigateByUrl('/categorie');
+                                                    }
+                                                });
    }
 
 }

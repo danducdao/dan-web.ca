@@ -11,13 +11,14 @@ import { ProduitService } from '../services/produit.service';
 import { CategorieService } from '../services/categorie.service';
 import { DistributriceComponent } from './distributrice/distributrice.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomPipePipe } from './custom-pipe.pipe';
+import { CustomPipePipe } from 'src/pipes/custom-pipe.pipe';
 import { ListeCategorieComponent } from './categorie/liste.component';
 import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
 import { DetailProduitComponent } from './produit/detail.component';
 import { ListeEmployeeComponent } from './employee/liste.component';
-
+import { FiltreProduitPipe } from 'src/pipes/filtre-produit.pipe';
+import { Regex } from 'src/classes/regex';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { ListeEmployeeComponent } from './employee/liste.component';
     DetailCategorieComponent,
     ListeProduitComponent,
     DetailProduitComponent,
-    ListeEmployeeComponent
+    ListeEmployeeComponent,
+    FiltreProduitPipe,
+
   ],
   imports: [
     BrowserModule,

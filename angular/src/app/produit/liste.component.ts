@@ -11,7 +11,13 @@ import { ProduitService } from 'src/services/produit.service';
   template: `
   <article>
         <button class="btn btn-primary" onclick="window.location.href='produit/new'">New</button>
-        <h2>Liste des produits</h2>
+        <div style="height:35px;margin:5px 5px 5px 5px;">
+            <span style="font-size:25px;"><strong>Liste des produits</strong></span>
+            <span style="float:right;margin:5px 5px 5px 5px;">
+                  <label for="search">Produit</label>&nbsp;
+                  <input type="search" [(ngModel)]="nomProduit" (keyup)="doSearch()">
+            </span>
+        </div>
         <table class="table table-bordered" cellspacing="1" cellpadding="1">
            <thead>
             <tr>
@@ -27,14 +33,14 @@ import { ProduitService } from 'src/services/produit.service';
               <th>Discontinue</th>
             </tr>
           </thead>
-          <tbody *ngFor="let produit of produits">
+          <tbody *ngFor="let produit of produits | filtreProduit:filtrePar">
              <tr>
                  <td><a routerLink="/produit/{{produit._id}}">Modifier</a></td>
                  <td>{{ produit.nom }}</td>
                  <td>{{ produit.category[0].nom}}</td>
                  <td>{{ produit.fournisseur.compagnie}}</td>
                  <td>{{ produit.quantite }}</td>
-                 <td style='text-align:right;'>{{ produit.prix | currency:'USD':true:'1.2-2'}}</td>
+                 <td style='text-align:right;'>{{ produit.prix | currency }}</td>
                  <td style='text-align:right;'>{{ produit.quantiteRestante }}</td>
                  <td style='text-align:right;'>{{ produit.quantiteCommande }}</td>
                  <td style='text-align:right;'>{{ produit.reapprovisionnement }}</td>
@@ -52,11 +58,17 @@ import { ProduitService } from 'src/services/produit.service';
 export class ListeProduitComponent implements OnInit {
 
   public produits = [];
+  public filtrePar:string;
+  public nomProduit:string;
 
   constructor(private _produitService:ProduitService) { }
 
   ngOnInit() {
      this._produitService.getProduitList().subscribe(data => this.produits = data);
+  }
+  doSearch(){
+       this.filtrePar = this.nomProduit;
+
   }
 
 }

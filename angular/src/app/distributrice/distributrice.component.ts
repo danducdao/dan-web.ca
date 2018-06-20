@@ -4,6 +4,7 @@ Program : La distributrice
 */
 
 import { Component, OnInit } from '@angular/core';
+import { Regex } from 'src/classes/regex';
 
 @Component({
   selector: 'app-distributrice',
@@ -40,6 +41,8 @@ export class DistributriceComponent implements OnInit {
   public depot:string;
   private total:number = 0;
   public messages:any;
+  public ProduitNotSelect:boolean = true;
+  public decimalPattern:string = Regex.DecimalPattern();
 
   constructor() {
        this.produits = [
@@ -85,8 +88,8 @@ export class DistributriceComponent implements OnInit {
               }
        ];
   }
-
   ngOnInit() {
+      this.montant = "0.00";
       this.messages = {
            isMatch    : false,
            isEmpty    : false,
@@ -95,16 +98,18 @@ export class DistributriceComponent implements OnInit {
       }
 
   }
-
   choisir(event){
       var target = event.target;
       if (target.checked) {
         this.isSelectedProduct = true;
         this.i = event.target.value;
         this.montant="";
+        this.ProduitNotSelect = false;
+        this.montant = "0.00";
+        this.depot="";
       }
   }
-  payer(){
+  onSubmit(){
 
        this.initMessageError();
 

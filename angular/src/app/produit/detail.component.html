@@ -1,6 +1,6 @@
 <article class="col-sm-4">
     <h1>Modifer le produit</h1>
-    <form (ngSubmit)="onSubmit(categorie,fournisseur)" #produitForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #produitForm="ngForm">
          <div class="form-group">
              <label for="nom">Nom</label>
              <input type="text" class="form-control" id="nom" name="nom" #nom="ngModel" required [(ngModel)]="model.nom" [pattern]="nodigitPattern">
@@ -15,7 +15,7 @@
          </div>
          <div class="form-group">
               <label for="categorie">Catégorie</label>
-              <select class="form-control" id="categorie" name="categorie" required #categorie="ngModel" [(ngModel)]="model.category[0].nom" (change)="filtreCategorie($event.target)">
+              <select class="form-control" id="categorie" name="categorie" required #categorie="ngModel" [(ngModel)]="model.category[0].nom" (change)="selectCategorie($event.target)">
                       <option value="" selected="selected" >--select--</option>
                       <option *ngFor="let categorie of categories">{{categorie.nom}}</option>
               </select>
@@ -23,7 +23,7 @@
          </div>
          <div class="form-group">
               <label for="fournisseur">Fournisseur</label>
-              <select class="form-control" id="fournisseur" name="fournisseur" required #fournisseur="ngModel" [(ngModel)]="model.fournisseur.nom" (change)="filtreFournisseur($event.target)">
+              <select class="form-control" id="fournisseur" name="fournisseur" required #fournisseur="ngModel" [(ngModel)]="model.fournisseur.nom" (change)="selectFournisseur($event.target)">
                       <option value="" selected="selected" >--select--</option>
                       <option *ngFor="let fournisseur of fournisseurs">{{fournisseur.compagnie}}</option>
               </select>

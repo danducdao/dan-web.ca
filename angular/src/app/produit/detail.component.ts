@@ -10,6 +10,7 @@ import { FournisseurService } from 'src/services//fournisseur.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from 'src/classes/produit';
 import { IFournisseur } from 'src/interfaces/fournisseur';
+import { Regex } from 'src/classes/regex';
 
 @Component({
   selector: 'app-categorie',
@@ -30,9 +31,10 @@ export class DetailProduitComponent implements OnInit {
   public model:Produit;
   public categories:any[];
   public fournisseurs:any[];
-  public digitPattern:string = "^[0-9]+$";
-  public decimalPattern:string = "^[0-9]+\\.?[0-9]*$";
-  public nodigitPattern:string = "^[a-zA-Z\\-]+$";
+  public digitPattern:string = Regex.DigitPattern();
+  public decimalPattern:string = Regex.DecimalPattern();
+  public nodigitPattern:string = Regex.NoDigitPattern();
+
   constructor(
               private _produitService:ProduitService,
               private _categorieService:CategorieService,
@@ -63,11 +65,11 @@ export class DetailProduitComponent implements OnInit {
                                                       });
       }
   }
-  filtreCategorie(ele: any):any{
+  selectCategorie(ele: any):any{
          var index = ele.options.selectedIndex
          this.model.category = [this.categories[index]];
    }
-  filtreFournisseur(ele: any):any{
+  selectFournisseur(ele: any):any{
          var index = ele.options.selectedIndex
          this.model.fournisseur = this.fournisseurs[index];
    }

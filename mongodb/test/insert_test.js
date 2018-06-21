@@ -79,7 +79,7 @@ describe('Sauvegarder de données dans les collections',function(){
   });
 
   it('Sauvegarder de données dans collection fournisseur', function(done){
-          var fournisseur = new Produit.Fournisseur({
+          F1 = new Produit.Fournisseur({
                                       compagnie:"Exotic Liquids",
                                       contact:"Charlotte Cooper",
                                       titre:"Purchasing Manager",
@@ -92,9 +92,9 @@ describe('Sauvegarder de données dans les collections',function(){
                                       fax:"",
                                       siteWeb:""
                                   });
-          fournisseur.save().then(function(){
-                assert(fournisseur.isNew === false);
-                fournisseur = new Produit.Fournisseur({
+                F1.save().then(function(){
+                assert(F1.isNew === false);
+                F2 = new Produit.Fournisseur({
                                             compagnie:"New Orleans Cajun Delights",
                                             contact:"Shelley Burke",
                                             titre:"Order Administrator",
@@ -107,10 +107,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                             fax:"",
                                             siteWeb:""
                                         });
-                        return fournisseur.save();
+                        return F2.save();
                   }).then(function(){
-                      assert(fournisseur.isNew === false);
-                      fournisseur = new Produit.Fournisseur({
+                      assert(F2.isNew === false);
+                      F3 = new Produit.Fournisseur({
                                                   compagnie:"Grandma Kelly's Homestead",
                                                   contact:"Regina Murphy",
                                                   titre:"Sales Representative",
@@ -123,10 +123,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                   fax:"(313) 555-3349",
                                                   siteWeb:""
                                               });
-                        return fournisseur.save();
+                        return F3.save();
                   }).then(function(){
-                        assert(fournisseur.isNew === false);
-                        fournisseur = new Produit.Fournisseur({
+                        assert(F3.isNew === false);
+                        F4 = new Produit.Fournisseur({
                                                     compagnie:"Tokyo Traders",
                                                     contact:"Yoshi Nagase",
                                                     titre:"Marketing Manager",
@@ -139,10 +139,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     fax:"",
                                                     siteWeb:""
                                                 });
-                            return fournisseur.save();
+                            return F4.save();
                   }).then(function(){
-                       assert(fournisseur.isNew === false);
-                       fournisseur = new Produit.Fournisseur({
+                       assert(F4.isNew === false);
+                       F5 = new Produit.Fournisseur({
                                                    compagnie:"Cooperativa de Quesos 'Las Cabras'",
                                                    contact:"Antonio del Valle Saavedra",
                                                    titre:"Export Administrator",
@@ -155,11 +155,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    fax:"",
                                                    siteWeb:""
                                                });
-                           return fournisseur.save();
-
+                           return F5.save();
                   }).then(function(){
-                       assert(fournisseur.isNew === false);
-                       fournisseur = new Produit.Fournisseur({
+                       assert(F5.isNew === false);
+                       F6 = new Produit.Fournisseur({
                                                    compagnie:"Mayumi's",
                                                    contact:"Antonio del Valle Saavedra",
                                                    titre:"Marketing Representative",
@@ -172,10 +171,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    fax:"",
                                                    siteWeb:""
                                                });
-                           return fournisseur.save();
+                           return F6.save();
                   }).then(function(){
-                       assert(fournisseur.isNew === false);
-                       fournisseur = new Produit.Fournisseur({
+                       assert(F6.isNew === false);
+                       F7 = new Produit.Fournisseur({
                                                    compagnie:"Pavlova, Ltd.",
                                                    contact:"Ian Devling",
                                                    titre:"Marketing Manager",
@@ -188,10 +187,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    fax:"(03) 444-6588",
                                                    siteWeb:""
                                                });
-                           return fournisseur.save();
+                           return F7.save();
                   }).then(function(){
-                       assert(fournisseur.isNew === false);
-                       fournisseur = new Produit.Fournisseur({
+                       assert(F7.isNew === false);
+                       F8 = new Produit.Fournisseur({
                                                    compagnie:"Specialty Biscuits, Ltd.",
                                                    contact:"Peter Wilson",
                                                    titre:"Sales Representative",
@@ -204,10 +203,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    fax:"",
                                                    siteWeb:""
                                                });
-                           return fournisseur.save();
+                           return F8.save();
                   }).then(function(){
-                         assert(fournisseur.isNew === false);
-                         fournisseur = new Produit.Fournisseur({
+                         assert(F8.isNew === false);
+                         F9 = new Produit.Fournisseur({
                                                      compagnie:"PB Knäckebröd AB",
                                                      contact:"Lars Peterson",
                                                      titre:"Sales Agent",
@@ -220,10 +219,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                      fax:"031-987 65 91",
                                                      siteWeb:""
                                                  });
-                             return fournisseur.save();
+                             return F9.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F9.isNew === false);
+                    F10 = new Produit.Fournisseur({
                                                 compagnie:"PB Knäckebröd AB",
                                                 contact:"Lars Peterson",
                                                 titre:"Sales Agent",
@@ -236,11 +235,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"031-987 65 91",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F10.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F10.isNew === false);
+                    F11 = new Produit.Fournisseur({
                                                 compagnie:"Refrescos Americanas LTDA",
                                                 contact:"Carlos Diaz",
                                                 titre:"Marketing Manager",
@@ -253,11 +252,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F11.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F11.isNew === false);
+                    F12 = new Produit.Fournisseur({
                                                 compagnie:"Heli Süßwaren GmbH & Co. KG",
                                                 contact:"Petra Winkler",
                                                 titre:"Sales Manager",
@@ -270,11 +269,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F12.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F12.isNew === false);
+                    F13 = new Produit.Fournisseur({
                                                 compagnie:"Plutzer Lebensmittelgroßmärkte AG",
                                                 contact:"Martin Bein",
                                                 titre:"International Marketing Mgr.",
@@ -287,11 +286,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F13.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F13.isNew === false);
+                    F14 = new Produit.Fournisseur({
                                                 compagnie:"Nord-Ost-Fisch Handelsgesellschaft mbH",
                                                 contact:"Sven Petersen",
                                                 titre:"Coordinator Foreign Markets",
@@ -304,11 +303,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(04721) 8714",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F14.save();
 
                   }).then(function(){
-                        assert(fournisseur.isNew === false);
-                        fournisseur = new Produit.Fournisseur({
+                        assert(F14.isNew === false);
+                        F15 = new Produit.Fournisseur({
                                                     compagnie:"Formaggi Fortini s.r.l.",
                                                     contact:"Elio Rossi",
                                                     titre:"Sales Representative",
@@ -321,11 +320,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     fax:"(0544) 60603",
                                                     siteWeb:""
                                                 });
-                            return fournisseur.save();
+                            return F15.save();
 
                   }).then(function(){
-                        assert(fournisseur.isNew === false);
-                        fournisseur = new Produit.Fournisseur({
+                        assert(F15.isNew === false);
+                        F16 = new Produit.Fournisseur({
                                                     compagnie:"Norske Meierier",
                                                     contact:"Beate Vileid",
                                                     titre:"Marketing Manager",
@@ -338,10 +337,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     fax:"",
                                                     siteWeb:""
                                                 });
-                            return fournisseur.save();
+                            return F16.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F16.isNew === false);
+                    F17 = new Produit.Fournisseur({
                                                 compagnie:"Bigfoot Breweries",
                                                 contact:"Cheryl Saylor",
                                                 titre:"Regional Account Rep.",
@@ -354,11 +353,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F17.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F17.isNew === false);
+                    F18 = new Produit.Fournisseur({
                                                 compagnie:"Svensk Sjöföda AB",
                                                 contact:"Michael Björn",
                                                 titre:"Sales Representative",
@@ -371,11 +370,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F18.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F18.isNew === false);
+                    F19 = new Produit.Fournisseur({
                                                 compagnie:"Aux joyeux ecclésiastiques",
                                                 contact:"Guylène Nodier",
                                                 titre:"Sales Manager",
@@ -388,28 +387,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(1) 03.83.00.62",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F19.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
-                                                compagnie:"Aux joyeux ecclésiastiques",
-                                                contact:"Guylène Nodier",
-                                                titre:"Sales Manager",
-                                                address:"203, Rue des Francs-Bourgeois",
-                                                ville:"Paris",
-                                                region:"OR",
-                                                codePostal:"75004",
-                                                pays:"France",
-                                                telephone:"(1) 03.83.00.68",
-                                                fax:"(1) 03.83.00.62",
-                                                siteWeb:""
-                                            });
-                        return fournisseur.save();
-
-                  }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F19.isNew === false);
+                    F21 = new Produit.Fournisseur({
                                                 compagnie:"New England Seafood Cannery",
                                                 contact:"Robb Merchant",
                                                 titre:"Wholesale Account Agent",
@@ -422,11 +404,11 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(617) 555-3389",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F21.save();
 
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F21.isNew === false);
+                    F22 = new Produit.Fournisseur({
                                                 compagnie:"Leka Trading",
                                                 contact:"Chandra Leka",
                                                 titre:"Owner",
@@ -439,10 +421,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F22.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F22.isNew === false);
+                    F23 = new Produit.Fournisseur({
                                                 compagnie:"Lyngbysild",
                                                 contact:"Niels Petersen",
                                                 titre:"Sales Manager",
@@ -455,10 +437,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"43844115",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F23.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F23.isNew === false);
+                    F24 = new Produit.Fournisseur({
                                                 compagnie:"Zaanse Snoepfabriek",
                                                 contact:"Dirk Luchte",
                                                 titre:"Accounting Manager",
@@ -471,10 +453,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(12345) 1210",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F24.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F24.isNew === false);
+                    F25 = new Produit.Fournisseur({
                                                 compagnie:"Karkki Oy",
                                                 contact:"Anne Heikkonen",
                                                 titre:"Product Manager",
@@ -487,10 +469,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F25.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F25.isNew === false);
+                    F26 = new Produit.Fournisseur({
                                                 compagnie:"G'day, Mate",
                                                 contact:"Wendy Mackenzie",
                                                 titre:"Sales Representative",
@@ -503,10 +485,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(02) 555-4873",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F26.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F26.isNew === false);
+                    F27 = new Produit.Fournisseur({
                                                 compagnie:"Ma Maison",
                                                 contact:"Jean-Guy Lauzon",
                                                 titre:"Marketing Manager",
@@ -519,10 +501,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F27.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F27.isNew === false);
+                    F28 = new Produit.Fournisseur({
                                                 compagnie:"Pasta Buttini s.r.l.",
                                                 contact:"Giovanni Giudici",
                                                 titre:"Order Administrator",
@@ -535,10 +517,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(089) 6547667",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F28.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F28.isNew === false);
+                    F29 = new Produit.Fournisseur({
                                                 compagnie:"Escargots Nouveaux",
                                                 contact:"Marie Delamare",
                                                 titre:"Sales Manager",
@@ -551,10 +533,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F29.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F29.isNew === false);
+                    F30 = new Produit.Fournisseur({
                                                 compagnie:"Gai pâturage",
                                                 contact:"Eliane Noz",
                                                 titre:"Sales Representative",
@@ -567,10 +549,10 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F30.save();
                   }).then(function(){
-                    assert(fournisseur.isNew === false);
-                    fournisseur = new Produit.Fournisseur({
+                    assert(F30.isNew === false);
+                    F31 = new Produit.Fournisseur({
                                                 compagnie:"Forêts d'érables",
                                                 contact:"Chantal Goulet",
                                                 titre:"Accounting Manager",
@@ -583,7 +565,7 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 fax:"(514) 555-2921",
                                                 siteWeb:""
                                             });
-                        return fournisseur.save();
+                        return F31.save();
                   }).then(function(){
                       done();
                   })
@@ -704,24 +686,13 @@ describe('Sauvegarder de données dans les collections',function(){
                     var prod = new Produit.Produit({
                         nom:"Chai Tea",
                         category:[  {
+                                        _id:categorie._id,
                                         nom:categorie.nom,
                                         description:categorie.description,
                                         image:categorie.image
                                       }
                                     ],
-                        fournisseur:{
-                                        compagnie:"Exotic Liquids",
-                                        contact:"Charlotte Cooper",
-                                        titre:"Purchasing Manager",
-                                        address:"49 Gilbert St.",
-                                        ville:"London",
-                                        region:"",
-                                        codePostal:"EC1 4SD",
-                                        pays:"UK",
-                                        telephone:"(171) 555-2222",
-                                        fax:"",
-                                        siteWeb:""
-                                    },
+                        fournisseur: F1,
                         quantite:"10 boxes x 20 bags",
                         prix:18.00,
                         quantiteRestante:39,
@@ -734,24 +705,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Chang",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Exotic Liquids",
-                                                              contact:"Charlotte Cooper",
-                                                              titre:"Purchasing Manager",
-                                                              address:"49 Gilbert St.",
-                                                              ville:"London",
-                                                              region:"",
-                                                              codePostal:"EC1 4SD",
-                                                              pays:"UK",
-                                                              telephone:"(171) 555-2222",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F1,
                                               quantite:"24 - 12 oz bottles",
                                               prix:19.00,
                                               quantiteRestante:17,
@@ -765,24 +725,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Laughing Lumberjack Lager",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Bigfoot Breweries",
-                                                              contact:"Cheryl Saylor",
-                                                              titre:"Regional Account Rep.",
-                                                              address:"3400 - 8th Avenue Suite 210",
-                                                              ville:"Bend",
-                                                              region:"OR",
-                                                              codePostal:"97101",
-                                                              pays:"USA",
-                                                              telephone:"(503) 555-9931",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F17,
                                               quantite:"24 - 12 oz bottles",
                                               prix:14.00,
                                               quantiteRestante:52,
@@ -796,24 +745,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Guaraná Fantástica",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Refrescos Americanas LTDA",
-                                                              contact:"Carlos Diaz",
-                                                              titre:"Marketing Manager",
-                                                              address:"Av. das Americanas 12.890",
-                                                              ville:"Sao Paulo",
-                                                              region:"",
-                                                              codePostal:"5442",
-                                                              pays:"Brazil",
-                                                              telephone:"(11) 555 4640",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F11,
                                               quantite:"12 - 355 ml cans",
                                               prix:4.50,
                                               quantiteRestante:20,
@@ -827,24 +765,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Sasquatch Ale",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Bigfoot Breweries",
-                                                              contact:"Cheryl Saylor",
-                                                              titre:"Regional Account Rep.",
-                                                              address:"3400 - 8th Avenue Suite 210",
-                                                              ville:"Bend",
-                                                              region:"OR",
-                                                              codePostal:"97101",
-                                                              pays:"USA",
-                                                              telephone:"(503) 555-9931",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F17,
                                               quantite:"24 - 12 oz bottles",
                                               prix:14.00,
                                               quantiteRestante:111,
@@ -858,24 +785,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Steeleye Stout",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Bigfoot Breweries",
-                                                              contact:"Cheryl Saylor",
-                                                              titre:"Regional Account Rep.",
-                                                              address:"3400 - 8th Avenue Suite 210",
-                                                              ville:"Bend",
-                                                              region:"OR",
-                                                              codePostal:"97101",
-                                                              pays:"USA",
-                                                              telephone:"(503) 555-9931",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F17,
                                               quantite:"24 - 12 oz bottles",
                                               prix:18.00,
                                               quantiteRestante:20,
@@ -889,24 +805,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Côte de Blaye",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Aux joyeux ecclésiastiques",
-                                                              contact:"Guylène Nodier",
-                                                              titre:"Sales Manager",
-                                                              address:"203, Rue des Francs-Bourgeois",
-                                                              ville:"Paris",
-                                                              region:"OR",
-                                                              codePostal:"75004",
-                                                              pays:"France",
-                                                              telephone:"(1) 03.83.00.68",
-                                                              fax:"(1) 03.83.00.62",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F19,
                                               quantite:"12 - 75 cl bottles",
                                               prix:263.50,
                                               quantiteRestante:17,
@@ -920,24 +825,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Chartreuse verte",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Aux joyeux ecclésiastiques",
-                                                              contact:"Guylène Nodier",
-                                                              titre:"Sales Manager",
-                                                              address:"203, Rue des Francs-Bourgeois",
-                                                              ville:"Paris",
-                                                              region:"OR",
-                                                              codePostal:"75004",
-                                                              pays:"France",
-                                                              telephone:"(1) 03.83.00.68",
-                                                              fax:"(1) 03.83.00.62",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F19,
                                               quantite:"750 cc per bottle",
                                               prix:18.00,
                                               quantiteRestante:69,
@@ -951,24 +845,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Ipoh Coffee",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Leka Trading",
-                                                              contact:"Chandra Leka",
-                                                              titre:"Owner",
-                                                              address:"471 Serangoon Loop, Suite #402",
-                                                              ville:"Singapore",
-                                                              region:"",
-                                                              codePostal:"0512",
-                                                              pays:"Singapore",
-                                                              telephone:"555-8787",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F22,
                                               quantite:"16 - 500 g tins",
                                               prix:46.00,
                                               quantiteRestante:17,
@@ -982,24 +865,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Outback Lager",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Pavlova, Ltd.",
-                                                              contact:"Ian Devling",
-                                                              titre:"Marketing Manager",
-                                                              address:"74 Rose St. Moonie Ponds",
-                                                              ville:"Melbourne",
-                                                              region:"Victoria",
-                                                              codePostal:"3058",
-                                                              pays:"Australia",
-                                                              telephone:"(03) 444-2343",
-                                                              fax:"(03) 444-6588",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F7,
                                               quantite:"24 - 355 ml bottles",
                                               prix:15.00,
                                               quantiteRestante:15,
@@ -1013,24 +885,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Rhönbräu Klosterbier",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Plutzer Lebensmittelgroßmärkte AG",
-                                                              contact:"Martin Bein",
-                                                              titre:"International Marketing Mgr.",
-                                                              address:"Bogenallee 51",
-                                                              ville:"Frankfurt",
-                                                              region:"",
-                                                              codePostal:"60439",
-                                                              pays:"Germany",
-                                                              telephone:"(069) 992755",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F13,
                                               quantite:"24 - 0.5 l bottles",
                                               prix:7.75,
                                               quantiteRestante:125,
@@ -1044,24 +905,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                                               nom:"Lakkalikööri",
                                               category:[  {
+                                                              _id:categorie._id,
                                                               nom:categorie.nom,
                                                               description:categorie.description,
                                                               image:categorie.image
                                                             }
                                                           ],
-                                              fournisseur:{
-                                                              compagnie:"Karkki Oy",
-                                                              contact:"Anne Heikkonen",
-                                                              titre:"Product Manager",
-                                                              address:"Valtakatu 12",
-                                                              ville:"Lappeenranta",
-                                                              region:"",
-                                                              codePostal:"53120",
-                                                              pays:"Finland",
-                                                              telephone:"(953) 10956",
-                                                              fax:"",
-                                                              siteWeb:""
-                                                          },
+                                              fournisseur:F25,
                                               quantite:"500 ml",
                                               prix:18.00,
                                               quantiteRestante:57,
@@ -1083,24 +933,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         var prod = new Produit.Produit({
                             nom:"Aniseed Syrup",
                             category:[  {
+                                            _id:categorie._id,
                                             nom:categorie.nom,
                                             description:categorie.description,
                                             image:categorie.image
                                           }
                                         ],
-                            fournisseur:{
-                                            compagnie:"Exotic Liquids",
-                                            contact:"Charlotte Cooper",
-                                            titre:"Purchasing Manager",
-                                            address:"49 Gilbert St.",
-                                            ville:"London",
-                                            region:"",
-                                            codePostal:"EC1 4SD",
-                                            pays:"UK",
-                                            telephone:"(171) 555-2222",
-                                            fax:"",
-                                            siteWeb:""
-                                        },
+                            fournisseur:F1,
                             quantite:"12 - 550 ml bottles",
                             prix:10.00,
                             quantiteRestante:63,
@@ -1113,24 +952,13 @@ describe('Sauvegarder de données dans les collections',function(){
                             prod = new Produit.Produit({
                                     nom:"Original Frankfurter grüne Soße",
                                     category:[  {
+                                                    _id:categorie._id,
                                                     nom:categorie.nom,
                                                     description:categorie.description,
                                                     image:categorie.image
                                                   }
                                                 ],
-                                    fournisseur:{
-                                                    compagnie:"Plutzer Lebensmittelgroßmärkte AG",
-                                                    contact:"Martin Bein",
-                                                    titre:"International Marketing Mgr.",
-                                                    address:"Bogenallee 51",
-                                                    ville:"Frankfurt",
-                                                    region:"",
-                                                    codePostal:"60439",
-                                                    pays:"Germany",
-                                                    telephone:"(069) 992755",
-                                                    fax:"",
-                                                    siteWeb:""
-                                                },
+                                    fournisseur:F13,
                                     quantite:"12 boxes",
                                     prix:13.00,
                                     quantiteRestante:0,
@@ -1144,24 +972,13 @@ describe('Sauvegarder de données dans les collections',function(){
                              prod = new Produit.Produit({
                                      nom:"Sirop d'érable",
                                      category:[  {
+                                                     _id:categorie._id,
                                                      nom:categorie.nom,
                                                      description:categorie.description,
                                                      image:categorie.image
                                                    }
                                                  ],
-                                     fournisseur:{
-                                                     compagnie:"Forêts d'érables",
-                                                     contact:"Chantal Goulet",
-                                                     titre:"Accounting Manager",
-                                                     address:"148 rue Chasseur",
-                                                     ville:"Ste-Hyacinthe",
-                                                     region:"Québec",
-                                                     codePostal:"J2S 7S8",
-                                                     pays:"Canada",
-                                                     telephone:"(514) 555-2955",
-                                                     fax:"(514) 555-2921",
-                                                     siteWeb:""
-                                                 },
+                                     fournisseur:F31,
                                      quantite:"24 - 500 ml bottles",
                                      prix:28.50,
                                      quantiteRestante:113,
@@ -1175,24 +992,13 @@ describe('Sauvegarder de données dans les collections',function(){
                               prod = new Produit.Produit({
                                       nom:"Vegie-spread",
                                       category:[  {
+                                                      _id:categorie._id,
                                                       nom:categorie.nom,
                                                       description:categorie.description,
                                                       image:categorie.image
                                                     }
                                                   ],
-                                      fournisseur:{
-                                                      compagnie:"Pavlova, Ltd.",
-                                                      contact:"Ian Devling",
-                                                      titre:"Marketing Manager",
-                                                      address:"74 Rose St. Moonie Ponds",
-                                                      ville:"Melbourne",
-                                                      region:"Victoria",
-                                                      codePostal:"3058",
-                                                      pays:"Australia",
-                                                      telephone:"(03) 444-2343",
-                                                      fax:"(03) 444-6588",
-                                                      siteWeb:""
-                                                  },
+                                      fournisseur:F7,
                                       quantite:"15 - 625 g jars",
                                       prix:43.90,
                                       quantiteRestante:24,
@@ -1206,24 +1012,13 @@ describe('Sauvegarder de données dans les collections',function(){
                              prod = new Produit.Produit({
                                      nom:"Chef Anton's Cajun Seasoning",
                                      category:[  {
+                                                     _id:categorie._id,
                                                      nom:categorie.nom,
                                                      description:categorie.description,
                                                      image:categorie.image
                                                    }
                                                  ],
-                                     fournisseur:{
-                                                     compagnie:"New Orleans Cajun Delights",
-                                                     contact:"Shelley Burke",
-                                                     titre:"Order Administrator",
-                                                     address:"P.O. Box 78934",
-                                                     ville:"New Orleans",
-                                                     region:"LA",
-                                                     codePostal:"70117",
-                                                     pays:"USA",
-                                                     telephone:"(100) 555-4822",
-                                                     fax:"",
-                                                     siteWeb:""
-                                                 },
+                                     fournisseur:F2,
                                      quantite:"48 - 6 oz jars",
                                      prix:22.00,
                                      quantiteRestante:53,
@@ -1238,24 +1033,13 @@ describe('Sauvegarder de données dans les collections',function(){
                              prod = new Produit.Produit({
                                      nom:"Chef Anton's Gumbo Mix",
                                      category:[  {
+                                                     _id:categorie._id,
                                                      nom:categorie.nom,
                                                      description:categorie.description,
                                                      image:categorie.image
                                                    }
                                                  ],
-                                     fournisseur:{
-                                                     compagnie:"New Orleans Cajun Delights",
-                                                     contact:"Shelley Burke",
-                                                     titre:"Order Administrator",
-                                                     address:"P.O. Box 78934",
-                                                     ville:"New Orleans",
-                                                     region:"LA",
-                                                     codePostal:"70117",
-                                                     pays:"USA",
-                                                     telephone:"(100) 555-4822",
-                                                     fax:"",
-                                                     siteWeb:""
-                                                 },
+                                     fournisseur:F2,
                                      quantite:"36 boxes",
                                      prix:21.35,
                                      quantiteRestante:0,
@@ -1269,24 +1053,13 @@ describe('Sauvegarder de données dans les collections',function(){
                              prod = new Produit.Produit({
                                      nom:"Grandma's Boysenberry Spread",
                                      category:[  {
+                                                     _id:categorie._id,
                                                      nom:categorie.nom,
                                                      description:categorie.description,
                                                      image:categorie.image
                                                    }
                                                  ],
-                                     fournisseur:{
-                                                     compagnie:"Grandma Kelly's Homestead",
-                                                     contact:"Regina Murphy",
-                                                     titre:"Sales Representative",
-                                                     address:"707 Oxford Rd.",
-                                                     ville:"Ann Arbor",
-                                                     region:"MI",
-                                                     codePostal:"48104",
-                                                     pays:"USA",
-                                                     telephone:"(313) 555-5735",
-                                                     fax:"(313) 555-3349",
-                                                     siteWeb:""
-                                                 },
+                                     fournisseur:F3,
                                      quantite:"12 - 8 oz jars",
                                      prix:25.00,
                                      quantiteRestante:120,
@@ -1301,24 +1074,13 @@ describe('Sauvegarder de données dans les collections',function(){
                              prod = new Produit.Produit({
                                      nom:"Northwoods Cranberry Sauce",
                                      category:[  {
+                                                     _id:categorie._id,
                                                      nom:categorie.nom,
                                                      description:categorie.description,
                                                      image:categorie.image
                                                    }
                                                  ],
-                                     fournisseur:{
-                                                     compagnie:"Grandma Kelly's Homestead",
-                                                     contact:"Regina Murphy",
-                                                     titre:"Sales Representative",
-                                                     address:"707 Oxford Rd.",
-                                                     ville:"Ann Arbor",
-                                                     region:"MI",
-                                                     codePostal:"48104",
-                                                     pays:"USA",
-                                                     telephone:"(313) 555-5735",
-                                                     fax:"(313) 555-3349",
-                                                     siteWeb:""
-                                                 },
+                                     fournisseur:F3,
                                      quantite:"12 - 12 oz jars",
                                      prix:40.00,
                                      quantiteRestante:6,
@@ -1340,24 +1102,13 @@ describe('Sauvegarder de données dans les collections',function(){
                      prod = new Produit.Produit({
                          nom:"Teatime Chocolate Biscuits",
                          category:[  {
+                                         _id:categorie._id,
                                          nom:categorie.nom,
                                          description:categorie.description,
                                          image:categorie.image
                                        }
                                      ],
-                         fournisseur:{
-                                         compagnie:"Specialty Biscuits, Ltd.",
-                                         contact:"Peter Wilson",
-                                         titre:"Sales Representative",
-                                         address:"29 King's Way",
-                                         ville:"Manchester",
-                                         region:"",
-                                         codePostal:"M14 GSD",
-                                         pays:"UK",
-                                         telephone:"(161) 555-4448",
-                                         fax:"",
-                                         siteWeb:""
-                                     },
+                         fournisseur:F8,
                          quantite:"10 boxes x 12 pieces",
                          prix:9.20,
                          quantiteRestante:25,
@@ -1370,24 +1121,13 @@ describe('Sauvegarder de données dans les collections',function(){
                          prod = new Produit.Produit({
                              nom:"Teatime Chocolate Biscuits",
                              category:[  {
+                                             _id:categorie._id,
                                              nom:categorie.nom,
                                              description:categorie.description,
                                              image:categorie.image
                                            }
                                          ],
-                             fournisseur:{
-                                             compagnie:"Specialty Biscuits, Ltd.",
-                                             contact:"Peter Wilson",
-                                             titre:"Sales Representative",
-                                             address:"29 King's Way",
-                                             ville:"Manchester",
-                                             region:"",
-                                             codePostal:"M14 GSD",
-                                             pays:"UK",
-                                             telephone:"(161) 555-4448",
-                                             fax:"",
-                                             siteWeb:""
-                                         },
+                             fournisseur:F8,
                              quantite:"10 boxes x 12 pieces",
                              prix:9.20,
                              quantiteRestante:25,
@@ -1402,24 +1142,13 @@ describe('Sauvegarder de données dans les collections',function(){
                          prod = new Produit.Produit({
                             nom:"Sir Rodney's Marmalade",
                             category:[  {
+                                            _id:categorie._id,
                                             nom:categorie.nom,
                                             description:categorie.description,
                                             image:categorie.image
                                           }
                                         ],
-                            fournisseur:{
-                                            compagnie:"Specialty Biscuits, Ltd.",
-                                            contact:"Peter Wilson",
-                                            titre:"Sales Representative",
-                                            address:"29 King's Way",
-                                            ville:"Manchester",
-                                            region:"",
-                                            codePostal:"M14 GSD",
-                                            pays:"UK",
-                                            telephone:"(161) 555-4448",
-                                            fax:"",
-                                            siteWeb:""
-                                        },
+                            fournisseur:F8,
                             quantite:"30 gift boxes",
                             prix:81.00,
                             quantiteRestante:40,
@@ -1434,24 +1163,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                            nom:"Sir Rodney's Scones",
                            category:[  {
+                                           _id:categorie._id,
                                            nom:categorie.nom,
                                            description:categorie.description,
                                            image:categorie.image
                                          }
                                        ],
-                           fournisseur:{
-                                           compagnie:"Specialty Biscuits, Ltd.",
-                                           contact:"Peter Wilson",
-                                           titre:"Sales Representative",
-                                           address:"29 King's Way",
-                                           ville:"Manchester",
-                                           region:"",
-                                           codePostal:"M14 GSD",
-                                           pays:"UK",
-                                           telephone:"(161) 555-4448",
-                                           fax:"",
-                                           siteWeb:""
-                                       },
+                           fournisseur:F8,
                            quantite:"24 pkgs. x 4 pieces",
                            prix:10.00,
                            quantiteRestante:3,
@@ -1471,24 +1189,13 @@ describe('Sauvegarder de données dans les collections',function(){
                         prod = new Produit.Produit({
                             nom:"Queso Cabrales",
                             category:[  {
+                                            _id:categorie._id,
                                             nom:categorie.nom,
                                             description:categorie.description,
                                             image:categorie.image
                                           }
                                         ],
-                            fournisseur:{
-                                            compagnie:"Cooperativa de Quesos 'Las Cabras'",
-                                            contact:"Antonio del Valle Saavedra",
-                                            titre:"Export Administrator",
-                                            address:"Calle del Rosal 4",
-                                            ville:"Oviedo",
-                                            region:"Asturias",
-                                            codePostal:"33007",
-                                            pays:"Spain",
-                                            telephone:"(98) 598 76 54",
-                                            fax:"",
-                                            siteWeb:""
-                                        },
+                            fournisseur:F5,
                             quantite:"1 kg pkg.",
                             prix:21.00,
                             quantiteRestante:22,
@@ -1501,24 +1208,13 @@ describe('Sauvegarder de données dans les collections',function(){
                             prod = new Produit.Produit({
                                 nom:"Queso Manchego La Pastora",
                                 category:[  {
+                                                _id:categorie._id,
                                                 nom:categorie.nom,
                                                 description:categorie.description,
                                                 image:categorie.image
                                               }
                                             ],
-                                fournisseur:{
-                                                compagnie:"Cooperativa de Quesos 'Las Cabras'",
-                                                contact:"Antonio del Valle Saavedra",
-                                                titre:"Export Administrator",
-                                                address:"Calle del Rosal 4",
-                                                ville:"Oviedo",
-                                                region:"Asturias",
-                                                codePostal:"33007",
-                                                pays:"Spain",
-                                                telephone:"(98) 598 76 54",
-                                                fax:"",
-                                                siteWeb:""
-                                            },
+                                fournisseur:F5,
                                 quantite:"110 - 500 g pkgs.",
                                 prix:38.00,
                                 quantiteRestante:86,

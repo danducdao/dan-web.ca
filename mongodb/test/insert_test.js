@@ -12,68 +12,71 @@ const Produit = require('../model/produit');
 describe('Sauvegarder de données dans les collections',function(){
 
   it('Sauvegarder de données dans collection categorie', function(done){
-        var cat = new Produit.Categorie({
+        C1 = new Produit.Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
                                   image:"./assets/images/beverages.gif"
                                 });
-        cat.save().then(function(){
-              assert(cat.isNew === false);
-              cat = new Produit.Categorie({
+        C1.save().then(function(){
+              assert(C1.isNew === false);
+              C2 = new Produit.Categorie({
                                     nom:"Condiments",
                                     description:"Sweet and savory sauces, relishes, spreads, and seasonings",
                                     image:"./assets/images/condiments.gif"
                                   });
-              return cat.save();
+              return C2.save();
         }).then(function(){
-              cat = new Produit.Categorie({
+              assert(C2.isNew === false);
+              C3 = new Produit.Categorie({
                                     nom:"Confections",
                                     description:"Desserts, candies, and sweet breads",
                                     image:"./assets/images/confections.gif"
                                   });
-              return  cat.save();
+              return C3.save();
         }).then(function(){
-              assert(cat.isNew === false);
-              cat = new Produit.Categorie({
+              assert(C3.isNew === false);
+              C4 = new Produit.Categorie({
                                     nom:"Dairy Products",
                                     description:"Cheeses",
                                     image:"./assets/images/diary.gif"
                                   });
-              return cat.save();
+              return C4.save();
         }).then(function(){
-                assert(cat.isNew === false);
-                cat = new Produit.Categorie({
+                assert(C4.isNew === false);
+                C5 = new Produit.Categorie({
                                       nom:"Grains/Cereals",
                                       description:"Breads, crackers, pasta, and cereal",
                                       image:"./assets/images/cereals.gif"
                                     });
 
-                return cat.save();
+                return C5.save();
         }).then(function(){
-               assert(cat.isNew === false);
-               cat = new Produit.Categorie({
+               assert(C5.isNew === false);
+               C6 = new Produit.Categorie({
                                      nom:"Meat/Poultry",
                                      description:"Prepared meats",
                                      image:"./assets/images/meat.gif"
                                    });
 
-                  return cat.save();
+                  return C6.save();
         }).then(function(){
-              assert(cat.isNew === false);
-              cat = new Produit.Categorie({
+              assert(C6.isNew === false);
+              C7 = new Produit.Categorie({
                                     nom:"Produce",
                                     description:"Dried fruit and bean curd",
                                     image:"./assets/images/produce.gif"
                                   });
-                return cat.save();
+                return C7.save();
         }).then(function(){
-            assert(cat.isNew === false);
-            cat = new Produit.Categorie({
+            assert(C7.isNew === false);
+            C8 = new Produit.Categorie({
                                   nom:"Seafood",
                                   description:"Seaweed and fish",
                                   image:"./assets/images/seafood.gif"
                                 });
+            return C8.save();
         }).then(function(){
+            assert(C8.isNew === false);
             done();
         });
   });
@@ -222,23 +225,6 @@ describe('Sauvegarder de données dans les collections',function(){
                              return F9.save();
                   }).then(function(){
                     assert(F9.isNew === false);
-                    F10 = new Produit.Fournisseur({
-                                                compagnie:"PB Knäckebröd AB",
-                                                contact:"Lars Peterson",
-                                                titre:"Sales Agent",
-                                                address:"Kaloadagatan 13",
-                                                ville:"Göteborg",
-                                                region:"",
-                                                codePostal:"S-345 67",
-                                                pays:"Sweden",
-                                                telephone:"031-987 65 43",
-                                                fax:"031-987 65 91",
-                                                siteWeb:""
-                                            });
-                        return F10.save();
-
-                  }).then(function(){
-                    assert(F10.isNew === false);
                     F11 = new Produit.Fournisseur({
                                                 compagnie:"Refrescos Americanas LTDA",
                                                 contact:"Carlos Diaz",
@@ -679,557 +665,370 @@ describe('Sauvegarder de données dans les collections',function(){
            });
     });
 
-    it('Sauvegarder de données dans collection produits de catégorie Drinks', function(done){
-
-            Produit.Categorie.findOne({nom:"Drinks"}).then(function(categorie){
-                    assert(categorie.nom === "Drinks");
-                    var prod = new Produit.Produit({
-                        nom:"Chai Tea",
-                        category:[  {
-                                        _id:categorie._id,
-                                        nom:categorie.nom,
-                                        description:categorie.description,
-                                        image:categorie.image
-                                      }
-                                    ],
-                        fournisseur: F1,
-                        quantite:"10 boxes x 20 bags",
-                        prix:18.00,
-                        quantiteRestante:39,
-                        quantiteCommande:0,
-                        reapprovisionnement:10,
-                        discontinue:false
-                    });
-                    prod.save().then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Chang",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F1,
-                                              quantite:"24 - 12 oz bottles",
-                                              prix:19.00,
-                                              quantiteRestante:17,
-                                              quantiteCommande:40,
-                                              reapprovisionnement:25,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Laughing Lumberjack Lager",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F17,
-                                              quantite:"24 - 12 oz bottles",
-                                              prix:14.00,
-                                              quantiteRestante:52,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:10,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Guaraná Fantástica",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F11,
-                                              quantite:"12 - 355 ml cans",
-                                              prix:4.50,
-                                              quantiteRestante:20,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:0,
-                                              discontinue:true
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Sasquatch Ale",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F17,
-                                              quantite:"24 - 12 oz bottles",
-                                              prix:14.00,
-                                              quantiteRestante:111,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:15,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Steeleye Stout",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F17,
-                                              quantite:"24 - 12 oz bottles",
-                                              prix:18.00,
-                                              quantiteRestante:20,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:15,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Côte de Blaye",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F19,
-                                              quantite:"12 - 75 cl bottles",
-                                              prix:263.50,
-                                              quantiteRestante:17,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:15,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Chartreuse verte",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F19,
-                                              quantite:"750 cc per bottle",
-                                              prix:18.00,
-                                              quantiteRestante:69,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:5,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Ipoh Coffee",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F22,
-                                              quantite:"16 - 500 g tins",
-                                              prix:46.00,
-                                              quantiteRestante:17,
-                                              quantiteCommande:10,
-                                              reapprovisionnement:25,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Outback Lager",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F7,
-                                              quantite:"24 - 355 ml bottles",
-                                              prix:15.00,
-                                              quantiteRestante:15,
-                                              quantiteCommande:10,
-                                              reapprovisionnement:30,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Rhönbräu Klosterbier",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F13,
-                                              quantite:"24 - 0.5 l bottles",
-                                              prix:7.75,
-                                              quantiteRestante:125,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:25,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                                              nom:"Lakkalikööri",
-                                              category:[  {
-                                                              _id:categorie._id,
-                                                              nom:categorie.nom,
-                                                              description:categorie.description,
-                                                              image:categorie.image
-                                                            }
-                                                          ],
-                                              fournisseur:F25,
-                                              quantite:"500 ml",
-                                              prix:18.00,
-                                              quantiteRestante:57,
-                                              quantiteCommande:0,
-                                              reapprovisionnement:20,
-                                              discontinue:false
-                                          });
-                        return prod.save();
-                    }).then(function(){
-                       done();
-                    });
-          });
-    });
-
-    it('Sauvegarder de données dans collection produits de catégorie Condiments', function(done){
-
-            Produit.Categorie.findOne({nom:"Condiments"}).then(function(categorie){
-                        assert(categorie.nom === "Condiments");
-                        var prod = new Produit.Produit({
-                            nom:"Aniseed Syrup",
-                            category:[  {
-                                            _id:categorie._id,
-                                            nom:categorie.nom,
-                                            description:categorie.description,
-                                            image:categorie.image
-                                          }
-                                        ],
-                            fournisseur:F1,
-                            quantite:"12 - 550 ml bottles",
-                            prix:10.00,
-                            quantiteRestante:63,
-                            quantiteCommande:70,
-                            reapprovisionnement:25,
-                            discontinue:false
-                        });
-                        prod.save().then(function(){
-                            assert(prod.isNew === false);
-                            prod = new Produit.Produit({
-                                    nom:"Original Frankfurter grüne Soße",
-                                    category:[  {
-                                                    _id:categorie._id,
-                                                    nom:categorie.nom,
-                                                    description:categorie.description,
-                                                    image:categorie.image
-                                                  }
-                                                ],
-                                    fournisseur:F13,
-                                    quantite:"12 boxes",
-                                    prix:13.00,
-                                    quantiteRestante:0,
-                                    quantiteCommande:25,
-                                    reapprovisionnement:25,
-                                    discontinue:false
-                                });
-                             return prod.save();
-                         }).then(function(){
-                             assert(prod.isNew === false);
-                             prod = new Produit.Produit({
-                                     nom:"Sirop d'érable",
-                                     category:[  {
-                                                     _id:categorie._id,
-                                                     nom:categorie.nom,
-                                                     description:categorie.description,
-                                                     image:categorie.image
-                                                   }
-                                                 ],
-                                     fournisseur:F31,
-                                     quantite:"24 - 500 ml bottles",
-                                     prix:28.50,
-                                     quantiteRestante:113,
-                                     quantiteCommande:0,
-                                     reapprovisionnement:25,
-                                     discontinue:false
-                                 });
-                              return prod.save();
-                          }).then(function(){
-                              assert(prod.isNew === false);
-                              prod = new Produit.Produit({
-                                      nom:"Vegie-spread",
-                                      category:[  {
-                                                      _id:categorie._id,
-                                                      nom:categorie.nom,
-                                                      description:categorie.description,
-                                                      image:categorie.image
-                                                    }
-                                                  ],
-                                      fournisseur:F7,
-                                      quantite:"15 - 625 g jars",
-                                      prix:43.90,
-                                      quantiteRestante:24,
+    it('Sauvegarder de données dans collection produits', function(done){
+            var prod = new Produit.Produit({
+                nom:"Chai Tea",
+                category:[ C1 ],
+                fournisseur: F1,
+                quantite:"10 boxes x 20 bags",
+                prix:18.00,
+                quantiteRestante:39,
+                quantiteCommande:0,
+                reapprovisionnement:10,
+                discontinue:false
+            });
+            prod.save().then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Chang",
+                                      category:[ C1 ],
+                                      fournisseur:F1,
+                                      quantite:"24 - 12 oz bottles",
+                                      prix:19.00,
+                                      quantiteRestante:17,
+                                      quantiteCommande:40,
+                                      reapprovisionnement:25,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Laughing Lumberjack Lager",
+                                      category:[ C1 ],
+                                      fournisseur:F17,
+                                      quantite:"24 - 12 oz bottles",
+                                      prix:14.00,
+                                      quantiteRestante:52,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:10,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Guaraná Fantástica",
+                                      category:[ C1 ],
+                                      fournisseur:F11,
+                                      quantite:"12 - 355 ml cans",
+                                      prix:4.50,
+                                      quantiteRestante:20,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:0,
+                                      discontinue:true
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Sasquatch Ale",
+                                      category:[ C1 ],
+                                      fournisseur:F17,
+                                      quantite:"24 - 12 oz bottles",
+                                      prix:14.00,
+                                      quantiteRestante:111,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:15,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Steeleye Stout",
+                                      category:[ C1 ],
+                                      fournisseur:F17,
+                                      quantite:"24 - 12 oz bottles",
+                                      prix:18.00,
+                                      quantiteRestante:20,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:15,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Côte de Blaye",
+                                      category:[ C1 ],
+                                      fournisseur:F19,
+                                      quantite:"12 - 75 cl bottles",
+                                      prix:263.50,
+                                      quantiteRestante:17,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:15,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Chartreuse verte",
+                                      category:[ C1 ],
+                                      fournisseur:F19,
+                                      quantite:"750 cc per bottle",
+                                      prix:18.00,
+                                      quantiteRestante:69,
                                       quantiteCommande:0,
                                       reapprovisionnement:5,
                                       discontinue:false
                                   });
-                               return prod.save();
-                           }).then(function(){
-                             assert(prod.isNew === false);
-                             prod = new Produit.Produit({
-                                     nom:"Chef Anton's Cajun Seasoning",
-                                     category:[  {
-                                                     _id:categorie._id,
-                                                     nom:categorie.nom,
-                                                     description:categorie.description,
-                                                     image:categorie.image
-                                                   }
-                                                 ],
-                                     fournisseur:F2,
-                                     quantite:"48 - 6 oz jars",
-                                     prix:22.00,
-                                     quantiteRestante:53,
-                                     quantiteCommande:0,
-                                     reapprovisionnement:0,
-                                     discontinue:false
-                                 });
-                                 return prod.save();
-
-                           }).then(function(){
-                             assert(prod.isNew === false);
-                             prod = new Produit.Produit({
-                                     nom:"Chef Anton's Gumbo Mix",
-                                     category:[  {
-                                                     _id:categorie._id,
-                                                     nom:categorie.nom,
-                                                     description:categorie.description,
-                                                     image:categorie.image
-                                                   }
-                                                 ],
-                                     fournisseur:F2,
-                                     quantite:"36 boxes",
-                                     prix:21.35,
-                                     quantiteRestante:0,
-                                     quantiteCommande:0,
-                                     reapprovisionnement:0,
-                                     discontinue:true
-                                 });
-                                 return prod.save();
-                           }).then(function(){
-                             assert(prod.isNew === false);
-                             prod = new Produit.Produit({
-                                     nom:"Grandma's Boysenberry Spread",
-                                     category:[  {
-                                                     _id:categorie._id,
-                                                     nom:categorie.nom,
-                                                     description:categorie.description,
-                                                     image:categorie.image
-                                                   }
-                                                 ],
-                                     fournisseur:F3,
-                                     quantite:"12 - 8 oz jars",
-                                     prix:25.00,
-                                     quantiteRestante:120,
-                                     quantiteCommande:0,
-                                     reapprovisionnement:25,
-                                     discontinue:false
-                                 });
-                                 return prod.save();
-
-                           }).then(function(){
-                             assert(prod.isNew === false);
-                             prod = new Produit.Produit({
-                                     nom:"Northwoods Cranberry Sauce",
-                                     category:[  {
-                                                     _id:categorie._id,
-                                                     nom:categorie.nom,
-                                                     description:categorie.description,
-                                                     image:categorie.image
-                                                   }
-                                                 ],
-                                     fournisseur:F3,
-                                     quantite:"12 - 12 oz jars",
-                                     prix:40.00,
-                                     quantiteRestante:6,
-                                     quantiteCommande:0,
-                                     reapprovisionnement:0,
-                                     discontinue:false
-                                 });
-                                 return prod.save();
-
-                           }).then(function(){
-                               done();
-                           })
-                });
-       });
-
-       it('Sauvegarder de données dans collection produits de catégorie Confections', function(done){
-              Produit.Categorie.findOne({nom:"Confections"}).then(function(categorie){
-                     assert(categorie.nom === "Confections");
-                     prod = new Produit.Produit({
-                         nom:"Teatime Chocolate Biscuits",
-                         category:[  {
-                                         _id:categorie._id,
-                                         nom:categorie.nom,
-                                         description:categorie.description,
-                                         image:categorie.image
-                                       }
-                                     ],
-                         fournisseur:F8,
-                         quantite:"10 boxes x 12 pieces",
-                         prix:9.20,
-                         quantiteRestante:25,
-                         quantiteCommande:0,
-                         reapprovisionnement:5,
-                         discontinue:false
-                     });
-                     prod.save().then(function(){
-                         assert(prod.isNew === false);
-                         prod = new Produit.Produit({
-                             nom:"Teatime Chocolate Biscuits",
-                             category:[  {
-                                             _id:categorie._id,
-                                             nom:categorie.nom,
-                                             description:categorie.description,
-                                             image:categorie.image
-                                           }
-                                         ],
-                             fournisseur:F8,
-                             quantite:"10 boxes x 12 pieces",
-                             prix:9.20,
-                             quantiteRestante:25,
-                             quantiteCommande:0,
-                             reapprovisionnement:5,
-                             discontinue:false
-                         });
-                         return prod.save();
-
-                      }).then(function(){
-                         assert(prod.isNew === false);
-                         prod = new Produit.Produit({
-                            nom:"Sir Rodney's Marmalade",
-                            category:[  {
-                                            _id:categorie._id,
-                                            nom:categorie.nom,
-                                            description:categorie.description,
-                                            image:categorie.image
-                                          }
-                                        ],
-                            fournisseur:F8,
-                            quantite:"30 gift boxes",
-                            prix:81.00,
-                            quantiteRestante:40,
-                            quantiteCommande:0,
-                            reapprovisionnement:0,
-                            discontinue:false
-                        });
-                        return prod.save();
-
-                      }).then(function(){
-                        assert(prod.isNew === false);
-                        prod = new Produit.Produit({
-                           nom:"Sir Rodney's Scones",
-                           category:[  {
-                                           _id:categorie._id,
-                                           nom:categorie.nom,
-                                           description:categorie.description,
-                                           image:categorie.image
-                                         }
-                                       ],
-                           fournisseur:F8,
-                           quantite:"24 pkgs. x 4 pieces",
-                           prix:10.00,
-                           quantiteRestante:3,
-                           quantiteCommande:40,
-                           reapprovisionnement:5,
-                           discontinue:false
-                       });
-                       return prod.save();
-                      }).then(function(){
-                          done();
-                      })
-                });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Ipoh Coffee",
+                                      category:[ C1 ],
+                                      fournisseur:F22,
+                                      quantite:"16 - 500 g tins",
+                                      prix:46.00,
+                                      quantiteRestante:17,
+                                      quantiteCommande:10,
+                                      reapprovisionnement:25,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Outback Lager",
+                                      category:[ C1 ],
+                                      fournisseur:F7,
+                                      quantite:"24 - 355 ml bottles",
+                                      prix:15.00,
+                                      quantiteRestante:15,
+                                      quantiteCommande:10,
+                                      reapprovisionnement:30,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Rhönbräu Klosterbier",
+                                      category:[ C1 ],
+                                      fournisseur:F13,
+                                      quantite:"24 - 0.5 l bottles",
+                                      prix:7.75,
+                                      quantiteRestante:125,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:25,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                      nom:"Lakkalikööri",
+                                      category:[ C1 ],
+                                      fournisseur:F25,
+                                      quantite:"500 ml",
+                                      prix:18.00,
+                                      quantiteRestante:57,
+                                      quantiteCommande:0,
+                                      reapprovisionnement:20,
+                                      discontinue:false
+                                  });
+                return prod.save();
+            }).then(function(){
+                  var prod = new Produit.Produit({
+                      nom:"Aniseed Syrup",
+                      category:[ C2 ],
+                      fournisseur:F1,
+                      quantite:"12 - 550 ml bottles",
+                      prix:10.00,
+                      quantiteRestante:63,
+                      quantiteCommande:70,
+                      reapprovisionnement:25,
+                      discontinue:false
+                    });
+                     return prod.save();
+            }).then(function(){
+              assert(prod.isNew === false);
+              prod = new Produit.Produit({
+                      nom:"Original Frankfurter grüne Soße",
+                      category:[ C2 ],
+                      fournisseur:F13,
+                      quantite:"12 boxes",
+                      prix:13.00,
+                      quantiteRestante:0,
+                      quantiteCommande:25,
+                      reapprovisionnement:25,
+                      discontinue:false
+                  });
+               return prod.save();
+            }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                       nom:"Sirop d'érable",
+                       category:[ C2 ],
+                       fournisseur:F31,
+                       quantite:"24 - 500 ml bottles",
+                       prix:28.50,
+                       quantiteRestante:113,
+                       quantiteCommande:0,
+                       reapprovisionnement:25,
+                       discontinue:false
+                   });
+                return prod.save();
+            }).then(function(){
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                        nom:"Vegie-spread",
+                        category:[ C2 ],
+                        fournisseur:F7,
+                        quantite:"15 - 625 g jars",
+                        prix:43.90,
+                        quantiteRestante:24,
+                        quantiteCommande:0,
+                        reapprovisionnement:5,
+                        discontinue:false
+                    });
+                 return prod.save();
+            }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                       nom:"Chef Anton's Cajun Seasoning",
+                       category:[ C2 ],
+                       fournisseur:F2,
+                       quantite:"48 - 6 oz jars",
+                       prix:22.00,
+                       quantiteRestante:53,
+                       quantiteCommande:0,
+                       reapprovisionnement:0,
+                       discontinue:false
+                   });
+                   return prod.save();
+          }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                       nom:"Chef Anton's Gumbo Mix",
+                       category:[ C2 ],
+                       fournisseur:F2,
+                       quantite:"36 boxes",
+                       prix:21.35,
+                       quantiteRestante:0,
+                       quantiteCommande:0,
+                       reapprovisionnement:0,
+                       discontinue:true
+                   });
+                   return prod.save();
+          }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                       nom:"Grandma's Boysenberry Spread",
+                       category:[ C2 ],
+                       fournisseur:F3,
+                       quantite:"12 - 8 oz jars",
+                       prix:25.00,
+                       quantiteRestante:120,
+                       quantiteCommande:0,
+                       reapprovisionnement:25,
+                       discontinue:false
+                   });
+                   return prod.save();
+          }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                       nom:"Northwoods Cranberry Sauce",
+                       category:[ C2 ],
+                       fournisseur:F3,
+                       quantite:"12 - 12 oz jars",
+                       prix:40.00,
+                       quantiteRestante:6,
+                       quantiteCommande:0,
+                       reapprovisionnement:0,
+                       discontinue:false
+                   });
+                   return prod.save();
+          }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                   nom:"Teatime Chocolate Biscuits",
+                   category:[ C3 ],
+                   fournisseur:F8,
+                   quantite:"10 boxes x 12 pieces",
+                   prix:9.20,
+                   quantiteRestante:25,
+                   quantiteCommande:0,
+                   reapprovisionnement:5,
+                   discontinue:false
+               });
+               return prod.save()
+          }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                   nom:"Teatime Chocolate Biscuits",
+                   category:[ C3 ],
+                   fournisseur:F8,
+                   quantite:"10 boxes x 12 pieces",
+                   prix:9.20,
+                   quantiteRestante:25,
+                   quantiteCommande:0,
+                   reapprovisionnement:5,
+                   discontinue:false
+               });
+               return prod.save();
+          }).then(function(){
+               assert(prod.isNew === false);
+               prod = new Produit.Produit({
+                  nom:"Sir Rodney's Marmalade",
+                  category:[ C3 ],
+                  fournisseur:F8,
+                  quantite:"30 gift boxes",
+                  prix:81.00,
+                  quantiteRestante:40,
+                  quantiteCommande:0,
+                  reapprovisionnement:0,
+                  discontinue:false
+              });
+              return prod.save();
+          }).then(function(){
+              assert(prod.isNew === false);
+              prod = new Produit.Produit({
+                 nom:"Sir Rodney's Scones",
+                 category:[ C3 ],
+                 fournisseur:F8,
+                 quantite:"24 pkgs. x 4 pieces",
+                 prix:10.00,
+                 quantiteRestante:3,
+                 quantiteCommande:40,
+                 reapprovisionnement:5,
+                 discontinue:false
+             });
+             return prod.save();
+          }).then(function(){
+              assert(prod.isNew === false);
+              prod = new Produit.Produit({
+                  nom:"Queso Cabrales",
+                  category:[ C4 ],
+                  fournisseur:F5,
+                  quantite:"1 kg pkg.",
+                  prix:21.00,
+                  quantiteRestante:22,
+                  quantiteCommande:30,
+                  reapprovisionnement:30,
+                  discontinue:false
+              });
+              return prod.save();
+          }).then(function(){
+              assert(prod.isNew === false);
+              prod = new Produit.Produit({
+                  nom:"Queso Manchego La Pastora",
+                  category:[ C4 ],
+                  fournisseur:F5,
+                  quantite:"110 - 500 g pkgs.",
+                  prix:38.00,
+                  quantiteRestante:86,
+                  quantiteCommande:0,
+                  reapprovisionnement:0,
+                  discontinue:false
+              });
+              return prod.save();
+          }).then(function(){
+               assert(prod.isNew === false);
+               done();
           });
-          it('Sauvegarder de données dans collection produits de catégorie Dairy Products', function(done){
-                 Produit.Categorie.findOne({nom:"Dairy Products"}).then(function(categorie){
-                        assert(categorie.nom === "Dairy Products");
-                        prod = new Produit.Produit({
-                            nom:"Queso Cabrales",
-                            category:[  {
-                                            _id:categorie._id,
-                                            nom:categorie.nom,
-                                            description:categorie.description,
-                                            image:categorie.image
-                                          }
-                                        ],
-                            fournisseur:F5,
-                            quantite:"1 kg pkg.",
-                            prix:21.00,
-                            quantiteRestante:22,
-                            quantiteCommande:30,
-                            reapprovisionnement:30,
-                            discontinue:false
-                        });
-                        prod.save().then(function(){
-                            assert(prod.isNew === false);
-                            prod = new Produit.Produit({
-                                nom:"Queso Manchego La Pastora",
-                                category:[  {
-                                                _id:categorie._id,
-                                                nom:categorie.nom,
-                                                description:categorie.description,
-                                                image:categorie.image
-                                              }
-                                            ],
-                                fournisseur:F5,
-                                quantite:"110 - 500 g pkgs.",
-                                prix:38.00,
-                                quantiteRestante:86,
-                                quantiteCommande:0,
-                                reapprovisionnement:0,
-                                discontinue:false
-                            });
-                            return prod.save();
-
-                        }).then(function(){
-                             assert(prod.isNew === false);
-                             done();
-                        })
-
-                });
-
-          });
+    });
 });

@@ -1,5 +1,5 @@
 /*
-* Program : Class CategorieService
+* Program : Service Categorie
 * Écrit par : Dan Duc Dao
 */
 
@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ICategorie } from '../interfaces/categorie';
+import { IProduit } from '../interfaces/produit';
 import { Service } from './service';
 import { Categorie } from '../classes/categorie';
 import { HttpHeaders,HttpParams } from '@angular/common/http';

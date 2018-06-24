@@ -19,6 +19,11 @@ import { DetailProduitComponent } from './produit/detail.component';
 import { ListeEmployeeComponent } from './employee/liste.component';
 import { FiltreProduitPipe } from 'src/pipes/filtre-produit.pipe';
 import { Regex } from 'src/classes/regex';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartProduitComponent } from './shopping-cart-produit/shopping-cart-produit.component';
+import { FiltreCategoryPipe } from 'src/pipes/filtre-category.pipe';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { ShoppingCartTotalComponent } from './shopping-cart-total/shopping-cart-total.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,11 @@ import { Regex } from 'src/classes/regex';
     DetailProduitComponent,
     ListeEmployeeComponent,
     FiltreProduitPipe,
-
+    ShoppingCartComponent,
+    ShoppingCartProduitComponent,
+    FiltreCategoryPipe,
+    AddToCartComponent,
+    ShoppingCartTotalComponent
   ],
   imports: [
     BrowserModule,

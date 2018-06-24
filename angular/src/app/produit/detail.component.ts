@@ -73,7 +73,7 @@ export class DetailProduitComponent implements OnInit {
          var index = ele.options.selectedIndex
          this.model.fournisseur = this.fournisseurs[index];
    }
-  onSubmit(categorie:any,fournisseur:any) {
+  onSubmit() {
 
         if(this.id)
         {
@@ -92,7 +92,7 @@ export class DetailProduitComponent implements OnInit {
                                                   category:this.model.category,
                                                   fournisseur:this.model.fournisseur,
                                                   quantite:parseInt(this.model.quantite),
-                                                  prix:parseInt(this.model.prix),
+                                                  prix:this.model.prix,
                                                   quantiteRestante:parseInt(this.model.quantiteRestante),
                                                   quantiteCommande:parseInt(this.model.quantiteCommande),
                                                   reapprovisionnement:parseInt(this.model.reapprovisionnement),

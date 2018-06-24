@@ -1,5 +1,6 @@
 export class Produit {
 
+  public _id:string;
   public nom:string;
   public category:any[];
   public fournisseur:any;

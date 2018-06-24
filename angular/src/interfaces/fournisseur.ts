@@ -1,9 +1,10 @@
 /*
-* Program : Interface ICategorie
+* Program : Interface IFournisseur
 * Écrit par : Dan Duc Dao
 */
 
 export interface IFournisseur{
+      _id:string,
       compagnie:string,
       contact:string,
       titre:string,

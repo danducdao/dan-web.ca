@@ -23,13 +23,13 @@ app.use(function(req, res, next) {
 });
 
 app.get('/categorie',function(req,res,next){
-   if(!req.query.id)
+   if(req.query.id)
    {
-       Produit.Categorie.find({}).then(function(result){
+       Produit.Categorie.findOne({_id:req.query.id}).then(function(result){
             res.send(result);
        });
    }else{
-       Produit.Categorie.findOne({_id:req.query.id}).then(function(result){
+       Produit.Categorie.find({}).then(function(result){
             res.send(result);
        });
    }
@@ -50,13 +50,14 @@ app.delete('/categorie/:id',function(req,res,next){
 });
 
 app.get('/produit',function(req,res,next){
-  if(!req.query.id)
+  if(req.query.id)
   {
-    Produit.Produit.find({}).then(function(result){
+    Produit.Produit.findOne({_id:req.query.id}).then(function(result){
          res.send(result);
      });
+
   }else{
-    Produit.Produit.findOne({_id:req.query.id}).then(function(result){
+    Produit.Produit.find({}).then(function(result){
          res.send(result);
      });
   }

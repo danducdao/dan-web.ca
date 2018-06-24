@@ -1,5 +1,5 @@
 /*
-* Program : Service produit
+* Program : Service fournisseur
 * Écrit par : Dan Duc Dao
 */
 

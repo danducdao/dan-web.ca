@@ -1,5 +1,10 @@
+/*
+* Program : Interface IEmployee
+* Écrit par : Dan Duc Dao
+*/
+
 export interface IEmployee{
-    id:number,
+    _id:string,
     name:string,
     age:number
 }

@@ -1,8 +1,15 @@
+/*
+* Program : filtrer la liste des produits
+* Écrit par : Dan Duc Dao
+*/
+
 import { Pipe, PipeTransform } from '@angular/core';
 import { IProduit } from '../interfaces/produit';
+
 @Pipe({
   name: 'filtreProduit'
 })
+
 export class FiltreProduitPipe implements PipeTransform {
 
   transform(value:IProduit[], filtrePar:string): IProduit[] {

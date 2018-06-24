@@ -68,7 +68,6 @@ export class ListeProduitComponent implements OnInit {
   }
   doSearch(){
        this.filtrePar = this.nomProduit;
-
   }
 
 }

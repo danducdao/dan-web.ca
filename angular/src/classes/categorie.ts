@@ -4,7 +4,7 @@
 */
 
 export class Categorie {
-
+     public _id:string;
      public nom:string;
      public description:string;
      public image:string;

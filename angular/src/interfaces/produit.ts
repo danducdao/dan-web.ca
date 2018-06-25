@@ -10,7 +10,7 @@ export interface IProduit{
     nom:string,
     category:ICategorie[],
     fournisseur:any,
-    quantite:string,
+    quantite:number,
     prix:number,
     quantiteRestante:number,
     quantiteCommande:number,

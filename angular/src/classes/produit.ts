@@ -4,7 +4,7 @@ export class Produit {
   public nom:string;
   public category:any[];
   public fournisseur:any;
-  public quantite:string;
+  public quantite:any;
   public prix:any;
   public quantiteRestante:any;
   public quantiteCommande:any;

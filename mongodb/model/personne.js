@@ -8,7 +8,8 @@ const Schema = mongoose.Schema;
 
 const PersonneSchema = new Schema({
       nom:String,
-      poids:Number
+      poids:Number,
+      dateCreation:String
 });
 
 const Personne = mongoose.model('personne',PersonneSchema);

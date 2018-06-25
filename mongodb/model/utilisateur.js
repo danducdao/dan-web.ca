@@ -17,7 +17,8 @@ const UtilisateurSchema = new Schema({
       points:[
          { points:Number, bonus:Number },
          { points:Number, bonus:Number }
-      ]
+      ],
+      dateCreation:String
 });
 
 const  Utilisateur= mongoose.model('utilisateur',UtilisateurSchema);

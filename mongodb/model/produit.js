@@ -1,5 +1,5 @@
 /*
-* Program : Créer modèle Produit
+* Program : Créer modèle Produit, Categorie, Fournisseur
 * Écrit par : Dan Duc Dao
 */
 
@@ -9,7 +9,8 @@ const Schema = mongoose.Schema;
 const CategorieSchema = new Schema({
       nom:String,
       description:String,
-      image:String
+      image:String,
+      dateCreation:String
 });
 
 const Categorie = mongoose.model('categorie',CategorieSchema);
@@ -25,7 +26,8 @@ const FournisseurSchema = new Schema({
       pays:String,
       telephone:String,
       fax:String,
-      siteWeb:String
+      siteWeb:String,
+      dateCreation:String
 });
 
 const Fournisseur = mongoose.model('fournisseur',FournisseurSchema);
@@ -34,12 +36,13 @@ const ProduitSchema = new Schema({
     nom:String,
     category:[CategorieSchema],
     fournisseur:FournisseurSchema,
-    quantite:String,
+    quantite:Number,
     prix:Number,
     quantiteRestante:Number,
     quantiteCommande:Number,
     reapprovisionnement:Number,
-    discontinue:Boolean
+    discontinue:Boolean,
+    dateCreation:String
 });
 
 const Produit = mongoose.model('produit',ProduitSchema);

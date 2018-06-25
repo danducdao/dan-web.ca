@@ -9,20 +9,25 @@ const Personne = require('../model/personne');
 const Utilisateur = require('../model/utilisateur');
 const Produit = require('../model/produit');
 
+var today = new Date();
+today = today.toLocaleDateString("en-US");
+
 describe('Sauvegarder de données dans les collections',function(){
 
-  it('Sauvegarder de données dans collection categorie', function(done){
+  it('Sauvegarder de données dans collection catégorie', function(done){
         C1 = new Produit.Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
-                                  image:"./assets/images/beverages.gif"
+                                  image:"./assets/images/beverages.gif",
+                                  dateCreation:today
                                 });
         C1.save().then(function(){
               assert(C1.isNew === false);
               C2 = new Produit.Categorie({
                                     nom:"Condiments",
                                     description:"Sweet and savory sauces, relishes, spreads, and seasonings",
-                                    image:"./assets/images/condiments.gif"
+                                    image:"./assets/images/condiments.gif",
+                                    dateCreation:today
                                   });
               return C2.save();
         }).then(function(){
@@ -30,7 +35,8 @@ describe('Sauvegarder de données dans les collections',function(){
               C3 = new Produit.Categorie({
                                     nom:"Confections",
                                     description:"Desserts, candies, and sweet breads",
-                                    image:"./assets/images/confections.gif"
+                                    image:"./assets/images/confections.gif",
+                                    dateCreation:today
                                   });
               return C3.save();
         }).then(function(){
@@ -38,7 +44,8 @@ describe('Sauvegarder de données dans les collections',function(){
               C4 = new Produit.Categorie({
                                     nom:"Dairy Products",
                                     description:"Cheeses",
-                                    image:"./assets/images/diary.gif"
+                                    image:"./assets/images/diary.gif",
+                                    dateCreation:today
                                   });
               return C4.save();
         }).then(function(){
@@ -46,7 +53,8 @@ describe('Sauvegarder de données dans les collections',function(){
                 C5 = new Produit.Categorie({
                                       nom:"Grains/Cereals",
                                       description:"Breads, crackers, pasta, and cereal",
-                                      image:"./assets/images/cereals.gif"
+                                      image:"./assets/images/cereals.gif",
+                                      dateCreation:today
                                     });
 
                 return C5.save();
@@ -55,7 +63,8 @@ describe('Sauvegarder de données dans les collections',function(){
                C6 = new Produit.Categorie({
                                      nom:"Meat/Poultry",
                                      description:"Prepared meats",
-                                     image:"./assets/images/meat.gif"
+                                     image:"./assets/images/meat.gif",
+                                     dateCreation:today
                                    });
 
                   return C6.save();
@@ -64,7 +73,8 @@ describe('Sauvegarder de données dans les collections',function(){
               C7 = new Produit.Categorie({
                                     nom:"Produce",
                                     description:"Dried fruit and bean curd",
-                                    image:"./assets/images/produce.gif"
+                                    image:"./assets/images/produce.gif",
+                                    dateCreation:today
                                   });
                 return C7.save();
         }).then(function(){
@@ -72,7 +82,8 @@ describe('Sauvegarder de données dans les collections',function(){
             C8 = new Produit.Categorie({
                                   nom:"Seafood",
                                   description:"Seaweed and fish",
-                                  image:"./assets/images/seafood.gif"
+                                  image:"./assets/images/seafood.gif",
+                                  dateCreation:today
                                 });
             return C8.save();
         }).then(function(){
@@ -93,7 +104,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                       pays:"UK",
                                       telephone:"(171) 555-2222",
                                       fax:"",
-                                      siteWeb:""
+                                      siteWeb:"",
+                                      dateCreation:today
                                   });
                 F1.save().then(function(){
                 assert(F1.isNew === false);
@@ -108,7 +120,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                             pays:"USA",
                                             telephone:"(100) 555-4822",
                                             fax:"",
-                                            siteWeb:""
+                                            siteWeb:"",
+                                            dateCreation:today
                                         });
                         return F2.save();
                   }).then(function(){
@@ -124,7 +137,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                   pays:"USA",
                                                   telephone:"(313) 555-5735",
                                                   fax:"(313) 555-3349",
-                                                  siteWeb:""
+                                                  siteWeb:"",
+                                                  dateCreation:today
                                               });
                         return F3.save();
                   }).then(function(){
@@ -140,7 +154,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     pays:"Japan",
                                                     telephone:"(03) 3555-5011",
                                                     fax:"",
-                                                    siteWeb:""
+                                                    siteWeb:"",
+                                                    dateCreation:today
                                                 });
                             return F4.save();
                   }).then(function(){
@@ -156,7 +171,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    pays:"Spain",
                                                    telephone:"(98) 598 76 54",
                                                    fax:"",
-                                                   siteWeb:""
+                                                   siteWeb:"",
+                                                   dateCreation:today
                                                });
                            return F5.save();
                   }).then(function(){
@@ -172,7 +188,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    pays:"Japan",
                                                    telephone:"(06) 431-7877",
                                                    fax:"",
-                                                   siteWeb:""
+                                                   siteWeb:"",
+                                                   dateCreation:today
                                                });
                            return F6.save();
                   }).then(function(){
@@ -188,7 +205,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    pays:"Australia",
                                                    telephone:"(03) 444-2343",
                                                    fax:"(03) 444-6588",
-                                                   siteWeb:""
+                                                   siteWeb:"",
+                                                   dateCreation:today
                                                });
                            return F7.save();
                   }).then(function(){
@@ -204,7 +222,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                    pays:"UK",
                                                    telephone:"(161) 555-4448",
                                                    fax:"",
-                                                   siteWeb:""
+                                                   siteWeb:"",
+                                                   dateCreation:today
                                                });
                            return F8.save();
                   }).then(function(){
@@ -220,7 +239,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                      pays:"Sweden",
                                                      telephone:"031-987 65 43",
                                                      fax:"031-987 65 91",
-                                                     siteWeb:""
+                                                     siteWeb:"",
+                                                     dateCreation:today
                                                  });
                              return F9.save();
                   }).then(function(){
@@ -236,7 +256,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Brazil",
                                                 telephone:"(11) 555 4640",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F11.save();
 
@@ -253,7 +274,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Germany",
                                                 telephone:"(010) 9984510",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F12.save();
 
@@ -270,7 +292,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Germany",
                                                 telephone:"(069) 992755",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F13.save();
 
@@ -287,7 +310,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Germany",
                                                 telephone:"(04721) 8713",
                                                 fax:"(04721) 8714",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F14.save();
 
@@ -304,7 +328,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     pays:"Italy",
                                                     telephone:"(0544) 60323",
                                                     fax:"(0544) 60603",
-                                                    siteWeb:""
+                                                    siteWeb:"",
+                                                    dateCreation:today
                                                 });
                             return F15.save();
 
@@ -321,7 +346,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                     pays:"Norway",
                                                     telephone:"(0)2-953010",
                                                     fax:"",
-                                                    siteWeb:""
+                                                    siteWeb:"",
+                                                    dateCreation:today
                                                 });
                             return F16.save();
                   }).then(function(){
@@ -337,7 +363,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"USA",
                                                 telephone:"(503) 555-9931",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F17.save();
 
@@ -354,7 +381,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Sweden",
                                                 telephone:"08-123 45 67",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F18.save();
 
@@ -371,7 +399,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"France",
                                                 telephone:"(1) 03.83.00.68",
                                                 fax:"(1) 03.83.00.62",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F19.save();
 
@@ -388,7 +417,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"USA",
                                                 telephone:"(617) 555-3267",
                                                 fax:"(617) 555-3389",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F21.save();
 
@@ -405,7 +435,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Singapore",
                                                 telephone:"555-8787",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F22.save();
                   }).then(function(){
@@ -421,7 +452,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Denmark",
                                                 telephone:"43844108",
                                                 fax:"43844115",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F23.save();
                   }).then(function(){
@@ -437,7 +469,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Netherlands",
                                                 telephone:"(12345) 1212",
                                                 fax:"(12345) 1210",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F24.save();
                   }).then(function(){
@@ -453,7 +486,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Finland",
                                                 telephone:"(953) 10956",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F25.save();
                   }).then(function(){
@@ -469,7 +503,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Australia",
                                                 telephone:"(02) 555-5914",
                                                 fax:"(02) 555-4873",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F26.save();
                   }).then(function(){
@@ -485,7 +520,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Canada",
                                                 telephone:"(514) 555-9022",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F27.save();
                   }).then(function(){
@@ -501,7 +537,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Italy",
                                                 telephone:"(089) 6547665",
                                                 fax:"(089) 6547667",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F28.save();
                   }).then(function(){
@@ -517,7 +554,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"France",
                                                 telephone:"85.57.00.07",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F29.save();
                   }).then(function(){
@@ -533,7 +571,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"France",
                                                 telephone:"38.76.98.58",
                                                 fax:"",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
                         return F30.save();
                   }).then(function(){
@@ -549,17 +588,20 @@ describe('Sauvegarder de données dans les collections',function(){
                                                 pays:"Canada",
                                                 telephone:"(514) 555-2955",
                                                 fax:"(514) 555-2921",
-                                                siteWeb:""
+                                                siteWeb:"",
+                                                dateCreation:today
                                             });
-                        return F31.save();
+                      return F31.save();
                   }).then(function(){
+                      assert(F31.isNew === false);
                       done();
                   })
   });
   it('Sauvegarder de données dans collection personne', function(done){
         var pers = new Personne({
              nom:'Jonh Doe',
-             poids:68
+             poids:68,
+             dateCreation:today
         });
         pers.save().then(function(){
             assert(pers.isNew === false);
@@ -579,7 +621,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                            points: [
                                             { points: 85, bonus: 20 },
                                             { points: 85, bonus: 10 }
-                                           ]
+                                          ],
+                                          dateCreation:today
                                    });
               util.save().then(function(){
               assert(util.isNew === false);
@@ -594,7 +637,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                           points: [
                                            { points: 85, bonus: 20 },
                                            { points: 64, bonus: 12 }
-                                          ]
+                                         ],
+                                         dateCreation:today
                                    });
                return util.save();
            }).then(function(){
@@ -610,7 +654,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                            points: [
                                             { points: 81, bonus: 8 },
                                             { points: 55, bonus: 20 }
-                                           ]
+                                          ],
+                                          dateCreation:today
                                       });
                  return util.save();
            }).then(function(){
@@ -626,7 +671,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                            points: [
                                             { points: 53, bonus: 15 },
                                             { points: 51, bonus: 15 }
-                                           ]
+                                          ],
+                                          dateCreation:today
                                       });
                  return util.save();
            }).then(function(){
@@ -641,7 +687,8 @@ describe('Sauvegarder de données dans les collections',function(){
                                             badges: [ "orange" ],
                                             points: [
                                              { points: 71, bonus: 20 }
-                                            ]
+                                           ],
+                                           dateCreation:today
                                        });
                   return util.save();
            }).then(function(){
@@ -657,374 +704,403 @@ describe('Sauvegarder de données dans les collections',function(){
                                         points: [
                                          { points: 78, bonus: 8 },
                                          { points: 57, bonus: 7 }
-                                        ]
+                                       ],
+                                       dateCreation:today
                                   });
               return util.save();
            }).then(function(){
-                     done();
+                assert(util.isNew === false);
+                done();
            });
     });
 
     it('Sauvegarder de données dans collection produits', function(done){
             var prod = new Produit.Produit({
-                nom:"Chai Tea",
-                category:[ C1 ],
-                fournisseur: F1,
-                quantite:"10 boxes x 20 bags",
-                prix:18.00,
-                quantiteRestante:39,
-                quantiteCommande:0,
-                reapprovisionnement:10,
-                discontinue:false
-            });
+                                              nom:"Chai Tea",
+                                              category:[ C1 ],
+                                              fournisseur: F1,
+                                              quantite:39,
+                                              prix:18.00,
+                                              quantiteRestante:39,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:10,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
             prod.save().then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Chang",
-                                      category:[ C1 ],
-                                      fournisseur:F1,
-                                      quantite:"24 - 12 oz bottles",
-                                      prix:19.00,
-                                      quantiteRestante:17,
-                                      quantiteCommande:40,
-                                      reapprovisionnement:25,
-                                      discontinue:false
-                                  });
+                                              nom:"Chang",
+                                              category:[ C1 ],
+                                              fournisseur:F1,
+                                              quantite:57,
+                                              prix:19.00,
+                                              quantiteRestante:17,
+                                              quantiteCommande:40,
+                                              reapprovisionnement:25,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Laughing Lumberjack Lager",
-                                      category:[ C1 ],
-                                      fournisseur:F17,
-                                      quantite:"24 - 12 oz bottles",
-                                      prix:14.00,
-                                      quantiteRestante:52,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:10,
-                                      discontinue:false
-                                  });
+                                              nom:"Laughing Lumberjack Lager",
+                                              category:[ C1 ],
+                                              fournisseur:F17,
+                                              quantite:52,
+                                              prix:14.00,
+                                              quantiteRestante:52,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:10,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Guaraná Fantástica",
-                                      category:[ C1 ],
-                                      fournisseur:F11,
-                                      quantite:"12 - 355 ml cans",
-                                      prix:4.50,
-                                      quantiteRestante:20,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:0,
-                                      discontinue:true
-                                  });
+                                              nom:"Guaraná Fantástica",
+                                              category:[ C1 ],
+                                              fournisseur:F11,
+                                              quantite:20,
+                                              prix:4.50,
+                                              quantiteRestante:20,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:0,
+                                              discontinue:true,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Sasquatch Ale",
-                                      category:[ C1 ],
-                                      fournisseur:F17,
-                                      quantite:"24 - 12 oz bottles",
-                                      prix:14.00,
-                                      quantiteRestante:111,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:15,
-                                      discontinue:false
-                                  });
+                                              nom:"Sasquatch Ale",
+                                              category:[ C1 ],
+                                              fournisseur:F17,
+                                              quantite:111,
+                                              prix:14.00,
+                                              quantiteRestante:111,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:15,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Steeleye Stout",
-                                      category:[ C1 ],
-                                      fournisseur:F17,
-                                      quantite:"24 - 12 oz bottles",
-                                      prix:18.00,
-                                      quantiteRestante:20,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:15,
-                                      discontinue:false
-                                  });
+                                              nom:"Steeleye Stout",
+                                              category:[ C1 ],
+                                              fournisseur:F17,
+                                              quantite:20,
+                                              prix:18.00,
+                                              quantiteRestante:20,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:15,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Côte de Blaye",
-                                      category:[ C1 ],
-                                      fournisseur:F19,
-                                      quantite:"12 - 75 cl bottles",
-                                      prix:263.50,
-                                      quantiteRestante:17,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:15,
-                                      discontinue:false
-                                  });
+                                              nom:"Côte de Blaye",
+                                              category:[ C1 ],
+                                              fournisseur:F19,
+                                              quantite:17,
+                                              prix:263.50,
+                                              quantiteRestante:17,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:15,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Chartreuse verte",
-                                      category:[ C1 ],
-                                      fournisseur:F19,
-                                      quantite:"750 cc per bottle",
-                                      prix:18.00,
-                                      quantiteRestante:69,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:5,
-                                      discontinue:false
-                                  });
+                                              nom:"Chartreuse verte",
+                                              category:[ C1 ],
+                                              fournisseur:F19,
+                                              quantite:69,
+                                              prix:18.00,
+                                              quantiteRestante:69,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:5,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Ipoh Coffee",
-                                      category:[ C1 ],
-                                      fournisseur:F22,
-                                      quantite:"16 - 500 g tins",
-                                      prix:46.00,
-                                      quantiteRestante:17,
-                                      quantiteCommande:10,
-                                      reapprovisionnement:25,
-                                      discontinue:false
-                                  });
+                                              nom:"Ipoh Coffee",
+                                              category:[ C1 ],
+                                              fournisseur:F22,
+                                              quantite:27,
+                                              prix:46.00,
+                                              quantiteRestante:17,
+                                              quantiteCommande:10,
+                                              reapprovisionnement:25,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Outback Lager",
-                                      category:[ C1 ],
-                                      fournisseur:F7,
-                                      quantite:"24 - 355 ml bottles",
-                                      prix:15.00,
-                                      quantiteRestante:15,
-                                      quantiteCommande:10,
-                                      reapprovisionnement:30,
-                                      discontinue:false
-                                  });
+                                              nom:"Outback Lager",
+                                              category:[ C1 ],
+                                              fournisseur:F7,
+                                              quantite:25,
+                                              prix:15.00,
+                                              quantiteRestante:15,
+                                              quantiteCommande:10,
+                                              reapprovisionnement:30,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Rhönbräu Klosterbier",
-                                      category:[ C1 ],
-                                      fournisseur:F13,
-                                      quantite:"24 - 0.5 l bottles",
-                                      prix:7.75,
-                                      quantiteRestante:125,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:25,
-                                      discontinue:false
-                                  });
+                                                nom:"Rhönbräu Klosterbier",
+                                                category:[ C1 ],
+                                                fournisseur:F13,
+                                                quantite:125,
+                                                prix:7.75,
+                                                quantiteRestante:125,
+                                                quantiteCommande:0,
+                                                reapprovisionnement:25,
+                                                discontinue:false,
+                                                dateCreation:today
+                                            });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                                      nom:"Lakkalikööri",
-                                      category:[ C1 ],
-                                      fournisseur:F25,
-                                      quantite:"500 ml",
-                                      prix:18.00,
-                                      quantiteRestante:57,
-                                      quantiteCommande:0,
-                                      reapprovisionnement:20,
-                                      discontinue:false
-                                  });
+                                              nom:"Lakkalikööri",
+                                              category:[ C1 ],
+                                              fournisseur:F25,
+                                              quantite:57,
+                                              prix:18.00,
+                                              quantiteRestante:57,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:20,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                 return prod.save();
             }).then(function(){
-                  var prod = new Produit.Produit({
-                      nom:"Aniseed Syrup",
-                      category:[ C2 ],
-                      fournisseur:F1,
-                      quantite:"12 - 550 ml bottles",
-                      prix:10.00,
-                      quantiteRestante:63,
-                      quantiteCommande:70,
-                      reapprovisionnement:25,
-                      discontinue:false
-                    });
-                     return prod.save();
+                assert(prod.isNew === false);
+                prod = new Produit.Produit({
+                                              nom:"Aniseed Syrup",
+                                              category:[ C2 ],
+                                              fournisseur:F1,
+                                              quantite:133,
+                                              prix:10.00,
+                                              quantiteRestante:63,
+                                              quantiteCommande:70,
+                                              reapprovisionnement:25,
+                                              discontinue:false,
+                                              dateCreation:today
+                                            });
+               return prod.save();
             }).then(function(){
               assert(prod.isNew === false);
               prod = new Produit.Produit({
-                      nom:"Original Frankfurter grüne Soße",
-                      category:[ C2 ],
-                      fournisseur:F13,
-                      quantite:"12 boxes",
-                      prix:13.00,
-                      quantiteRestante:0,
-                      quantiteCommande:25,
-                      reapprovisionnement:25,
-                      discontinue:false
-                  });
+                                            nom:"Original Frankfurter grüne Soße",
+                                            category:[ C2 ],
+                                            fournisseur:F13,
+                                            quantite:25,
+                                            prix:13.00,
+                                            quantiteRestante:0,
+                                            quantiteCommande:25,
+                                            reapprovisionnement:25,
+                                            discontinue:false,
+                                            dateCreation:today
+                                        });
                return prod.save();
             }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                       nom:"Sirop d'érable",
-                       category:[ C2 ],
-                       fournisseur:F31,
-                       quantite:"24 - 500 ml bottles",
-                       prix:28.50,
-                       quantiteRestante:113,
-                       quantiteCommande:0,
-                       reapprovisionnement:25,
-                       discontinue:false
-                   });
+                                             nom:"Sirop d'érable",
+                                             category:[ C2 ],
+                                             fournisseur:F31,
+                                             quantite:113,
+                                             prix:28.50,
+                                             quantiteRestante:113,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:25,
+                                             discontinue:false,
+                                             dateCreation:today
+                                         });
                 return prod.save();
             }).then(function(){
                 assert(prod.isNew === false);
                 prod = new Produit.Produit({
-                        nom:"Vegie-spread",
-                        category:[ C2 ],
-                        fournisseur:F7,
-                        quantite:"15 - 625 g jars",
-                        prix:43.90,
-                        quantiteRestante:24,
-                        quantiteCommande:0,
-                        reapprovisionnement:5,
-                        discontinue:false
-                    });
+                                              nom:"Vegie-spread",
+                                              category:[ C2 ],
+                                              fournisseur:F7,
+                                              quantite:24,
+                                              prix:43.90,
+                                              quantiteRestante:24,
+                                              quantiteCommande:0,
+                                              reapprovisionnement:5,
+                                              discontinue:false,
+                                              dateCreation:today
+                                          });
                  return prod.save();
             }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                       nom:"Chef Anton's Cajun Seasoning",
-                       category:[ C2 ],
-                       fournisseur:F2,
-                       quantite:"48 - 6 oz jars",
-                       prix:22.00,
-                       quantiteRestante:53,
-                       quantiteCommande:0,
-                       reapprovisionnement:0,
-                       discontinue:false
-                   });
+                                             nom:"Chef Anton's Cajun Seasoning",
+                                             category:[ C2 ],
+                                             fournisseur:F2,
+                                             quantite:53,
+                                             prix:22.00,
+                                             quantiteRestante:53,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:0,
+                                             discontinue:false,
+                                             dateCreation:today
+                                         });
                    return prod.save();
           }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                       nom:"Chef Anton's Gumbo Mix",
-                       category:[ C2 ],
-                       fournisseur:F2,
-                       quantite:"36 boxes",
-                       prix:21.35,
-                       quantiteRestante:0,
-                       quantiteCommande:0,
-                       reapprovisionnement:0,
-                       discontinue:true
-                   });
+                                             nom:"Chef Anton's Gumbo Mix",
+                                             category:[ C2 ],
+                                             fournisseur:F2,
+                                             quantite:0,
+                                             prix:21.35,
+                                             quantiteRestante:0,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:0,
+                                             discontinue:true,
+                                             dateCreation:today
+                                         });
                    return prod.save();
           }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                       nom:"Grandma's Boysenberry Spread",
-                       category:[ C2 ],
-                       fournisseur:F3,
-                       quantite:"12 - 8 oz jars",
-                       prix:25.00,
-                       quantiteRestante:120,
-                       quantiteCommande:0,
-                       reapprovisionnement:25,
-                       discontinue:false
-                   });
+                                             nom:"Grandma's Boysenberry Spread",
+                                             category:[ C2 ],
+                                             fournisseur:F3,
+                                             quantite:120,
+                                             prix:25.00,
+                                             quantiteRestante:120,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:25,
+                                             discontinue:false,
+                                             dateCreation:today
+                                         });
                    return prod.save();
           }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                       nom:"Northwoods Cranberry Sauce",
-                       category:[ C2 ],
-                       fournisseur:F3,
-                       quantite:"12 - 12 oz jars",
-                       prix:40.00,
-                       quantiteRestante:6,
-                       quantiteCommande:0,
-                       reapprovisionnement:0,
-                       discontinue:false
-                   });
+                                             nom:"Northwoods Cranberry Sauce",
+                                             category:[ C2 ],
+                                             fournisseur:F3,
+                                             quantite:6,
+                                             prix:40.00,
+                                             quantiteRestante:6,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:0,
+                                             discontinue:false,
+                                             dateCreation:today
+                                         });
                    return prod.save();
           }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                   nom:"Teatime Chocolate Biscuits",
-                   category:[ C3 ],
-                   fournisseur:F8,
-                   quantite:"10 boxes x 12 pieces",
-                   prix:9.20,
-                   quantiteRestante:25,
-                   quantiteCommande:0,
-                   reapprovisionnement:5,
-                   discontinue:false
-               });
+                                             nom:"Teatime Chocolate Biscuits",
+                                             category:[ C3 ],
+                                             fournisseur:F8,
+                                             quantite:25,
+                                             prix:9.20,
+                                             quantiteRestante:25,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:5,
+                                             discontinue:false,
+                                             dateCreation:today
+                                         });
                return prod.save()
           }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                   nom:"Teatime Chocolate Biscuits",
-                   category:[ C3 ],
-                   fournisseur:F8,
-                   quantite:"10 boxes x 12 pieces",
-                   prix:9.20,
-                   quantiteRestante:25,
-                   quantiteCommande:0,
-                   reapprovisionnement:5,
-                   discontinue:false
-               });
+                                             nom:"Teatime Chocolate Biscuits",
+                                             category:[ C3 ],
+                                             fournisseur:F8,
+                                             quantite:25,
+                                             prix:9.20,
+                                             quantiteRestante:25,
+                                             quantiteCommande:0,
+                                             reapprovisionnement:5,
+                                             discontinue:false,
+                                             dateCreation:today
+                                         });
                return prod.save();
           }).then(function(){
                assert(prod.isNew === false);
                prod = new Produit.Produit({
-                  nom:"Sir Rodney's Marmalade",
-                  category:[ C3 ],
-                  fournisseur:F8,
-                  quantite:"30 gift boxes",
-                  prix:81.00,
-                  quantiteRestante:40,
-                  quantiteCommande:0,
-                  reapprovisionnement:0,
-                  discontinue:false
-              });
+                                            nom:"Sir Rodney's Marmalade",
+                                            category:[ C3 ],
+                                            fournisseur:F8,
+                                            quantite:40,
+                                            prix:81.00,
+                                            quantiteRestante:40,
+                                            quantiteCommande:0,
+                                            reapprovisionnement:0,
+                                            discontinue:false,
+                                            dateCreation:today
+                                        });
               return prod.save();
           }).then(function(){
               assert(prod.isNew === false);
               prod = new Produit.Produit({
-                 nom:"Sir Rodney's Scones",
-                 category:[ C3 ],
-                 fournisseur:F8,
-                 quantite:"24 pkgs. x 4 pieces",
-                 prix:10.00,
-                 quantiteRestante:3,
-                 quantiteCommande:40,
-                 reapprovisionnement:5,
-                 discontinue:false
-             });
+                                           nom:"Sir Rodney's Scones",
+                                           category:[ C3 ],
+                                           fournisseur:F8,
+                                           quantite:43,
+                                           prix:10.00,
+                                           quantiteRestante:3,
+                                           quantiteCommande:40,
+                                           reapprovisionnement:5,
+                                           discontinue:false,
+                                           dateCreation:today
+                                       });
              return prod.save();
           }).then(function(){
               assert(prod.isNew === false);
               prod = new Produit.Produit({
-                  nom:"Queso Cabrales",
-                  category:[ C4 ],
-                  fournisseur:F5,
-                  quantite:"1 kg pkg.",
-                  prix:21.00,
-                  quantiteRestante:22,
-                  quantiteCommande:30,
-                  reapprovisionnement:30,
-                  discontinue:false
-              });
+                                            nom:"Queso Cabrales",
+                                            category:[ C4 ],
+                                            fournisseur:F5,
+                                            quantite:52,
+                                            prix:21.00,
+                                            quantiteRestante:22,
+                                            quantiteCommande:30,
+                                            reapprovisionnement:30,
+                                            discontinue:false,
+                                            dateCreation:today
+                                        });
               return prod.save();
           }).then(function(){
               assert(prod.isNew === false);
               prod = new Produit.Produit({
-                  nom:"Queso Manchego La Pastora",
-                  category:[ C4 ],
-                  fournisseur:F5,
-                  quantite:"110 - 500 g pkgs.",
-                  prix:38.00,
-                  quantiteRestante:86,
-                  quantiteCommande:0,
-                  reapprovisionnement:0,
-                  discontinue:false
-              });
+                                            nom:"Queso Manchego La Pastora",
+                                            category:[ C4 ],
+                                            fournisseur:F5,
+                                            quantite:86,
+                                            prix:38.00,
+                                            quantiteRestante:86,
+                                            quantiteCommande:0,
+                                            reapprovisionnement:0,
+                                            discontinue:false,
+                                            dateCreation:today
+                                        });
               return prod.save();
           }).then(function(){
                assert(prod.isNew === false);

@@ -17,6 +17,7 @@ export class AddToCartComponent implements OnInit {
 
   public carts:any[] = [];
   public total:number = 0;
+  public trierPar:string = 'nom';
 
   constructor(private _produitService:ProduitService) { }
 
@@ -41,6 +42,7 @@ export class AddToCartComponent implements OnInit {
                   obj.total += Math.round(value.prix * qte);
              }
        });
+       this.sortCart(obj.carts,'nom');
   }
   updateCart(id:string):void{
         if(LocalStorage.itemExist(id))
@@ -60,5 +62,15 @@ export class AddToCartComponent implements OnInit {
       this.carts.length = 0;
       this._produitService.getProduitList().subscribe(data => this.selectProduit(this,data));
   }
-  
+  sortCart(cart:any[], trierPar){
+        cart.sort((a: any, b: any) => {
+            if (a[trierPar] < b[trierPar]) {
+                return -1;
+            } else if (a[trierPar] > b[trierPar]) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+   }
 }

@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import FirstProgram from '@/components/first-program'
-import LoopProgram from '@/components/loop-program'
-import EventProgram from '@/components/event-program'
-import Album from '@/components/album'
+import Vue from 'vue';
+import Router from 'vue-router';
+import FirstProgram from '@/components/first-program';
+import LoopProgram from '@/components/loop-program';
+import EventProgram from '@/components/event-program';
+import StringProgram from '@/components/string-program';
 
 Vue.use(Router)
 
@@ -26,10 +26,10 @@ export default new Router({
        component : EventProgram
     },
     {
-       path : '/album',
-       name : 'Album',
-       component : Album
-    },
+        path : '/string-program',
+        name : 'string-program',
+        component : StringProgram
+    }
 
   ]
 })

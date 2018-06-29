@@ -4,6 +4,7 @@ import FirstProgram from '@/components/first-program';
 import LoopProgram from '@/components/loop-program';
 import EventProgram from '@/components/event-program';
 import StringProgram from '@/components/string-program';
+import GoogleMap from '@/components/google-map';
 
 Vue.use(Router)
 
@@ -29,6 +30,10 @@ export default new Router({
         path : '/string-program',
         name : 'string-program',
         component : StringProgram
+    },{
+      path : '/googleMap',
+      name : 'google-map',
+      component : GoogleMap
     }
 
   ]

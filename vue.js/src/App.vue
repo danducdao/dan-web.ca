@@ -30,6 +30,7 @@
                                         <li><router-link to="/loop-program">v-for</router-link></li>
                                         <li><router-link to="/event-program">event</router-link></li>
                                         <li><router-link to="/string-program">String</router-link></li>
+                                        <li><router-link to="/googleMap">Google Map</router-link></li>
      							</ul>
      					</li>
      			</ul>

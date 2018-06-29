@@ -4,9 +4,16 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
+import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.config.productionTip = false
 Vue.use(VueResource);
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyCBi6fMDrXoitlxzOyRJ-Nvjq1gRR4E1uM",
+    libraries: "places" // necessary for places input
+  }
+});
 
 import "@/assets/css/fontawesome/css/font-awesome.css";
 import "@/assets/css/metisMenu/dist/metisMenu.css";

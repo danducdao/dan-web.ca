@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Home from '@/components/home';
 import FirstProgram from '@/components/first-program';
 import LoopProgram from '@/components/loop-program';
 import EventProgram from '@/components/event-program';
@@ -34,6 +35,10 @@ export default new Router({
       path : '/googleMap',
       name : 'google-map',
       component : GoogleMap
+    },{
+      path: '/',
+      name: 'home',
+      component: Home
     }
 
   ]

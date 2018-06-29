@@ -8,7 +8,7 @@
                       <template v-for="pays in listPays">
                         <optgroup  v-bind:label="pays.nom">
                             <template  v-for="ville in filtrerParPays(pays.nom)">
-                                <option v-bind:value="ville._id">{{ville.ville}}</option>
+                                <option v-bind:value="ville._id">{{ville.ville + "," + ville.province}}</option>
                             </template>
                         </optgroup>
                       </template>

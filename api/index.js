@@ -8,6 +8,7 @@ const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const Produit = require('./model/produit');
+const fs = require('fs');
 
 const app = express();
 
@@ -92,6 +93,21 @@ app.get('/fournisseur',function(req,res,next){
   }
 });
 
+app.get('/city', function(req,res)
+{
+   fs.readFile("./public/city.list.json", "utf8", function(err, data){
+      if(err) throw err;
+       data = data.split('\n');
+       var villes = [];
+       for(var i = 0; i < data.length; i++) {
+            if(data[i] === "")
+               continue;
+            var json = JSON.parse(data[i]);
+            villes.push(json);
+       }
+       res.send(villes);
+    });
+});
 app.use(function(err,req,res,next){
     res.send({ erreur: err});
 });

@@ -1,0 +1,50 @@
+{"_id":1,"ville":"Pickering","province":"ON","pays":"CA","coord":{"lon":-79.086761,"lat":43.838413}}
+{"_id":2,"ville":"Longueuil","province":"QC","pays":"CA","coord":{"lon":-73.510712,"lat":45.536945}}
+{"_id":3,"ville":"Regina","province":"SK","pays":"CA","coord":{"lon":-104.618896,"lat":50.445210}}
+{"_id":4,"ville":"Surrey","province":"BC","pays":"CA","coord":{"lon":-122.801094,"lat":49.104431}}
+{"_id":5,"ville":"Vaughan","province":"ON","pays":"CA","coord":{"lon":-79.508278,"lat":43.837208}}
+{"_id":6,"ville":"St. Thomas","province":"ON","pays":"CA","coord":{"lon":-81.175369,"lat":42.778828}}
+{"_id":7,"ville":"Coquitlam","province":"BC","pays":"CA","coord":{"lon":-122.793205,"lat":49.283764}}
+{"_id":8,"ville":"Whitby","province":"ON","pays":"CA","coord":{"lon":-78.942932,"lat":43.897545}}
+{"_id":9,"ville":"Richmond","province":"BC","pays":"CA","coord":{"lon":-123.133568,"lat":49.166592}}
+{"_id":10,"ville":"Kitchener","province":"ON","pays":"CA","coord":{"lon":-80.495064,"lat":43.452969}}
+{"_id":11,"ville":"St. John's","province":"NL","pays":"CA","coord":{"lon":-52.712830,"lat":47.560539}}
+{"_id":12,"ville":"Pembroke","province":"ON","pays":"CA","coord":{"lon":-77.110886,"lat":45.826653}}
+{"_id":13,"ville":"Winnipeg","province":"MB","pays":"CA","coord":{"lon":-97.138451,"lat":49.895077}}
+{"_id":14,"ville":"High River","province":"AB","pays":"CA","coord":{"lon":-113.873505,"lat":50.584435}}
+{"_id":15,"ville":"Lévis","province":"QC","pays":"CA","coord":{"lon":-71.246460,"lat":46.738228}}
+{"_id":16,"ville":"Fredericton","province":"NB","pays":"CA","coord":{"lon":-66.646332,"lat":45.964993}}
+{"_id":17,"ville":"Laval","province":"QC","pays":"CA","coord":{"lon":-73.707092,"lat":45.612499}}
+{"_id":18,"ville":"Encinitas","province":"CA","pays":"USA","coord":{"lon":-117.295425,"lat":33.039139}}
+{"_id":19,"ville":"VVal-d'Or","province":"QC","pays":"CA","coord":{"lon":-77.796768,"lat":48.098709}}
+{"_id":20,"ville":"Markham","province":"ON","pays":"CA","coord":{"lon":-79.337021,"lat":43.856098}}
+{"_id":21,"ville":"Burnaby","province":"BC","pays":"CA","coord":{"lon":-122.968941,"lat":49.267132}}
+{"_id":22,"ville":"Barrie","province":"ON","pays":"CA","coord":{"lon":-79.690331,"lat":44.389355}}
+{"_id":23,"ville":"Saint John","province":"NB","pays":"CA","coord":{"lon":-66.067657,"lat":45.273918}}
+{"_id":24,"ville":"Burlington","province":"ON","pays":"CA","coord":{"lon":-79.817734,"lat":43.328674}}
+{"_id":25,"ville":"Nanaimo","province":"BC","pays":"CA","coord":{"lon":-123.940063,"lat":49.165882}}
+{"_id":26,"ville":"St. Catharines","province":"ON","pays":"CA","coord":{"lon":-79.246864,"lat":43.159374}}
+{"_id":27,"ville":"Commerce City","province":"CO","pays":"USA","coord":{"lon":-104.933510,"lat":39.813019}}
+{"_id":28,"ville":"Fort McMurray","province":"AB","pays":"CA","coord":{"lon":-111.375961,"lat":56.732014}}
+{"_id":29,"ville":"East York, Toronto","province":"ON","pays":"CA","coord":{"lon":-79.341667,"lat":43.691200}}
+{"_id":30,"ville":"Chatham-Kent","province":"ON","pays":"CA","coord":{"lon":-82.191040,"lat":42.404804}}
+{"_id":31,"ville":"Vernon","province":"BC","pays":"CA","coord":{"lon":-119.276505,"lat":50.271790}}
+{"_id":32,"ville":"Mississauga","province":"ON","pays":"CA","coord":{"lon":-79.640579,"lat":43.595310}}
+{"_id":33,"ville":"Victoria","province":"BC","pays":"CA","coord":{"lon":-123.329773,"lat":48.407326}}
+{"_id":34,"ville":"St. John's","province":"NL","pays":"CA","coord":{"lon":-52.712830,"lat":47.560539}}
+{"_id":35,"ville":"Saskatoon","province":"SK","pays":"CA","coord":{"lon":-106.647034,"lat":52.146973}}
+{"_id":36,"ville":"Penticton","province":"BC","pays":"CA","coord":{"lon":-119.589615,"lat":49.489536}}
+{"_id":37,"ville":"Halifax","province":"NS","pays":"CA","coord":{"lon":-63.582687,"lat":44.651070}}
+{"_id":38,"ville":"Brampton","province":"ON","pays":"CA","coord":{"lon":-79.766670,"lat":43.683334}}
+{"_id":39,"ville":"Edmonton","province":"AB","pays":"CA","coord":{"lon":-113.323975,"lat":53.631611}}
+{"_id":40,"ville":"Milton","province":"ON","pays":"CA","coord":{"lon":-79.891205,"lat":43.526646}}
+{"_id":41,"ville":"Major's Hill Park, Ottawa","province":"ON","pays":"CA","coord":{"lon":-75.698830,"lat":45.427944}}
+{"_id":42,"ville":"Hamilton","province":"ON","pays":"CA","coord":{"lon":-79.843826,"lat":43.255203}}
+{"_id":43,"ville":"Windsor","province":"ON","pays":"CA","coord":{"lon":-83.026772,"lat":42.317432}}
+{"_id":44,"ville":"Quebec","province":"QC","pays":"CA","coord":{"lon":-71.242798,"lat":46.803284}}
+{"_id":45,"ville":"Welland","province":"ON","pays":"CA","coord":{"lon":-79.248253,"lat":42.992157}}
+{"_id":46,"ville":"Chilliwack","province":"BC","pays":"CA","coord":{"lon":-121.951469,"lat":49.157940}}
+{"_id":47,"ville":"Red Deer","province":"AB","pays":"CA","coord":{"lon":-113.811241,"lat":52.268112}}
+{"_id":48,"ville":"Greater Sudbury","province":"ON","pays":"CA","coord":{"lon":-81.010002,"lat":46.490002}}
+{"_id":49,"ville":"Moncton","province":"NB","pays":"CA","coord":{"lon":-64.790497,"lat":46.090946}}
+{"_id":50,"ville":"Orillia","province":"ON","pays":"CA","coord":{"lon":-79.419678,"lat":44.608246}}

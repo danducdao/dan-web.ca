@@ -5,7 +5,9 @@ Program : Youtube tutorial
 
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as tuto from 'src/inc/tutoriel';
+import * as func from 'src/inc/tutoriel';
+import { Tuto } from 'src/classes/tuto';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,51 +32,16 @@ import * as tuto from 'src/inc/tutoriel';
 })
 export class HomeComponent implements OnInit {
 
-  public safeURL:any;
-  public titre:string;
-  public count:number;
-  private videosURLs:any = new Object();
-  private videosTitles:any = new Object();
-  private i:number = 0;
-  private btnNext:HTMLElement;
-  private btnPrevious:HTMLElement;
+  public ngCodeEvolution:Tuto;
+  public NgTheNetNinja:Tuto;
 
   constructor(private _sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-      this.setVideo(
-                      tuto.getCodeEvolutionTuto()[this.i].url,
-                      tuto.getCodeEvolutionTuto()[this.i].titre,
-                      this.i
-                   );
-      this.btnNext = document.getElementById("next")
-      this.btnPrevious = document.getElementById("previous")
+
+      this.ngCodeEvolution = new Tuto(func.NgCodeEvolution()[0],this._sanitizer);
+      this.NgTheNetNinja = new Tuto(func.NgCodeEvolution()[1],this._sanitizer);
+
   }
-  setVideo(url,titre,i){
-      this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(url);
-      this.titre = titre;
-      this.count = ++i;
-  }
-  next(){
-       var i = 0;
-       if(this.i < tuto.getCodeEvolutionTuto().length - 1)
-       {
-          var i = ++this.i;
-       }else{
-           this.i = 0;
-           i = this.i;
-       }
-       this.setVideo(tuto.getCodeEvolutionTuto()[i].url,tuto.getCodeEvolutionTuto()[i].titre,i);
-  }
-  previous(){
-      var i = 0
-      if(this.i > 0)
-      {
-          i = --this.i;
-      }else{
-          this.i = tuto.getCodeEvolutionTuto().length - 1;
-          i = this.i;
-      }
-      this.setVideo(tuto.getCodeEvolutionTuto()[i].url,tuto.getCodeEvolutionTuto()[i].titre,i);
-   }
+
 }

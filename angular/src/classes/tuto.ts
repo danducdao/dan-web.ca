@@ -1,5 +1,5 @@
 /*
-* Program : Class DetailCategorie
+* Program : Class Tuto
 * Écrit par : Dan Duc Dao
 */
 
@@ -27,7 +27,6 @@ export class Tuto {
          this.count = this.i + 1;
      }
      next():void{
-         console.log('testtt ' + this.itemSelected)
           var i = 0;
           if(this.i < this.myVideos.length - 1)
           {
@@ -59,11 +58,9 @@ export class Tuto {
           });
           return listItem
       }
-      selectedItem(){
+      selectedItem():void{
           this.i = parseInt(this.itemSelected);
           this.count = this.i + 1;
           this.setVideo(this.myVideos[this.i].url,this.myVideos[this.i].titre);
-          console.log(this.itemSelected);
       }
-
 }

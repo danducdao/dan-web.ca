@@ -11,6 +11,7 @@ export class Tuto {
      public titre:string;
      public count:number;
      public i:number;
+     public itemSelected:string;
      private myVideos:any[] = [];
      private _sanitizer: DomSanitizer;
 
@@ -26,6 +27,7 @@ export class Tuto {
          this.count = this.i + 1;
      }
      next():void{
+         console.log('testtt ' + this.itemSelected)
           var i = 0;
           if(this.i < this.myVideos.length - 1)
           {
@@ -46,6 +48,22 @@ export class Tuto {
              i = this.i;
          }
          this.setVideo(this.myVideos[i].url,this.myVideos[i].titre);
+      }
+      listItem():any[]{
+          let listItem:any[] = [];
+          this.myVideos.forEach((data,index) => {
+               listItem.push({
+                                 "titre" : data.titre,
+                                 "id" : index
+                             });
+          });
+          return listItem
+      }
+      selectedItem(){
+          this.i = parseInt(this.itemSelected);
+          this.count = this.i + 1;
+          this.setVideo(this.myVideos[this.i].url,this.myVideos[this.i].titre);
+          console.log(this.itemSelected);
       }
 
 }

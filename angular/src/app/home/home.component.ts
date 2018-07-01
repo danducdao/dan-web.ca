@@ -38,10 +38,8 @@ export class HomeComponent implements OnInit {
   constructor(private _sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-
       this.ngCodeEvolution = new Tuto(func.NgCodeEvolution()[0],this._sanitizer);
       this.NgTheNetNinja = new Tuto(func.NgCodeEvolution()[1],this._sanitizer);
-
   }
 
 }

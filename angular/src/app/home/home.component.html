@@ -4,45 +4,74 @@
              <div class="panel-tools">
                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
              </div>
-             Formations
+             Introduction Angular 6 et 2
         </div>
         <div class="panel-body">
            <div class="row">
                <div class="col-lg-6 border-right">
                       <label class="col-sm-2 control-label">Vidéo : </label>
-                      <select [(ngModel)]="ngCodeEvolution.itemSelected" (change)="ngCodeEvolution.selectedItem()">
-                            <option *ngFor="let item of ngCodeEvolution.listItem();let i = index" value={{item.id}}>{{ i + 1 }} - {{ item.titre}}</option>
+                      <select [(ngModel)]="IntroductionAngular6.itemSelected" (change)="IntroductionAngular6.selectedItem()">
+                            <option *ngFor="let item of IntroductionAngular6.listItem();let i = index" value={{item.id}}>{{ i + 1 }} - {{ item.titre}}</option>
                       </select>
                       <h2 class="title"><strong>Introduction Angular 6</strong></h2>
                       <p>
-                            <iframe width="585" height="315" [src]="ngCodeEvolution.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <iframe width="585" height="315" [src]="IntroductionAngular6.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                       </p>
                       <p class="titre">
-                          <span>Tutorial #{{ngCodeEvolution.count}} - {{ ngCodeEvolution.titre }}</span>
+                          <span>{{IntroductionAngular6.count}} - {{IntroductionAngular6.titre}}</span>
                       </p>
                       <p>
-                          <button type="button" class="btn btn-primary" id="previous"  (click)="ngCodeEvolution.previous()">Précédent</button>
-                          <button type="button" class="btn btn-primary" id="next" (click)="ngCodeEvolution.next()">Suivant</button>
+                          <button type="button" class="btn btn-primary" id="previous"  (click)="IntroductionAngular6.previous()">Précédent</button>
+                          <button type="button" class="btn btn-primary" id="next" (click)="IntroductionAngular6.next()">Suivant</button>
                       </p>
                 </div>
                 <div class="col-lg-6">
                       <label class="col-sm-2 control-label">Vidéo : </label>
-                      <select [(ngModel)]="NgTheNetNinja.itemSelected" (change)="NgTheNetNinja.selectedItem()">
-                            <option *ngFor="let item of NgTheNetNinja.listItem();let i = index" value={{item.id}}>{{ i + 1}} - {{ item.titre}}</option>
+                      <select [(ngModel)]="IntroductionAngular2.itemSelected" (change)="IntroductionAngular2.selectedItem()">
+                            <option *ngFor="let item of IntroductionAngular2.listItem();let i = index" value={{item.id}}>{{ i + 1}} - {{ item.titre}}</option>
                       </select>
                       <h2 class="title"><strong>Introduction Angular 2</strong></h2>
                       <p>
-                            <iframe width="590" height="315" [src]="NgTheNetNinja.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <iframe width="590" height="315" [src]="IntroductionAngular2.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                       </p>
                       <p class="titre">
-                          <span>Tutorial #{{NgTheNetNinja.count}} - {{ NgTheNetNinja.titre }}</span>
+                          <span>{{IntroductionAngular2.count}} - {{IntroductionAngular2.titre}}</span>
                       </p>
                       <p>
-                          <button type="button" class="btn btn-primary" id="previous"  (click)="NgTheNetNinja.previous()">Précédent</button>
-                          <button type="button" class="btn btn-primary" id="next" (click)="NgTheNetNinja.next()">Suivant</button>
+                          <button type="button" class="btn btn-primary" id="previous"  (click)="IntroductionAngular2.previous()">Précédent</button>
+                          <button type="button" class="btn btn-primary" id="next" (click)="IntroductionAngular2.next()">Suivant</button>
                       </p>
                 </div>
            </div>
          </div>
     </div>
+    <div class="hpanel col-md-9">
+         <div class="panel-heading hbuilt">
+              <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+              </div>
+              REST API (Node, Express & Mongo)
+         </div>
+         <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6 border-right">
+                       <label class="col-sm-2 control-label">Vidéo : </label>
+                       <select [(ngModel)]="RestAPI.itemSelected" (change)="RestAPI.selectedItem()">
+                             <option *ngFor="let item of RestAPI.listItem();let i = index" value={{item.id}}>{{ i + 1 }} - {{ item.titre}}</option>
+                       </select>
+                       <h2 class="title"><strong>REST API (Node, Express & Mongo)</strong></h2>
+                       <p>
+                             <iframe width="585" height="315" [src]="RestAPI.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                       </p>
+                       <p class="titre">
+                           <span>{{RestAPI.count}} - {{RestAPI.titre}}</span>
+                       </p>
+                       <p>
+                           <button type="button" class="btn btn-primary" id="previous"  (click)="RestAPI.previous()">Précédent</button>
+                           <button type="button" class="btn btn-primary" id="next" (click)="RestAPI.next()">Suivant</button>
+                       </p>
+                 </div>
+            </div>
+          </div>
+     </div>
 </section>

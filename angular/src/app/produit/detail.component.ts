@@ -52,7 +52,8 @@ export class DetailProduitComponent implements OnInit {
       if(this.id)
       {
               this._produitService.getProduitById(this.id)
-                                  .subscribe(data => {
+                                  .subscribe(
+                                           data => {
                                                         this.model.nom = data.nom;
                                                         this.model.category = data.category;
                                                         this.model.fournisseur = data.fournisseur;

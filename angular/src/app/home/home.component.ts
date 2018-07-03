@@ -32,14 +32,17 @@ import { Tuto } from 'src/classes/tuto';
 })
 export class HomeComponent implements OnInit {
 
-  public ngCodeEvolution:Tuto;
-  public NgTheNetNinja:Tuto;
+  public IntroductionAngular6:Tuto;
+  public IntroductionAngular2:Tuto;
+  public RestAPI:Tuto;
 
   constructor(private _sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-      this.ngCodeEvolution = new Tuto(func.NgCodeEvolution()[0],this._sanitizer);
-      this.NgTheNetNinja = new Tuto(func.NgCodeEvolution()[1],this._sanitizer);
+      let index:number = 0;
+      this.IntroductionAngular6 = new Tuto(func.youtubeEmbedUrls()[index],this._sanitizer);
+      this.IntroductionAngular2 = new Tuto(func.youtubeEmbedUrls()[++index],this._sanitizer);
+      this.RestAPI = new Tuto(func.youtubeEmbedUrls()[++index],this._sanitizer);
   }
 
 }

@@ -7,10 +7,12 @@ const express = require('express');
 const bodyParse = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const Produit = require('./model/produit');
 const fs = require('fs');
-
 const app = express();
+const produitController = require('./controller/produitController');
+const categorieController = require('./controller/categorieController');
+const fournisseurController = require('./controller/fournisseurController');
+const googleMapController =  require('./controller/googleMapController');
 
 mongoose.connect('mongodb://localhost/test');
 mongoose.Promise = global.Promise;
@@ -23,93 +25,20 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/categorie',function(req,res,next){
-   if(req.query.id)
-   {
-       Produit.Categorie.findOne({_id:req.query.id}).then(function(result){
-            res.send(result);
-       });
-   }else{
-       Produit.Categorie.find({}).then(function(result){
-            res.send(result);
-       });
-   }
-});
+//Produit controller
+produitController(app);
 
-app.post('/categorie',function(req,res,next){
-    res.send({type:"POST CATEGORIE"});
-});
+//Categorie controller
+categorieController(app)
 
-app.put('/categorie/:id',function(req,res,next){
-      Produit.Categorie.findByIdAndUpdate({_id:req.params.id},req.body).then(function(result){
-           res.send(result);
-      });
-});
+//Fournisseur controller
+fournisseurController(app);
 
-app.delete('/categorie/:id',function(req,res,next){
-     res.send({type:"DELETE CATEGORIE"});
-});
+//Google map controller
+googleMapController(app);
 
-app.get('/produit',function(req,res,next){
-  if(req.query.id)
-  {
-    Produit.Produit.findOne({_id:req.query.id}).then(function(result){
-         res.send(result);
-     });
-
-  }else{
-    Produit.Produit.find({}).then(function(result){
-         res.send(result);
-     });
-  }
-});
-
-app.post('/produit',function(req,res,next){
-     Produit.Produit.create(req.body).then(function(result){
-         res.send(result);
-     });
-});
-
-app.put('/produit/:id',function(req,res,next){
-    Produit.Produit.findByIdAndUpdate({_id:req.params.id},req.body).then(function(result){
-         res.send(result);
-    });
-});
-
-app.delete('/produit/:id',function(req,res,next){
-     res.send({type:"DELETE PRODUIT"});
-});
-
-app.get('/fournisseur',function(req,res,next){
-  if(!req.query.id)
-  {
-    Produit.Fournisseur.find({}).then(function(result){
-         res.send(result);
-     });
-  }else{
-    Produit.Fournisseur.find({_id:req.query.id}).then(function(result){
-         res.send(result);
-     });
-  }
-});
-
-app.get('/city', function(req,res)
-{
-   fs.readFile("./public/city.list.json", "utf8", function(err, data){
-      if(err) throw err;
-       data = data.split('\n');
-       var villes = [];
-       for(var i = 0; i < data.length; i++) {
-            if(data[i] === "")
-               continue;
-            var json = JSON.parse(data[i]);
-            villes.push(json);
-       }
-       res.send(villes);
-    });
-});
 app.use(function(err,req,res,next){
-    res.send({ erreur: err});
+    res.status(422).send({ erreur: err.message});
 });
 
 app.use(cors({
@@ -118,6 +47,6 @@ app.use(cors({
   exposedHeaders: ['Content-Type'],
 }));
 
-app.listen(process.env.port || 4000, function(){
+app.listen(4000, function(){
     console.log('connection avec succès')
 });

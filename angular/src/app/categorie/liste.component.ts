@@ -14,22 +14,22 @@ import { CategorieService } from 'src/services/categorie.service';
        <thead>
         <tr>
           <th></th>
-          <th>Nom</th>
-          <th>Description</th>
-          <th><button class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
+          <th [ngClass]="center">Nom</th>
+          <th [ngClass]="center">Description</th>
+          <th [ngClass]="center"><button class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
         </tr>
       </thead>
       <tbody *ngFor="let categorie of categories">
          <tr>
-            <td><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
+            <td [ngClass]="center"><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
             <td>{{ categorie.nom }}</td>
             <td>{{ categorie.description }}</td>
-            <td><img *ngIf="showImage" [src]="categorie.image" alt="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" /></td>
+            <td [ngClass]="center"><img *ngIf="showImage" [src]="categorie.image" alt="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" /></td>
           </tr>
        </tbody>
     </table>
   `,
-  styles: []
+   styles: []
 })
 export class ListeCategorieComponent implements OnInit {
 
@@ -37,6 +37,7 @@ export class ListeCategorieComponent implements OnInit {
   public imgWidth:number = 50;
   public imgMargin:number = 2;
   public showImage:boolean = false;
+  public center:any={colCenter:true};
 
   constructor(private _categorieService:CategorieService) { }
 

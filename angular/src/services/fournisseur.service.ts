@@ -20,7 +20,6 @@ export class FournisseurService extends Service{
 
   getFournisseurList(){
       this.Path = "/fournisseur";
-      console.log(this.Url);
       return this.http.get<IFournisseur[]>(this.Url);
   }
 }

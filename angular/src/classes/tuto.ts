@@ -19,7 +19,7 @@ export class Tuto {
         this._sanitizer = _sanitizer;
         this.myVideos = myVideos;
         this.i = 0;
-        this.setVideo(this.myVideos[0].url,this.myVideos[0].titre);
+        this.setVideo(this.myVideos[this.i].url,this.myVideos[this.i].titre);
      }
      setVideo(url:string,titre:string):void{
          this.url = this._sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -56,7 +56,7 @@ export class Tuto {
                                  "id" : index
                              });
           });
-          return listItem
+          return listItem;
       }
       selectedItem():void{
           this.i = parseInt(this.itemSelected);

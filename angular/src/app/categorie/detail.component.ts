@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategorieService } from 'src/services/categorie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categorie } from 'src/classes/categorie';
+import { Regex } from 'src/classes/regex';
 
 @Component({
   selector: 'app-categorie',
@@ -24,7 +25,7 @@ export class DetailCategorieComponent implements OnInit {
 
   private id:string;
   public model:Categorie;
-  public nodigitPattern:string = "^[a-zA-Z\\-]+$";
+  public nodigitPattern:string = Regex.NoDigitPattern();
 
   constructor(private _categorieService:CategorieService,private route: ActivatedRoute, private router: Router) {}
 

@@ -5,35 +5,35 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ProduitService } from 'src/services/produit.service';
+import { IProduit } from 'src/interfaces/produit';
 
 @Component({
   selector: 'app-produit',
   template: `
   <article>
-        <button class="btn btn-primary" onclick="window.location.href='produit/new'">New</button>
-        <div style="height:35px;margin:5px 0px 5px 5px;">
-            <span style="font-size:25px;"><strong>Liste des produits</strong></span>
-            <span style="float:right;margin:5px 0px 5px 5px;">
-                  <label for="search">Produit</label>&nbsp;
-                  <input type="search" size=40 [(ngModel)]="nomProduit" (keyup)="doSearch()">
-            </span>
+        <div class="col-lg-12"><button class="btn btn-primary" onclick="window.location.href='produit/new'">New</button></div>
+        <div class="col-lg-9">
+              <span style="font-size:25px;"><strong>Liste des produits</strong></span>
         </div>
+        <div class="col-lg-3">
+                <div class="row">
+                      <p class="col-lg-3"><label for="search" >Chercher</label></p>
+                      <p><input type="search" size=40 [(ngModel)]="motAChercher"></p>
+                </div>
+                <div class="row">
+                    <label for="search">Chercher par:</label>&nbsp;
+                    <span *ngFor="let item of filtreParams">
+                         <input type="checkbox" id="{{item.type}}" [(ngModel)]="item.isChecked" (change)="checkValue($event);">&nbsp;{{item.type}}
+                    </span>
+                </div>
+        </div><br>
         <table class="table table-bordered" cellspacing="1" cellpadding="1">
            <thead>
             <tr>
-              <th></th>
-              <th [ngClass]="center">Nom</th>
-              <th [ngClass]="center">Catégorie</th>
-              <th [ngClass]="center">Fournisseur</th>
-              <th [ngClass]="center">Quantité</th>
-              <th [ngClass]="center">Prix</th>
-              <th [ngClass]="center">Quantité restante</th>
-              <th [ngClass]="center">Quantité commandée</th>
-              <th [ngClass]="center">Réapprovisionnement</th>
-              <th [ngClass]="center">Discontinue</th>
+              <th *ngFor="let value of title" [ngClass]="center">{{value}}</th>
             </tr>
           </thead>
-          <tbody *ngFor="let produit of produits | filtreProduit:filtrePar">
+          <tbody *ngFor="let produit of produits | filtreProduit:filtreParams:motAChercher">
              <tr>
                  <td [ngClass]="center"><a routerLink="/produit/{{produit._id}}">Modifier</a></td>
                  <td>{{ produit.nom }}</td>
@@ -57,19 +57,47 @@ import { ProduitService } from 'src/services/produit.service';
 })
 export class ListeProduitComponent implements OnInit {
 
-  public produits = [];
-  public filtrePar:string;
-  public nomProduit:string;
+  public produits:IProduit[] = [];
+  public filtreParams:any[] = [];
+  public motAChercher:string = "";
+  public title:string[] = [
+                              '',
+                              'Nom',
+                              'Catégorie',
+                              'Fournisseur',
+                              'Quantité',
+                              'Prix',
+                              'Quantité restante',
+                              'Quantité commandée',
+                              'Réapprovisionnement',
+                              'Discontinue'
+                          ];
   public right:any={colRight:true};
   public center:any={colCenter:true};
 
   constructor(private _produitService:ProduitService) { }
 
   ngOnInit() {
-     this._produitService.getProduitList().subscribe(data => this.produits = data);
-  }
-  doSearch(){
-       this.filtrePar = this.nomProduit;
+
+       this.filtreParams = [
+                              { type : 'nom', isChecked : true},
+                              { type : 'catégorie', isChecked : false},
+                              { type : 'Quantité', isChecked : false},
+                              { type : 'Prix', isChecked : false},
+                            ];
+                            
+       this._produitService.getProduitList().subscribe( data => this.produits = data);
   }
 
+  checkValue(event:any)
+  {
+       this.motAChercher = "";
+       this.filtreParams.map(function(value){
+           if(value.type.match(event.target.id))
+           {
+               value.isChecked = event.target.checked;
+           }
+           return value;
+       });
+   }
 }

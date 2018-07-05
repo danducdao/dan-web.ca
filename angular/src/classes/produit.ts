@@ -1,4 +1,9 @@
-export class Produit {
+/*
+* Program : Class Produit
+* Écrit par : Dan Duc Dao
+*/
+
+export class Produit{
 
   public _id:string;
   public nom:string;

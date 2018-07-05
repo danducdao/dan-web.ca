@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   public IntroductionAngular6:Tuto;
   public IntroductionAngular2:Tuto;
   public RestAPI:Tuto;
+  public Webpack:Tuto;
 
   constructor(private _sanitizer: DomSanitizer) {}
 
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
       this.IntroductionAngular6 = new Tuto(func.youtubeEmbedUrls()[index],this._sanitizer);
       this.IntroductionAngular2 = new Tuto(func.youtubeEmbedUrls()[++index],this._sanitizer);
       this.RestAPI = new Tuto(func.youtubeEmbedUrls()[++index],this._sanitizer);
+      this.Webpack = new Tuto(func.youtubeEmbedUrls()[++index],this._sanitizer);
   }
 
 }

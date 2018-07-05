@@ -5,6 +5,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from 'src/services/categorie.service';
+import { ICategorie } from 'src/interfaces/categorie';
 
 @Component({
   selector: 'app-categorie',
@@ -13,9 +14,8 @@ import { CategorieService } from 'src/services/categorie.service';
     <table class="table table-bordered" cellspacing="1" cellpadding="1">
        <thead>
         <tr>
-          <th></th>
-          <th [ngClass]="center">Nom</th>
-          <th [ngClass]="center">Description</th>
+
+          <th *ngFor="let value of ['','Nom','Description']" [ngClass]="center">{{value}}</th>
           <th [ngClass]="center"><button class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
         </tr>
       </thead>
@@ -33,11 +33,11 @@ import { CategorieService } from 'src/services/categorie.service';
 })
 export class ListeCategorieComponent implements OnInit {
 
-  public categories = [];
+  public categories:ICategorie[] = [];
   public imgWidth:number = 50;
   public imgMargin:number = 2;
   public showImage:boolean = false;
-  public center:any={colCenter:true};
+  public center:any = {colCenter:true};
 
   constructor(private _categorieService:CategorieService) { }
 

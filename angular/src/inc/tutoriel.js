@@ -81,6 +81,13 @@ export var youtubeEmbedUrls = function()
                 {titre:"GET Requests",url:"https://www.youtube.com/embed/k8mi38BI55g"},
                 {titre:"Creating a Front-end",url:"https://www.youtube.com/embed/fGQFeV32nwE"},
                 {titre:"Creating a React Component",url:"https://www.youtube.com/embed/f7zXuZRsCTk"},
-            ]
+            ],
+            [
+                {titre:"Course Files & Introduction",url:"https://www.youtube.com/embed/ytRnPV0kRN0" },
+                {titre:"Installing Webpack & Bundling JS Files",url:"https://www.youtube.com/embed/SixxPgIrrQk"},
+                {titre:"Babel Loaders",url:"https://www.youtube.com/embed/H_QACBSqRBE"},
+                {titre:"CSS Loaders",url:"https://www.youtube.com/embed/L1QMrPsPV5w"},
+                {titre:"SASS Loaders",url:"https://www.youtube.com/embed/gAJuZtvXvpk"},
+              ]
       ];
 }

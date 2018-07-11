@@ -1,5 +1,5 @@
 /*
-* Program : Service fournisseur
+* Program : classe FournisseurService
 * Écrit par : Dan Duc Dao
 */
 
@@ -14,12 +14,12 @@ import { Service } from './service';
 })
 export class FournisseurService extends Service{
 
-  constructor(private http:HttpClient) {
-     super();
-  }
+    constructor(private http:HttpClient) {
+       super();
+    }
 
-  getFournisseurList(){
-      this.Path = "/fournisseur";
-      return this.http.get<IFournisseur[]>(this.Url);
-  }
+    getFournisseurList():Observable<IFournisseur[]>{
+        this.Path = "/fournisseur";
+        return this.http.get<IFournisseur[]>(this.Url);
+    }
 }

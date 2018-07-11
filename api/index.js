@@ -17,7 +17,8 @@ const googleMapController =  require('./controller/googleMapController');
 mongoose.connect('mongodb://localhost/test');
 mongoose.Promise = global.Promise;
 
-app.use(bodyParse.json());
+//app.use(bodyParse.json());
+app.use(bodyParse({limit: '50mb'}))
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

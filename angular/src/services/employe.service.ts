@@ -1,5 +1,5 @@
 /*
-* Program : Service Employee
+* Program : classe EmployeService
 * Écrit par : Dan Duc Dao
 */
 
@@ -17,7 +17,7 @@ export class EmployeService {
 
   constructor(private http:HttpClient) { }
 
-  getEmployees(){
+  getEmployees():any[]{
       return [
                 {"id" : 1, "name":"Andrew", "age":30},
                 {"id" : 2, "name":"Brandon", "age":25},
@@ -25,7 +25,7 @@ export class EmployeService {
                 {"id" : 4, "name" : "Elena", "age": 28}
               ];
      }
-     getEmployeesDetail(){
+     getEmployeesDetail():Observable<IEmployee[]>{
           return this.http.get<IEmployee[]>(this.url);
      }
 }

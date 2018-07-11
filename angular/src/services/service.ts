@@ -34,8 +34,9 @@ export class Service {
     get HttpOptions():any{
         let httpOptions = {
             headers: new HttpHeaders({
+              "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
               'Content-Type':'application/json; charset=utf-8',
-              'Access-Control-Allow-Origin': 'http://localhost:4000'
+              'Access-Control-Allow-Origin': '*'
             })
         };
         return httpOptions;

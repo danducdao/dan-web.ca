@@ -19,8 +19,31 @@
          </div>
          <div class="form-group">
               <label for="image">Image</label>
-              <input type="text" class="form-control" id="image" [(ngModel)]="model.image" name="image">
+              <app-file-upload
+                  maxFiles="1"
+                  maxSize="2"
+                  fileExt="JPG, GIF, PNG, JPEG"
+                  (uploadStatus)="refreshImages($event)"
+                  (FileToSave)="FileToSave($event)">
+              </app-file-upload>
          </div>
-         <button type="submit" class="btn btn-success" [disabled]="!categorieForm.form.valid">OK</button>
+         <div class="well">
+            <div class="parent">
+                <img [src]="image" [alt]="" [height]="height" [width]="width"/>
+                <button class="btn btn-danger"
+                        [style.display]="!uploadStatus?'none':'inherit'"
+                        style="position:absolute;top:0;right:0;border-radius:10px;margin:1px 2px 0px 0px;"
+                        (click)="removeImage($event)">X
+                </button>
+              </div>
+         </div>
+         <button type="submit" class="btn btn-success" [disabled]="!categorieForm.form.valid">
+                <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+         </button>&nbsp;
+         <button class="btn btn-success" onclick="window.location.href='/categorie';return false;">
+                 <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
+                 <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
+        </button>
     </form>
 </article>

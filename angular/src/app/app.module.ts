@@ -24,6 +24,7 @@ import { ShoppingCartProduitComponent } from './shopping-cart-produit/shopping-c
 import { FiltreCategoryPipe } from 'src/pipes/filtre-category.pipe';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ShoppingCartTotalComponent } from './shopping-cart-total/shopping-cart-total.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ShoppingCartTotalComponent } from './shopping-cart-total/shopping-cart-
     ShoppingCartProduitComponent,
     FiltreCategoryPipe,
     AddToCartComponent,
-    ShoppingCartTotalComponent
+    ShoppingCartTotalComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

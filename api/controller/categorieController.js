@@ -4,6 +4,8 @@ Program : Categorie controller
 */
 
 const Produit = require('../model/produit');
+const multer  = require('multer');
+multer({limits: {fileSize: 100000000} });
 
 module.exports = function(app){
       app.get('/categorie',function(req,res,next){

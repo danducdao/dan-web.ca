@@ -18,7 +18,7 @@ describe('Sauvegarder de données dans les collections',function(){
         C1 = new Produit.Categorie({
                                   nom:"Drinks",
                                   description:"Soft drinks, coffees, teas, beers, and ales",
-                                  image:"./assets/images/beverages.gif",
+                                  image:"",
                                   dateCreation:today
                                 });
         C1.save().then(function(){
@@ -26,7 +26,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C2 = new Produit.Categorie({
                                     nom:"Condiments",
                                     description:"Sweet and savory sauces, relishes, spreads, and seasonings",
-                                    image:"./assets/images/condiments.gif",
+                                    image:"",
                                     dateCreation:today
                                   });
               return C2.save();
@@ -35,7 +35,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C3 = new Produit.Categorie({
                                     nom:"Confections",
                                     description:"Desserts, candies, and sweet breads",
-                                    image:"./assets/images/confections.gif",
+                                    image:"",
                                     dateCreation:today
                                   });
               return C3.save();
@@ -44,7 +44,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C4 = new Produit.Categorie({
                                     nom:"Dairy Products",
                                     description:"Cheeses",
-                                    image:"./assets/images/diary.gif",
+                                    image:"",
                                     dateCreation:today
                                   });
               return C4.save();
@@ -53,7 +53,7 @@ describe('Sauvegarder de données dans les collections',function(){
                 C5 = new Produit.Categorie({
                                       nom:"Grains/Cereals",
                                       description:"Breads, crackers, pasta, and cereal",
-                                      image:"./assets/images/cereals.gif",
+                                      image:"",
                                       dateCreation:today
                                     });
 
@@ -63,7 +63,7 @@ describe('Sauvegarder de données dans les collections',function(){
                C6 = new Produit.Categorie({
                                      nom:"Meat/Poultry",
                                      description:"Prepared meats",
-                                     image:"./assets/images/meat.gif",
+                                     image:"",
                                      dateCreation:today
                                    });
 
@@ -73,7 +73,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C7 = new Produit.Categorie({
                                     nom:"Produce",
                                     description:"Dried fruit and bean curd",
-                                    image:"./assets/images/produce.gif",
+                                    image:"",
                                     dateCreation:today
                                   });
                 return C7.save();
@@ -82,7 +82,7 @@ describe('Sauvegarder de données dans les collections',function(){
             C8 = new Produit.Categorie({
                                   nom:"Seafood",
                                   description:"Seaweed and fish",
-                                  image:"./assets/images/seafood.gif",
+                                  image:"",
                                   dateCreation:today
                                 });
             return C8.save();

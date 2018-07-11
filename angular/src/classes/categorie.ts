@@ -12,6 +12,6 @@ export class Categorie {
      constructor(){
        this.nom = "",
        this.description = "",
-       this.image = "";
+       this.image = ""
      }
 }

@@ -1,16 +1,16 @@
 /*
-* Program : Service Categorie
+* Program : classe CategorieService
 * Écrit par : Dan Duc Dao
 */
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RequestOptions} from '@angular/http'
 import { Observable } from 'rxjs';
 import { ICategorie } from '../interfaces/categorie';
-import { IProduit } from '../interfaces/produit';
 import { Service } from './service';
 import { Categorie } from '../classes/categorie';
-import { HttpHeaders,HttpParams } from '@angular/common/http';
+import { HttpHeaders,HttpParams,HttpEvent } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -22,17 +22,17 @@ export class CategorieService extends Service {
        super();
   }
 
-  getCategorieList(){
+  getCategorieList():Observable<ICategorie[]>{
       this.Path = "/categorie";
       return this.http.get<ICategorie[]>(this.Url);
   }
 
-  getCategorieById(id:string){
+  getCategorieById(id:string):Observable<ICategorie>{
       this.Path = "/categorie?id=" + id;
       return this.http.get<ICategorie>(this.Url);
   }
 
-  updateCategorie(id:string,newCategorie:Categorie){
+  updateCategorie(id:string,newCategorie:Categorie):Observable<HttpEvent<ICategorie>>{
       this.Path = "/categorie/" + id;
       return this.http.put<ICategorie>(this.Url,newCategorie, this.HttpOptions);
   }

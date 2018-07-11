@@ -88,6 +88,22 @@ export var youtubeEmbedUrls = function()
                 {titre:"Babel Loaders",url:"https://www.youtube.com/embed/H_QACBSqRBE"},
                 {titre:"CSS Loaders",url:"https://www.youtube.com/embed/L1QMrPsPV5w"},
                 {titre:"SASS Loaders",url:"https://www.youtube.com/embed/gAJuZtvXvpk"},
-              ]
+            ],
+            [
+                {titre:"What is Django?",url:"https://www.youtube.com/embed/n-FTlQ7Djqc"},
+                {titre:"Creating a Django Blog",url:"https://www.youtube.com/embed/jAE94gzgQvI"},
+                {titre:"URLs and Views",url:"https://www.youtube.com/embed/TblSa29DX6I"},
+                {titre:"HTML Templates",url:"https://www.youtube.com/embed/Iy4niMCsbEE"},
+                {titre:"Django Apps",url:"https://www.youtube.com/embed/W5Gjcs6QwEs"},
+                {titre:"Django Models",url:"https://www.youtube.com/embed/5zNR3E6WRLE"},
+                {titre:"Migrations",url:"https://www.youtube.com/embed/aOLrEkpGWDg"},
+                {titre:"The Django ORM",url:"https://www.youtube.com/embed/eio1wDUHFJE"},
+                {titre:"The Django Admin",url:"https://www.youtube.com/embed/kmFGjTXWsC4"},
+                {titre:"Template Tags",url:"https://www.youtube.com/embed/RCE3VUpzGw0"},
+                {titre:"Model Methods",url:"https://www.youtube.com/embed/ERCt6HUcaFw"},
+                {titre:"Static Files & Images",url:"https://www.youtube.com/embed/RhJIMUMJ_Do"},
+                {titre:"Extending Templates",url:"https://www.youtube.com/embed/tyFmF_v3z8c"},
+                {titre:"Extending Templates",url:"https://www.youtube.com/embed/tyFmF_v3z8c"},
+            ]
       ];
 }

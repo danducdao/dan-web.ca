@@ -94,5 +94,6 @@ export const routingComponents = [ FirstProgramComponent,
                                    DetailCategorieComponent,
                                    ListeProduitComponent,
                                    DetailProduitComponent,
-                                   ShoppingCartComponent
+                                   ShoppingCartComponent,
+                                   AddToCartComponent
                                  ];

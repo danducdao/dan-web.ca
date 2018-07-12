@@ -13,6 +13,7 @@ const produitController = require('./controller/produitController');
 const categorieController = require('./controller/categorieController');
 const fournisseurController = require('./controller/fournisseurController');
 const googleMapController =  require('./controller/googleMapController');
+const shoppingCartController = require('./controller/shoppingCartController');
 
 mongoose.connect('mongodb://localhost/test');
 mongoose.Promise = global.Promise;
@@ -37,6 +38,9 @@ fournisseurController(app);
 
 //Google map controller
 googleMapController(app);
+
+//Shopping cart controller
+shoppingCartController(app);
 
 app.use(function(err,req,res,next){
     res.status(422).send({ erreur: err.message});

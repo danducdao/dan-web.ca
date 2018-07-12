@@ -6,8 +6,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategorieService } from 'src/services/categorie.service';
+import { ShoppingCartService } from 'src/services/shopping-cart.service';
 import { ICategorie } from 'src/interfaces/categorie';
-import { ProduitService } from 'src/services/produit.service';
+import { IProduit } from 'src/interfaces/produit';
 import { LocalStorage } from 'src/classes/localstorage';
 
 @Component({
@@ -18,31 +19,46 @@ import { LocalStorage } from 'src/classes/localstorage';
 export class ShoppingCartComponent implements OnInit {
 
   public categories:ICategorie[];
+  public shoppingCartCategories:ICategorie[] = [];
   public idCategorie:string;
   public nomCategorie:string;
+  public itemExiste:boolean=false;
   private ids:string[] = [];
   private qtes:string[] = [];
 
-  constructor(private _categorieService:CategorieService,private router: Router) { }
+  constructor(private _categorieService:CategorieService,private _shoppingCartService:ShoppingCartService,private router: Router) { }
 
   ngOnInit() {
-          this._categorieService.getCategorieList().subscribe( data => this.categories = data );
+       this._categorieService.getCategorieList().subscribe( data => this.categories = data);
+       this.nomCategorie = "";
   }
-  selectCategorie(ele: any):void{
-         var index = ele.options.selectedIndex;
-         this.idCategorie = this.categories[--index]._id;
-         this.nomCategorie = this.categories[index++].nom;
+  selectCategorie(ele: any):void
+  {
+       var index = ele.options.selectedIndex;
+       if(index !== 0)
+       {
+           if(this.shoppingCartCategories.length == 0)
+           {
+                this.shoppingCartCategories = this.categories;
+           }
+           this.idCategorie = this.shoppingCartCategories[--index]._id;
+           this.nomCategorie = this.shoppingCartCategories[index++].nom;
+           this.verifierProduitExiste(this.idCategorie);
+       }else{
+           this.shoppingCartCategories = [];
+           this.nomCategorie = "";
+       }
    }
-   onNotify(id:string[]){
+   onNotify(id:string[]):void{
         this.ids = id;
    }
-   onNotifyQte(qte:string[]){
+   onNotifyQte(qte:string[]):void{
         this.qtes = qte;
    }
-
-   onSubmit(){
+   onSubmit():void{
        if(this.ids.length == 0)
        {
+           alert("Désolé! Veuillez sélectionner un produit");
            return;
        }
        this.ids.forEach((data,index) => {
@@ -55,5 +71,12 @@ export class ShoppingCartComponent implements OnInit {
        });
        this.router.navigateByUrl('/addtocart');
    }
+   verifierProduitExiste(categorieId:string):void
+   {
+       this._shoppingCartService.shoppingCartProduitList().subscribe(data => {
+                                                                                let produits:IProduit[] = data.filter((data:IProduit) => data.category[0]._id.indexOf(categorieId) !== -1)
+                                                                                this.itemExiste = produits.length > 0?true:false;
+                                                                             });
 
+   }
 }

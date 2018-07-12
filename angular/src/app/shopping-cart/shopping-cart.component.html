@@ -1,22 +1,22 @@
 <article>
    <form (ngSubmit)="onSubmit()" #shoppingCartForm="ngForm">
     <div class="form-group">
-          <button type="submit" class="btn btn-success" [disabled]="!shoppingCartForm.form.valid">Ajouter au panier</button>
+          <button type="submit" class="btn btn-success" [disabled]="!shoppingCartForm.form.valid || !itemExiste">Ajouter au panier</button>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="width:15%;">
          <label for="categorie">Catégorie</label>
          <select class="form-control" id="categorie" name="categorie" required #categorie="ngModel" [(ngModel)]="nomCategorie" (change)="selectCategorie($event.target)">
-                 <option selected="selected">--select--</option>
-                 <option *ngFor="let categorie of categories">{{categorie.nom}}</option>
+                 <option [disabled]="true" value="">--Sélectionner--</option>
+                 <option *ngFor="let categorie of categories" [value]="categorie.nom">{{categorie.nom}}</option>
          </select>
-         <div [hidden]="categorie.valid" class="alert alert-danger">Catéorie est obligatoire</div>
+         <div [hidden]="categorie.valid" class="alert alert-danger">La catégorie est obligatoire</div>
     </div>
-    <div *ngIf="this.idCategorie">
-        <div class="hpanel hblue" *ngFor="let categorie of categories | filtreCategory:idCategorie">
-              <div class="panel-heading hbuilt"><strong>{{categorie.nom}}</strong></div>
-              <div class="panel-body">
-                  <app-shopping-cart-produit [categorieId]='categorie._id' (notify)='onNotify($event)' (notifyQte)="onNotifyQte($event)"></app-shopping-cart-produit>
-               </div>
+    <div *ngIf="itemExiste">
+        <div class="hpanel hblue" *ngFor="let categorie of shoppingCartCategories | filtreCategory:idCategorie">
+            <div class="panel-heading hbuilt"><strong>{{categorie.nom}}</strong></div>
+            <div class="panel-body">
+                <app-shopping-cart-produit [categorieId]='categorie._id' (notify)='onNotify($event)' (notifyQte)="onNotifyQte($event)"></app-shopping-cart-produit>
+            </div>
         </div>
     </div>
   </form>

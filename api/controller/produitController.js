@@ -32,6 +32,8 @@ module.exports = function(app){
       });
 
       app.delete('/produit/:id',function(req,res,next){
-           res.send({type:"DELETE PRODUIT"});
+           Produit.Produit.findByIdAndRemove({_id:req.params.id}).then(function(result){
+                res.send(result);
+           });
       });
 }

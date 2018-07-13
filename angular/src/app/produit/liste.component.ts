@@ -40,6 +40,7 @@ import { IProduit } from 'src/interfaces/produit';
               </thead>
               <tbody *ngFor="let produit of produits | filtreProduit:filtreParams:motAChercher">
                  <tr>
+                     <td [ngClass]="center"><a href="/produit/{{produit._id}}" (click)="supprimer($event,produit._id)">Supprimer</a></td>
                      <td [ngClass]="center"><a routerLink="/produit/{{produit._id}}">Modifier</a></td>
                      <td>{{ produit.nom }}</td>
                      <td>{{ produit.category[0].nom }}</td>
@@ -98,7 +99,22 @@ export class ListeProduitComponent implements OnInit {
 
        this._produitService.getProduitList().subscribe( data => this.produits = data);
   }
-
+  supprimer(event:any,produitId:string):void
+  {
+      if(confirm("Êtes-vous sûre de vouloir supprimer ce produit?"))
+      {
+          this._produitService.removeProduitById(produitId).subscribe(data => this.response(data));
+      }
+      event.preventDefault();
+  }
+  response(data:IProduit)
+  {
+      if(data)
+      {
+          alert('Félicitation! Produit a été supprimer avec succès');
+          this._produitService.getProduitList().subscribe( data => this.produits = data);
+      }
+  }
   checkValue(event:any)
   {
        this.motAChercher = "";

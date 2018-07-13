@@ -37,4 +37,10 @@ export class ProduitService extends Service{
       this.Path = "/produit";
       return this.http.post<IProduit>(this.Url,newProduit);
   }
+  removeProduitById(id:string)
+  {
+      
+      this.Path = "/produit/" + id;
+      return this.http.delete<IProduit>(this.Url);
+  }
 }

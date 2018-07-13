@@ -77,7 +77,6 @@ export class DetailProduitComponent implements OnInit {
       obj.model.reapprovisionnement = data.reapprovisionnement;
       obj.model.discontinue = data.discontinue;
       obj.model.active = data.active;
-
   }
   selectCategorie():void
   {

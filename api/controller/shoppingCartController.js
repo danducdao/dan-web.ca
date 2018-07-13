@@ -5,12 +5,12 @@ Program : Shopping cart controller
 
 const Produit = require('../model/produit');
 
-module.exports = function(app){
+module.exports = function(app)
+{
       app.get('/shoppingCart',function(req,res,next)
       {
-          Produit.Produit.find( { discontinue : { $ne : true } }).then(function(result){
+           Produit.Produit.find({ $and : [ { discontinue : { $ne : true } }, { active : true } ] }).then(function(result){
                res.send(result);
            }).catch(next);
-
       });
 }

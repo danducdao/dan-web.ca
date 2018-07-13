@@ -5,17 +5,19 @@ Program : Fournisseur controller
 
 const Produit = require('../model/produit');
 
-module.exports = function(app){
-    app.get('/fournisseur',function(req,res,next){
-      if(!req.query.id)
-      {
-        Produit.Fournisseur.find({}).then(function(result){
-             res.send(result);
-         });
-      }else{
-        Produit.Fournisseur.find({_id:req.query.id}).then(function(result){
-             res.send(result);
-         }).catch(next);
-      }
+module.exports = function(app)
+{
+    app.get('/fournisseur',function(req,res,next)
+    {
+        if(!req.query.id)
+        {
+             Produit.Fournisseur.find({active : true}).then(function(result){
+                 res.send(result);
+             });
+        }else{
+             Produit.Fournisseur.findOne({ $and : [ { _id:req.query.id }, { active : true } ] }).then(function(result){
+                 res.send(result);
+             }).catch(next);
+        }
     });
 }

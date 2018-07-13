@@ -40,7 +40,7 @@ import { IProduit } from 'src/interfaces/produit';
               </thead>
               <tbody *ngFor="let produit of produits | filtreProduit:filtreParams:motAChercher">
                  <tr>
-                     <td [ngClass]="center"><a href="/produit/{{produit._id}}" (click)="supprimer($event,produit._id)">Supprimer</a></td>
+                     <td [ngClass]="center"><a href="/produit/{{produit._id}}" (click)="removeProduit($event,produit._id)">Supprimer</a></td>
                      <td [ngClass]="center"><a routerLink="/produit/{{produit._id}}">Modifier</a></td>
                      <td>{{ produit.nom }}</td>
                      <td>{{ produit.category[0].nom }}</td>
@@ -72,6 +72,7 @@ export class ListeProduitComponent implements OnInit {
   public motAChercher:string = "";
   public title:string[] = [
                               '',
+                              '',
                               'Nom',
                               'Catégorie',
                               'Fournisseur',
@@ -88,8 +89,8 @@ export class ListeProduitComponent implements OnInit {
 
   constructor(private _produitService:ProduitService) { }
 
-  ngOnInit() {
-
+  ngOnInit()
+  {
        this.filtreParams = [
                               { type : 'nom', isChecked : true},
                               { type : 'catégorie', isChecked : false},
@@ -99,7 +100,7 @@ export class ListeProduitComponent implements OnInit {
 
        this._produitService.getProduitList().subscribe( data => this.produits = data);
   }
-  supprimer(event:any,produitId:string):void
+  removeProduit(event:any,produitId:string):void
   {
       if(confirm("Êtes-vous sûre de vouloir supprimer ce produit?"))
       {
@@ -107,7 +108,7 @@ export class ListeProduitComponent implements OnInit {
       }
       event.preventDefault();
   }
-  response(data:IProduit)
+  response(data:IProduit):void
   {
       if(data)
       {
@@ -115,7 +116,7 @@ export class ListeProduitComponent implements OnInit {
           this._produitService.getProduitList().subscribe( data => this.produits = data);
       }
   }
-  checkValue(event:any)
+  checkValue(event:any):void
   {
        this.motAChercher = "";
        this.filtreParams.map(function(value){

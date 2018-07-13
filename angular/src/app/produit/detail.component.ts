@@ -28,67 +28,82 @@ import { Regex } from 'src/classes/regex';
 export class DetailProduitComponent implements OnInit {
 
   private id:string;
+  public titre:string = "Ajouter";
   public model:Produit;
   public categories:any[];
   public fournisseurs:any[];
   public digitPattern:string = Regex.DigitPattern();
   public decimalPattern:string = Regex.DecimalPattern();
   public nodigitPattern:string = Regex.NoDigitPattern();
+  public categorieId:string = "";
+  public fournisseurId:string = "";
 
   constructor(
               private _produitService:ProduitService,
               private _categorieService:CategorieService,
               private _fournisseurService:FournisseurService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router) {}
 
-              }
-
-  ngOnInit() {
+  setCategorie(categorieId:string):void
+  {
+      this.model.category = this.categories.filter(data => data._id.indexOf(categorieId) !== -1);
+  }
+  setFournisseur(fournisseurId:string):void
+  {
+      this.model.fournisseur = this.fournisseurs.filter(data => data._id.indexOf(fournisseurId) !== -1)[0];
+  }
+  ngOnInit()
+  {
       this.model = new Produit();
       this._categorieService.getCategorieList().subscribe( data => this.categories = data );
       this._fournisseurService.getFournisseurList().subscribe( data => this.fournisseurs = data );
       this.id = this.route.snapshot.params.id;
       if(this.id)
       {
-              this._produitService.getProduitById(this.id)
-                                  .subscribe(
-                                           data => {
-                                                        this.model.nom = data.nom;
-                                                        this.model.category = data.category;
-                                                        this.model.fournisseur = data.fournisseur;
-                                                        this.model.quantite = data.quantite;
-                                                        this.model.prix = data.prix;
-                                                        this.model.quantiteRestante = data.quantiteRestante;
-                                                        this.model.quantiteCommande = data.quantiteCommande;
-                                                        this.model.reapprovisionnement = data.reapprovisionnement;
-                                                        this.model.discontinue = data.discontinue;
-                                                      });
+           this.titre = "Modifier";
+           this._produitService.getProduitById(this.id).subscribe(data => this.response(this,data));
       }
   }
-  selectCategorie(ele: any):any{
-         var index = ele.options.selectedIndex
-         this.model.category = [this.categories[index]];
-   }
-  selectFournisseur(ele: any):any{
-         var index = ele.options.selectedIndex
-         this.model.fournisseur = this.fournisseurs[index];
-   }
-  onSubmit() {
+  response(obj,data):void
+  {
+      obj.model.nom = data.nom;
+      obj.categorieId = data.category[0]._id;
+      obj.fournisseurId = data.fournisseur._id;
+      obj.model.quantite = data.quantite;
+      obj.model.prix = data.prix;
+      obj.model.quantiteRestante = data.quantiteRestante;
+      obj.model.quantiteCommande = data.quantiteCommande;
+      obj.model.reapprovisionnement = data.reapprovisionnement;
+      obj.model.discontinue = data.discontinue;
+      obj.model.active = data.active;
 
-        if(this.id)
-        {
-              this._produitService.updateProduit(this.id,this.model)
-                                  .subscribe(data =>{
-                                                        if(data)
-                                                        {
-                                                           this.router.navigateByUrl('/produit');
-                                                        }
-                                                    });
-        }else{
-              this.model.category = [this.categories[0]];
-              this.model.fournisseur = this.fournisseurs[0];
-              this._produitService.saveProduit({
+  }
+  selectCategorie():void
+  {
+       this.setCategorie(this.categorieId);
+  }
+  selectFournisseur():void
+  {
+       this.setFournisseur(this.fournisseurId);
+  }
+  onSubmit():void
+  {
+      if(this.id)
+      {
+
+            this.setCategorie(this.categorieId);
+            this.setFournisseur(this.fournisseurId);
+            this._produitService.updateProduit(this.id,this.model)
+                                .subscribe(data =>{
+                                                      if(data)
+                                                      {
+                                                         this.router.navigateByUrl('/produit');
+                                                      }
+                                                  });
+      }else{
+
+            this._produitService.saveProduit({
                                                   nom : this.model.nom,
                                                   category:this.model.category,
                                                   fournisseur:this.model.fournisseur,
@@ -97,15 +112,15 @@ export class DetailProduitComponent implements OnInit {
                                                   quantiteRestante:parseInt(this.model.quantiteRestante),
                                                   quantiteCommande:parseInt(this.model.quantiteCommande),
                                                   reapprovisionnement:parseInt(this.model.reapprovisionnement),
-                                                  discontinue:this.model.discontinue
-                                                })
-                                   .subscribe(data =>{
-                                                        if(data)
-                                                        {
-                                                           this.router.navigateByUrl('/produit');
-                                                        }
-                                                  });
+                                                  discontinue:this.model.discontinue,
+                                                  active:this.model.active
+                                              })
+                                 .subscribe(data =>{
+                                                      if(data)
+                                                      {
+                                                         this.router.navigateByUrl('/produit');
+                                                      }
+                                                });
         }
    }
-
 }

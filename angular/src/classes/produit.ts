@@ -15,17 +15,19 @@ export class Produit{
   public quantiteCommande:any;
   public reapprovisionnement:any;
   public discontinue:boolean;
+  public active:boolean;
 
-  constructor(){
-    this.nom = "";
-    this.category = [""];
-    this.fournisseur = {};
-    this.quantite = "";
-    this.prix = "";
-    this.quantiteRestante = "";
-    this.quantiteCommande = "";
-    this.reapprovisionnement = "";
-    this.discontinue = false;
-
+  constructor()
+  {
+      this.nom = "";
+      this.category = [""];
+      this.fournisseur = {};
+      this.quantite = "";
+      this.prix = "";
+      this.quantiteRestante = "";
+      this.quantiteCommande = "";
+      this.reapprovisionnement = "";
+      this.discontinue = false;
+      this.active = false;
    }
 }

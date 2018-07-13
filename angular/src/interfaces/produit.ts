@@ -15,5 +15,6 @@ export interface IProduit{
     quantiteRestante:number,
     quantiteCommande:number,
     reapprovisionnement:number,
-    discontinue:boolean
+    discontinue:boolean,
+    active:boolean
 }

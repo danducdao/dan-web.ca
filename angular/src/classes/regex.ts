@@ -8,7 +8,7 @@ export class Regex {
      constructor(){}
 
      static NoDigitPattern():string{
-         return "^[a-zA-ZäöüÄÖÜß\\-\/ *]+$";
+         return "^[a-zA-ZäöüÄÖÜßáôéàè\\-\/\' *]+$";
      }
 
      static DecimalPattern():string{

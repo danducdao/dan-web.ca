@@ -14,7 +14,7 @@ import { ICategorie } from 'src/interfaces/categorie';
     <table class="table table-bordered" cellspacing="1" cellpadding="1">
        <thead>
         <tr>
-          <th *ngFor="let value of ['','Nom','Description']" [ngClass]="center" style="vertical-align:middle">{{value}}</th>
+          <th *ngFor="let value of ['','Nom','Description','Active']" [ngClass]="center" style="vertical-align:middle">{{value}}</th>
           <th [ngClass]="center"><button [disabled]="enabledButton?'':'enabled'" class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
         </tr>
       </thead>
@@ -23,6 +23,9 @@ import { ICategorie } from 'src/interfaces/categorie';
             <td [ngClass]="center"><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
             <td>{{ categorie.nom }}</td>
             <td>{{ categorie.description }}</td>
+            <td [ngClass]="center">
+                 <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
+            </td>
             <td [ngClass]="center">
                 <img *ngIf="showImage" [src]="categorie.image" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" style="border-radius:10px;"/>
             </td>

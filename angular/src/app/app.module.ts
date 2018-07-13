@@ -11,7 +11,6 @@ import { ProduitService } from '../services/produit.service';
 import { CategorieService } from '../services/categorie.service';
 import { DistributriceComponent } from './distributrice/distributrice.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomPipePipe } from 'src/pipes/custom-pipe.pipe';
 import { ListeCategorieComponent } from './categorie/liste.component';
 import { DetailCategorieComponent } from './categorie/detail.component';
 import { ListeProduitComponent } from './produit/liste.component';
@@ -25,6 +24,7 @@ import { FiltreCategoryPipe } from 'src/pipes/filtre-category.pipe';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ShoppingCartTotalComponent } from './shopping-cart-total/shopping-cart-total.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FiltreHtmlTagPipe } from 'src/pipes/filtre-html-tag.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     ClassBindingComponent,
     HomeComponent,
     DistributriceComponent,
-    CustomPipePipe,
     ListeCategorieComponent,
     DetailCategorieComponent,
     ListeProduitComponent,
@@ -46,7 +45,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     FiltreCategoryPipe,
     AddToCartComponent,
     ShoppingCartTotalComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FiltreHtmlTagPipe
   ],
   imports: [
     BrowserModule,

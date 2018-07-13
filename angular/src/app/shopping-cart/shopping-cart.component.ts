@@ -21,7 +21,7 @@ export class ShoppingCartComponent implements OnInit {
   public categories:ICategorie[];
   public shoppingCartCategories:ICategorie[] = [];
   public idCategorie:string;
-  public nomCategorie:string;
+  public categorieId:string="";
   public itemExiste:boolean=false;
   private ids:string[] = [];
   private qtes:string[] = [];
@@ -30,32 +30,22 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit() {
        this._categorieService.getCategorieList().subscribe( data => this.categories = data);
-       this.nomCategorie = "";
   }
-  selectCategorie(ele: any):void
+  selectCategorie():void
   {
-       var index = ele.options.selectedIndex;
-       if(index !== 0)
-       {
-           if(this.shoppingCartCategories.length == 0)
-           {
-                this.shoppingCartCategories = this.categories;
-           }
-           this.idCategorie = this.shoppingCartCategories[--index]._id;
-           this.nomCategorie = this.shoppingCartCategories[index++].nom;
-           this.verifierProduitExiste(this.idCategorie);
-       }else{
-           this.shoppingCartCategories = [];
-           this.nomCategorie = "";
-       }
+        this.shoppingCartCategories = this.categories.filter(data => data._id.indexOf(this.categorieId) !== -1);
+        this.verifierProduitExiste();
    }
-   onNotify(id:string[]):void{
+   onNotify(id:string[]):void
+   {
         this.ids = id;
    }
-   onNotifyQte(qte:string[]):void{
+   onNotifyQte(qte:string[]):void
+   {
         this.qtes = qte;
    }
-   onSubmit():void{
+   onSubmit():void
+   {
        if(this.ids.length == 0)
        {
            alert("Désolé! Veuillez sélectionner un produit");
@@ -71,10 +61,10 @@ export class ShoppingCartComponent implements OnInit {
        });
        this.router.navigateByUrl('/addtocart');
    }
-   verifierProduitExiste(categorieId:string):void
+   verifierProduitExiste():void
    {
        this._shoppingCartService.shoppingCartProduitList().subscribe(data => {
-                                                                                let produits:IProduit[] = data.filter((data:IProduit) => data.category[0]._id.indexOf(categorieId) !== -1)
+                                                                                let produits:IProduit[] = data.filter((data:IProduit) => data.category[0]._id.indexOf(this.categorieId) !== -1)
                                                                                 this.itemExiste = produits.length > 0?true:false;
                                                                              });
 

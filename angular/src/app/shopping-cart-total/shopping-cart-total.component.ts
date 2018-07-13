@@ -38,10 +38,12 @@ export class ShoppingCartTotalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-  ngOnChanges(){
+  
+  ngOnChanges():void
+  {
         this.tps = Math.round((this.total * 8) / 100);
         this.tvq = Math.round((this.total * 9) / 100);
-        this.grandTotal = Math.round(this.total - this.tps - this.tvq);
+        this.grandTotal = Math.round(this.total + this.tps + this.tvq);
   }
 
 }

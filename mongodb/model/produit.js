@@ -10,7 +10,8 @@ const CategorieSchema = new Schema({
       nom:String,
       description:String,
       image:String,
-      dateCreation:String
+      dateCreation:String,
+      active:Boolean
 });
 
 const Categorie = mongoose.model('categorie',CategorieSchema);
@@ -27,22 +28,24 @@ const FournisseurSchema = new Schema({
       telephone:String,
       fax:String,
       siteWeb:String,
-      dateCreation:String
+      dateCreation:String,
+      active:Boolean
 });
 
 const Fournisseur = mongoose.model('fournisseur',FournisseurSchema);
 
 const ProduitSchema = new Schema({
-    nom:String,
-    category:[CategorieSchema],
-    fournisseur:FournisseurSchema,
-    quantite:Number,
-    prix:Number,
-    quantiteRestante:Number,
-    quantiteCommande:Number,
-    reapprovisionnement:Number,
-    discontinue:Boolean,
-    dateCreation:String
+      nom:String,
+      category:[CategorieSchema],
+      fournisseur:FournisseurSchema,
+      quantite:Number,
+      prix:Number,
+      quantiteRestante:Number,
+      quantiteCommande:Number,
+      reapprovisionnement:Number,
+      discontinue:Boolean,
+      dateCreation:String,
+      active:Boolean
 });
 
 const Produit = mongoose.model('produit',ProduitSchema);

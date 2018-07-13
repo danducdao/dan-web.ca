@@ -91,7 +91,6 @@ export class DetailProduitComponent implements OnInit {
   {
       if(this.id)
       {
-
             this.setCategorie(this.categorieId);
             this.setFournisseur(this.fournisseurId);
             this._produitService.updateProduit(this.id,this.model)
@@ -102,7 +101,6 @@ export class DetailProduitComponent implements OnInit {
                                                       }
                                                   });
       }else{
-
             this._produitService.saveProduit({
                                                   nom : this.model.nom,
                                                   category:this.model.category,

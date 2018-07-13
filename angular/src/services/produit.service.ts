@@ -33,13 +33,14 @@ export class ProduitService extends Service{
       this.Path = "/produit/" + id;
       return this.http.put<IProduit>(this.Url, newProduit, this.HttpOptions);
   }
+
   saveProduit(newProduit:any):Observable<IProduit>{
       this.Path = "/produit";
       return this.http.post<IProduit>(this.Url,newProduit);
   }
-  removeProduitById(id:string)
+
+  removeProduitById(id:string):Observable<IProduit>
   {
-      
       this.Path = "/produit/" + id;
       return this.http.delete<IProduit>(this.Url);
   }

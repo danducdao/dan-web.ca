@@ -12,6 +12,7 @@ import { ListeProduitComponent } from './produit/liste.component';
 import { DetailProduitComponent } from './produit/detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
       {
@@ -39,28 +40,15 @@ const routes: Routes = [
         component:DistributriceComponent
       },
       {
-        path:'categorie',
-        component:ListeCategorieComponent
-      },
-      {
-        path:'categorie/:id',
-        component:DetailCategorieComponent
-      },
-      {
-        path:'categorie/new',
-        component:DetailCategorieComponent
-      },
-      {
-        path:'produit',
-        component:ListeProduitComponent
-      },
-      {
-        path:'produit/new',
-        component:DetailProduitComponent
-      },
-      {
-        path:'produit/:id',
-        component:DetailProduitComponent
+        path:'admin',
+        component:AdminComponent,
+        children : [
+                      { path:'categorie',component:ListeCategorieComponent },
+                      { path:'categorie/:id',component:DetailCategorieComponent},
+                      { path:'produit',component:ListeProduitComponent },
+                      { path:'produit/new',component:DetailProduitComponent},
+                      { path:'produit/:id',component:DetailProduitComponent}
+                   ]
       },
       {
         path:'shoppingcart',
@@ -74,10 +62,6 @@ const routes: Routes = [
         path:'**',
         component:HomeComponent
       }
-
-
-
-
 ];
 
 @NgModule({
@@ -85,7 +69,9 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ FirstProgramComponent,
+export const routingComponents = [
+                                   HomeComponent,
+                                   FirstProgramComponent,
                                    DataBindingComponent,
                                    ClassBindingComponent,
                                    ListeEmployeeComponent,
@@ -95,5 +81,6 @@ export const routingComponents = [ FirstProgramComponent,
                                    ListeProduitComponent,
                                    DetailProduitComponent,
                                    ShoppingCartComponent,
-                                   AddToCartComponent
+                                   AddToCartComponent,
+                                   AdminComponent
                                  ];

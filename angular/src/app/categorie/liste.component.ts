@@ -20,7 +20,7 @@ import { ICategorie } from 'src/interfaces/categorie';
       </thead>
       <tbody *ngFor="let categorie of categories">
          <tr>
-            <td [ngClass]="center"><a routerLink="/categorie/{{categorie._id}}">Modifier</a></td>
+            <td [ngClass]="center"><a routerLink="{{categorie._id}}">Modifier</a></td>
             <td>{{ categorie.nom }}</td>
             <td>{{ categorie.description }}</td>
             <td [ngClass]="center">

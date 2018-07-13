@@ -96,7 +96,7 @@ export class DetailProduitComponent implements OnInit {
                                 .subscribe(data =>{
                                                       if(data)
                                                       {
-                                                         this.router.navigateByUrl('/produit');
+                                                         this.router.navigateByUrl('/admin/produit');
                                                       }
                                                   });
       }else{
@@ -110,12 +110,12 @@ export class DetailProduitComponent implements OnInit {
                                                   quantiteCommande:parseInt(this.model.quantiteCommande),
                                                   reapprovisionnement:parseInt(this.model.reapprovisionnement),
                                                   discontinue:this.model.discontinue,
-                                                  active:this.model.active
+                                                  active:true
                                               })
                                  .subscribe(data =>{
                                                       if(data)
                                                       {
-                                                         this.router.navigateByUrl('/produit');
+                                                         this.router.navigateByUrl('/admin/produit');
                                                       }
                                                 });
         }

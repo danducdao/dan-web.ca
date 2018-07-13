@@ -68,7 +68,7 @@ export class DetailCategorieComponent implements OnInit {
                                 .subscribe(data =>{
                                                       if(data)
                                                       {
-                                                         this.router.navigateByUrl('/categorie');
+                                                         this.router.navigateByUrl('/admin/categorie');
                                                       }
                                                   });
       }

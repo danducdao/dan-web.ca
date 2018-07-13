@@ -36,9 +36,8 @@
 					<li>
 							<a href="#"><span class="nav-label">Rest API</span><span class="fa arrow"></span> </a>
 							<ul class="nav nav-second-level">
-								   <li><a routerLink="/categorie">Liste catégorie</a></li>
-									 <li><a routerLink="/produit">Liste produit</a></li>
-									 <li><a routerLink="/shoppingcart">Shopping Cart</a></li>
+								   <li><a [routerLink]="['/admin']">Admin</a></li>
+									 <li><a [routerLink]="['/shoppingcart']">Shopping Cart</a></li>
 							</ul>
 					</li>
 			</ul>

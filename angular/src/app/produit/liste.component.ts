@@ -12,7 +12,9 @@ import { IProduit } from 'src/interfaces/produit';
   template: `
   <article>
         <div class="row" style="margin-bottom:20px;">
-            <div class="col-lg-12"><button class="btn btn-primary" onclick="window.location.href='produit/new'">Nouveau</button></div>
+            <div class="col-lg-12">
+                  <a class="btn btn-primary" routerLink="{{'new'}}">Nouveau</a>&nbsp;
+            </div>
         </div>
         <div class="row" style="margin-bottom:20px;">
             <div class="col-lg-9">
@@ -40,8 +42,8 @@ import { IProduit } from 'src/interfaces/produit';
               </thead>
               <tbody *ngFor="let produit of produits | filtreProduit:filtreParams:motAChercher">
                  <tr>
-                     <td [ngClass]="center"><a href="/produit/{{produit._id}}" (click)="removeProduit($event,produit._id)">Supprimer</a></td>
-                     <td [ngClass]="center"><a routerLink="/produit/{{produit._id}}">Modifier</a></td>
+                     <td [ngClass]="center"><a href="#" (click)="removeProduit($event,produit._id)">Supprimer</a></td>
+                     <td [ngClass]="center"><a routerLink="{{produit._id}}">Modifier</a></td>
                      <td>{{ produit.nom }}</td>
                      <td>{{ produit.category[0].nom }}</td>
                      <td>{{ produit.fournisseur.compagnie }}</td>
@@ -112,7 +114,7 @@ export class ListeProduitComponent implements OnInit {
   {
       if(data)
       {
-          alert('Félicitation! Produit a été supprimer avec succès');
+          alert('Félicitation! Produit a été supprimé avec succès');
           this._produitService.getProduitList().subscribe( data => this.produits = data);
       }
   }

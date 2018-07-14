@@ -7,7 +7,8 @@ const Produit = require('../model/produit');
 const multer  = require('multer');
 multer({limits: {fileSize: 100000000} });
 
-module.exports = function(app){
+module.exports = function(app)
+{
       app.get('/categorie',function(req,res,next)
       {
            if(req.query.id)
@@ -24,7 +25,9 @@ module.exports = function(app){
 
       app.post('/categorie',function(req,res,next)
       {
-           res.send({type:"POST CATEGORIE"});
+           Produit.Categorie.create(req.body).then(function(result){
+                res.send(result);
+           }).catch(next);
       });
 
       app.put('/categorie/:id',function(req,res,next)
@@ -36,6 +39,8 @@ module.exports = function(app){
 
       app.delete('/categorie/:id',function(req,res,next)
       {
-           res.send({type:"DELETE CATEGORIE"});
+            Produit.Categorie.findByIdAndUpdate({_id:req.params.id},{ active: false }).then(function(result){
+                 res.send(result);
+            }).catch(next);
       });
 }

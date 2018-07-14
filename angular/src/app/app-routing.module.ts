@@ -43,7 +43,9 @@ const routes: Routes = [
         path:'admin',
         component:AdminComponent,
         children : [
+                      { path:'',component:ListeCategorieComponent },
                       { path:'categorie',component:ListeCategorieComponent },
+                      { path:'categorie/new',component:DetailCategorieComponent},
                       { path:'categorie/:id',component:DetailCategorieComponent},
                       { path:'produit',component:ListeProduitComponent },
                       { path:'produit/new',component:DetailProduitComponent},

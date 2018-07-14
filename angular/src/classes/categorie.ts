@@ -8,10 +8,12 @@ export class Categorie {
      public nom:string;
      public description:string;
      public image:string;
+     public active:boolean
 
      constructor(){
        this.nom = "",
        this.description = "",
        this.image = ""
+       this.active=false;
      }
 }

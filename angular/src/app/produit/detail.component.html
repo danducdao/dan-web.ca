@@ -93,11 +93,14 @@
                     </div>
                </div>
          </div>
+         <div class="form-group">
+              <input type="hidden" class="form-control" id="active" [(ngModel)]="model.active" name="active">
+         </div>
          <button type="submit" class="btn btn-success" [disabled]="!produitForm.form.valid">
                 <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                 <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
          </button>&nbsp;
-         <button class="btn btn-success" onclick="window.location.href='/produit';return false;">
+         <button class="btn btn-success" onclick="window.location.href='admin/produit';return false;">
                  <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
                  <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
         </button>

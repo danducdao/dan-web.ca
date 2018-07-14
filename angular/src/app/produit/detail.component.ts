@@ -28,7 +28,7 @@ import { Regex } from 'src/classes/regex';
 export class DetailProduitComponent implements OnInit {
 
   private id:string;
-  public titre:string = "Ajouter";
+  public titre:string;
   public model:Produit;
   public categories:any[];
   public fournisseurs:any[];
@@ -59,6 +59,7 @@ export class DetailProduitComponent implements OnInit {
       this._categorieService.getCategorieList().subscribe( data => this.categories = data );
       this._fournisseurService.getFournisseurList().subscribe( data => this.fournisseurs = data );
       this.id = this.route.snapshot.params.id;
+      this.titre = "Ajouter";
       if(this.id)
       {
            this.titre = "Modifier";
@@ -93,12 +94,7 @@ export class DetailProduitComponent implements OnInit {
             this.setCategorie(this.categorieId);
             this.setFournisseur(this.fournisseurId);
             this._produitService.updateProduit(this.id,this.model)
-                                .subscribe(data =>{
-                                                      if(data)
-                                                      {
-                                                         this.router.navigateByUrl('/admin/produit');
-                                                      }
-                                                  });
+                                .subscribe(data => data ? this.router.navigateByUrl('/admin/produit'):"");
       }else{
             this._produitService.saveProduit({
                                                   nom : this.model.nom,
@@ -109,15 +105,9 @@ export class DetailProduitComponent implements OnInit {
                                                   quantiteRestante:parseInt(this.model.quantiteRestante),
                                                   quantiteCommande:parseInt(this.model.quantiteCommande),
                                                   reapprovisionnement:parseInt(this.model.reapprovisionnement),
-                                                  discontinue:this.model.discontinue,
-                                                  active:true
+                                                  discontinue:this.model.discontinue
                                               })
-                                 .subscribe(data =>{
-                                                      if(data)
-                                                      {
-                                                         this.router.navigateByUrl('/admin/produit');
-                                                      }
-                                                });
+                                 .subscribe(data => data ? this.router.navigateByUrl('/admin/produit'):"");
         }
    }
 }

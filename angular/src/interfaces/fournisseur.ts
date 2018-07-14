@@ -15,5 +15,6 @@ export interface IFournisseur{
       pays:string,
       telephone:string,
       fax:string,
-      siteWeb:string
+      siteWeb:string,
+      active:boolean
 }

@@ -1,5 +1,5 @@
 <article class="col-sm-4">
-    <h1>Modifer la catégorie</h1>
+    <h1>{{ titre }} la catégorie</h1>
     <form (ngSubmit)="onSubmit()" #categorieForm="ngForm">
          <div class="form-group">
              <label for="nom">Nom</label>
@@ -29,7 +29,7 @@
          </div>
          <div class="well">
             <div class="parent">
-                <img [src]="image" [alt]="" [height]="height" [width]="width"/>
+                <img [src]="model.image" [alt]="" [height]="height" [width]="width"/>
                 <button class="btn btn-danger"
                         [style.display]="!uploadStatus?'none':'inherit'"
                         style="position:absolute;top:0;right:0;border-radius:10px;margin:1px 2px 0px 0px;"
@@ -37,6 +37,9 @@
                 </button>
               </div>
          </div>
+        <div class="form-group">
+             <input type="hidden" class="form-control" id="active" [(ngModel)]="model.active" name="active">
+        </div>
          <button type="submit" class="btn btn-success" [disabled]="!categorieForm.form.valid">
                 <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                 <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>

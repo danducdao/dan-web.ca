@@ -16,24 +16,40 @@ import { HttpHeaders,HttpParams,HttpEvent } from '@angular/common/http';
   providedIn: 'root'
 })
 
-export class CategorieService extends Service {
+export class CategorieService extends Service
+{
+    constructor(private http:HttpClient) {
+         super();
+    }
 
-  constructor(private http:HttpClient) {
-       super();
-  }
+    getCategorieList():Observable<ICategorie[]>
+    {
+        this.Path = "/categorie";
+        return this.http.get<ICategorie[]>(this.Url);
+    }
 
-  getCategorieList():Observable<ICategorie[]>{
-      this.Path = "/categorie";
-      return this.http.get<ICategorie[]>(this.Url);
-  }
+    getCategorieById(id:string):Observable<ICategorie>
+    {
+        this.Path = "/categorie?id=" + id;
+        return this.http.get<ICategorie>(this.Url);
+    }
 
-  getCategorieById(id:string):Observable<ICategorie>{
-      this.Path = "/categorie?id=" + id;
-      return this.http.get<ICategorie>(this.Url);
-  }
+    saveCategorie(newCategorie:any):Observable<ICategorie>
+    {
+        this.Path = "/categorie";
+        return this.http.post<ICategorie>(this.Url,newCategorie);
+    }
 
-  updateCategorie(id:string,newCategorie:Categorie):Observable<HttpEvent<ICategorie>>{
-      this.Path = "/categorie/" + id;
-      return this.http.put<ICategorie>(this.Url,newCategorie, this.HttpOptions);
-  }
+    updateCategorie(id:string,newCategorie:Categorie):any
+    {
+        this.Path = "/categorie/" + id;
+        return this.http.put<ICategorie>(this.Url,newCategorie, this.HttpOptions);
+    }
+    
+    removeCategorieById(id:string):Observable<ICategorie>
+    {
+        this.Path = "/categorie/" + id;
+        return this.http.delete<ICategorie>(this.Url);
+    }
+
 }

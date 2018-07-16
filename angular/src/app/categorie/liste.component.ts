@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   <article>
         <div class="row" style="margin-bottom:20px;">
             <div class="col-lg-12">
-                  <a class="btn btn-primary" routerLink="{{new}}">Nouveau</a>&nbsp;
+                  <a class="btn btn-primary" routerLink="{{paths.new}}">Nouveau</a>&nbsp;
             </div>
         </div>
         <div class="row" style="margin-bottom:20px;">
@@ -35,7 +35,7 @@ import { ActivatedRoute, Router } from '@angular/router';
                   <tbody *ngFor="let categorie of categories">
                      <tr>
                         <td [ngClass]="center"><a href="#" (click)="removeCategorie($event,categorie._id)">Supprimer</a></td>
-                        <td [ngClass]="center"><a routerLink="{{categorie._id}}">Modifier</a></td>
+                        <td [ngClass]="center"><a routerLink="{{paths.modif + categorie._id}}">Modifier</a></td>
                         <td>{{ categorie.nom }}</td>
                         <td>{{ categorie.description }}</td>
                         <td [ngClass]="center">
@@ -60,20 +60,25 @@ export class ListeCategorieComponent implements OnInit {
   public showImage:boolean = false;
   public center:any = {colCenter:true};
   public enabledButton:boolean = false;
-  public new:string;
+  public paths:any;
 
   constructor(private _categorieService:CategorieService,
               private _produitService:ProduitService,
               private route: ActivatedRoute)
   {
-      this.route.url.subscribe(data => this.new = data.length > 0?'new':'categorie/new');
+      this.route.url.subscribe(data => this.setPath(this,data));
   }
-
+  setPath(obj:ListeCategorieComponent,url:any[])
+  {
+       this.paths = {
+                        new : url.length > 0?'new':'categorie/new',
+                        modif : url.length > 0?'':'categorie/'
+                    };
+  }
   ngOnInit()
   {
       this._categorieService.getCategorieList().subscribe( data => this.response(this,data));
   }
-
   response(obj:ListeCategorieComponent,data:ICategorie[]):void
   {
       obj.categories = data;
@@ -125,5 +130,4 @@ export class ListeCategorieComponent implements OnInit {
   {
        this.showImage = !this.showImage;
   }
-
 }

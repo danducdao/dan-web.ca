@@ -47,7 +47,7 @@ app.use(function(err,req,res,next){
 });
 
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: '*',
   credentials: true,
   exposedHeaders: ['Content-Type'],
 }));

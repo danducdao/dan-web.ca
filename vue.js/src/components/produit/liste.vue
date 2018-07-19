@@ -1,11 +1,13 @@
 <template>
     <div>
         <article>
+            <!--
             <div class="row" style="margin-bottom:20px;">
                 <div class="col-lg-12">
                     <router-link :to="{ path: 'produit/'}" append class="btn btn-primary">Nouveau</router-link>
                 </div>
             </div>
+            -->
             <div class="row" style="margin-bottom:20px;">
                 <div class="col-lg-9">
                     <span style="font-size:25px;"><strong>Liste des produits</strong></span>

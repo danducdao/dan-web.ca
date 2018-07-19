@@ -103,17 +103,17 @@ export class ListeCategorieComponent implements OnInit {
   {
       if(categorie)
       {
-          alert('Félicitation! Catégorie a été supprimée avec succès')
+          alert('Félicitation! Catégorie a été supprimée avec succès');
           obj._categorieService.getCategorieList().subscribe( data => this.responseCategorieList(obj,data,categorie));
+      }else
+      {
+          alert('Félicitation! Catégorie a été supprimée avec sans succès');
       }
   }
   responseCategorieList(obj:ListeCategorieComponent,categories:ICategorie[],categorie:ICategorie):void
   {
-        if(categories.length > 0)
-        {
-            obj.categories = categories;
-            obj._produitService.getProduitList().subscribe(data => this.suppimerProduit(obj,data,categorie));
-        }
+      obj.categories = categories;
+      obj._produitService.getProduitList().subscribe(data => this.suppimerProduit(obj,data,categorie));
   }
   suppimerProduit(obj:ListeCategorieComponent,produitBD:IProduit[],categorie:ICategorie):void
   {

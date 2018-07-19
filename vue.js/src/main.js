@@ -5,8 +5,11 @@ import App from './App';
 import router from './router';
 import VueResource from 'vue-resource';
 import * as VueGoogleMaps from "vue2-google-maps";
+import VueCurrencyFilter from 'vue-currency-filter'
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
+
 Vue.use(VueResource);
 Vue.use(VueGoogleMaps, {
   load: {
@@ -14,6 +17,16 @@ Vue.use(VueGoogleMaps, {
     libraries: "places" // necessary for places input
   }
 });
+Vue.use(VueCurrencyFilter,
+{
+  symbol : '$',
+  thousandsSeparator: '.',
+  fractionCount: 2,
+  fractionSeparator: '.',
+  symbolPosition: 'front',
+  symbolSpacing: false
+});
+Vue.use(Vuelidate);
 
 import "@/assets/css/fontawesome/css/font-awesome.css";
 import "@/assets/css/metisMenu/dist/metisMenu.css";
@@ -25,6 +38,7 @@ import "@/assets/css/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css";
 import "@/assets/css/fonts/pe-icon-7-stroke/css/helper.css";
 import "@/assets/css/styles/style.css";
 import "@/assets/css/styles/static_custom.css";
+import "@/assets/css/styles/styles.css";
 
 import "@/assets/js/jquery/dist/jquery.min.js";
 import "@/assets/js/jquery-ui/jquery-ui.min.js";

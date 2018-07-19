@@ -31,21 +31,22 @@
                                         <li><router-link to="/event-program">event</router-link></li>
                                         <li><router-link to="/string-program">String</router-link></li>
                                         <li><router-link to="/googleMap">Google Map</router-link></li>
+                                        <li><router-link to="/admin">Admin</router-link></li>
      							</ul>
      					</li>
      			</ul>
      	</div>
      </aside>
      <div id="wrapper">
-     		<div class="row">
-     			  <div class="col-lg-12">
-     				    <div class="hpanel">
-     					       <div class="panel-body">
-                             <router-view/>
-                       </div>
-                 </div>
-             </div>
-         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-body">
+                         <router-view/>
+                    </div>
+                </div>
+            </div>
+        </div>
      </div>
   </div>
 </template>

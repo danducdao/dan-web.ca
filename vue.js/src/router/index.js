@@ -6,6 +6,10 @@ import LoopProgram from '@/components/loop-program';
 import EventProgram from '@/components/event-program';
 import StringProgram from '@/components/string-program';
 import GoogleMap from '@/components/google-map';
+import Admin from '@/components/admin';
+import ListeProduit from '@/components/produit/liste';
+import ListeCategorie from '@/components/categorie/liste';
+import DetailCategorie from '@/components/categorie/detail';
 
 Vue.use(Router)
 
@@ -13,9 +17,9 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/first-program',
-      name: 'First program',
-      component: FirstProgram
+       path: '/first-program',
+       name: 'FirstProgram',
+       component: FirstProgram
     },
     {
        path : '/loop-program',
@@ -29,17 +33,43 @@ export default new Router({
     },
     {
         path : '/string-program',
-        name : 'string-program',
+        name : 'StringProgram',
         component : StringProgram
     },{
-      path : '/googleMap',
-      name : 'google-map',
-      component : GoogleMap
+        path : '/googleMap',
+        name : 'GoogleMap',
+        component : GoogleMap
     },{
-      path: '/',
-      name: 'home',
-      component: Home
+        path: '/',
+        name: 'Home',
+        component: Home
+    },{
+        path : '/admin',
+        name: 'Admin',
+        component : Admin,
+        children: [
+              {
+                    path : '',
+                    name : 'AdminListeCategorie',
+                    component : ListeCategorie
+              },{
+                    path : 'categorie',
+                    name : 'ListeCategorie',
+                    component : ListeCategorie
+              },{
+                    path : 'categorie/new',
+                    name : 'NewCategorie',
+                    component : DetailCategorie
+              },{
+                    path : 'categorie/:id',
+                    name : 'UpdateCategorie',
+                    component : DetailCategorie
+              },{
+                    path : 'produit',
+                    name : 'ListeProduit',
+                    component : ListeProduit
+              }        
+        ]
     }
-
   ]
 })

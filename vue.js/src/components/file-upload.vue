@@ -85,8 +85,6 @@ export default {
                 }
                 this.isValidFileSize(files[i],errors);
             }
-            console.log('after')
-            console.log(this.errors)
             return errors.length > 0?false:true;
         },
         isValidFileSize(file,errors)

@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <input type="hidden" class="form-control" id="active" name="active" v-model="model.active">
                 </div>
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success" :disabled="!$v.nom.required || !$v.nom.alpha">
                     <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                     <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
                 </button>&nbsp;
@@ -81,7 +81,9 @@ export default {
                 borderRadius:'10px',
                 margin:'1px 2px 0px 0px',
                 display : 'inherit'
-            }
+            },
+            categorieService : new CategorieService(this.$http), 
+            produitService : new ProduitService(this.$http)
         }
     },
     
@@ -89,9 +91,7 @@ export default {
 
         if(this.$route.params.id)
         {   
-            var categorie = new CategorieService(this.$http); 
-
-            categorie.getCategorieById(this.$route.params.id).then(function(data)
+            this.categorieService.getCategorieById(this.$route.params.id).then(function(data)
             {
                 var categories = data.body;
                 categories = typeof categories === 'object'?categories:"";
@@ -125,15 +125,21 @@ export default {
         {
             if(this.$route.params.id)
             {
-                var categorieService = new CategorieService(this.$http); 
-                var produitService = new ProduitService(this.$http); 
                 this.model.nom = this.nom;
-                categorieService.updateCategorie(this.$route.params.id,this.model)
+                this.categorieService.updateCategorie(this.$route.params.id,this.model)
                                 .then(data => this.responseSaveCategorie(this,
-                                              produitService,
+                                              this.produitService,
                                               data.body,
                                               this.model));
-            }     
+            }else
+            {
+                var obj = new Object();
+                obj.nom = this.nom;
+                obj.description = this.model.description;
+                obj.image = this.model.image;
+                obj.active = this.model.active;
+                this.categorieService.saveCategorie(obj).then(data => data?this.$router.push({ name: "ListeCategorie"}):"");
+            }    
         },
         removeImage : function()
         {
@@ -145,14 +151,14 @@ export default {
         },
         responseSaveCategorie(obj,produitService,OldCategorie,NewCategorie)
         {
-            var that = this;
+            var that = obj;
             produitService.produitListe().then(function(produits)
             {
                 var produitBD = produits.body.filter(produit => produit.category[0]._id == OldCategorie._id);
                 if(produitBD.length > 0)
-                    obj.updateProduit(that,produitService,produitBD,NewCategorie);
+                    that.updateProduit(that,produitService,produitBD,NewCategorie);
             });
-            this.$router.push({ name: "ListeCategorie"})
+            obj.$router.push({ name: "ListeCategorie"});
         },
         updateProduit(obj,produitService,produitBD,NewCategorie)
         {

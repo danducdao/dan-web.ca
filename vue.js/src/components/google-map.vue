@@ -38,8 +38,6 @@
 <script>
 
 import { GoogleMapService } from '../services/googleMap';
-//import * as service from '../services/service';
-//var myService = service.Service;
 
 export default {
         name: 'GoogleMap',

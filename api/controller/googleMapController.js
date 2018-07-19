@@ -3,6 +3,8 @@ Program : Google map controller
 Écrit par : Dan Duc Dao
 */
 
+const fs = require('fs');
+
 module.exports = function(app){
     app.get('/city', function(req,res)
     {

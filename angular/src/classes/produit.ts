@@ -28,6 +28,6 @@ export class Produit{
       this.quantiteCommande = "";
       this.reapprovisionnement = "";
       this.discontinue = false;
-      this.active = false;
+      this.active = true;
    }
 }

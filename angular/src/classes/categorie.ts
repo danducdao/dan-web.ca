@@ -14,6 +14,6 @@ export class Categorie {
        this.nom = "",
        this.description = "",
        this.image = ""
-       this.active=false;
+       this.active=true;
      }
 }

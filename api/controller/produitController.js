@@ -22,6 +22,7 @@ module.exports = function(app){
 
       app.post('/produit',function(req,res,next)
       {
+            console.log(req.body);
             Produit.Produit.create(req.body).then(function(result){
                res.send(result);
             }).catch(next);

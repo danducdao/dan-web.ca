@@ -1,3 +1,8 @@
+/*
+* Program : Routing
+* Écrit par : Dan Duc Dao
+*/
+
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/home';
@@ -8,6 +13,7 @@ import StringProgram from '@/components/string-program';
 import GoogleMap from '@/components/google-map';
 import Admin from '@/components/admin';
 import ListeProduit from '@/components/produit/liste';
+import DetailProduit from '@/components/produit/detail';
 import ListeCategorie from '@/components/categorie/liste';
 import DetailCategorie from '@/components/categorie/detail';
 
@@ -48,27 +54,36 @@ export default new Router({
         name: 'Admin',
         component : Admin,
         children: [
-              {
-                    path : '',
-                    name : 'AdminListeCategorie',
-                    component : ListeCategorie
-              },{
-                    path : 'categorie',
-                    name : 'ListeCategorie',
-                    component : ListeCategorie
-              },{
-                    path : 'categorie/new',
-                    name : 'NewCategorie',
-                    component : DetailCategorie
-              },{
-                    path : 'categorie/:id',
-                    name : 'UpdateCategorie',
-                    component : DetailCategorie
-              },{
-                    path : 'produit',
-                    name : 'ListeProduit',
-                    component : ListeProduit
-              }        
+            {
+                  path : '',
+                  name : 'AdminListeCategorie',
+                  component : ListeCategorie
+            },{
+                  path : 'categorie',
+                  name : 'ListeCategorie',
+                  component : ListeCategorie
+            },{
+                  path : 'categorie/new',
+                  name : 'NewCategorie',
+                  component : DetailCategorie
+            },{
+                  path : 'categorie/:id',
+                  name : 'UpdateCategorie',
+                  component : DetailCategorie
+            },{
+                  path : 'produit',
+                  name : 'ListeProduit',
+                  component : ListeProduit
+            },{
+                  path : 'produit/new',
+                  name : 'ListeProduit',
+                  component : DetailProduit
+            },{
+                  path : 'produit/:id',
+                  name : 'UpdateProduit',
+                  component : DetailProduit
+             } 
+
         ]
     }
   ]

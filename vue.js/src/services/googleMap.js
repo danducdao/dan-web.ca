@@ -1,3 +1,8 @@
+/*
+* Program : Classe GoogleMapService
+* Écrit par : Dan Duc Dao
+*/
+
 import { Service }  from '../services/service';
 
 export var GoogleMapService = function(http)

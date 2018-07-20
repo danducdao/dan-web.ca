@@ -44,7 +44,7 @@ import { ProduitService } from '../../services/produit';
 import { htmlTag } from '../../inc/helper';
 
 export default {
-    name: 'Categorie',
+    name: 'ListeCategorie',
     data () {
         return {
             categories : [],

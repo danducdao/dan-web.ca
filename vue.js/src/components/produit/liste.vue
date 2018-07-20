@@ -1,13 +1,11 @@
 <template>
     <div>
         <article>
-            <!--
             <div class="row" style="margin-bottom:20px;">
                 <div class="col-lg-12">
-                    <router-link :to="{ path: 'produit/'}" append class="btn btn-primary">Nouveau</router-link>
+                    <router-link :to="{ path: 'new'}" append class="btn btn-primary">Nouveau</router-link>
                 </div>
             </div>
-            -->
             <div class="row" style="margin-bottom:20px;">
                 <div class="col-lg-9">
                     <span style="font-size:25px;"><strong>Liste des produits</strong></span>
@@ -22,11 +20,8 @@
                     </thead>
                     <tbody>
                         <tr v-for="produit in produits">
-                        <!--
                             <td v-bind:class="center" ><a href="#">Supprimer</a></td>
-                            <td v-bind:class="center"><router-link :to="{ path: 'produit/' + produit._id}" append>Modifier</router-link>
-</td>
--->
+                            <td v-bind:class="center"><router-link :to="{ path: produit._id}" append>Modifier</router-link></td>
                             <td>{{ produit.nom }}</td>
                             <td>{{ produit.category[0].nom }}</td>
                             <td>{{ produit.fournisseur.compagnie }}</td>
@@ -55,11 +50,13 @@ import { ProduitService } from '../../services/produit';
 import { htmlTag } from '../../inc/helper';
 
 export default {
-    name: 'Liste',
+    name: 'ListeProduit',
     data () {
         return {
             produits:[],
             title: [
+                    '',
+                    '',
                     'Nom',
                     'Catégorie',
                     'Fournisseur',

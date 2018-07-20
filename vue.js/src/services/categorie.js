@@ -1,3 +1,8 @@
+/*
+* Program : Classe CategorieService
+* Écrit par : Dan Duc Dao
+*/
+
 import { Service }  from '../services/service';
 
 export var CategorieService = function(http)

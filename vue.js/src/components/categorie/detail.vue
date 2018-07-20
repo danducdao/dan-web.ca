@@ -52,7 +52,7 @@
 
 import { CategorieService } from '../../services/categorie';
 import { ProduitService } from '../../services/produit';
-import { htmlTag, alpha } from '../../inc/helper';
+import { alpha } from '../../inc/helper';
 import { Categorie } from '../../classes/categorie';
 import { required } from 'vuelidate/lib/validators';
 import  fileUpload  from '../file-upload';
@@ -60,7 +60,7 @@ import  fileUpload  from '../file-upload';
 const HEIGHT = 135, WIDTH = 192, NONE = 0;
 
 export default {
-    name: 'Categorie',
+    name: 'CategorieDetail',
     components : {
         'app-file-upload' : fileUpload
     },
@@ -87,8 +87,8 @@ export default {
         }
     },
     
-    created(){
-
+    created()
+    {
         if(this.$route.params.id)
         {   
             this.categorieService.getCategorieById(this.$route.params.id).then(function(data)
@@ -103,10 +103,6 @@ export default {
         }
     },
     methods : {
-        htmlTag : function(value)
-        {
-            return htmlTag(value);
-        },
         UploadStatus(uploadStatus)
         {
             this.uploadStatus = uploadStatus; 
@@ -137,6 +133,7 @@ export default {
                 obj.nom = this.nom;
                 obj.description = this.model.description;
                 obj.image = this.model.image;
+                obj.dateCreation = this.model.dateCreation;
                 obj.active = this.model.active;
                 this.categorieService.saveCategorie(obj).then(data => data?this.$router.push({ name: "ListeCategorie"}):"");
             }    

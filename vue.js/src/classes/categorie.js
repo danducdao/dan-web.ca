@@ -1,8 +1,14 @@
+/*
+* Program : Classe Categorie
+* Écrit par : Dan Duc Dao
+*/
+
 export var Categorie = function()
 {
     this._id = "";
     this.nom = "";
     this.description = "";
     this.image = "";
-    this.active = "false";
+    this.dateCreation = new Date().toLocaleDateString("en-US");
+    this.active = true; 
 }

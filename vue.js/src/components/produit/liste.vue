@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="produit in produits">
-                            <td v-bind:class="center" ><a href="#">Supprimer</a></td>
+                            <td v-bind:class="center" ><a href="#" @click.prevent="removeProduit(produit._id)">Supprimer</a></td>
                             <td v-bind:class="center"><router-link :to="{ path: produit._id}" append>Modifier</router-link></td>
                             <td>{{ produit.nom }}</td>
                             <td>{{ produit.category[0].nom }}</td>
@@ -69,20 +69,31 @@ export default {
                     'Active'
                 ],
             center:{colCenter:true},
-            right:{colRight:true}
+            right:{colRight:true},
+            produitService : new ProduitService(this.$http)
         }
     },
     methods :{
         htmlTag : function(value)
         {
             return htmlTag(value);
+        },
+        removeProduit(produitId)
+        {
+            if(confirm("Êtes-vous sûre de vouloir supprimer ce produit?"))
+            {
+                this.produitService.removeProduitById(produitId).then(data => data?this.response(this):alert('Félicitation! Produit a été supprimé avec sans succès'));
+            }
+        },
+        response(obj)
+        {
+            alert('Félicitation! Produit a été supprimé avec succès');
+            obj.produitService.produitListe().then( data => obj.produits = data.body);
         }
     },
     created() 
     {
-        var produit = new ProduitService(this.$http);
-
-        produit.produitListe().then(function(data)
+        this.produitService.produitListe().then(function(data)
         {
             var produits = data.body;
             this.produits = produits.length > 0?produits:"";

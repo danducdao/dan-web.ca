@@ -97,16 +97,18 @@ export class DetailProduitComponent implements OnInit {
                                 .subscribe(data => data ? this.router.navigateByUrl('/admin/produit'):"");
       }else{
             this._produitService.saveProduit({
-                                                  nom : this.model.nom,
-                                                  category:this.model.category,
-                                                  fournisseur:this.model.fournisseur,
-                                                  quantite:parseInt(this.model.quantite),
-                                                  prix:this.model.prix,
-                                                  quantiteRestante:parseInt(this.model.quantiteRestante),
-                                                  quantiteCommande:parseInt(this.model.quantiteCommande),
-                                                  reapprovisionnement:parseInt(this.model.reapprovisionnement),
-                                                  discontinue:this.model.discontinue
-                                              })
+                                                nom : this.model.nom,
+                                                category:this.model.category,
+                                                fournisseur:this.model.fournisseur,
+                                                quantite:parseInt(this.model.quantite),
+                                                prix:this.model.prix,
+                                                quantiteRestante:parseInt(this.model.quantiteRestante),
+                                                quantiteCommande:parseInt(this.model.quantiteCommande),
+                                                reapprovisionnement:parseInt(this.model.reapprovisionnement),
+                                                discontinue:this.model.discontinue,
+                                                dateCreation : this.model.dateCreation,
+                                                active : this.model.active
+                                            })
                                  .subscribe(data => data ? this.router.navigateByUrl('/admin/produit'):"");
         }
    }

@@ -37,8 +37,7 @@
 
 <script>
 
-import * as service from '../services/service';
-var myService = service.Service;
+import { GoogleMapService } from '../services/googleMap';
 
 export default {
         name: 'GoogleMap',
@@ -50,7 +49,8 @@ export default {
                 center: { lat: 45.508, lng: -73.587 },
                 markers: [],
                 places: [],
-                currentPlace: null
+                currentPlace: null,
+                googleMapService : new GoogleMapService(this.$http)
             }
         },
         methods: {  
@@ -101,7 +101,7 @@ export default {
             }
         },
         created(){
-                myService.getVilles(this.$http).then(function(data){
+                this.googleMapService.getVilles().then(function(data){
                     this.listVilles = data.body;
                     for(var i=0; i < this.listVilles.length;i++)
                     {

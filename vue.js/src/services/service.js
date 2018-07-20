@@ -27,10 +27,6 @@ export var Service = function(){
     return {
         setPath : setPath,
         getUrl : getUrl,
-        getHttpOptions : getHttpOptions,
-        getVilles:function(http){
-                setPath('/city');
-                return http.get(getUrl());
-        }
+        getHttpOptions : getHttpOptions
     }
 };

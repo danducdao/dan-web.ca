@@ -4,5 +4,5 @@ export var Categorie = function()
     this.nom = "";
     this.description = "";
     this.image = "";
-    this.active = "";
+    this.active = "false";
 }

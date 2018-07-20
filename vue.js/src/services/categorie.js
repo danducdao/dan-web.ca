@@ -20,6 +20,13 @@ CategorieService.prototype = {
         return this.http.get(this.service.getUrl());
     },
 
+    saveCategorie : function(newCategorie)
+    {
+        console.log(newCategorie.nom + "=====" + newCategorie.description);
+        this.service.setPath('/categorie');
+        return this.http.post(this.service.getUrl(),newCategorie);
+    },
+
     updateCategorie : function(id,categorie)
     { 
         this.service.setPath('/categorie/' + id);

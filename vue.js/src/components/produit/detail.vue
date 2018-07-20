@@ -1,7 +1,7 @@
 <template>
     <div>
         <article class="col-sm-4">
-            <h1>Ajouter la produit</h1>
+            <h1>{{titre}} la produit</h1>
             <form v-on:submit.prevent="onSubmit">
                 <div class="form-group" :class="{ 'form-group--error': $v.model.nom.$error }">
                     <label class="form__label">Nom</label>
@@ -89,10 +89,7 @@
                 </button>
             </form>
         </article>
-
     </div>
-
-
 </template>
 
 <script>
@@ -109,6 +106,7 @@ export default {
     data() 
     {
         return {
+            titre : "Ajouter",
             categories : [],
             fournisseurs : [],
             produitService : new ProduitService(this.$http),
@@ -123,7 +121,6 @@ export default {
         this.categorieService.categorieListe().then(function(data)
         {
             var categories = data.body;
-            console.log(data.body[0].dateCreation);
             this.categories = categories.length > 0?categories:"";
         });
 
@@ -135,6 +132,7 @@ export default {
 
         if(this.$route.params.id)
         { 
+            this.titre = "Modifier";
             this.produitService.getProduitById(this.$route.params.id).then(data => this.response(this,data.body));
         }
     },

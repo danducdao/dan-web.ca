@@ -14,7 +14,7 @@ module.exports = function(app){
                      res.send(result);
                   }).catch(next);
             }else{
-                  Produit.Produit.find({ active : true }).then(function(result){
+                  Produit.Produit.find({ active : true }).sort({ nom : 'asc'}).then(function(result){
                      res.send(result);
                   });
             }

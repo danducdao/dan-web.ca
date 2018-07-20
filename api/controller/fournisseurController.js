@@ -11,7 +11,7 @@ module.exports = function(app)
     {
         if(!req.query.id)
         {
-             Produit.Fournisseur.find({active : true}).then(function(result){
+             Produit.Fournisseur.find({active : true}).sort({ compagnie : 'asc'}).then(function(result){
                  res.send(result);
              });
         }else{

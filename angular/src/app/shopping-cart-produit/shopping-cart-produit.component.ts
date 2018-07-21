@@ -12,7 +12,7 @@ import { IProduit } from 'src/interfaces/produit';
     template: `
       <article>
        <div class="row show-grid">
-           <div class="col-sm-2" style="max-height:190px;"*ngFor="let produit of produits" >
+           <div class="col-sm-2" style="max-height:190px;" *ngFor="let produit of produits" >
                <div><img src="../assets/images/placeholder.gif" /></div>
                <div>{{produit.nom}}</div>
                <div>{{produit.prix | currency}}</div>

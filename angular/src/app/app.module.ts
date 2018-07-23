@@ -26,6 +26,7 @@ import { ShoppingCartTotalComponent } from './shopping-cart-total/shopping-cart-
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FiltreHtmlTagPipe } from 'src/pipes/filtre-html-tag.pipe';
 import { AdminComponent } from './admin/admin.component';
+import { ShoppingCartBasketComponent } from './shopping-cart-basket/shopping-cart-basket.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AdminComponent } from './admin/admin.component';
     ShoppingCartTotalComponent,
     FileUploadComponent,
     FiltreHtmlTagPipe,
-    AdminComponent
+    AdminComponent,
+    ShoppingCartBasketComponent
   ],
   imports: [
     BrowserModule,

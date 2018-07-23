@@ -5,39 +5,39 @@
 
 export class LocalStorage {
 
-    static setItem(property:string,value:any){
-         localStorage.setItem(property, value);
+    static setItem(name:string,value:any){
+         localStorage.setItem(name, JSON.stringify(value));
     }
 
-    static getItem(property:string):any{
-        return localStorage.getItem(property);
+    static getItem(name:string):any{
+        return JSON.parse(localStorage.getItem(name));
     }
 
-    static removeItem(property:string):void{
-        localStorage.removeItem(property);
+    static removeItem(name:string):void{
+        localStorage.removeItem(name);
     }
 
-    static itemExist(property:string)
+    static itemExist(name:string)
     {
-        return localStorage.getItem(property) ? true : false;
+        return JSON.parse(localStorage.getItem(name)) ? true : false;
     }
 }
 
 export class SessionStorage{
-    static setItem(property:string,value:any){
-         sessionStorage.setItem(property, value);
+    static setItem(name:string,value:any){
+         sessionStorage.setItem(name, JSON.stringify(value));
     }
 
     static getItem(property:string):any{
-        return sessionStorage.getItem(property);
+        return JSON.parse(sessionStorage.getItem(name));
     }
 
-    static removeItem(property:string):void{
-        sessionStorage.removeItem(property);
+    static removeItem(name:string):void{
+        sessionStorage.removeItem(name);
     }
 
-    static itemExist(property:string)
+    static itemExist(name:string)
     {
-        return sessionStorage.getItem(property) ? true : false;
+        return JSON.parse(sessionStorage.getItem(name)) ? true : false;
     }
 }

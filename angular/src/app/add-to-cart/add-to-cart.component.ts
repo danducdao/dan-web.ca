@@ -4,9 +4,8 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { IProduit } from 'src/interfaces/produit';
-import { ProduitService } from 'src/services/produit.service';
 import { LocalStorage } from 'src/classes/localstorage';
+import { ShoppingCart } from 'src/classes/shoppingcart';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -15,62 +14,75 @@ import { LocalStorage } from 'src/classes/localstorage';
 })
 export class AddToCartComponent implements OnInit {
 
-  public carts:any[] = [];
-  public total:number = 0;
-  public trierPar:string = 'nom';
+  public carts:Array<ShoppingCart> = [];
+  public TPS:number = 9.15;
+  public TVQ:number = 7.13;
+  public center:any = {colCenter:true};
+  public right:any = {colRight:true};
 
-  constructor(private _produitService:ProduitService) { }
+  constructor() { }
 
   ngOnInit() {
-      this._produitService.getProduitList().subscribe(data => this.selectProduit(this,data));
+      this.carts = LocalStorage.getItem('carts');
   }
-
-  selectProduit(obj:AddToCartComponent,listProduit:IProduit[]):void{
-       obj.total = 0;
-       listProduit.forEach(function(value){
-             if(LocalStorage.itemExist(value._id))
-             {
-                  let qte = LocalStorage.getItem(value._id);
-                  let newCart = {
-                                   _id:value._id,
-                                   nom:value.nom,
-                                   qte:<string>qte,
-                                   prix:value.prix,
-                                   total: value.prix * qte
-                                }
-                  obj.carts.push( newCart );
-                  obj.total += Math.round(value.prix * qte);
-             }
-       });
-       this.sortCart(obj.carts,'nom');
+  Total()
+  {
+     return this.calcTotal();
   }
-  updateCart(id:string):void{
-        if(LocalStorage.itemExist(id))
-        {
-             LocalStorage.setItem(id,(<HTMLInputElement>document.getElementById(id)).value);
-             this.updateProduitList();
-        }
+  TaxeTPS()
+  {
+     return this.calcTPS();
   }
-  removeCart(id:string):void{
-       if(LocalStorage.itemExist(id))
-       {
-           LocalStorage.removeItem(id);
-           this.updateProduitList();
-       }
+  TaxeTVQ()
+  {
+     return this.calcTVQ();
   }
-  updateProduitList():void{
-      this.carts.length = 0;
-      this._produitService.getProduitList().subscribe(data => this.selectProduit(this,data));
+  GrandeTotal()
+  {
+      return this.calcTotal() + this.calcTPS() + this.calcTVQ();
   }
-  sortCart(cart:any[], trierPar){
-        cart.sort((a: any, b: any) => {
-            if (a[trierPar] < b[trierPar]) {
-                return -1;
-            } else if (a[trierPar] > b[trierPar]) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
+  calcTotal()
+  {
+      var total:number = 0;
+      var len = this.carts.length;
+      for(var i=0;i<len;i++)
+      {
+          total += this.carts[i].total;
+      }
+      return total;
+  }
+  calcTPS()
+  {
+      return (this.calcTotal() * this.TPS) / 100;
+  }
+  calcTVQ()
+  {
+      return (this.calcTotal() * this.TVQ) / 100;
+  }
+  updateCart(cartId)
+  {
+      var quantite = parseInt((<HTMLInputElement>document.getElementById(cartId)).value);
+      if(!quantite)
+      {
+          alert('Désolé! Veuillez entrer une quantité');
+          return;
+      }
+      this.carts.map(function(value){
+           if(value._id.indexOf(cartId) !== -1)
+           {
+                value.quantite = quantite;
+                value.total = value.prix * value.quantite;
+                return value;
+           }
+      });
+      LocalStorage.setItem('carts',this.carts);
+   }
+   removeCart(cartId)
+   {
+      if(confirm('Êtes-vous sûre de vouloir supprimer ce item?'))
+      {
+          this.carts = this.carts.filter(data => data._id.indexOf(cartId) == -1);
+          LocalStorage.setItem('carts',this.carts);
+      }
    }
 }

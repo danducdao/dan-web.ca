@@ -59,7 +59,6 @@ export default {
         },
         itemExiste(categorieId)
         {
-            console.log(this.shoppingCartList(categorieId));
             return this.shoppingCartList(categorieId).length > 0;
         },
         onSubmit(event,shoppingCartId)
@@ -68,6 +67,7 @@ export default {
             if(!quantite)
             {
                 alert('Désolé! Veuillez entrer une quantité');
+                document.getElementById(shoppingCartId).focus();
                 return;
             }
             var carts = [];
@@ -83,7 +83,7 @@ export default {
             }else
             {
                 var that = this;
-                carts =this.localStorage.getItem('carts');
+                carts = this.localStorage.getItem('carts');
                 var itemTrouve = carts.filter(data => data._id.indexOf(shoppingCartId) !== -1);
                 if(itemTrouve.length == 0)
                 {

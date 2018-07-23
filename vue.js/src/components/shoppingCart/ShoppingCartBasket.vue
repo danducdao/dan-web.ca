@@ -2,7 +2,7 @@
     <article>
         <div class="hpanel hblue">
             <div class="panel-heading hbuilt"><strong>Votre Panier</strong></div>
-            <div class="panel-body" v-if="this.baskets.length > 0">
+            <div class="panel-body" v-if="baskets.length > 0">
                 <table class="table table-bordered" cellspacing="1" cellpadding="1">
                         <thead>
                             <tr>

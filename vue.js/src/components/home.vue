@@ -51,7 +51,7 @@
                 <div class="panel-tools">
                     <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 </div>
-                Node JS, Python 3 for beginners
+                Node JS, PHP7 New Features
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -73,6 +73,35 @@
                         </p>
                     </div>
                     <div class="col-lg-6">
+                         <label class="col-sm-2 control-label">Vidéo : </label>
+                            <select v-model="tutoriels.PHP7.itemSelected" v-on:change="tutoriels.PHP7.selectedItem()">
+                                    <option v-for="(item,index) in tutoriels.PHP7.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                            </select>
+                            <h2 class="title"><strong>PHP7 New Features</strong></h2>
+                            <p>
+                                    <iframe width="580" height="315" v-bind:src="tutoriels.PHP7.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </p>
+                            <p class="titre">
+                                <span>{{tutoriels.PHP7.count}} - {{ tutoriels.PHP7.titre }}</span>
+                            </p>
+                            <p>
+                                <button type="button" class="btn btn-primary" id="previous"  v-on:click="tutoriels.PHP7.previous()">Précédent</button>
+                                <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.PHP7.next()">Suivant</button>
+                            </p>    
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <div class="hpanel col-md-9">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                </div>
+                Python 3 for beginners, Python OOP, 
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 border-right">
                         <label class="col-sm-2 control-label">Vidéo : </label>
                         <select v-model="tutoriels.Python3.itemSelected" v-on:change="tutoriels.Python3.selectedItem()">
                                 <option v-for="(item,index) in tutoriels.Python3.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -89,19 +118,7 @@
                             <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.Python3.next()">Suivant</button>
                         </p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="hpanel col-md-9">
-            <div class="panel-heading hbuilt">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                </div>
-                Python OOP, PHP7 New Features
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6 border-right">
+                    <div class="col-lg-6">
                         <label class="col-sm-2 control-label">Vidéo : </label>
                         <select v-model="tutoriels.PythonOOP.itemSelected" v-on:change="tutoriels.PythonOOP.selectedItem()">
                                 <option v-for="(item,index) in tutoriels.PythonOOP.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -117,23 +134,6 @@
                             <button type="button" class="btn btn-primary" id="previous"  v-on:click="tutoriels.PythonOOP.previous()">Précédent</button>
                             <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.PythonOOP.next()">Suivant</button>
                         </p>
-                    </div>
-                    <div class="col-lg-6">
-                         <label class="col-sm-2 control-label">Vidéo : </label>
-                            <select v-model="tutoriels.PHP7.itemSelected" v-on:change="tutoriels.PHP7.selectedItem()">
-                                    <option v-for="(item,index) in tutoriels.PHP7.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
-                            </select>
-                            <h2 class="title"><strong>PHP7 New Features</strong></h2>
-                            <p>
-                                    <iframe width="580" height="315" v-bind:src="tutoriels.PHP7.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                            </p>
-                            <p class="titre">
-                                <span>{{tutoriels.PHP7.count}} - {{ tutoriels.PHP7.titre }}</span>
-                            </p>
-                            <p>
-                                <button type="button" class="btn btn-primary" id="previous"  v-on:click="tutoriels.PHP7.previous()">Précédent</button>
-                                <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.PHP7.next()">Suivant</button>
-                            </p>    
                     </div>
                 </div>
             </div>

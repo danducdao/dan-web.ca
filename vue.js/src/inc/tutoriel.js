@@ -190,6 +190,17 @@ export default function youtubeEmbedUrls(){
                     {titre:"PHP7 Generator new features",url:"https://www.youtube.com/embed/A81TAMMb3sk"},
                     {titre:"Deprecated features of PHP7",url:"https://www.youtube.com/embed/sioobwq0TAk"},
                     {titre:"Conclusion",url:"https://www.youtube.com/embed/ju13ePdnqNM"},
+                ],
+                [
+                    {titre:"Install and Setup for Mac and Windows",url:"https://www.youtube.com/embed/YYXdXT2l-Gg"},
+                    {titre:"Strings - Working with Textual Data",url:"https://www.youtube.com/embed/k9TUPpGqYTo"},
+                    {titre:"Integers and Floats - Working with Numeric Data",url:"https://www.youtube.com/embed/khKv-8q7YmY"},
+                    {titre:"Lists, Tuples, and Sets",url:"https://www.youtube.com/embed/W8KRzm-HUcc"},
+                    {titre:"Dictionaries - Working with Key-Value Pairs",url:"https://www.youtube.com/embed/daefaLgNkw0"},
+                    {titre:"Conditionals and Booleans - If, Else, and Elif Statements",url:"https://www.youtube.com/embed/DZwmZ8Usvnk"},
+                    {titre:"Loops and Iterations - For/While Loops",url:"https://www.youtube.com/embed/6iF8Xb7Z3wQ"},
+                    {titre:"Functions",url:"https://www.youtube.com/embed/9Os0o3wzS_I"},
+                    {titre:"Functions",url:"https://www.youtube.com/embed/9Os0o3wzS_I"},
                 ]
              ];
 };

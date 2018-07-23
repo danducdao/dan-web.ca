@@ -24,11 +24,10 @@
                                 <td :class="center"><router-link :to="{ path: $route.path==='/admin'?'categorie/' + categorie._id:categorie._id}" append>Modifier</router-link></td>
                                 <td>{{categorie.nom}}</td>
                                 <td>{{categorie.description}}</td>
+                                <td :class="center"><img :src="categorie.image" :alt="categorie.nom" :style="imgStyle" /></td>
                                 <td :class="center">
                                     <span v-html="htmlTag(categorie.active)"></span>
                                 </td>
-                                <td :class="center"><img :src="categorie.image" :alt="categorie.nom" :style="imgStyle" /></td>
-                                
                             </tr>
                         </tbody>
                   </table>

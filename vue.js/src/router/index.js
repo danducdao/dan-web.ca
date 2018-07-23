@@ -16,6 +16,8 @@ import ListeProduit from '@/components/produit/liste';
 import DetailProduit from '@/components/produit/detail';
 import ListeCategorie from '@/components/categorie/liste';
 import DetailCategorie from '@/components/categorie/detail';
+import ShoppingCart from '@/components/shoppingCart/shoppingCart';
+import AddToCart from '@/components/shoppingCart/addToCart';
 
 Vue.use(Router)
 
@@ -83,8 +85,16 @@ export default new Router({
                   name : 'UpdateProduit',
                   component : DetailProduit
              } 
-
         ]
-    }
+    },{
+          path : '/shoppingcart',
+          name : 'ShoppingCart',
+          component : ShoppingCart
+      },{
+          path : '/addtocart',
+          name : 'AddToCart',
+          component : AddToCart 
+      }
+
   ]
 })

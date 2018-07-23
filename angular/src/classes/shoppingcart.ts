@@ -1,5 +1,5 @@
 /*
-* Program : Class DetailCategorie
+* Program : Class ShoppingCart
 * Écrit par : Dan Duc Dao
 */
 

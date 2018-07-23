@@ -19,34 +19,36 @@ import { ActivatedRoute, Router } from '@angular/router';
                   <a class="btn btn-primary" routerLink="{{paths.new}}">Nouveau</a>&nbsp;
             </div>
         </div>
-        <div class="row" style="margin-bottom:20px;">
-            <div class="col-lg-9">
-                  <span style="font-size:25px;"><strong>Liste des catégories</strong></span>
-            </div>
-        </div>
-        <div class="row">
-                <table class="table table-bordered" cellspacing="1" cellpadding="1">
-                   <thead>
-                    <tr>
-                      <th *ngFor="let value of ['','','Nom','Description','Active']" [ngClass]="center" style="vertical-align:middle">{{value}}</th>
-                      <th [ngClass]="center"><button [disabled]="enabledButton?'':'enabled'" class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let categorie of categories">
-                     <tr>
-                        <td [ngClass]="center"><a href="#" (click)="removeCategorie($event,categorie._id)">Supprimer</a></td>
-                        <td [ngClass]="center"><a routerLink="{{paths.modif + categorie._id}}">Modifier</a></td>
-                        <td>{{ categorie.nom }}</td>
-                        <td>{{ categorie.description }}</td>
-                        <td [ngClass]="center">
-                             <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
-                        </td>
-                        <td [ngClass]="center">
-                            <img *ngIf="showImage" [src]="categorie.image" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" style="border-radius:10px;"/>
-                        </td>
-                      </tr>
-                   </tbody>
-                </table>
+        <div *ngIf="categories.length > 0">
+              <div class="row" style="margin-bottom:20px;">
+                  <div class="col-lg-9">
+                        <span style="font-size:25px;"><strong>Liste des catégories</strong></span>
+                  </div>
+              </div>
+              <div class="row">
+                      <table class="table table-bordered" cellspacing="1" cellpadding="1">
+                         <thead>
+                          <tr>
+                            <th *ngFor="let value of ['','','Nom','Description','Active']" [ngClass]="center" style="vertical-align:middle">{{value}}</th>
+                            <th [ngClass]="center"><button [disabled]="enabledButton?'':'enabled'" class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let categorie of categories">
+                           <tr>
+                              <td [ngClass]="center"><a href="#" (click)="removeCategorie($event,categorie._id)">Supprimer</a></td>
+                              <td [ngClass]="center"><a routerLink="{{paths.modif + categorie._id}}">Modifier</a></td>
+                              <td>{{ categorie.nom }}</td>
+                              <td>{{ categorie.description }}</td>
+                              <td [ngClass]="center">
+                                   <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
+                              </td>
+                              <td [ngClass]="center">
+                                  <img *ngIf="showImage" [src]="categorie.image" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" style="border-radius:10px;"/>
+                              </td>
+                            </tr>
+                         </tbody>
+                      </table>
+              </div>
         </div>
     </article>
   `,

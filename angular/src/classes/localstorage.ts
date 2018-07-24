@@ -3,9 +3,9 @@
 * Écrit par : Dan Duc Dao
 */
 
-export class LocalStorage {
-
-    static setItem(name:string,value:any){
+export class LocalStorage
+{
+    static setItem(name:string,value:any):void{
          localStorage.setItem(name, JSON.stringify(value));
     }
 
@@ -17,14 +17,15 @@ export class LocalStorage {
         localStorage.removeItem(name);
     }
 
-    static itemExist(name:string)
+    static itemExist(name:string):boolean
     {
         return JSON.parse(localStorage.getItem(name)) ? true : false;
     }
 }
 
-export class SessionStorage{
-    static setItem(name:string,value:any){
+export class SessionStorage
+{
+    static setItem(name:string,value:any):void{
          sessionStorage.setItem(name, JSON.stringify(value));
     }
 
@@ -36,7 +37,7 @@ export class SessionStorage{
         sessionStorage.removeItem(name);
     }
 
-    static itemExist(name:string)
+    static itemExist(name:string):boolean
     {
         return JSON.parse(sessionStorage.getItem(name)) ? true : false;
     }

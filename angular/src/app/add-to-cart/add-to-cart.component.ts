@@ -25,23 +25,23 @@ export class AddToCartComponent implements OnInit {
   ngOnInit() {
       this.carts = LocalStorage.getItem('carts');
   }
-  Total()
+  Total():number
   {
      return this.calcTotal();
   }
-  TaxeTPS()
+  TaxeTPS():number
   {
      return this.calcTPS();
   }
-  TaxeTVQ()
+  TaxeTVQ():number
   {
      return this.calcTVQ();
   }
-  GrandeTotal()
+  GrandeTotal():number
   {
       return this.calcTotal() + this.calcTPS() + this.calcTVQ();
   }
-  calcTotal()
+  calcTotal():number
   {
       var total:number = 0;
       var len = this.carts.length;
@@ -51,15 +51,15 @@ export class AddToCartComponent implements OnInit {
       }
       return total;
   }
-  calcTPS()
+  calcTPS():number
   {
       return (this.calcTotal() * this.TPS) / 100;
   }
-  calcTVQ()
+  calcTVQ():number
   {
       return (this.calcTotal() * this.TVQ) / 100;
   }
-  updateCart(cartId)
+  updateCart(cartId):void
   {
       var quantite = parseInt((<HTMLInputElement>document.getElementById(cartId)).value);
       if(!quantite)
@@ -77,7 +77,7 @@ export class AddToCartComponent implements OnInit {
       });
       LocalStorage.setItem('carts',this.carts);
    }
-   removeCart(cartId)
+   removeCart(cartId):void
    {
       if(confirm('Êtes-vous sûre de vouloir supprimer ce item?'))
       {

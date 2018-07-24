@@ -13,26 +13,28 @@ import { ShoppingCartBasketComponent } from '../shopping-cart-basket/shopping-ca
 @Component({
     selector: 'app-shopping-cart-produit',
     template: `
-      <article>
-       <div class="row show-grid" *ngIf="shoppingCartList.length > 0;else emptyCart">
-           <div class="col-sm-2" style="max-height:220px;" *ngFor="let shoppingCart of shoppingCartList" >
-               <div><img src="../assets/images/placeholder.gif" /></div>
-               <div>{{shoppingCart.nom}}</div>
-               <div>{{shoppingCart.prix | currency}}</div>
-               <div>
-                    <input [id]="shoppingCart._id" value="1" size="4"/>
-               </div><br>
-               <div>
-                     <button type="submit" class="btn btn-success" (click)="onSubmit($event,shoppingCart._id)">
-                         <i class="fa fa-check-square-o" style="font-size:18px;float:left;"></i>
-                         <span style="margin-left:5px;font-weight:bold;font-size:12px;">Ajouter</span>
-                     </button>
-               </div>
-           </div>
-       </div>
-       <ng-template #emptyCart>Aucun produit a été trouvé</ng-template>
-      </article>
-    `,
+                  <article>
+                     <div class="row show-grid" *ngIf="shoppingCartList.length > 0;else emptyCart">
+                         <div class="col-sm-2" style="max-height:220px;" *ngFor="let shoppingCart of shoppingCartList" >
+                             <div><img src="../assets/images/placeholder.gif" /></div>
+                             <div>{{shoppingCart.nom}}</div>
+                             <div>{{shoppingCart.prix | currency}}</div>
+                             <div>
+                                  <input [id]="shoppingCart._id" value="1" size="4"/>
+                             </div><br>
+                             <div>
+                                   <button type="submit" class="btn btn-success" (click)="onSubmit($event,shoppingCart._id)">
+                                       <i class="fa fa-check-square-o" style="font-size:18px;float:left;"></i>
+                                       <span style="margin-left:5px;font-weight:bold;font-size:12px;">Ajouter</span>
+                                   </button>
+                             </div>
+                         </div>
+                     </div>
+                     <ng-template #emptyCart>
+                          <div style="color:red;">Aucun produit a été trouvé</div>
+                     </ng-template>
+                  </article>
+              `,
     styles: []
 })
 export class ShoppingCartProduitComponent implements OnInit{
@@ -47,11 +49,11 @@ export class ShoppingCartProduitComponent implements OnInit{
     ngOnInit() {
           this._shoppingCartService.shoppingCartProduitList().subscribe(data => this.callback(this,data));
     }
-    callback(obj:ShoppingCartProduitComponent,data)
+    callback(obj:ShoppingCartProduitComponent,data):void
     {
          this.shoppingCartList = data.filter((data:IProduit) => data.category[0]._id.indexOf(obj.categorieId) !== -1)
     }
-    onSubmit(event,shoppingCartId)
+    onSubmit(event,shoppingCartId):void
     {
          let quantite:number = parseInt((<HTMLInputElement>document.getElementById(shoppingCartId)).value);
          if(!quantite)
@@ -88,7 +90,7 @@ export class ShoppingCartProduitComponent implements OnInit{
                      if(value._id.indexOf(shoppingCartId) !== -1)
                      {
                          value.quantite += quantite;
-                         value.total += value.prix * value.quantite;
+                         value.total = value.prix * value.quantite;
                          return value;
                      }
                   });

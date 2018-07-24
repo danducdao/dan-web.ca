@@ -48,12 +48,12 @@ export class ShoppingCartBasketComponent implements OnInit {
   ngOnInit() {
       this.baskets = LocalStorage.getItem('carts');
   }
-  saveCart(carts:Array<ShoppingCart>)
+  saveCart(carts:Array<ShoppingCart>):void
   {
       this.baskets = carts;
       LocalStorage.setItem('carts',carts);
   }
-  removeItem(event,shoppingCartId)
+  removeItem(event,shoppingCartId):void
   {
       if(this.baskets.length == 1)
       {

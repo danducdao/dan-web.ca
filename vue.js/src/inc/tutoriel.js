@@ -200,7 +200,7 @@ export default function youtubeEmbedUrls(){
                     {titre:"Conditionals and Booleans - If, Else, and Elif Statements",url:"https://www.youtube.com/embed/DZwmZ8Usvnk"},
                     {titre:"Loops and Iterations - For/While Loops",url:"https://www.youtube.com/embed/6iF8Xb7Z3wQ"},
                     {titre:"Functions",url:"https://www.youtube.com/embed/9Os0o3wzS_I"},
-                    {titre:"Functions",url:"https://www.youtube.com/embed/9Os0o3wzS_I"},
+                    {titre:"Import Modules and Exploring The Standard Library",url:"https://www.youtube.com/embed/CqvZ3vGoGs0"},
                 ]
              ];
 };

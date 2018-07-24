@@ -98,7 +98,7 @@ export default {
                         if(value._id.indexOf(shoppingCartId) !== -1)
                         {
                             value.quantite += quantite;
-                            value.total += parseFloat(value.prix * value.quantite).toFixed(2);
+                            value.total = parseFloat(value.prix * value.quantite).toFixed(2);
                             return value;
                         }    
                     });

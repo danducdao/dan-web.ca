@@ -3,15 +3,15 @@
         <article class="col-sm-4">
             <h1>{{ titre }} la catégorie</h1>
             <form v-on:submit.prevent="onSubmit">
-                <div class="form-group" :class="{ 'form-group--error': $v.nom.$error }">
-                    <label class="form__label">Nom</label>
-                    <input class="form__input form-control" v-model.trim="$v.nom.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="nom">Nom</label>
+                    <input class="form-control" name="nom" v-model.trim="$v.nom.$model"/>
                     <div v-if="!$v.nom.required" class="alert alert-danger">Nom est obligatoire</div>
                     <div v-if="!$v.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
                 </div>
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" v-model="model.description" name="description">
+                    <label class="control-label" for="description">Description</label>
+                    <input type="text" name="description" class="form-control" v-model="model.description">
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" class="form-control" id="active" name="active" v-model="model.active">
+                    <input type="hidden" class="form-control" name="active" v-model="model.active">
                 </div>
                 <button type="submit" class="btn btn-success" :disabled="!$v.nom.required || !$v.nom.alpha">
                     <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>

@@ -3,63 +3,63 @@
         <article class="col-sm-4">
             <h1>{{titre}} la produit</h1>
             <form v-on:submit.prevent="onSubmit">
-                <div class="form-group" :class="{ 'form-group--error': $v.model.nom.$error }">
-                    <label class="form__label">Nom</label>
-                    <input class="form__input form-control" v-model.trim="$v.model.nom.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="nom">Nom</label>
+                    <input class="form-control" name="nom" v-model.trim="$v.model.nom.$model"/>
                     <div v-if="!$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
                     <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
                 </div> 
-                <div class="form-group" :class="{ 'form-group--error': $v.others.categoryId.$error }">
-                    <label class="form__label">Catégories</label>
-                    <select class="form-control" v-model.trim="$v.others.categoryId.$model">
+                <div class="form-group">
+                    <label class="control-label" for="categorie">Catégories</label>
+                    <select class="form-control" name="categorie" v-model.trim="$v.others.categoryId.$model">
                         <option :disabled="true" value="">--Sélectionner--</option>
                         <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
                     </select>
                     <div v-if="!$v.others.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div> 
                 </div>
-                <div class="form-group" :class="{ 'form-group--error': $v.others.fournisseurId.$error }">
-                    <label class="form__label">Fournisseurs</label>
-                    <select class="form-control" v-model.trim="$v.others.fournisseurId.$model">
+                <div class="form-group">
+                    <label class="control-label" for="founisseurId">Fournisseurs</label>
+                    <select class="form-control" name="founisseurId" v-model.trim="$v.others.fournisseurId.$model">
                         <option :disabled="true" value="">--Sélectionner--</option>
                         <option v-for="fournisseur in fournisseurs" :value="fournisseur._id">{{fournisseur.compagnie}}</option>
                     </select>
                     <div v-if="!$v.others.fournisseurId.required" class="alert alert-danger">Fournisseur est obligatoire</div> 
                 </div>
-                <div class="form-group" :class="{ 'form-group--error': $v.model.quantite.$error }">
-                    <label class="form__label">Quantité</label>
-                    <input class="form__input form-control" v-model.trim="$v.model.quantite.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="quantite">Quantité</label>
+                    <input class="form-control" name="quantite" v-model.trim="$v.model.quantite.$model"/>
                     <div v-if="!$v.model.quantite.required" class="alert alert-danger">Quantité est obligatoire</div>
                     <div v-if="!$v.model.quantite.numeric" class="alert alert-danger">Quantité doit être digit</div>
                 </div>
-                <div class="form-group" :class="{ 'form-group--error': $v.model.prix.$error }">
-                    <label class="form__label">Prix</label>
-                    <input class="form__input form-control" v-model.trim="$v.model.prix.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="prix">Prix</label>
+                    <input class="form-control" name="prix" v-model.trim="$v.model.prix.$model"/>
                     <div v-if="!$v.model.prix.required" class="alert alert-danger">Prix est obligatoire</div>
                     <div v-if="!$v.model.prix.decimal" class="alert alert-danger">Prix doit être décimal</div>
                 </div>
-                <div class="form-group" :class="{ 'form-group--error': $v.model.quantiteRestante.$error }">
-                    <label class="form__label">Quantité restante</label>
-                    <input class="form__input form-control" v-model.trim="$v.model.quantiteRestante.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="quantiteRestante">Quantité restante</label>
+                    <input class="form-control" name="quantiteRestante" v-model.trim="$v.model.quantiteRestante.$model"/>
                     <div v-if="!$v.model.quantiteRestante.numeric" class="alert alert-danger">Quantité restante doit être digit</div>
                 </div> 
-                <div class="form-group" :class="{ 'form-group--error': $v.model.quantiteCommande.$error }">
-                    <label class="form__label">Quantité commandée</label>
-                    <input class="form__input form-control" v-model.trim="$v.model.quantiteCommande.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="quantiteCommande">Quantité commandée</label>
+                    <input class="form-control" name="quantiteCommande" v-model.trim="$v.model.quantiteCommande.$model"/>
                     <div v-if="!$v.model.quantiteCommande.numeric" class="alert alert-danger">Quantité commandée doit être digit</div>
                 </div> 
-                <div class="form-group" :class="{ 'form-group--error': $v.model.reapprovisionnement.$error }">
-                    <label class="form__label">Réapprovisionnement</label>
-                    <input class="form__input form-control" v-model.trim="$v.model.reapprovisionnement.$model"/>
+                <div class="form-group">
+                    <label class="control-label" for="reapprovisionnement">Réapprovisionnement</label>
+                    <input class="form-control" name="reapprovisionnement" v-model.trim="$v.model.reapprovisionnement.$model"/>
                     <div v-if="!$v.model.reapprovisionnement.numeric" class="alert alert-danger">Réapprovisionnement doit être digit</div>
                 </div>
                 <div class="hpanel hblue">
                     <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
                     <div class="panel-body" style="height:60px;">
                         <div class="form-group">
-                            <label class="form-check-inline">
+                            <label class="form-check-inline" for="discontinue">
                                 <input class="form-check-input" type="radio" name="discontinue" :value="true" v-model="model.discontinue">&nbsp;Oui
                             </label>&nbsp;&nbsp;
-                            <label class="form-check-inline">
+                            <label class="form-check-inline" for="discontinue">
                                 <input class="form-check-input" type="radio" name="discontinue" :value="false" v-model="model.discontinue">&nbsp;Non
                             </label>
                         </div>

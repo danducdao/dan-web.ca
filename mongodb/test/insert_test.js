@@ -6,7 +6,8 @@
 const mocha = require('mocha');
 const assert = require('assert');
 const Personne = require('../model/personne');
-const Utilisateur = require('../model/utilisateur');
+const Employee = require('../model/employee');
+const Admin = require('../model/admin');
 const Produit = require('../model/produit');
 
 var today = new Date();
@@ -101,7 +102,7 @@ describe('Sauvegarder de données dans les collections',function(){
   });
 
   it('Sauvegarder de données dans collection fournisseur', function(done){
-          F1 = new Produit.Fournisseur({
+                F1 = new Produit.Fournisseur({
                                             compagnie:"Exotic Liquids",
                                             contact:"Charlotte Cooper",
                                             titre:"Purchasing Manager",
@@ -645,118 +646,250 @@ describe('Sauvegarder de données dans les collections',function(){
             done();
           });
   });
-  it('Sauvegarder de données dans collection utilisateur', function(done){
+  it('Sauvegarder de données dans collection employee', function(done)
+  {
+                E1 = new Employee({
+                                      nom:"Nancy",
+                                      prenom:"Davolio",
+                                      abreviation:"Mlle",
+                                      titre:"Représentant de vente",
+                                      statut:"C",
+                                      genre:"F",
+                                      address:"507 - 20th Ave. E.  Apt. 2A",
+                                      ville:"Seattle",
+                                      region:"WA",
+                                      codepostale:"98122",
+                                      pays:"USA",
+                                      telephone:"(206)555-9857",
+                                      cellulaire:"",
+                                      extension:"5467",
+                                      email:"exemple@gmail.com",
+                                      datenaissance:"1948-12-08",
+                                      dateembauche:"1992-05-01",
+                                      salaire:{ montant : 60000, par : "annee"},
+                                      congevacance:65,
+                                      congemaladie:52,
+                                      photo:"",
+                                      note:"L'éducation inclut un BA en psychologie de l'université d'état du Colorado en 1970. Elle a également accompli l'art de l'appel froid. Nancy est membre de Toastmasters International.",
+                                      dateCreation:today,
+                                      active:true
+                                 });
+                 E1.save().then(function(){
+                 assert(E1.isNew === false);
+                 E2 = new Employee({
+                                      nom:"Andrew",
+                                      prenom:"Fuller",
+                                      abreviation:"Dr.",
+                                      titre:"Vice Président, Vente",
+                                      statut:"M",
+                                      genre:"M",
+                                      address:"908 W. Capital Way",
+                                      ville:"Tacoma",
+                                      region:"WA",
+                                      codepostale:"98401",
+                                      pays:"USA",
+                                      telephone:"(206) 555-9482",
+                                      cellulaire:"",
+                                      extension:"3457",
+                                      email:"exemple2@gmail.com",
+                                      datenaissance:"1952-02-19",
+                                      dateembauche:"1992-08-14",
+                                      salaire:{ montant : 100000, par : "année"},
+                                      congevacance:67,
+                                      congemaladie:20,
+                                      photo:"",
+                                      note:"Andrew a reçu sa publicité BTS en 1974 et un doctorat. en marketing international de l'Université de Dallas en 1981. Il parle couramment le français et l'italien et lit l'allemand. Il a rejoint la société en tant que représentant des ventes, a été promu directeur des ventes en janvier 1992 et vice-président des ventes en mars 1993. Andrew est membre de la Sales Management Roundtable, de la Seattle Chamber of Commerce et de la Pacific Rim Importers Association.",
+                                      dateCreation:today,
+                                      active:true
+                               });
+                return E2.save();
+           }).then(function(){
+                assert(E2.isNew === false);
+                E3 = new Employee({
+                                      nom:"Janet",
+                                      prenom:"Leverling",
+                                      abreviation:"Mme",
+                                      titre:"Représentant de vente",
+                                      statut:"M",
+                                      genre:"F",
+                                      address:"722 Moss Bay Blvd.",
+                                      ville:"Kirkland",
+                                      region:"WA",
+                                      codepostale:"98033",
+                                      pays:"USA",
+                                      telephone:"(206)555-3412",
+                                      cellulaire:"",
+                                      extension:"3355",
+                                      email:"exemple3@gmail.com",
+                                      datenaissance:"1952-02-19",
+                                      dateembauche:"1992-08-14",
+                                      salaire:{ montant : 50000, par : "année"},
+                                      congevacance:67,
+                                      congemaladie:20,
+                                      photo:"",
+                                      note:"Janet détient un baccalauréat en chimie du Boston College (1984). Elle a également complété un programme de certificat en gestion de la vente au détail de produits alimentaires. Janet a été embauchée comme adjointe aux ventes en 1991 et promue au poste de représentante des ventes en février 1992.",
 
-            var util = new Utilisateur({
-                                           nom: "sue",
-                                           age: 19,
-                                           type: 1,
-                                           statut: "P",
-                                           favorites: { artiste: "Picasso", aliment: "pizza" },
-                                           termine: [ 17, 3 ],
-                                           badges: [ "blue", "black" ],
-                                           points: [
-                                            { points: 85, bonus: 20 },
-                                            { points: 85, bonus: 10 }
-                                          ],
-                                          dateCreation:today,
-                                          active:true
+                                      dateCreation:today,
+                                      active:true
+                                });
+                 return E3.save();
+           }).then(function(){
+                assert(E3.isNew === false);
+                E4 = new Employee({
+                                      nom:"Steven",
+                                      prenom:"Buchanan",
+                                      abreviation:"Mlle",
+                                      titre:"Directeur de vente",
+                                      statut:"M",
+                                      genre:"M",
+                                      address:"14 Garrett Hill",
+                                      ville:"London",
+                                      region:"",
+                                      codepostale:"SW1 8JR",
+                                      pays:"UK",
+                                      telephone:"(71) 555-4848",
+                                      cellulaire:"",
+                                      extension:"3453",
+                                      email:"exemple4@gmail.com",
+                                      datenaissance:"1955-03-04",
+                                      dateembauche:"1993-10-17",
+                                      salaire:{ montant : 80000, par : "année"},
+                                      congevacance:20,
+                                      congemaladie:16,
+                                      photo:"",
+                                      note:"Steven Buchanan est diplômé de l'Université St. Andrews, en Écosse, avec un BSC en 1976. Après avoir rejoint l'entreprise en 1992, il a passé 6 mois dans un programme d'orientation au bureau de Seattle avant de retourner à son poste permanent à Londres. . Il a été promu au poste de directeur des ventes en mars 1993. M. Buchanan a suivi les cours «Successful Telemarketing» et «International Sales Management». Il parle couramment le français.",
+                                      dateCreation:today,
+                                      active:true
+                                });
+                 return E4.save();
+           }).then(function(){
+                 assert(E4.isNew === false);
+                 E5 = new Employee({
+                                       nom:"Margaret",
+                                       prenom:"Peacock",
+                                       abreviation:"Mme",
+                                       titre:"Représentant de vente",
+                                       statut:"M",
+                                       genre:"F",
+                                       address:"4110 Old Redmond Rd.",
+                                       ville:"Redmond",
+                                       region:"WA",
+                                       codepostale:"98052",
+                                       pays:"USA",
+                                       telephone:"(206)555-8122",
+                                       cellulaire:"",
+                                       extension:"5176",
+                                       email:"exemple5@gmail.com",
+                                       datenaissance:"1937-09-19",
+                                       dateembauche:"1993-05-03",
+                                       salaire:{ montant : 30, par : "heure"},
+                                       congevacance:40,
+                                       congemaladie:30,
+                                       photo:"",
+                                       note:"Margaret détient un baccalauréat en littérature anglaise du Concordia College (1958) et une maîtrise de l'American Institute of Culinary Arts (1966). Elle a été affectée temporairement au bureau de Londres de juillet à novembre 1992.",
+                                       dateCreation:today,
+                                       active:true
                                    });
-              util.save().then(function(){
-              assert(util.isNew === false);
-              util = new Utilisateur({
-                                          nom: "bob",
-                                          age: 42,
-                                          type: 1,
-                                          statut: "A",
-                                          favorites: { artiste: "Miro", aliment: "meringue" },
-                                          termine: [ 11, 25 ],
-                                          badges: [ "green" ],
-                                          points: [
-                                           { points: 85, bonus: 20 },
-                                           { points: 64, bonus: 12 }
-                                         ],
-                                         dateCreation:today,
-                                         active:true
-                                   });
-               return util.save();
+                  return E5.save();
            }).then(function(){
-                assert(util.isNew === false);
-                util = new Utilisateur({
-                                           nom: "ahn",
-                                           age: 22,
-                                           type: 2,
-                                           statut: "A",
-                                           favorites: { artiste: "Cassatt", aliment: "cake" },
-                                           termine: [ 6 ],
-                                           badges: [ "blue", "red" ],
-                                           points: [
-                                            { points: 81, bonus: 8 },
-                                            { points: 55, bonus: 20 }
-                                          ],
-                                          dateCreation:today,
-                                          active:true
-                                      });
-                 return util.save();
-           }).then(function(){
-                assert(util.isNew === false);
-                util = new Utilisateur({
-                                           nom: "xi",
-                                           age: 34,
-                                           type: 2,
-                                           statut: "D",
-                                           favorites: { artiste: "Chagall", aliment: "chocolate" },
-                                           termine: [ 5, 11 ],
-                                           badges: [ "red", "black" ],
-                                           points: [
-                                            { points: 53, bonus: 15 },
-                                            { points: 51, bonus: 15 }
-                                          ],
-                                          dateCreation:today,
-                                          active:true
-                                      });
-                 return util.save();
-           }).then(function(){
-                 assert(util.isNew === false);
-                 util = new Utilisateur({
-                                            nom: "xyz",
-                                            age: 23,
-                                            type: 2,
-                                            statut: "D",
-                                            favorites: { artiste: "Noguchi", aliment: "nougat" },
-                                            termine: [ 14, 6 ],
-                                            badges: [ "orange" ],
-                                            points: [
-                                             { points: 71, bonus: 20 }
-                                           ],
-                                           dateCreation:today,
-                                           active:true
-                                       });
-                  return util.save();
-           }).then(function(){
-             assert(util.isNew === false);
-             util = new Utilisateur({
-                                        nom: "abc",
-                                        age: 43,
-                                        type: 1,
-                                        statut: "A",
-                                        favorites: { aliment: "pizza", artiste: "Picasso" },
-                                        termine: [ 18, 12 ],
-                                        badges: [ "black", "blue" ],
-                                        points: [
-                                         { points: 78, bonus: 8 },
-                                         { points: 57, bonus: 7 }
-                                       ],
+                 assert(E5.isNew === false);
+                 E6 = new Employee({
+                                       nom:"Michael",
+                                       prenom:"Suyama",
+                                       abreviation:"M",
+                                       titre:"Représentant de vente",
+                                       statut:"C",
+                                       genre:"M",
+                                       address:"Coventry House  Miner Rd.",
+                                       ville:"London",
+                                       region:"",
+                                       codepostale:"EC2 7JR",
+                                       pays:"UK",
+                                       telephone:"(71) 555-7773",
+                                       cellulaire:"",
+                                       extension:"428",
+                                       email:"exemple6@gmail.com",
+                                       datenaissance:"1963-07-02",
+                                       dateembauche:"1993-10-17",
+                                       salaire:{ montant : 670000, par : "année"},
+                                       congevacance:50,
+                                       congemaladie:32,
+                                       photo:"",
+                                       note:"Michael est diplômé de l'Université de Sussex (MA, économie, 1983) et de l'Université de Californie à Los Angeles (MBA, marketing, 1986). Il a également suivi les cours «Multi-Cultural Selling» et «Time Management for the Sales Professional». Il parle couramment le japonais et peut lire et écrire le français, le portugais et l'espagnol.",
                                        dateCreation:today,
                                        active:true
                                   });
-              return util.save();
+                  return E6.save();
            }).then(function(){
-                assert(util.isNew === false);
+                assert(E6.isNew === false);
                 done();
            });
     });
 
+    it('Sauvegarder de données dans collection admin', function(done)
+    {
+             var admin = new Admin({
+                                      employee:{ nom: E1.nom, prenom:E1.prenom },
+                                      username:"exemple@gmail.com",
+                                      password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                      dateCreation:today,
+                                      active:true
+                                   });
+             admin.save().then(function(){
+                 assert(admin.isNew === false);
+                 admin = new Admin({
+                                       employee:{ nom: E2.nom, prenom:E2.prenom },
+                                       username:"exemple@gmail.com",
+                                       password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                       dateCreation:today,
+                                       active:true
+                                   });
+                  return admin.save();
+              }).then(function(){
+                  assert(admin.isNew === false);
+                  admin = new Admin({
+                                        employee:{ nom: E3.nom, prenom:E3.prenom },
+                                        username:"exemple@gmail.com",
+                                        password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                        dateCreation:today,
+                                        active:true
+                                    });
+                   return admin.save();
+              }).then(function(){
+                   assert(admin.isNew === false);
+                   admin = new Admin({
+                                        employee:{ nom: E4.nom, prenom:E4.prenom },
+                                        username:"exemple@gmail.com",
+                                        password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                        dateCreation:today,
+                                        active:true
+                                    });
+                    return admin.save();
+              }).then(function(){
+                    assert(admin.isNew === false);
+                    admin = new Admin({
+                                         employee:{ nom: E5.nom, prenom:E5.prenom },
+                                         username:"exemple@gmail.com",
+                                         password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                         dateCreation:today,
+                                         active:true
+                                     });
+                     return admin.save();
+              }).then(function(){
+                     assert(admin.isNew === false);
+                     admin = new Admin({
+                                         employee:{ nom: E6.nom, prenom:E6.prenom },
+                                         username:"exemple@gmail.com",
+                                         password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                         dateCreation:today,
+                                         active:true
+                                     });
+                      return admin.save();
+              }).then(function(){
+                      assert(admin.isNew === false);
+                      done();
+              });
+    });
     it('Sauvegarder de données dans collection produits', function(done){
             var prod = new Produit.Produit({
                                               nom:"Chai Tea",

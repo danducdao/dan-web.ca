@@ -1,5 +1,5 @@
 /*
-* Program : Créer modèle Produit
+* Program : Créer modèle Categorie, Produit et Fournisseur
 * Écrit par : Dan Duc Dao
 */
 
@@ -54,4 +54,4 @@ module.exports = {
                    Produit:Produit,
                    Categorie:Categorie,
                    Fournisseur:Fournisseur
-                 }
+                 };

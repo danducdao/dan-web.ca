@@ -32,9 +32,16 @@ before(function(done){
      });
 });
 
-//Drop collection utilisateurs
+//Drop collection employees
 before(function(done){
-     mongoose.connection.collections.utilisateurs.drop(function(){
+     mongoose.connection.collections.employees.drop(function(){
+          done();
+     });
+});
+
+//Drop collection admins
+before(function(done){
+     mongoose.connection.collections.admins.drop(function(){
           done();
      });
 });

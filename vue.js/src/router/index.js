@@ -18,6 +18,7 @@ import ListeCategorie from '@/components/categorie/liste';
 import DetailCategorie from '@/components/categorie/detail';
 import ShoppingCart from '@/components/shoppingCart/shoppingCart';
 import AddToCart from '@/components/shoppingCart/addToCart';
+import Login from '@/components/login/login';
 
 Vue.use(Router)
 
@@ -94,6 +95,10 @@ export default new Router({
           path : '/addtocart',
           name : 'AddToCart',
           component : AddToCart 
+      },{
+          path : '/login',
+          name : 'Login',
+          component : Login
       }
 
   ]

@@ -33,6 +33,7 @@
                                 <li><router-link to="/googleMap">Google Map</router-link></li>
                                 <li><router-link to="/admin">Admin</router-link></li>
                                 <li><router-link to="/shoppingcart">Shopping Cart</router-link></li>
+                                <li><router-link to="/login">Login</router-link></li>
                             </ul>
      					</li>
                          

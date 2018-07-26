@@ -45,7 +45,7 @@ export class CategorieService extends Service
         this.Path = "/categorie/" + id;
         return this.http.put<ICategorie>(this.Url,newCategorie, this.HttpOptions);
     }
-    
+
     removeCategorieById(id:string):Observable<ICategorie>
     {
         this.Path = "/categorie/" + id;

@@ -22,13 +22,6 @@ enum ImageSizeEnum{
   selector: 'app-categorie',
   templateUrl: './detail.component.html',
   styles: [`
-              .ng-valid[required], .ng-valid.required  {
-                   border-left: 5px solid #42A948; /* green */
-              }
-
-              .ng-invalid:not(form)  {
-                   border-left: 5px solid #a94442; /* red */
-              }
               .parent {
                    position: relative;
                    display: inline-block;

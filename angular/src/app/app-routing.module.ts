@@ -13,6 +13,7 @@ import { DetailProduitComponent } from './produit/detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
       {
@@ -59,8 +60,10 @@ const routes: Routes = [
       {
         path:'addtocart',
         component:AddToCartComponent
-      },
-      {
+      },{
+        path:'login',
+        component:LoginComponent
+      },{
         path:'**',
         component:HomeComponent
       }
@@ -84,5 +87,6 @@ export const routingComponents = [
                                    DetailProduitComponent,
                                    ShoppingCartComponent,
                                    AddToCartComponent,
-                                   AdminComponent
+                                   AdminComponent,
+                                   LoginComponent
                                  ];

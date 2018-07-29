@@ -16,6 +16,5 @@ export var Produit = function()
     this.reapprovisionnement = "";
     this.discontinue = false;
     this.dateCreation = new Date().toLocaleDateString("en-US");
-    this.active = true;
-    
+    this.active = true;  
 }

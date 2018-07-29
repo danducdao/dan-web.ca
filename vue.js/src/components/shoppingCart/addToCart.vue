@@ -1,7 +1,7 @@
 <template>
     <article>
         <div class="hpanel hblue">
-            <div class="panel-heading hbuilt"><strong>Votre Panier</strong></div>
+            <div class="panel-heading hbuilt"><strong>Votre panier</strong></div>
             <div class="panel-body">
                 <div class="col-sm-8" v-if="carts.length > 0">
                     <table class="table table-bordered" role="grid">

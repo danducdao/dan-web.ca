@@ -12,3 +12,14 @@ export var alpha = function (value) {
     return patt.test(value);
 }
 
+export var password = function (value) {
+    var patt = /^(\s*|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,})$/;
+    return patt.test(value);
+}
+
+export var convertDate = function(value)
+{
+    var date = new Date(value);
+    return date.getFullYear() + "-" + date.getMonth().toString().padStart(2,'0') + "-" + date.getDate().toString().padStart(2,'0');
+}
+

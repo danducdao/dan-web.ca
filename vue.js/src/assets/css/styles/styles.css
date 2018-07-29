@@ -5,6 +5,10 @@ table td{
     text-align:center;
 }
 
+.verticalAlign{
+    vertical-align:middle;
+}
+
 .colRight{
     text-align:right;
 }
@@ -16,3 +20,18 @@ table td{
 table th{
     font-size:15px;
 }
+
+.parent {
+    position: relative;
+    display: inline-block;
+}
+
+.input_form_error{
+    border-left: 5px solid #a94442 !important;/* red */
+  }
+.input_form_valid{
+      border-left: 5px solid #42A948 !important; /* green */
+}
+
+
+  

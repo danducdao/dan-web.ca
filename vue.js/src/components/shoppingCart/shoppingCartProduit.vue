@@ -6,7 +6,7 @@
                 <div>{{shoppingCart.nom}}</div>
                 <div>{{shoppingCart.prix | currency}}</div>
                 <div>
-                    <input :id="shoppingCart._id" value="1" size="4"/>
+                    <input type="text" :id="shoppingCart._id" value="1" size="4"/>
                 </div><br>
                 <div>
                     <button type="submit" class="btn btn-success" @click.prevent="onSubmit($event,shoppingCart._id)">

@@ -1,33 +1,30 @@
 <template>
-    <article>
-        <div class="hpanel hblue">
-            <div class="panel-heading hbuilt"><strong>Votre Panier</strong></div>
-            <div class="panel-body" v-if="baskets.length > 0">
-                <table class="table table-bordered" cellspacing="1" cellpadding="1">
-                        <thead>
-                            <tr>
-                                <th v-for="value in ['','Nom','Quantité','Prix']" :class="center">{{value}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="basket in baskets">
-                                <td style="width:10%;"><a href="#" @click.prevent="removeItem(basket._id)">Remove</a></td>
-                                <td>{{basket.nom}}</td>
-                                <td :class="right" style="width:13%;">{{basket.quantite}}</td>
-                                <td :class="right" style="width:13%;">{{basket.prix | currency}}</td>
-                            </tr>
-                        </tbody>
-                </table>
-                <div>
-                    <router-link :to="{ path: '/addtocart'}" append class="btn btn-success">
-                        <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                        <span style="margin-left:5px;font-weight:bold;font-size:18px;">Checkout</span>
-                    </router-link>
-                </div>
+    <section>
+        <div v-if="baskets.length > 0">
+            <table class="table table-bordered" cellspacing="1" cellpadding="1">
+                <thead>
+                    <tr>
+                        <th v-for="value in ['','Nom','Quantité','Prix']" :class="center">{{value}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="basket in baskets">
+                        <td style="width:10%;"><a href="#" @click.prevent="removeItem(basket._id)">Remove</a></td>
+                        <td>{{basket.nom}}</td>
+                        <td :class="right" style="width:13%;">{{basket.quantite}}</td>
+                        <td :class="right" style="width:13%;">{{basket.prix | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <router-link :to="{ path: '/addtocart'}" append class="btn btn-success">
+                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">Checkout</span>
+                </router-link>
             </div>
-            <div class="panel-body" v-else>Votre panier est vide</div>
         </div>
-    </article>
+        <div v-else>Votre panier est vide</div>
+    </section>
 </template>
 
 <script>

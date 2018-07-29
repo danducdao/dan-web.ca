@@ -19,6 +19,7 @@ import DetailCategorie from '@/components/categorie/detail';
 import ShoppingCart from '@/components/shoppingCart/shoppingCart';
 import AddToCart from '@/components/shoppingCart/addToCart';
 import Login from '@/components/login/login';
+import Register from '@/components/login/register';
 
 Vue.use(Router)
 
@@ -99,6 +100,10 @@ export default new Router({
           path : '/login',
           name : 'Login',
           component : Login
+      },{
+          path : '/register',
+          name : 'register',
+          component : Register
       }
 
   ]

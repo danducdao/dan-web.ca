@@ -5,9 +5,10 @@
 
 export var Admin = function()
 {
-    this.employee={};
+    this.employee={nom:"",prenom:""};
     this.username="";
     this.password="";
+    this.confirmPassword="";
     this.dateCreation = new Date().toLocaleDateString("en-US");
     this.active = true; 
 }

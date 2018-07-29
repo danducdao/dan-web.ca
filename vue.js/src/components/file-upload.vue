@@ -3,7 +3,7 @@
         <form enctype="multipart/form-data" novalidate>
             <div class="dropbox">
                 <input type="file"
-                    :name="uploadFieldName" 
+                    :name="name" 
                     @change="filesChange($event.target.name, $event.target.files); 
                     fileCount = $event.target.files.length" accept="image/*" class="input-file">
                 <p>Sélectionner le fichier<br>ou faire glisser le fichier pour télécharger</p>
@@ -26,11 +26,14 @@ export default {
         return {
             uploadError: null,
             currentStatus: 0,
-            uploadFieldName: 'image',
             errors:[]
         }
     },
     props : {
+            name :{
+                type:String,
+                required:true
+            },
             maxFiles :{
                 type:String,
                 required:true

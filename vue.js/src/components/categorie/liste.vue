@@ -20,12 +20,12 @@
                         </thead>
                         <tbody>
                             <tr v-for="categorie in categories">
-                                <td :class="center"><a href="#"  @click.prevent="removeCategorie(categorie._id)">Supprimer</a></td>
-                                <td :class="center"><router-link :to="{ path: $route.path==='/admin'?'categorie/' + categorie._id:categorie._id}" append>Modifier</router-link></td>
-                                <td>{{categorie.nom}}</td>
-                                <td>{{categorie.description}}</td>
-                                <td :class="center"><img :src="categorie.image" :alt="categorie.nom" :style="imgStyle" /></td>
-                                <td :class="center">
+                                <td :class="center" :style="verticalAlign"><a href="#"  @click.prevent="removeCategorie(categorie._id)">Supprimer</a></td>
+                                <td :class="center" :style="verticalAlign"><router-link :to="{ path: $route.path==='/admin'?'categorie/' + categorie._id:categorie._id}" append>Modifier</router-link></td>
+                                <td :style="verticalAlign">{{categorie.nom}}</td>
+                                <td :style="verticalAlign">{{categorie.description}}</td>
+                                <td :class="center"><img :src="categorie.photo" :alt="categorie.photo" :style="imgStyle" /></td>
+                                <td :class="center" :style="verticalAlign">
                                     <span v-html="htmlTag(categorie.active)"></span>
                                 </td>
                             </tr>
@@ -54,7 +54,8 @@ export default {
                  width:'50px',
                  margin:'2px',
                  borderRadius:'10px'
-            }
+            },
+            verticalAlign:{verticalAlign:'middle'}
         }
     },
     created()

@@ -1,95 +1,192 @@
 <template>
-    <div>
-        <article class="col-sm-4">
-            <h1>{{titre}} la produit</h1>
-            <form v-on:submit.prevent="onSubmit">
-                <div class="form-group">
-                    <label class="control-label" for="nom">Nom</label>
-                    <input class="form-control" name="nom" v-model.trim="$v.model.nom.$model"/>
-                    <div v-if="!$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
-                    <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
-                </div> 
-                <div class="form-group">
-                    <label class="control-label" for="categorie">Catégories</label>
-                    <select class="form-control" name="categorie" v-model.trim="$v.others.categoryId.$model">
-                        <option :disabled="true" value="">--Sélectionner--</option>
-                        <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
-                    </select>
-                    <div v-if="!$v.others.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div> 
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="founisseurId">Fournisseurs</label>
-                    <select class="form-control" name="founisseurId" v-model.trim="$v.others.fournisseurId.$model">
-                        <option :disabled="true" value="">--Sélectionner--</option>
-                        <option v-for="fournisseur in fournisseurs" :value="fournisseur._id">{{fournisseur.compagnie}}</option>
-                    </select>
-                    <div v-if="!$v.others.fournisseurId.required" class="alert alert-danger">Fournisseur est obligatoire</div> 
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="quantite">Quantité</label>
-                    <input class="form-control" name="quantite" v-model.trim="$v.model.quantite.$model"/>
-                    <div v-if="!$v.model.quantite.required" class="alert alert-danger">Quantité est obligatoire</div>
-                    <div v-if="!$v.model.quantite.numeric" class="alert alert-danger">Quantité doit être digit</div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="prix">Prix</label>
-                    <input class="form-control" name="prix" v-model.trim="$v.model.prix.$model"/>
-                    <div v-if="!$v.model.prix.required" class="alert alert-danger">Prix est obligatoire</div>
-                    <div v-if="!$v.model.prix.decimal" class="alert alert-danger">Prix doit être décimal</div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="quantiteRestante">Quantité restante</label>
-                    <input class="form-control" name="quantiteRestante" v-model.trim="$v.model.quantiteRestante.$model"/>
-                    <div v-if="!$v.model.quantiteRestante.numeric" class="alert alert-danger">Quantité restante doit être digit</div>
-                </div> 
-                <div class="form-group">
-                    <label class="control-label" for="quantiteCommande">Quantité commandée</label>
-                    <input class="form-control" name="quantiteCommande" v-model.trim="$v.model.quantiteCommande.$model"/>
-                    <div v-if="!$v.model.quantiteCommande.numeric" class="alert alert-danger">Quantité commandée doit être digit</div>
-                </div> 
-                <div class="form-group">
-                    <label class="control-label" for="reapprovisionnement">Réapprovisionnement</label>
-                    <input class="form-control" name="reapprovisionnement" v-model.trim="$v.model.reapprovisionnement.$model"/>
-                    <div v-if="!$v.model.reapprovisionnement.numeric" class="alert alert-danger">Réapprovisionnement doit être digit</div>
-                </div>
-                <div class="hpanel hblue">
-                    <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
-                    <div class="panel-body" style="height:60px;">
-                        <div class="form-group">
-                            <label class="form-check-inline" for="discontinue">
-                                <input class="form-check-input" type="radio" name="discontinue" :value="true" v-model="model.discontinue">&nbsp;Oui
-                            </label>&nbsp;&nbsp;
-                            <label class="form-check-inline" for="discontinue">
-                                <input class="form-check-input" type="radio" name="discontinue" :value="false" v-model="model.discontinue">&nbsp;Non
-                            </label>
+    <article id="produitDetail">
+        <form v-on:submit.prevent="onSubmit">
+            <div class="row">
+                 <div class="col-md-12">
+                    <h1>{{titre}} la produit</h1>
+                 </div>
+            </div>
+            <div class="row">
+                <div class="hpanel hblue col-md-4">
+                    <div class="panel-heading hbuilt"><strong>Item</strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
+                                <input type="text" 
+                                       :class="{
+                                                    input_form_error:$v.model.nom.$error,
+                                                    input_form_valid:!$v.model.nom.$invalid,
+                                                    'form-control':true
+                                                }" 
+                                       required 
+                                       name="nom" 
+                                       v-model.trim="$v.model.nom.$model"/>
+                                <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
+                                <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="control-label" for="prix">Prix</label>&nbsp;<span style="color:red;">*</span>
+                                <input type="text" 
+                                       :class="{
+                                                    input_form_error:$v.model.prix.$error,
+                                                    input_form_valid:!$v.model.prix.$invalid,
+                                                    'form-control':true
+                                                }" 
+                                       required
+                                       name="prix" 
+                                       v-model.trim="$v.model.prix.$model"/>
+                                <div v-if="$v.model.prix.$error && !$v.model.prix.required" class="alert alert-danger">Prix est obligatoire</div>
+                                <div v-if="!$v.model.prix.decimal" class="alert alert-danger">Prix doit être décimal</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="categorie">Catégories</label>&nbsp;<span style="color:red;">*</span>
+                                <select :class="{
+                                                    input_form_error:true,
+                                                    input_form_valid:!$v.others.categoryId.$invalid,
+                                                    'form-control':true
+                                                }" 
+                                        name="categorie" 
+                                        v-model.trim="$v.others.categoryId.$model">
+                                    <option :disabled="true" value="">--Sélectionner--</option>
+                                    <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
+                                </select>
+                                <div v-if="$v.others.categoryId.$error && !$v.others.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="founisseurId">Fournisseurs</label>&nbsp;<span style="color:red;">*</span>
+                                <select :class="{
+                                                    input_form_error:true,
+                                                    input_form_valid:!$v.others.fournisseurId.$invalid,
+                                                    'form-control':true
+                                                }"  
+                                        name="founisseurId" 
+                                        v-model.trim="$v.others.fournisseurId.$model">
+                                    <option :disabled="true" value="">--Sélectionner--</option>
+                                    <option v-for="fournisseur in fournisseurs" :value="fournisseur._id">{{fournisseur.compagnie}}</option>
+                                </select>
+                                <div v-if="$v.others.fournisseurId.$error && !$v.others.fournisseurId.required" class="alert alert-danger">Fournisseur est obligatoire</div> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="control-label" for="reapprovisionnement">Réapprovisionnement</label>
+                                <input type="text" :class="{
+                                                                input_form_error:!$v.model.reapprovisionnement.numeric,
+                                                                input_form_valid:!$v.model.reapprovisionnement.$invalid,
+                                                                'form-control':true
+                                                            }"  
+                                                            name="reapprovisionnement" 
+                                                            v-model.trim="$v.model.reapprovisionnement.$model"/>
+                                <div v-if="!$v.model.reapprovisionnement.numeric" class="alert alert-danger">Réapprovisionnement doit être digit</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="hidden" class="form-control" id="active" v-model="model.active" name="active">
+            </div>
+            <div class="row">
+                <div class="hpanel hblue col-md-4">
+                    <div class="panel-heading hbuilt"><strong>Quantité</strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="control-label" for="quantite">Stock</label>&nbsp;<span style="color:red;">*</span>
+                                <input type="text" :class="{
+                                                                input_form_error:$v.model.quantite.$error,
+                                                                input_form_valid:!$v.model.quantite.$invalid,
+                                                                'form-control':true
+                                                            }" 
+                                                            required
+                                                            name="quantite" 
+                                                            v-model.trim="$v.model.quantite.$model"/>
+                                <div v-if="$v.model.quantite.$error && !$v.model.quantite.required" class="alert alert-danger">Quantité est obligatoire</div>
+                                <div v-if="!$v.model.quantite.numeric" class="alert alert-danger">Quantité doit être digit</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="control-label" for="quantiteRestante">Restante</label>
+                                <input type="text" 
+                                       :class="{
+                                                    input_form_error:!$v.model.quantiteRestante.numeric,
+                                                    input_form_valid:!$v.model.quantiteRestante.$invalid,
+                                                    'form-control':true
+                                                }"  
+                                       name="quantiteRestante" 
+                                       v-model.trim="$v.model.quantiteRestante.$model"/>
+                                <div v-if="!$v.model.quantiteRestante.numeric" class="alert alert-danger">Quantité restante doit être digit</div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="control-label" for="quantiteCommande">Commandée</label>
+                                <input type="text" 
+                                       :class="{
+                                                    input_form_error:!$v.model.quantiteCommande.numeric,
+                                                    input_form_valid:!$v.model.quantiteCommande.$invalid,
+                                                    'form-control':true
+                                                }" 
+                                       name="quantiteCommande" 
+                                       v-model.trim="$v.model.quantiteCommande.$model"/>
+                                <div v-if="!$v.model.quantiteCommande.numeric" class="alert alert-danger">Quantité commandée doit être digit</div>
+                            </div> 
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-success" :disabled="!$v.model.nom.required 
-                                                                         || !$v.model.nom.alpha 
-                                                                         || !$v.others.categoryId.required 
-                                                                         || !$v.others.fournisseurId.required
-                                                                         || !$v.model.quantite.required 
-                                                                         || !$v.model.quantite.numeric 
-                                                                         || !$v.model.prix.required 
-                                                                         || !$v.model.prix.decimal
-                                                                         || !$v.model.quantiteRestante.numeric 
-                                                                         || !$v.model.quantiteCommande.numeric 
-                                                                         || !$v.model.reapprovisionnement.numeric">
+            </div>
+            <div class="row">
+                <div class="hpanel hblue col-md-4">
+                    <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <div :class="iRadioOui" style="position: relative;" @click.prevent="checkedOui">
+                                    <input type="radio" name="discontinue" style="position: absolute; opacity: 0;" :value="true">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                </div>&nbsp;Oui&nbsp;
+                                <div :class="iRadioNon" style="position: relative;" @click.prevent="checkedNon">
+                                    <input type="radio" name="discontinue" style="position: absolute; opacity: 0;" :value="false">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                </div>&nbsp;Non
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success" :disabled="!$v.model.nom.required 
+                                                                                || !$v.model.nom.alpha 
+                                                                                || !$v.others.categoryId.required 
+                                                                                || !$v.others.fournisseurId.required
+                                                                                || !$v.model.quantite.required 
+                                                                                || !$v.model.quantite.numeric 
+                                                                                || !$v.model.prix.required 
+                                                                                || !$v.model.prix.decimal
+                                                                                || !$v.model.quantiteRestante.numeric 
+                                                                                || !$v.model.quantiteCommande.numeric 
+                                                                                || !$v.model.reapprovisionnement.numeric">
 
-                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
-                </button>&nbsp;
-                <button class="btn btn-success" onclick="window.location.href='/admin/produit';return false;">
-                    <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
-                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
-                </button>
-            </form>
-        </article>
-    </div>
+                        <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                        <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+                    </button>&nbsp;
+                    <button class="btn btn-success" onclick="window.location.href='/admin/produit';return false;">
+                        <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
+                        <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
+                    </button>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="active" v-model="model.active" name="active">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </article>
 </template>
 
 <script>
@@ -113,7 +210,9 @@ export default {
             categorieService : new CategorieService(this.$http),
             fournisseurService : new FournisseurService(this.$http),
             model : new Produit(),
-            others : { categoryId : "", fournisseurId : ""}
+            others : { categoryId : "", fournisseurId : ""},
+            iRadioOui:{"iradio_square-green":true,'checked':false},
+            iRadioNon:{"iradio_square-green":true,'checked':false}
          }
     },
     created()
@@ -134,6 +233,8 @@ export default {
         { 
             this.titre = "Modifier";
             this.produitService.getProduitById(this.$route.params.id).then(data => this.response(this,data.body));
+        }else{
+            this.initDiscState();
         }
     },
     methods : {
@@ -144,6 +245,7 @@ export default {
                 this.model = produits;
                 this.others.categoryId = produits.category[0]._id;
                 this.others.fournisseurId = produits.fournisseur._id;
+                this.initDiscState();
             }  
         },
         onSubmit()
@@ -173,6 +275,25 @@ export default {
             obj.active = this.model.active;
             
             this.produitService.saveProduit(obj).then(data => data?this.$router.push({ name: "ListeProduit"}):"");
+        },
+        checkedOui(event)
+        {
+            this.iRadioOui.checked = true;
+            this.iRadioNon.checked = !this.iRadioOui.checked;
+            this.model.discontinue = event.target.previousElementSibling.value;
+        },
+        checkedNon(event)
+        {
+            this.iRadioNon.checked = true;
+            this.iRadioOui.checked = !this.iRadioNon.checked;
+            this.model.discontinue = event.target.previousElementSibling.value;
+        },
+        initDiscState()
+        {
+            if(this.model.discontinue)
+                this.iRadioOui.checked =true;
+            else
+                this.iRadioNon.checked =true;
         }
     },
     validations : {
@@ -190,12 +311,15 @@ export default {
                 decimal
             },
             quantiteRestante : {
+                required,
                 numeric
             },
             quantiteCommande : {
+                required,
                 numeric
             },
             reapprovisionnement : {
+                required,
                 numeric
             }
         },
@@ -213,6 +337,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-
+#produitDetail .row{
+    margin: 0 0 5px 0;
+}
 </style>

@@ -1,25 +1,39 @@
 <template>
-    <article>
-        <div class="form-group col-sm-2" :class="{ 'form-group--error': $v.categoryId.$error }">
-            <label class="form__label">Catégories</label>
-            <select class="form-control" v-model.trim="$v.categoryId.$model">
-                <option :disabled="true" value="">--Sélectionner--</option>
-                <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
-            </select>
-            <div v-if="!$v.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div> 
+    <section>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="hpanel hblue col-md-12">
+                    <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
+                    <div class="panel-body">
+                        <label class="control-label" for="categoryId">Catégories</label>&nbsp;<span style="color:red;">*</span>
+                        <select class="form-control" name="categoryId" v-model.trim="$v.categoryId.$model">
+                            <option :disabled="true" value="">--Sélectionner--</option>
+                            <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
+                        </select>
+                        <div v-if="$v.categoryId.$error">
+                            <div v-if="!$v.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="hpanel hblue col-md-12">
+                    <div class="panel-heading hbuilt"><strong>Votre panier</strong></div>
+                    <div class="panel-body">
+                        <app-shopping-cart-basket ></app-shopping-cart-basket>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-12">
-            <app-shopping-cart-basket ></app-shopping-cart-basket>
-        </div>
-        <div class="col-lg-12">
-            <div class="hpanel hblue" v-for="categorie in filtreCategorie(categoryId)">
+        <div class="row">
+            <div class="hpanel hblue col-md-12" v-for="categorie in filtreCategorie(categoryId)">
                 <div class="panel-heading hbuilt"><strong>{{categorie.nom}}</strong></div>
                 <div class="panel-body">
                     <app-shopping-cart-produit v-bind:categoryId="categorie._id"></app-shopping-cart-produit>
                 </div>
             </div>
         </div>
-    </article>
+    </section>
 </template>
 
 <script>

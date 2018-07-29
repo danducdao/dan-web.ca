@@ -1,21 +1,24 @@
 <template>
     <article>
         <div class="row">
-            <div class="form-group">
-              <label class="col-sm-1 control-label">Liste de ville</label>
-                <div class="col-sm-2">
-                    <select style="width:150px;" v-model="id" v-on:change="afficherGoogleMap">
-                      <template v-for="pays in listPays">
-                        <optgroup  v-bind:label="pays.nom">
-                            <template  v-for="ville in filtrerParPays(pays.nom)">
-                                <option v-bind:value="ville._id">{{ville.ville + "," + ville.province}}</option>
-                            </template>
-                        </optgroup>
-                      </template>
-                    </select>
+            <div class="col-md-3">
+                <div class="hpanel hblue col-md-12">
+                    <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
+                    <div class="panel-body">
+                        <label class="control-label">Ville</label>
+                        <select class="form-control" v-model="id" v-on:change="afficherGoogleMap">
+                        <template v-for="pays in listPays">
+                            <optgroup  v-bind:label="pays.nom">
+                                <template  v-for="ville in filtrerParPays(pays.nom)">
+                                    <option v-bind:value="ville._id">{{ville.ville + "," + ville.province}}</option>
+                                </template>
+                            </optgroup>
+                        </template>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div><br>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <gmap-map
@@ -101,7 +104,7 @@ export default {
             }
         },
         created(){
-                this.googleMapService.getVilles().then(function(data){
+                this.googleMapService.getGoogleMapVilles().then(function(data){
                     this.listVilles = data.body;
                     for(var i=0; i < this.listVilles.length;i++)
                     {

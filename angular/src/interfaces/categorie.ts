@@ -8,7 +8,7 @@ export interface ICategorie
     _id:string;
     nom:string;
     description:string;
-    image:string;
+    photo:string;
     dateCreation:string;
     active:boolean;
 }

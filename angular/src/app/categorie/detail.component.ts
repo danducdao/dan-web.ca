@@ -12,7 +12,7 @@ import { Categorie } from 'src/classes/categorie';
 import { ICategorie } from 'src/interfaces/categorie';
 import { Regex } from 'src/classes/regex';
 
-enum ImageSizeEnum{
+enum PhotoSizeEnum{
      None = 0,
      Height = 135,
      Width = 192
@@ -34,8 +34,8 @@ export class DetailCategorieComponent implements OnInit {
   public model:Categorie;
   public nodigitPattern:string = Regex.NoDigitPattern();
   public uploadStatus:boolean = false;
-  public height:number = ImageSizeEnum.None;
-  public width:number = ImageSizeEnum.None;
+  public height:number = PhotoSizeEnum.None;
+  public width:number = PhotoSizeEnum.None;
   public titre:string;
   private file:string;
   private id:string;
@@ -61,10 +61,10 @@ export class DetailCategorieComponent implements OnInit {
       obj.model._id = data._id;
       obj.model.nom = data.nom;
       obj.model.description = data.description;
-      obj.model.image = data.image;
-      obj.uploadStatus = data.image?true:false;
-      obj.height = data.image?ImageSizeEnum.Height:ImageSizeEnum.None;
-      obj.width = data.image?ImageSizeEnum.Width:ImageSizeEnum.None;
+      obj.model.photo = data.photo;
+      obj.uploadStatus = data.photo?true:false;
+      obj.height = data.photo?PhotoSizeEnum.Height:PhotoSizeEnum.None;
+      obj.width = data.photo?PhotoSizeEnum.Width:PhotoSizeEnum.None;
       obj.model.active = data.active;
   }
   onSubmit():void
@@ -102,21 +102,21 @@ export class DetailCategorieComponent implements OnInit {
    {
        this.file = file;
    }
-   refreshImages(status:boolean):void
+   refreshImage(status:boolean):void
    {
         if (status == true)
         {
-            this.height = ImageSizeEnum.Height;
-            this.width = ImageSizeEnum.Width;
+            this.height = PhotoSizeEnum.Height;
+            this.width = PhotoSizeEnum.Width;
             this.uploadStatus = status;
-            this.model.image = this.file;
+            this.model.photo = this.file;
         }
     }
     removeImage(event:any):void
     {
-        this.height = ImageSizeEnum.None;
-        this.width = ImageSizeEnum.None;
-        this.model.image = "";
+        this.height = PhotoSizeEnum.None;
+        this.width = PhotoSizeEnum.None;
+        this.model.photo = "";
         this.uploadStatus=false;
         event.preventDefault();
     }

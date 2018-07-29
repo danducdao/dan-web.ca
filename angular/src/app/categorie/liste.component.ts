@@ -43,7 +43,7 @@ import { ActivatedRoute, Router } from '@angular/router';
                                    <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
                               </td>
                               <td [ngClass]="center">
-                                  <img *ngIf="showImage" [src]="categorie.image" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" style="border-radius:10px;"/>
+                                  <img *ngIf="showImage" [src]="categorie.photo" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" style="border-radius:10px;"/>
                               </td>
                             </tr>
                          </tbody>
@@ -86,7 +86,7 @@ export class ListeCategorieComponent implements OnInit {
       obj.categories = data;
       for(var value of this.categories)
       {
-          if(value.image)
+          if(value.photo)
           {
               obj.enabledButton = true;
               break;

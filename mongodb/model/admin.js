@@ -10,6 +10,7 @@ const AdminSchema = new Schema({
       employee:{ nom:String,prenom:String},
       username:String,
       password:String,
+      confirmPassword:String,
       dateCreation:String,
       active:Boolean
 });

@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 const CategorieSchema = new Schema({
       nom:String,
       description:String,
-      image:String,
+      photo:String,
       dateCreation:String,
       active:Boolean
 });

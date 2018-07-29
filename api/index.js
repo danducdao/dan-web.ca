@@ -14,6 +14,7 @@ const fournisseurController = require('./controller/fournisseurController');
 const googleMapController =  require('./controller/googleMapController');
 const shoppingCartController = require('./controller/shoppingCartController');
 const adminController = require('./controller/adminController');
+const employeeController = require('./controller/employeeController');
 
 mongoose.connect('mongodb://localhost/test');
 mongoose.Promise = global.Promise;
@@ -44,6 +45,9 @@ shoppingCartController(app);
 
 //Admin controller
 adminController(app);
+
+//Employee controller
+employeeController(app);
 
 app.use(function(err,req,res,next){
     res.status(422).send({ erreur: err.message});

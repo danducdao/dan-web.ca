@@ -8,7 +8,7 @@ export class Categorie
      public _id:string;
      public nom:string;
      public description:string;
-     public image:string;
+     public photo:string;
      public dateCreation:string;
      public active:boolean;
 
@@ -16,7 +16,7 @@ export class Categorie
      {
        this.nom = "";
        this.description = "";
-       this.image = "";
+       this.photo = "";
        this.dateCreation = new Date().toLocaleDateString("en-US");
        this.active=true;
      }

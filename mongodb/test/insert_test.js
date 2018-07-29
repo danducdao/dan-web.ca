@@ -16,19 +16,19 @@ today = today.toLocaleDateString("en-US");
 describe('Sauvegarder de données dans les collections',function(){
 
   it('Sauvegarder de données dans collection catégorie', function(done){
-        C1 = new Produit.Categorie({
-                                      nom:"Drinks",
-                                      description:"Soft drinks, coffees, teas, beers, and ales",
-                                      image:"",
-                                      dateCreation:today,
-                                      active:true
-                                  });
-        C1.save().then(function(){
+              C1 = new Produit.Categorie({
+                                            nom:"Drinks",
+                                            description:"Soft drinks, coffees, teas, beers, and ales",
+                                            photo:"",
+                                            dateCreation:today,
+                                            active:true
+                                        });
+              C1.save().then(function(){
               assert(C1.isNew === false);
               C2 = new Produit.Categorie({
                                             nom:"Condiments",
                                             description:"Sweet and savory sauces, relishes, spreads, and seasonings",
-                                            image:"",
+                                            photo:"",
                                             dateCreation:today,
                                             active:true
                                          });
@@ -38,7 +38,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C3 = new Produit.Categorie({
                                             nom:"Confections",
                                             description:"Desserts, candies, and sweet breads",
-                                            image:"",
+                                            photo:"",
                                             dateCreation:today,
                                             active:true
                                         });
@@ -48,7 +48,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C4 = new Produit.Categorie({
                                             nom:"Dairy Products",
                                             description:"Cheeses",
-                                            image:"",
+                                            photo:"",
                                             dateCreation:today,
                                             active:true
                                         });
@@ -58,7 +58,7 @@ describe('Sauvegarder de données dans les collections',function(){
                 C5 = new Produit.Categorie({
                                               nom:"Grains/Cereals",
                                               description:"Breads, crackers, pasta, and cereal",
-                                              image:"",
+                                              photo:"",
                                               dateCreation:today,
                                               active:true
                                           });
@@ -69,7 +69,7 @@ describe('Sauvegarder de données dans les collections',function(){
                C6 = new Produit.Categorie({
                                              nom:"Meat/Poultry",
                                              description:"Prepared meats",
-                                             image:"",
+                                             photo:"",
                                              dateCreation:today,
                                              active:true
                                           });
@@ -80,7 +80,7 @@ describe('Sauvegarder de données dans les collections',function(){
               C7 = new Produit.Categorie({
                                             nom:"Produce",
                                             description:"Dried fruit and bean curd",
-                                            image:"",
+                                            photo:"",
                                             dateCreation:today,
                                             active:true
                                         });
@@ -90,7 +90,7 @@ describe('Sauvegarder de données dans les collections',function(){
             C8 = new Produit.Categorie({
                                           nom:"Seafood",
                                           description:"Seaweed and fish",
-                                          image:"",
+                                          photo:"",
                                           dateCreation:today,
                                           active:true
                                       });
@@ -651,24 +651,23 @@ describe('Sauvegarder de données dans les collections',function(){
                 E1 = new Employee({
                                       nom:"Nancy",
                                       prenom:"Davolio",
-                                      abreviation:"Mlle",
+                                      abrege:"Mlle",
                                       titre:"Représentant de vente",
                                       statut:"C",
                                       genre:"F",
                                       address:"507 - 20th Ave. E.  Apt. 2A",
                                       ville:"Seattle",
                                       region:"WA",
-                                      codepostale:"98122",
+                                      codePostale:"98122",
                                       pays:"USA",
                                       telephone:"(206)555-9857",
                                       cellulaire:"",
-                                      extension:"5467",
                                       email:"exemple@gmail.com",
-                                      datenaissance:"1948-12-08",
-                                      dateembauche:"1992-05-01",
-                                      salaire:{ montant : 60000, par : "annee"},
-                                      congevacance:65,
-                                      congemaladie:52,
+                                      dateNaissance:"1948-12-08",
+                                      dateEmbauche:"1992-05-01",
+                                      salaire:{ montant : 60000, par : "A"},
+                                      congeVacance:65,
+                                      congeMaladie:52,
                                       photo:"",
                                       note:"L'éducation inclut un BA en psychologie de l'université d'état du Colorado en 1970. Elle a également accompli l'art de l'appel froid. Nancy est membre de Toastmasters International.",
                                       dateCreation:today,
@@ -679,24 +678,23 @@ describe('Sauvegarder de données dans les collections',function(){
                  E2 = new Employee({
                                       nom:"Andrew",
                                       prenom:"Fuller",
-                                      abreviation:"Dr.",
+                                      abrege:"Dr.",
                                       titre:"Vice Président, Vente",
                                       statut:"M",
                                       genre:"M",
                                       address:"908 W. Capital Way",
                                       ville:"Tacoma",
                                       region:"WA",
-                                      codepostale:"98401",
+                                      codePostale:"98401",
                                       pays:"USA",
                                       telephone:"(206) 555-9482",
                                       cellulaire:"",
-                                      extension:"3457",
                                       email:"exemple2@gmail.com",
-                                      datenaissance:"1952-02-19",
-                                      dateembauche:"1992-08-14",
-                                      salaire:{ montant : 100000, par : "année"},
-                                      congevacance:67,
-                                      congemaladie:20,
+                                      dateNaissance:"1952-02-19",
+                                      dateEmbauche:"1992-08-14",
+                                      salaire:{ montant : 100000, par : "A"},
+                                      congeVacance:67,
+                                      congeMaladie:20,
                                       photo:"",
                                       note:"Andrew a reçu sa publicité BTS en 1974 et un doctorat. en marketing international de l'Université de Dallas en 1981. Il parle couramment le français et l'italien et lit l'allemand. Il a rejoint la société en tant que représentant des ventes, a été promu directeur des ventes en janvier 1992 et vice-président des ventes en mars 1993. Andrew est membre de la Sales Management Roundtable, de la Seattle Chamber of Commerce et de la Pacific Rim Importers Association.",
                                       dateCreation:today,
@@ -708,27 +706,25 @@ describe('Sauvegarder de données dans les collections',function(){
                 E3 = new Employee({
                                       nom:"Janet",
                                       prenom:"Leverling",
-                                      abreviation:"Mme",
+                                      abrege:"Mme",
                                       titre:"Représentant de vente",
                                       statut:"M",
                                       genre:"F",
                                       address:"722 Moss Bay Blvd.",
                                       ville:"Kirkland",
                                       region:"WA",
-                                      codepostale:"98033",
+                                      codePostale:"98033",
                                       pays:"USA",
                                       telephone:"(206)555-3412",
                                       cellulaire:"",
-                                      extension:"3355",
                                       email:"exemple3@gmail.com",
-                                      datenaissance:"1952-02-19",
-                                      dateembauche:"1992-08-14",
-                                      salaire:{ montant : 50000, par : "année"},
-                                      congevacance:67,
-                                      congemaladie:20,
+                                      dateNaissance:"1952-02-19",
+                                      dateEmbauche:"1992-08-14",
+                                      salaire:{ montant : 50000, par : "A"},
+                                      congeVacance:67,
+                                      congeMaladie:20,
                                       photo:"",
                                       note:"Janet détient un baccalauréat en chimie du Boston College (1984). Elle a également complété un programme de certificat en gestion de la vente au détail de produits alimentaires. Janet a été embauchée comme adjointe aux ventes en 1991 et promue au poste de représentante des ventes en février 1992.",
-
                                       dateCreation:today,
                                       active:true
                                 });
@@ -738,24 +734,23 @@ describe('Sauvegarder de données dans les collections',function(){
                 E4 = new Employee({
                                       nom:"Steven",
                                       prenom:"Buchanan",
-                                      abreviation:"Mlle",
+                                      abrege:"Mlle",
                                       titre:"Directeur de vente",
                                       statut:"M",
                                       genre:"M",
                                       address:"14 Garrett Hill",
                                       ville:"London",
                                       region:"",
-                                      codepostale:"SW1 8JR",
+                                      codePostale:"SW1 8JR",
                                       pays:"UK",
                                       telephone:"(71) 555-4848",
                                       cellulaire:"",
-                                      extension:"3453",
                                       email:"exemple4@gmail.com",
-                                      datenaissance:"1955-03-04",
-                                      dateembauche:"1993-10-17",
-                                      salaire:{ montant : 80000, par : "année"},
-                                      congevacance:20,
-                                      congemaladie:16,
+                                      dateNaissance:"1955-03-04",
+                                      dateEmbauche:"1993-10-17",
+                                      salaire:{ montant : 80000, par : "A"},
+                                      congeVacance:20,
+                                      congeMaladie:16,
                                       photo:"",
                                       note:"Steven Buchanan est diplômé de l'Université St. Andrews, en Écosse, avec un BSC en 1976. Après avoir rejoint l'entreprise en 1992, il a passé 6 mois dans un programme d'orientation au bureau de Seattle avant de retourner à son poste permanent à Londres. . Il a été promu au poste de directeur des ventes en mars 1993. M. Buchanan a suivi les cours «Successful Telemarketing» et «International Sales Management». Il parle couramment le français.",
                                       dateCreation:today,
@@ -767,24 +762,23 @@ describe('Sauvegarder de données dans les collections',function(){
                  E5 = new Employee({
                                        nom:"Margaret",
                                        prenom:"Peacock",
-                                       abreviation:"Mme",
+                                       abrege:"Mme",
                                        titre:"Représentant de vente",
                                        statut:"M",
                                        genre:"F",
                                        address:"4110 Old Redmond Rd.",
                                        ville:"Redmond",
                                        region:"WA",
-                                       codepostale:"98052",
+                                       codePostale:"98052",
                                        pays:"USA",
                                        telephone:"(206)555-8122",
                                        cellulaire:"",
-                                       extension:"5176",
                                        email:"exemple5@gmail.com",
-                                       datenaissance:"1937-09-19",
-                                       dateembauche:"1993-05-03",
-                                       salaire:{ montant : 30, par : "heure"},
-                                       congevacance:40,
-                                       congemaladie:30,
+                                       dateNaissance:"1937-09-19",
+                                       dateEmbauche:"1993-05-03",
+                                       salaire:{ montant : 30, par : "H"},
+                                       congeVacance:40,
+                                       congeMaladie:30,
                                        photo:"",
                                        note:"Margaret détient un baccalauréat en littérature anglaise du Concordia College (1958) et une maîtrise de l'American Institute of Culinary Arts (1966). Elle a été affectée temporairement au bureau de Londres de juillet à novembre 1992.",
                                        dateCreation:today,
@@ -796,24 +790,23 @@ describe('Sauvegarder de données dans les collections',function(){
                  E6 = new Employee({
                                        nom:"Michael",
                                        prenom:"Suyama",
-                                       abreviation:"M",
+                                       abrege:"M",
                                        titre:"Représentant de vente",
                                        statut:"C",
                                        genre:"M",
                                        address:"Coventry House  Miner Rd.",
                                        ville:"London",
                                        region:"",
-                                       codepostale:"EC2 7JR",
+                                       codePostale:"EC2 7JR",
                                        pays:"UK",
                                        telephone:"(71) 555-7773",
                                        cellulaire:"",
-                                       extension:"428",
                                        email:"exemple6@gmail.com",
-                                       datenaissance:"1963-07-02",
-                                       dateembauche:"1993-10-17",
-                                       salaire:{ montant : 670000, par : "année"},
-                                       congevacance:50,
-                                       congemaladie:32,
+                                       dateNaissance:"1963-07-02",
+                                       dateEmbauche:"1993-10-17",
+                                       salaire:{ montant : 670000, par : "A"},
+                                       congeVacance:50,
+                                       congeMaladie:32,
                                        photo:"",
                                        note:"Michael est diplômé de l'Université de Sussex (MA, économie, 1983) et de l'Université de Californie à Los Angeles (MBA, marketing, 1986). Il a également suivi les cours «Multi-Cultural Selling» et «Time Management for the Sales Professional». Il parle couramment le japonais et peut lire et écrire le français, le portugais et l'espagnol.",
                                        dateCreation:today,
@@ -831,7 +824,8 @@ describe('Sauvegarder de données dans les collections',function(){
              var admin = new Admin({
                                       employee:{ nom: E1.nom, prenom:E1.prenom },
                                       username:"exemple@gmail.com",
-                                      password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                      password:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
+                                      confirmPassword:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
                                       dateCreation:today,
                                       active:true
                                    });
@@ -840,7 +834,8 @@ describe('Sauvegarder de données dans les collections',function(){
                  admin = new Admin({
                                        employee:{ nom: E2.nom, prenom:E2.prenom },
                                        username:"exemple@gmail.com",
-                                       password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                       password:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
+                                       confirmPassword:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
                                        dateCreation:today,
                                        active:true
                                    });
@@ -850,7 +845,8 @@ describe('Sauvegarder de données dans les collections',function(){
                   admin = new Admin({
                                         employee:{ nom: E3.nom, prenom:E3.prenom },
                                         username:"exemple@gmail.com",
-                                        password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                        password:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
+                                        confirmPassword:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
                                         dateCreation:today,
                                         active:true
                                     });
@@ -860,7 +856,8 @@ describe('Sauvegarder de données dans les collections',function(){
                    admin = new Admin({
                                         employee:{ nom: E4.nom, prenom:E4.prenom },
                                         username:"exemple@gmail.com",
-                                        password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                        password:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
+                                        confirmPassword:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
                                         dateCreation:today,
                                         active:true
                                     });
@@ -870,7 +867,8 @@ describe('Sauvegarder de données dans les collections',function(){
                     admin = new Admin({
                                          employee:{ nom: E5.nom, prenom:E5.prenom },
                                          username:"exemple@gmail.com",
-                                         password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                         password:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
+                                         confirmPassword:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
                                          dateCreation:today,
                                          active:true
                                      });
@@ -880,7 +878,8 @@ describe('Sauvegarder de données dans les collections',function(){
                      admin = new Admin({
                                          employee:{ nom: E6.nom, prenom:E6.prenom },
                                          username:"exemple@gmail.com",
-                                         password:"sha1$601121ab$1$c12e15065a35f6bc0920e93968a5c8260febaf4c",
+                                         password:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
+                                         confirmPassword:"sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e",
                                          dateCreation:today,
                                          active:true
                                      });

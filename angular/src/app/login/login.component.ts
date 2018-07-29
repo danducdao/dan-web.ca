@@ -94,15 +94,15 @@ export class LoginComponent implements OnInit {
       this._adminService.authenticate(this.admin)
                         .subscribe(data => this.callback(data));
   }
-  callback(data)
+  callback(data):void
   {
      if(!data.success)
      {
-         alert("Nom d'utilisateur ou Mot de passe est incorrect")
+         alert("Nom d'utilisateur ou Mot de passe est incorrect");
          LocalStorage.removeItem('rememberMe');
          return;
      }
-     this.router.navigateByUrl('/admin')
+     this.router.navigateByUrl('/admin');
 
   }
   register(event:any):void

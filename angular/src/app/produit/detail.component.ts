@@ -79,7 +79,8 @@ export class DetailProduitComponent implements OnInit {
       obj.model.quantiteCommande = data.quantiteCommande;
       obj.model.reapprovisionnement = data.reapprovisionnement;
       obj.model.discontinue = data.discontinue;
-      obj.model.discontinue?this.radioButtonContainer.getContainer()[0].ClsAttribut.checked = true:this.radioButtonContainer.getContainer()[1].ClsAttribut.checked = true;
+      this.radioButtonContainer.getContainer()[0].ClsAttribut.checked = obj.model.discontinue;
+      this.radioButtonContainer.getContainer()[1].ClsAttribut.checked = !obj.model.discontinue;
       obj.model.active = data.active;
   }
   selectCategorie():void

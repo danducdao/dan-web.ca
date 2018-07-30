@@ -115,7 +115,7 @@
                    <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
                    <div class="panel-body">
                         <span *ngFor="let radioButton of radioButtonContainer.getContainer();let i = index">
-                            <div [ngClass]="radioButton.ClsAttribut" style="position: relative;" (click)="radioButtonContainer.discChecked(i,this.model)">
+                            <div [ngClass]="radioButton.ClsAttribut" style="position: relative;" (click)="radioButtonContainer.discChecked(i,model)">
                                 <input type="radio" name="radioButton.Name" style="position: absolute; opacity: 0;" value="radioButton.Value">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
                             </div>&nbsp;{{radioButton.Text}}&nbsp;

@@ -1,21 +1,33 @@
-<article>
-    <div class="form-group col-sm-2">
-         <label for="categorie">Catégorie {{nomCategorie}}</label>
-         <select class="form-control" id="categorie" name="categorie" required #category="ngModel" [(ngModel)]="categorieId" (change)="selectCategorie()">
-                 <option [disabled]="true" value="">--Sélectionner--</option>
-                 <option *ngFor="let categorie of categories" [value]="categorie._id">{{categorie.nom}}</option>
-         </select>
-         <div [hidden]="category.valid" class="alert alert-danger">La catégorie est obligatoire</div>
+<section>
+    <div class="row">
+        <div class="col-md-3">
+          <div class="hpanel hblue col-md-12">
+              <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
+              <div class="panel-body">
+                   <label for="categorie">Catégorie {{nomCategorie}}</label>&nbsp;<span style="color:red;">*</span>
+                   <select class="form-control" id="categorie" name="categorie" required #category="ngModel" [(ngModel)]="categorieId" (change)="selectCategorie()">
+                           <option [disabled]="true" value="">--Sélectionner--</option>
+                           <option *ngFor="let categorie of categories" [value]="categorie._id">{{categorie.nom}}</option>
+                   </select>
+                   <div [hidden]="category.valid" class="alert alert-danger">La catégorie est obligatoire</div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="hpanel hblue col-md-12">
+                <div class="panel-heading hbuilt"><strong>Votre panier</strong></div>
+                <div class="panel-body">
+                    <app-shopping-cart-basket #shoppingCartBasket></app-shopping-cart-basket>
+                </div>
+          </div>
+        </div>
     </div>
-    <div class="col-lg-6">
-        <app-shopping-cart-basket #shoppingCartBasket></app-shopping-cart-basket>
-    </div>
-    <div  class="col-lg-12">
-        <div class="hpanel hblue" *ngFor="let categorie of shoppingCartCategories | filtreCategory:category.value">
+    <div class="row">
+        <div class="hpanel hblue col-lg-12" *ngFor="let categorie of shoppingCartCategories | filtreCategory:category.value">
             <div class="panel-heading hbuilt"><strong>{{categorie.nom}}</strong></div>
             <div class="panel-body">
                 <app-shopping-cart-produit [categorieId]='categorie._id' [shoppingCartBasket]="shoppingCartBasket"></app-shopping-cart-produit>
             </div>
         </div>
     </div>
-</article>
+</section>

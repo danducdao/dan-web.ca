@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Admin } from 'src/classes/admin';
 import { LocalStorage } from 'src/classes/localstorage';
 import { AdminService } from 'src/services/admin.service';
+import { CheckBox } from 'src/classes/checkbox';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ import { AdminService } from 'src/services/admin.service';
                                   <div class="panel-body">
                                       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
                                           <div class="form-group">
-                                              <label class="control-label" for="username">Nom d'utilisateur</label>
+                                              <label class="control-label" for="username">Nom d'utilisateur</label>&nbsp;<span style="color:red;">*</span>
                                               <input type="email"
                                                      class="form-control"
                                                      name="username"
@@ -28,12 +29,12 @@ import { AdminService } from 'src/services/admin.service';
                                                      title="Veuillez entrer votre nom d'utilisateur"
                                                      pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
                                               <div *ngIf="username.errors">
-                                                    <div [hidden]="!username.errors.required || username.pristine" class="alert alert-danger">Nom d'utilsateur est obligatoire</div>
-                                                    <div [hidden]="!username.errors.pattern" class="alert alert-danger">Username est invalide</div>
+                                                    <div [hidden]="!username.errors.required || username.pristine" class="alert alert-danger">Nom d'utilisateur est obligatoire</div>
+                                                    <div [hidden]="!username.errors.pattern" class="alert alert-danger">Nom d'utilisateur est invalid</div>
                                               </div>
                                           </div>
                                           <div class="form-group">
-                                              <label class="control-label" for="password">Mot de passe</label>
+                                              <label class="control-label" for="password">Mot de passe</label>&nbsp;<span style="color:red;">*</span>
                                               <input type="password"
                                                      class="form-control"
                                                      name="password"
@@ -46,15 +47,14 @@ import { AdminService } from 'src/services/admin.service';
                                                     <div [hidden]="!password.errors.required || password.pristine" class="alert alert-danger">Mot de passe est obligatoire</div>
                                               </div>
                                           </div>
-                                          <div class="checkbox">
-                                              <div [ngClass]="iCheck" style="position: relative;" (click)="remember()">
-                                                  <input type="checkbox" style="position: absolute; opacity: 0;" >
+                                          <div class="form-group">
+                                              <div [ngClass]="checkbox.clsAttribut" style="position: relative;" (click)="checkbox.remember()">
+                                                  <input type="checkbox" name="checkbox.Name" style="position: absolute; opacity: 0;" value="checkbox.Value">
                                                   <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                              </div>
-                                              Mémoriser la connexion
+                                              </div>&nbsp;{{checkbox.Text}}
                                               <p class="help-block small">(s'il s'agit d'un ordinateur privé)</p>
                                               <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.form.valid">Identifier</button>
-                                              <button class="btn btn- btn-block" (click)="register($event)">Registre</button>
+                                              <button class="btn btn-primary btn-block" (click)="register($event)">Registre</button>
                                           </div>
                                       </form>
                                   </div>
@@ -68,31 +68,28 @@ import { AdminService } from 'src/services/admin.service';
 export class LoginComponent implements OnInit {
 
   public admin = new Admin();
-  public iCheck = {"icheckbox_square-green":true,'checked':false};
+  public checkbox:any;
 
   constructor(private _adminService :AdminService,private router: Router) { }
 
   ngOnInit()
   {
+      this.checkbox = new CheckBox('memo','memo','Mémoriser la connexion');
       if(LocalStorage.itemExist('rememberMe'))
       {
-          this.iCheck.checked = true;
+          this.checkbox.ClsAttribut.checked = true;
           this.admin.username = LocalStorage.getItem('rememberMe').username;
           this.admin.password = LocalStorage.getItem('rememberMe').password;
       }else
       {
-          this.iCheck.checked = false;
+          this.checkbox.ClsAttribut.checked = false;
       }
   }
-  remember():void
-  {
-      this.iCheck.checked = !this.iCheck.checked;
-      this.iCheck.checked?LocalStorage.setItem('rememberMe',{'username':this.admin.username,'password':this.admin.password}):LocalStorage.removeItem('rememberMe');
-  }
+
   onSubmit():void
   {
       this._adminService.authenticate(this.admin)
-                        .subscribe(data => this.callback(data));
+                        .subscribe(data => this.callback(data),error => console.log(error));
   }
   callback(data):void
   {
@@ -102,8 +99,14 @@ export class LoginComponent implements OnInit {
          LocalStorage.removeItem('rememberMe');
          return;
      }
+     if(this.checkbox.ClsAttribut.checked)
+     {
+          LocalStorage.setItem('rememberMe',{'username':this.admin.username,'password':this.admin.password});
+     }else{
+          if(LocalStorage.itemExist('rememberMe'))
+              LocalStorage.removeItem('rememberMe');
+     }
      this.router.navigateByUrl('/admin');
-
   }
   register(event:any):void
   {

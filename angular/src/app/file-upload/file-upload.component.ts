@@ -14,7 +14,7 @@ export class FileUploadComponent implements OnInit {
 
   errors: Array<string> = [];
   dragAreaClass: string = 'dragarea';
-
+  @Input() name:string;
   @Input() fileExt: string = "JPG, GIF, PNG";
   @Input() maxFiles: number = 5;
   @Input() maxSize: number = 5; // 5MB

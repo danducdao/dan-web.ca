@@ -6,6 +6,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProduitService } from 'src/services/produit.service';
 import { IProduit } from 'src/interfaces/produit';
+import { CheckBox } from 'src/classes/checkbox';
 
 @Component({
   selector: 'app-produit',
@@ -23,14 +24,22 @@ import { IProduit } from 'src/interfaces/produit';
                   </div>
                   <div class="col-lg-3">
                           <div class="row">
-                                <p class="col-lg-3"><label for="search" >Chercher</label></p>
-                                <p><input type="search" size=40 [(ngModel)]="motAChercher"></p>
-                          </div>
+                                <div class="col-lg-12">
+                                   <label class="control-label" for="search">Produit</label>
+                                   <input type="search" class="form-control" [(ngModel)]="motAChercher">
+                                </div>
+                          </div><br>
                           <div class="row">
-                              <label for="search">Chercher par:</label>&nbsp;
-                              <span *ngFor="let item of filtreParams">
-                                   <input type="checkbox" id="{{item.type}}" [(ngModel)]="item.isChecked" (change)="checkValue($event);">&nbsp;{{item.type}}
-                              </span>
+                                <div class="col-lg-12">
+                                    <div class="checkbox">
+                                        <span *ngFor="let checkbox of checkboxContainer">
+                                          <div  [ngClass]="checkbox.clsAttribut" style="position: relative;" (click)="checkbox.searchBy(filtreParams);motAChercher=''">
+                                                <input type="checkbox" name="checkbox.Name" style="position: absolute; opacity: 0;" value="checkbox.Value">
+                                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                          </div>&nbsp;{{checkbox.Text}}
+                                        </span>
+                                    </div>
+                              </div>
                           </div>
                   </div>
               </div>
@@ -90,18 +99,24 @@ export class ListeProduitComponent implements OnInit {
                           ];
   public right:any={colRight:true};
   public center:any={colCenter:true};
+  public checkboxContainer:any;
 
   constructor(private _produitService:ProduitService) { }
 
   ngOnInit()
   {
        this.filtreParams = [
-                              { type : 'nom', isChecked : true},
-                              { type : 'catégorie', isChecked : false},
-                              { type : 'Quantité', isChecked : false},
-                              { type : 'Prix', isChecked : false},
-                            ];
-
+                               { type : 'Nom', isChecked : true},
+                               { type : 'Catégorie', isChecked : false},
+                               { type : 'Quantité', isChecked : false},
+                               { type : 'Prix', isChecked : false}
+                           ];
+       this.checkboxContainer = [
+                                    new CheckBox('Nom','Nom','Nom',true),
+                                    new CheckBox('Catégorie','Catégorie','Catégorie'),
+                                    new CheckBox('Quantité','Quantité','Quantité'),
+                                    new CheckBox('Prix','Prix','Prix')
+                                ];
        this._produitService.getProduitList().subscribe( data => this.produits = data);
   }
   removeProduit(event:any,produitId:string):void
@@ -120,6 +135,7 @@ export class ListeProduitComponent implements OnInit {
           this._produitService.getProduitList().subscribe( data => this.produits = data);
       }
   }
+  /*
   checkValue(event:any):void
   {
        this.motAChercher = "";
@@ -130,5 +146,5 @@ export class ListeProduitComponent implements OnInit {
            }
            return value;
        });
-   }
+   }*/
 }

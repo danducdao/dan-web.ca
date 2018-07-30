@@ -9,21 +9,20 @@ import { CategorieService } from 'src/services/categorie.service';
 import { FournisseurService } from 'src/services//fournisseur.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from 'src/classes/produit';
+import { Container } from 'src/classes/container';
+import { RadioButton } from 'src/classes/radiobutton';
 import { IFournisseur } from 'src/interfaces/fournisseur';
 import { Regex } from 'src/classes/regex';
 
 @Component({
   selector: 'app-categorie',
   templateUrl: './detail.component.html',
-  styles: [`
-          .ng-valid[required], .ng-valid.required  {
-             border-left: 5px solid #42A948; /* green */
-          }
-
-          .ng-invalid:not(form)  {
-            border-left: 5px solid #a94442; /* red */
-          }
-          `]
+  styles: [ `
+               #produitDetail .row
+               {
+                    margin: 0 0 5px 0;
+               }
+           `]
 })
 export class DetailProduitComponent implements OnInit {
 
@@ -37,6 +36,7 @@ export class DetailProduitComponent implements OnInit {
   public nodigitPattern:string = Regex.NoDigitPattern();
   public categorieId:string = "";
   public fournisseurId:string = "";
+  public radioButtonContainer:Container = new Container();
 
   constructor(
               private _produitService:ProduitService,
@@ -56,6 +56,8 @@ export class DetailProduitComponent implements OnInit {
   ngOnInit()
   {
       this.model = new Produit();
+      this.radioButtonContainer.setContainer(new RadioButton('discontinue','Oui','Oui'));
+      this.radioButtonContainer.setContainer(new RadioButton('discontinue','Non','Non'));
       this._categorieService.getCategorieList().subscribe( data => this.categories = data );
       this._fournisseurService.getFournisseurList().subscribe( data => this.fournisseurs = data );
       this.id = this.route.snapshot.params.id;
@@ -63,10 +65,10 @@ export class DetailProduitComponent implements OnInit {
       if(this.id)
       {
            this.titre = "Modifier";
-           this._produitService.getProduitById(this.id).subscribe(data => this.response(this,data));
+           this._produitService.getProduitById(this.id).subscribe(data => this.callback(this,data));
       }
   }
-  response(obj,data):void
+  callback(obj,data):void
   {
       obj.model.nom = data.nom;
       obj.categorieId = data.category[0]._id;
@@ -77,6 +79,7 @@ export class DetailProduitComponent implements OnInit {
       obj.model.quantiteCommande = data.quantiteCommande;
       obj.model.reapprovisionnement = data.reapprovisionnement;
       obj.model.discontinue = data.discontinue;
+      obj.model.discontinue?this.radioButtonContainer.getContainer()[0].ClsAttribut.checked = true:this.radioButtonContainer.getContainer()[1].ClsAttribut.checked = true;
       obj.model.active = data.active;
   }
   selectCategorie():void

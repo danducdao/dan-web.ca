@@ -22,9 +22,9 @@ enum PhotoSizeEnum{
   selector: 'app-categorie',
   templateUrl: './detail.component.html',
   styles: [`
-              .parent {
-                   position: relative;
-                   display: inline-block;
+              #categorieDetail .row
+              {
+                  margin: 0 0 5px 0;
               }
           `]
 })

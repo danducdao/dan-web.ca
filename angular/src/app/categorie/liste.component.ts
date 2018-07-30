@@ -29,21 +29,25 @@ import { ActivatedRoute, Router } from '@angular/router';
                       <table class="table table-bordered" cellspacing="1" cellpadding="1">
                          <thead>
                           <tr>
-                            <th *ngFor="let value of ['','','Nom','Description','Active']" [ngClass]="center" style="vertical-align:middle">{{value}}</th>
-                            <th [ngClass]="center"><button [disabled]="enabledButton?'':'enabled'" class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
+                              <th></th>
+                              <th></th>
+                              <th [ngStyle]="verticalAlign">Nom</th>
+                              <th [ngStyle]="verticalAlign">Description</th>
+                              <th [ngStyle]="verticalAlign"><button [disabled]="enabledButton?'':'enabled'" class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button></th>
+                              <th [ngStyle]="verticalAlign">Active</th>
                           </tr>
                         </thead>
                         <tbody *ngFor="let categorie of categories">
                            <tr>
-                              <td [ngClass]="center"><a href="#" (click)="removeCategorie($event,categorie._id)">Supprimer</a></td>
-                              <td [ngClass]="center"><a routerLink="{{paths.modif + categorie._id}}">Modifier</a></td>
-                              <td>{{ categorie.nom }}</td>
-                              <td>{{ categorie.description }}</td>
-                              <td [ngClass]="center">
-                                   <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
-                              </td>
+                              <td [ngClass]="center" [ngStyle]="verticalAlign"><a href="#" (click)="removeCategorie($event,categorie._id)">Supprimer</a></td>
+                              <td [ngClass]="center" [ngStyle]="verticalAlign"><a routerLink="{{paths.modif + categorie._id}}">Modifier</a></td>
+                              <td [ngStyle]="verticalAlign">{{ categorie.nom }}</td>
+                              <td [ngStyle]="verticalAlign">{{ categorie.description }}</td>
                               <td [ngClass]="center">
                                   <img *ngIf="showImage" [src]="categorie.photo" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin" style="border-radius:10px;"/>
+                              </td>
+                              <td [ngClass]="center" [ngStyle]="verticalAlign">
+                                   <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
                               </td>
                             </tr>
                          </tbody>
@@ -62,6 +66,7 @@ export class ListeCategorieComponent implements OnInit {
   public showImage:boolean = false;
   public center:any = {colCenter:true};
   public enabledButton:boolean = false;
+  public verticalAlign:object = {verticalAlign:'middle'};
   public paths:any;
 
   constructor(private _categorieService:CategorieService,

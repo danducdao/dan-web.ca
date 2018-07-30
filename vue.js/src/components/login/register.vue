@@ -16,7 +16,7 @@
                                                 name="abr" 
                                                 v-model.trim="$v.employee.abrege.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="abrege in abregeOpt" :value="abrege.value">{{abrege.name}}</option>s
+                                    <option v-for="abrege in abregeOpt" :value="abrege.value">{{abrege.name}}</option>
                                 </select>
                                 <div v-if="$v.employee.abrege.$error && !$v.employee.abrege.required" class="alert alert-danger">Titre de civilité est obligatoire</div>
                             </div>

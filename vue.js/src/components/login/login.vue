@@ -26,12 +26,11 @@
                                     <div>Minimum huit de longeur</div>
                                 </div>
                             </div>
-                            <div class="checkbox">
-                                <div :class="iCheck" style="position: relative;" @click.prevent="remember">
-                                    <input type="checkbox" style="position: absolute; opacity: 0;" >
+                            <div class="form-group">
+                                <div :class="checkbox.clsAttribut" style="position: relative;" @click="checkbox.remember()">
+                                    <input type="checkbox" :name="checkbox.Name" style="position: absolute; opacity: 0;" :value="checkbox.Value">
                                     <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                </div>
-                                Mémoriser la connexion
+                                </div>&nbsp;{{checkbox.Text}}
                                 <p class="help-block small">(s'il s'agit d'un ordinateur privé)</p>
                                 <button type="submit" class="btn btn-success btn-block" :disabled="!$v.admin.username.required 
                                                                                                   || !$v.admin.username.email 
@@ -52,6 +51,7 @@
 import { AdminService } from '../../services/admin';
 import { Admin } from '../../classes/admin';
 import { LocalStorage } from '../../classes/localstorage';
+import { CheckBox } from '../../classes/checkBox';
 import { required,email } from 'vuelidate/lib/validators';
 import { password } from '../../inc/helper';
 
@@ -59,29 +59,27 @@ export default {
     name: 'Login',
     data () {
         return {
-            iCheck:{"icheckbox_square-green":true,'checked':false},
-            adminService:new AdminService(this.$http),
-            admin:new Admin(),
-            localStorage:new LocalStorage()
+            adminService  :new AdminService(this.$http),
+            admin : new Admin(),
+            localStorage : new LocalStorage(),
+            checkbox : new CheckBox()
         }
     },
     created()
     {
+        this.checkbox = new CheckBox('memo','memo','Mémoriser la connexion');
+
         if(this.localStorage.itemExist('rememberMe'))
         {
-            this.iCheck.checked = true;
+            this.checkbox.ClsAttribut.checked = true;
             this.admin.username = this.localStorage.getItem('rememberMe').username;
             this.admin.password = this.localStorage.getItem('rememberMe').password;
         }else
         {
-            this.iCheck.checked = false;
+            this.checkbox.ClsAttribut.checked = false;
         }
     },
     methods :{
-        remember()
-        {
-            this.iCheck.checked = !this.iCheck.checked;
-        },
         onSubmit()
         {
             this.adminService.authenticate(this.admin)
@@ -91,7 +89,7 @@ export default {
         {
             if(data.status == 200 && data.body && data.body.success)
             {
-                if(this.iCheck.checked)
+                if(this.checkbox.ClsAttribut.checked)
                 {
                     this.localStorage.setItem('rememberMe',{'username':this.admin.username,'password':this.admin.password});
                 }else{

@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <label for="image">Image</label>
+                    <label class="control-label" for="image">Image</label>
                     <app-file-upload 
                             name="image"
                             maxFiles = 1

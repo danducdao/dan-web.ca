@@ -144,18 +144,12 @@
                 <div class="hpanel hblue col-md-4">
                     <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <div :class="iRadioOui" style="position: relative;" @click.prevent="checkedOui">
-                                    <input type="radio" name="discontinue" style="position: absolute; opacity: 0;" :value="true">
-                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                </div>&nbsp;Oui&nbsp;
-                                <div :class="iRadioNon" style="position: relative;" @click.prevent="checkedNon">
-                                    <input type="radio" name="discontinue" style="position: absolute; opacity: 0;" :value="false">
-                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                </div>&nbsp;Non
-                            </div>
-                        </div>
+                        <span v-for="(radioButton,index) in radioButtonContainer.Container">
+                            <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="radioButtonContainer.discChecked(index,model)">
+                                <input type="radio" :name="radioButton.Name" style="position: absolute; opacity: 0;" :value="radioButton.Value">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                            </div>&nbsp;{{radioButton.Text}}&nbsp;
+                        </span>
                     </div>
                 </div>
             </div>
@@ -197,6 +191,8 @@ import { CategorieService } from '../../services/categorie';
 import { FournisseurService } from '../../services/fournisseur';
 import { ProduitService } from '../../services/produit';
 import { Produit } from '../../classes/produit';
+import { RadioButton } from '../../classes/radioButton';
+import { MyContainer } from '../../classes/myContainer';
 
 export default {
     name: 'ProduitDetail',
@@ -210,9 +206,9 @@ export default {
             categorieService : new CategorieService(this.$http),
             fournisseurService : new FournisseurService(this.$http),
             model : new Produit(),
-            others : { categoryId : "", fournisseurId : ""},
-            iRadioOui:{"iradio_square-green":true,'checked':false},
-            iRadioNon:{"iradio_square-green":true,'checked':false}
+            radioButton : new RadioButton(),
+            radioButtonContainer : new MyContainer(),
+            others : { categoryId : "", fournisseurId : ""}
          }
     },
     created()
@@ -229,23 +225,25 @@ export default {
             this.fournisseurs = fournisseurs.length > 0?fournisseurs:"";
         });
 
+        this.radioButtonContainer.Container = new RadioButton('discontinue','Oui','Oui');
+        this.radioButtonContainer.Container = new RadioButton('discontinue','Non','Non');
+
         if(this.$route.params.id)
         { 
             this.titre = "Modifier";
-            this.produitService.getProduitById(this.$route.params.id).then(data => this.response(this,data.body));
-        }else{
-            this.initDiscState();
+            this.produitService.getProduitById(this.$route.params.id).then(data => this.callback(this,data.body));
         }
     },
     methods : {
-        response(obj,produits)
+        callback(obj,res)
         {
-            if(typeof produits === 'object')
+            if(typeof res === 'object')
             {
-                this.model = produits;
-                this.others.categoryId = produits.category[0]._id;
-                this.others.fournisseurId = produits.fournisseur._id;
-                this.initDiscState();
+                obj.model = res;
+                obj.others.categoryId = res.category[0]._id;
+                obj.others.fournisseurId = res.fournisseur._id;
+                obj.radioButtonContainer.Container[0].ClsAttribut.checked = obj.model.discontinue;
+                obj.radioButtonContainer.Container[1].ClsAttribut.checked = !obj.model.discontinue;
             }  
         },
         onSubmit()
@@ -275,25 +273,6 @@ export default {
             obj.active = this.model.active;
             
             this.produitService.saveProduit(obj).then(data => data?this.$router.push({ name: "ListeProduit"}):"");
-        },
-        checkedOui(event)
-        {
-            this.iRadioOui.checked = true;
-            this.iRadioNon.checked = !this.iRadioOui.checked;
-            this.model.discontinue = event.target.previousElementSibling.value;
-        },
-        checkedNon(event)
-        {
-            this.iRadioNon.checked = true;
-            this.iRadioOui.checked = !this.iRadioNon.checked;
-            this.model.discontinue = event.target.previousElementSibling.value;
-        },
-        initDiscState()
-        {
-            if(this.model.discontinue)
-                this.iRadioOui.checked =true;
-            else
-                this.iRadioNon.checked =true;
         }
     },
     validations : {

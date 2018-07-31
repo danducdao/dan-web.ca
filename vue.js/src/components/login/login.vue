@@ -10,13 +10,33 @@
                         <form @submit.prevent="onSubmit()">
                             <div class="form-group">
                                 <label class="control-label" for="username">Nom d'utilisateur</label>&nbsp;<span style="color:red;">*</span>
-                                <input type="email" class="form-control" name="username" v-model.trim="$v.admin.username.$model" placeholder="exemple@gmail.com" title="Veuillez entrer votre nom d'utilisateur">
+                                <input type="email" 
+                                       :class="{
+                                                    input_form_error:$v.admin.username.$error,
+                                                    input_form_valid:!$v.admin.username.$invalid,
+                                                    'form-control':true  
+                                                }" 
+                                       name="username" 
+                                       required
+                                       v-model.trim="$v.admin.username.$model" 
+                                       placeholder="exemple@gmail.com" 
+                                       title="Veuillez entrer votre nom d'utilisateur">
                                 <div class="alert alert-danger" v-if="$v.admin.username.$error && !$v.admin.username.required">Nom d'utilisateur est obligatoire</div>
                                 <div class="alert alert-danger" v-if="!$v.admin.username.email">Nom d'utilisateur est invalid</div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password">Mot de passe</label>&nbsp;<span style="color:red;">*</span>
-                                <input type="password" class="form-control" name="password" v-model.trim="$v.admin.password.$model" placeholder="******" title="Veuillez entrer votre mot de passe">
+                                <input type="password" 
+                                       :class="{
+                                                    input_form_error:$v.admin.password.$error,
+                                                    input_form_valid:!$v.admin.password.$invalid,
+                                                    'form-control':true  
+                                                }"  
+                                       name="password" 
+                                       required 
+                                       v-model.trim="$v.admin.password.$model" 
+                                       placeholder="******" 
+                                       title="Veuillez entrer votre mot de passe">
                                 <div class="alert alert-danger" v-if="$v.admin.password.$error && !$v.admin.password.required">Mot de passe est obligatoire</div>
                                 <div class="alert alert-danger" v-if="!$v.admin.password.password">
                                     <div>Mot de passe doit contenir:</div>

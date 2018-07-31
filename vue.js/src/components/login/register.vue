@@ -143,7 +143,7 @@
                                                     input_form_valid:!$v.employee.ville.$invalid,
                                                     'form-control':true
                                                 }"  
-                                            name="pays" 
+                                            name="ville" 
                                             v-model.trim="$v.employee.ville.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="ville in villesOpt" :value="ville.value">{{ville.name}}</option>
@@ -159,7 +159,7 @@
                                                     input_form_valid:!$v.employee.region.$invalid,
                                                     'form-control':true
                                                 }"  
-                                        name="pays" 
+                                        name="region" 
                                         v-model="$v.employee.region.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="region in regionsOpt" :value="region.value">{{region.name}}</option>
@@ -225,6 +225,7 @@
                                        v-model.trim="$v.employee.email.$model" 
                                        placeholder="exemple@gmail.com"/>
                                 <div v-if="$v.employee.email.$error && !$v.employee.email.required" class="alert alert-danger">Courriel est obligatoire</div>
+                                <div v-if="!$v.employee.email.email" class="alert alert-danger">Courriel est invalid</div>
                             </div>
                         </div>
                     </div>
@@ -382,11 +383,14 @@
                                 <div v-if="$v.admin.password.$error">
                                     <div class="alert alert-danger" v-if="!$v.admin.password.required">Mot de passe est obligatoire</div>
                                     <div class="alert alert-danger" v-if="!$v.admin.password.password">
-                                        <div>Au moins un majuscule</div>
-                                        <div>Au moins un minuscule</div>
-                                        <div>Au moins un digit</div>
-                                        <div>Au moins un caractère spéciaux</div>
-                                        <div>Minimum huit de longeur</div>
+                                        <div>Mot de passe doit contenir:</div>
+                                        <ul style="margin-left:-10px;">
+                                            <li>Au moins un majuscule</li>
+                                            <li>Au moins un minuscule</li>
+                                            <li>Au moins un digit</li>
+                                            <li>Au moins un caractère spéciaux</li>
+                                            <li>Minimum huit de longeur</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -567,7 +571,8 @@ export default {
                 required
             },
             email:{
-                required
+                required,
+                email
             },
             dateEmbauche:{
                 required

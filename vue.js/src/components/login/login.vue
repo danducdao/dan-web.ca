@@ -19,11 +19,14 @@
                                 <input type="password" class="form-control" name="password" v-model.trim="$v.admin.password.$model" placeholder="******" title="Veuillez entrer votre mot de passe">
                                 <div class="alert alert-danger" v-if="$v.admin.password.$error && !$v.admin.password.required">Mot de passe est obligatoire</div>
                                 <div class="alert alert-danger" v-if="!$v.admin.password.password">
-                                    <div>Au moins un majuscule</div>
-                                    <div>Au moins un minuscule</div>
-                                    <div>Au moins un digit</div>
-                                    <div>Au moins un caractère spéciaux</div>
-                                    <div>Minimum huit de longeur</div>
+                                    <div>Mot de passe doit contenir:</div>
+                                    <ul style="margin-left:-10px;">
+                                        <li>Au moins un majuscule</li>
+                                        <li>Au moins un minuscule</li>
+                                        <li>Au moins un digit</li>
+                                        <li>Au moins un caractère spéciaux</li>
+                                        <li>Minimum huit de longeur</li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="form-group">

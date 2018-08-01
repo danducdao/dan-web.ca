@@ -4,6 +4,7 @@ import { Admin } from 'src/classes/admin';
 import { LocalStorage } from 'src/classes/localstorage';
 import { AdminService } from 'src/services/admin.service';
 import { CheckBox } from 'src/classes/checkbox';
+import { Regex } from 'src/classes/regex';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +27,10 @@ import { CheckBox } from 'src/classes/checkbox';
                                                      required
                                                      [(ngModel)]="admin.username"
                                                      placeholder="exemple@gmail.com"
-                                                     title="Veuillez entrer votre nom d'utilisateur"
-                                                     pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                                                     title="Veuillez entrer votre nom d'utilisateur">
                                               <div *ngIf="username.errors">
                                                     <div [hidden]="!username.errors.required || username.pristine" class="alert alert-danger">Nom d'utilisateur est obligatoire</div>
-                                                    <div [hidden]="!username.errors.pattern" class="alert alert-danger">Nom d'utilisateur est invalid</div>
+                                                    <div [hidden]="!username.errors.email" class="alert alert-danger">Nom d'utilisateur est invalid</div>
                                               </div>
                                           </div>
                                           <div class="form-group">
@@ -41,10 +41,21 @@ import { CheckBox } from 'src/classes/checkbox';
                                                      #password="ngModel"
                                                      required
                                                      [(ngModel)]="admin.password"
+                                                     [pattern]="passwordPattern"
                                                      placeholder="******"
                                                      title="Veuillez entrer votre mot de passe">
                                               <div *ngIf="password.errors">
                                                     <div [hidden]="!password.errors.required || password.pristine" class="alert alert-danger">Mot de passe est obligatoire</div>
+                                                    <div [hidden]="!password.errors.pattern" class="alert alert-danger">
+                                                          <div>Mot de passe doit contenir:</div>
+                                                          <ul style="margin-left:-10px;">
+                                                              <li>Au moins un majuscule</li>
+                                                              <li>Au moins un minuscule</li>
+                                                              <li>Au moins un digit</li>
+                                                              <li>Au moins un caractère spéciaux</li>
+                                                              <li>Minimum huit de longeur</li>
+                                                          </ul>
+                                                    </div>
                                               </div>
                                           </div>
                                           <div class="form-group">
@@ -54,7 +65,7 @@ import { CheckBox } from 'src/classes/checkbox';
                                               </div>&nbsp;{{checkbox.Text}}
                                               <p class="help-block small">(s'il s'agit d'un ordinateur privé)</p>
                                               <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.form.valid">Identifier</button>
-                                              <button class="btn btn-primary btn-block" (click)="register($event)">Registre</button>
+                                              <button class="btn btn-primary btn-block" (click)="register($event)">Enregistrer</button>
                                           </div>
                                       </form>
                                   </div>
@@ -69,6 +80,7 @@ export class LoginComponent implements OnInit {
 
   public admin = new Admin();
   public checkbox:any;
+  public passwordPattern:string = Regex.PasswordPattern();
 
   constructor(private _adminService :AdminService,private router: Router) { }
 
@@ -110,7 +122,7 @@ export class LoginComponent implements OnInit {
   }
   register(event:any):void
   {
-       alert("Désolé! ce module n'est pas disponible pour l'instant");
+       this.router.navigateByUrl('/register');
        event.preventDefault();
   }
 

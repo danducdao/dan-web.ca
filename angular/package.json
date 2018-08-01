@@ -23,6 +23,8 @@
     "angularfire2": "^5.0.0-rc.10",
     "core-js": "^2.5.4",
     "firebase": "^4.6.1",
+    "mydatepicker": "^2.6.4",
+    "mydaterangepicker": "^4.2.1",
     "rxjs": "^6.2.0",
     "zone.js": "^0.8.26"
   },

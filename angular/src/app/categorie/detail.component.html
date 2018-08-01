@@ -29,8 +29,8 @@
                       maxFiles="1"
                       maxSize="2"
                       fileExt="JPG, GIF, PNG, JPEG"
-                      (uploadStatus)="refreshImage($event)"
-                      (FileToSave)="FileToSave($event)">
+                      (uploadStatus)="fileToUpload.refreshImage($event,model)"
+                      (FileToSave)="fileToUpload.FileToSave($event)">
                   </app-file-upload>
               </div>
          </div>
@@ -38,11 +38,10 @@
                <div class="col-md-3">
                    <div class="well" *ngIf="model.photo">
                       <div class="parent">
-                          <img [src]="model.photo" [alt]="model.nom" [height]="height" [width]="width"/>
+                          <img [src]="model.photo" [alt]="model.nom" [height]="fileToUpload.height" [width]="fileToUpload.width"/>
                           <button class="btn btn-danger"
-                                  [style.display]="!uploadStatus?'none':'inherit'"
-                                  style="position:absolute;top:0;right:0;border-radius:10px;margin:1px 2px 0px 0px;"
-                                  (click)="removeImage($event)">X
+                                  [ngStyle]="fileToUpload.styleXRemove"
+                                  (click)="fileToUpload.removeImage($event,model)">X
                           </button>
                         </div>
                    </div>

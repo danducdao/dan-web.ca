@@ -27,6 +27,9 @@ import { FiltreHtmlTagPipe } from 'src/pipes/filtre-html-tag.pipe';
 import { AdminComponent } from './admin/admin.component';
 import { ShoppingCartBasketComponent } from './shopping-cart-basket/shopping-cart-basket.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './login/register.component';
+import { MyDatePickerModule } from 'mydatepicker';
+import { EqualValidator } from 'src/directives/equal-validator.directive';
 
 @NgModule({
   declarations: [
@@ -50,13 +53,16 @@ import { LoginComponent } from './login/login.component';
     FiltreHtmlTagPipe,
     AdminComponent,
     ShoppingCartBasketComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MyDatePickerModule
   ],
   providers: [EmployeService,ProduitService,CategorieService],
   bootstrap: [AppComponent]

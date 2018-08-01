@@ -6,7 +6,7 @@
 export class Admin
 {
      public _id:string;
-     public employee:object;
+     public employee:any;
      public username:string;
      public password:string;
      public dateCreation:string;
@@ -14,7 +14,7 @@ export class Admin
 
      constructor()
      {
-       this.employee = {};
+       this.employee = { nom : "", prenom:""};
        this.username = "";
        this.password = "";
        this.dateCreation = new Date().toLocaleDateString("en-US");

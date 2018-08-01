@@ -16,7 +16,7 @@
                                                 name="abr" 
                                                 v-model.trim="$v.employee.abrege.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="abrege in abregeOpt" :value="abrege.value">{{abrege.name}}</option>
+                                    <option v-for="abrege in employee.AbregeOpt" :value="abrege.value">{{abrege.name}}</option>
                                 </select>
                                 <div v-if="$v.employee.abrege.$error && !$v.employee.abrege.required" class="alert alert-danger">Titre de civilité est obligatoire</div>
                             </div>
@@ -72,7 +72,7 @@
                                 <label class="control-label" for="statut">Statut</label>
                                 <select class="form-control" name="statut" v-model="employee.statut">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="statut in statutOpt" :value="statut.value">{{statut.name}}</option> 
+                                    <option v-for="statut in employee.StatutOpt" :value="statut.value">{{statut.name}}</option> 
                                 </select>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 <label class="control-label" for="genre">Genre</label>
                                 <select class="form-control" name="genre" v-model="employee.genre">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="genre in genreOpt" :value="genre.value">{{genre.name}}</option>
+                                    <option v-for="genre in employee.GenreOpt" :value="genre.value">{{genre.name}}</option>
                                 </select>  
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                                     'form-control':true
                                                 }" 
                                                 name="pays" 
-                                                v-model.trim="$v.employee.pays.$model" @change="selectedPays()">
+                                                v-model.trim="$v.employee.pays.$model" @change.lazy="selectedPays()">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="pays in paysOpt" :value="pays.value">{{pays.name}}</option>
                                 </select>
@@ -272,7 +272,7 @@
                                         name="par"
                                         v-model.trim="$v.employee.salaire.par.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="par in parOpt" :value="par.value">{{par.name}}</option>
+                                    <option v-for="par in employee.ParOpt" :value="par.value">{{par.name}}</option>
                                 </select>
                                 <div v-if="$v.employee.salaire.par.$error && !$v.employee.salaire.par.required" class="alert alert-danger" :style="DatePickerStyle">Payé par est obligatoire</div>
                             </div>
@@ -459,170 +459,168 @@
 </template>
 
 <script>
-
-import DatePicker from 'vue2-datepicker';
-import  fileUpload  from '../file-upload';
-import { Employee } from '../../classes/employee';
-import { Admin } from '../../classes/admin';
-import { FileUpload } from '../../classes/fileUpload';
-import { GoogleMapService } from '../../services/googleMap';
-import { EmployeeService } from '../../services/employee';
-import { alpha, password,convertDate } from '../../inc/helper';
-import { required, email, sameAs, decimal,numeric } from 'vuelidate/lib/validators';
+import DatePicker from "vue2-datepicker";
+import fileUpload from "../file-upload";
+import { Employee } from "../../classes/employee";
+import { Admin } from "../../classes/admin";
+import { FileUpload } from "../../classes/fileUpload";
+import { GoogleMapService } from "../../services/googleMap";
+import { EmployeeService } from "../../services/employee";
+import { alpha, password, convertDate } from "../../inc/helper";
+import {
+  required,
+  email,
+  sameAs,
+  decimal,
+  numeric
+} from "vuelidate/lib/validators";
 
 export default {
-    name: 'Register',
-    components: { 
-        DatePicker,
-        'app-file-upload' : fileUpload },
-    data () {
-        return {
-            employee : new Employee(),
-            fileUpload : new FileUpload(),
-            admin:new Admin(),
-            googleMap: new GoogleMapService(this.$http),
-            employeeService : new EmployeeService(this.$http),
-            statutOpt : [{name:'Célibataire',value:'C'},{name:'Marié',value:'M'},{name:'Divorcé',value:'D'},{name:'Veuve',value:'V'}],
-            genreOpt : [{name:'Homme',value:'H'},{name:'Femme',value:'F'}],
-            abregeOpt : [{name:'M.',value:'M'},{name:'Mme.',value:'Mme'},{name:'Mlle.',value:'Mlle'},{name:'Dr.',value:'Dr'}],
-            paysOpt : [],
-            villesOpt : [],
-            regionsOpt : [],
-            parOpt : [{name:'Heure',value:'H'},{name:'Année',value:'A'},{name:'Semaine',value:'S'},{name:'Chaque 2 semaine',value:'2S'}],
-            DatePickerStyle : "width:235px;"
-        }
+  name: "Enregistrer",
+  components: {
+    DatePicker,
+    "app-file-upload": fileUpload
+  },
+  data() {
+    return {
+      employee: new Employee(),
+      fileUpload: new FileUpload(),
+      admin: new Admin(),
+      googleMap: new GoogleMapService(this.$http),
+      employeeService: new EmployeeService(this.$http),
+      DatePickerStyle: "width:235px;",
+      paysOpt: [],
+      villesOpt: [],
+      regionsOpt: []
+    };
+  },
+  created() {
+    this.googleMap.getPays().then(data => (this.paysOpt = data.body));
+  },
+  methods: {
+    selectedPays() {
+      if (!this.employee.pays) return;
+      this.googleMap
+        .getVilles(this.employee.pays)
+        .then(data => (this.villesOpt = data.body));
+      this.googleMap
+        .getRegions(this.employee.pays)
+        .then(data => (this.regionsOpt = data.body));
     },
-    created()
-    {
-         this.googleMap.getPays().then(data => this.paysOpt = data.body);
+    UploadStatus(uploadStatus) {
+      this.fileUpload.UploadStatus(uploadStatus);
     },
-    methods : {
-        selectedPays()
-        {
-            if(!this.employee.pays)
-                return;
-            this.googleMap.getVilles(this.employee.pays).then(data => this.villesOpt = data.body);
-            this.googleMap.getRegions(this.employee.pays).then(data => this.regionsOpt = data.body);
-        },
-        UploadStatus(uploadStatus)
-        {
-            this.fileUpload.UploadStatus(uploadStatus);
-        },
-        FileToSave(file)
-        {
-            this.fileUpload.FileToSave(file,this.employee);  
-        },
-        removeImage : function()
-        {
-            this.fileUpload.removeImage(this.employee);
-        },
-        onSubmit()
-        {
-            this.admin.employee.nom = this.employee.nom;
-            this.admin.employee.prenom = this.employee.prenom;
-            this.employee.dateNaissance = convertDate(this.employee.dateNaissance)
-            this.employee.dateEmbauche = convertDate(this.employee.dateEmbauche);
-            this.employeeService.saveEmployee(this.employee,this.admin).then(resp => this.callback(resp));
-        },
-        callback(resp)
-        {
-            if(resp.status==200 && resp.body)
-            {
-                alert("Félicitation! Vos informations ont été sauvegardées avec succès");
-                this.$router.push('login');
-                return;
-            }
-            alert("Désolé! Vos informations ont été sauvegardées avec sans succès");
-        }
+    FileToSave(file) {
+      this.fileUpload.FileToSave(file, this.employee);
     },
-    validations : {
-        employee : {
-            abrege:{
-                required
-            },
-            nom:{
-                required,
-                alpha
-            },
-            prenom:{
-                required,
-                alpha
-            },
-            titre:{
-                required,
-                alpha
-            },
-            address : {
-                required
-            },
-            pays:{
-                required
-            },
-            ville:{
-                required
-            },
-            region :{
-                required
-            },
-            codePostale:{
-                required
-            },
-            telephone:{
-                required
-            },
-            email:{
-                required,
-                email
-            },
-            dateEmbauche:{
-                required
-            },
-            dateNaissance :{
-                required
-            },
-            salaire:{
-                montant:{
-                    required,
-                    decimal
-                },
-                par:{
-                    required
-                }
-            },
-            congeVacance:{
-                required,
-                numeric
-            },
-            congeMaladie:{
-                required,
-                numeric
-            }       
-        },
-        admin : {
-            username :{
-                required,
-                email
-            },
-            password :{
-                required,
-                password
-            },
-            confirmPassword:{
-                sameAsPassword: sameAs('password')
-             }
-        }
-        
+    removeImage: function() {
+      this.fileUpload.removeImage(this.employee);
+    },
+    onSubmit() {
+      this.admin.employee.nom = this.employee.nom;
+      this.admin.employee.prenom = this.employee.prenom;
+      this.employee.dateNaissance = convertDate(this.employee.dateNaissance);
+      this.employee.dateEmbauche = convertDate(this.employee.dateEmbauche);
+      this.employeeService
+        .saveEmployee(this.employee, this.admin)
+        .then(resp => this.callback(resp));
+    },
+    callback(resp) {
+      if (resp.status == 200 && resp.body) {
+        alert(
+          "Félicitation! Vos informations ont été sauvegardées avec succès"
+        );
+        this.$router.push("login");
+        return;
+      }
+      alert("Désolé! Vos informations ont été sauvegardées avec sans succès");
     }
-    
-}
+  },
+  validations: {
+    employee: {
+      abrege: {
+        required
+      },
+      nom: {
+        required,
+        alpha
+      },
+      prenom: {
+        required,
+        alpha
+      },
+      titre: {
+        required,
+        alpha
+      },
+      address: {
+        required
+      },
+      pays: {
+        required
+      },
+      ville: {
+        required
+      },
+      region: {
+        required
+      },
+      codePostale: {
+        required
+      },
+      telephone: {
+        required
+      },
+      email: {
+        required,
+        email
+      },
+      dateEmbauche: {
+        required
+      },
+      dateNaissance: {
+        required
+      },
+      salaire: {
+        montant: {
+          required,
+          decimal
+        },
+        par: {
+          required
+        }
+      },
+      congeVacance: {
+        required,
+        numeric
+      },
+      congeMaladie: {
+        required,
+        numeric
+      }
+    },
+    admin: {
+      username: {
+        required,
+        email
+      },
+      password: {
+        required,
+        password
+      },
+      confirmPassword: {
+        sameAsPassword: sameAs("password")
+      }
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#register .row{
-    margin: 0 0 5px 0;
+#register .row {
+  margin: 0 0 5px 0;
 }
-
 </style>
 
 

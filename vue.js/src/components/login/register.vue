@@ -128,7 +128,7 @@
                                                     'form-control':true
                                                 }" 
                                                 name="pays" 
-                                                v-model.trim="$v.employee.pays.$model" @change.lazy="selectedPays()">
+                                                v-model.trim="$v.employee.pays.$model" @change.prevent="selectedPays()">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="pays in paysOpt" :value="pays.value">{{pays.name}}</option>
                                 </select>

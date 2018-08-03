@@ -34,6 +34,7 @@
                                 <li><router-link to="/admin">Admin</router-link></li>
                                 <li><router-link to="/shoppingcart">Shopping Cart</router-link></li>
                                 <li><router-link to="/login">Login</router-link></li>
+                                <li><router-link to="/contact">Contact</router-link></li>
                             </ul>
      					</li>
                          
@@ -54,7 +55,6 @@
   </div>
 </template>
 <script>
-
 import "@/assets/js/jquery/dist/jquery.min.js";
 import "@/assets/js/jquery-ui/jquery-ui.min.js";
 import "@/assets/js/slimScroll/jquery.slimscroll.min.js";
@@ -67,20 +67,20 @@ import "@/assets/js/bootstrap-tour/build/js/bootstrap-tour.min.js";
 import "@/assets/js/homer.js";
 
 export default {
-  name: 'App'
-}
+  name: "App"
+};
 </script>
 
 <style>
-    @import "./assets/css/fontawesome/css/font-awesome.css";
-    @import "./assets/css/metisMenu/dist/metisMenu.css";
-    @import "./assets/css/animate.css/animate.css";
-    @import "./assets/css/bootstrap/dist/css/bootstrap.css";
-    @import "./assets/css/sweetalert/lib/sweet-alert.css";
-    @import "./assets/css/toastr/build/toastr.min.css";
-    @import "./assets/css/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css";
-    @import "./assets/css/fonts/pe-icon-7-stroke/css/helper.css";
-    @import "./assets/css/styles/style.css";
-    @import "./assets/css/styles/static_custom.css";
-    @import "./assets/css/styles/styles.css";
+@import "./assets/css/fontawesome/css/font-awesome.css";
+@import "./assets/css/metisMenu/dist/metisMenu.css";
+@import "./assets/css/animate.css/animate.css";
+@import "./assets/css/bootstrap/dist/css/bootstrap.css";
+@import "./assets/css/sweetalert/lib/sweet-alert.css";
+@import "./assets/css/toastr/build/toastr.min.css";
+@import "./assets/css/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css";
+@import "./assets/css/fonts/pe-icon-7-stroke/css/helper.css";
+@import "./assets/css/styles/style.css";
+@import "./assets/css/styles/static_custom.css";
+@import "./assets/css/styles/styles.css";
 </style>

@@ -155,18 +155,19 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-success" :disabled="!$v.model.nom.required 
-                                                                                || !$v.model.nom.alpha 
-                                                                                || !$v.others.categoryId.required 
-                                                                                || !$v.others.fournisseurId.required
-                                                                                || !$v.model.quantite.required 
-                                                                                || !$v.model.quantite.numeric 
-                                                                                || !$v.model.prix.required 
-                                                                                || !$v.model.prix.decimal
-                                                                                || !$v.model.quantiteRestante.numeric 
-                                                                                || !$v.model.quantiteCommande.numeric 
-                                                                                || !$v.model.reapprovisionnement.numeric">
-
+                    <button type="submit" 
+                            class="btn btn-success" 
+                            :disabled="!$v.model.nom.required 
+                                      || !$v.model.nom.alpha 
+                                      || !$v.others.categoryId.required 
+                                      || !$v.others.fournisseurId.required
+                                      || !$v.model.quantite.required 
+                                      || !$v.model.quantite.numeric 
+                                      || !$v.model.prix.required 
+                                      || !$v.model.prix.decimal
+                                      || !$v.model.quantiteRestante.numeric 
+                                      || !$v.model.quantiteCommande.numeric 
+                                      || !$v.model.reapprovisionnement.numeric">
                         <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                         <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
                     </button>&nbsp;
@@ -184,139 +185,153 @@
 </template>
 
 <script>
-
-import { alpha } from '../../inc/helper';
-import { required, numeric, decimal } from 'vuelidate/lib/validators';
-import { CategorieService } from '../../services/categorie';
-import { FournisseurService } from '../../services/fournisseur';
-import { ProduitService } from '../../services/produit';
-import { Produit } from '../../classes/produit';
-import { RadioButton } from '../../classes/radioButton';
-import { MyContainer } from '../../classes/myContainer';
+import { alpha } from "../../inc/helper";
+import { required, numeric, decimal } from "vuelidate/lib/validators";
+import { CategorieService } from "../../services/categorie";
+import { FournisseurService } from "../../services/fournisseur";
+import { ProduitService } from "../../services/produit";
+import { Produit } from "../../classes/produit";
+import { RadioButton } from "../../classes/radioButton";
+import { MyContainer } from "../../classes/myContainer";
 
 export default {
-    name: 'ProduitDetail',
-    data() 
-    {
-        return {
-            titre : "Ajouter",
-            categories : [],
-            fournisseurs : [],
-            produitService : new ProduitService(this.$http),
-            categorieService : new CategorieService(this.$http),
-            fournisseurService : new FournisseurService(this.$http),
-            model : new Produit(),
-            radioButton : new RadioButton(),
-            radioButtonContainer : new MyContainer(),
-            others : { categoryId : "", fournisseurId : ""}
-         }
-    },
-    created()
-    {
-        this.categorieService.categorieListe().then(function(data)
-        {
-            var categories = data.body;
-            this.categories = categories.length > 0?categories:"";
-        });
+  name: "ProduitDetail",
+  data() {
+    return {
+      titre: "Ajouter",
+      categories: [],
+      fournisseurs: [],
+      produitService: new ProduitService(this.$http),
+      categorieService: new CategorieService(this.$http),
+      fournisseurService: new FournisseurService(this.$http),
+      model: new Produit(),
+      radioButton: new RadioButton(),
+      radioButtonContainer: new MyContainer(),
+      others: { categoryId: "", fournisseurId: "" }
+    };
+  },
+  created() {
+    this.categorieService.categorieListe().then(function(data) {
+      var categories = data.body;
+      this.categories = categories.length > 0 ? categories : "";
+    });
 
-        this.fournisseurService.fournisseurListe().then(function(data)
-        {
-            var fournisseurs = data.body;
-            this.fournisseurs = fournisseurs.length > 0?fournisseurs:"";
-        });
+    this.fournisseurService.fournisseurListe().then(function(data) {
+      var fournisseurs = data.body;
+      this.fournisseurs = fournisseurs.length > 0 ? fournisseurs : "";
+    });
 
-        this.radioButtonContainer.Container = new RadioButton('discontinue','Oui','Oui');
-        this.radioButtonContainer.Container = new RadioButton('discontinue','Non','Non');
+    this.radioButtonContainer.Container = new RadioButton(
+      "discontinue",
+      "Oui",
+      "Oui"
+    );
+    this.radioButtonContainer.Container = new RadioButton(
+      "discontinue",
+      "Non",
+      "Non"
+    );
 
-        if(this.$route.params.id)
-        { 
-            this.titre = "Modifier";
-            this.produitService.getProduitById(this.$route.params.id).then(data => this.callback(this,data.body));
-        }
-    },
-    methods : {
-        callback(obj,res)
-        {
-            if(typeof res === 'object')
-            {
-                obj.model = res;
-                obj.others.categoryId = res.category[0]._id;
-                obj.others.fournisseurId = res.fournisseur._id;
-                obj.radioButtonContainer.Container[0].ClsAttribut.checked = obj.model.discontinue;
-                obj.radioButtonContainer.Container[1].ClsAttribut.checked = !obj.model.discontinue;
-            }  
-        },
-        onSubmit()
-        {
-            var cte = this.categories.filter(data => data._id.indexOf(this.others.categoryId) !== -1);
-            var fs = this.fournisseurs.filter(data => data._id.indexOf(this.others.fournisseurId) !== -1);
-            
-            if(this.$route.params.id)
-            {
-                this.model.category = cte; 
-                this.model.fournisseur = fs[0];
-                this.produitService.updateProduit(this.$route.params.id,this.model).then(data => data?this.$router.push({ name: "ListeProduit"}):"");
-                return;
-            }
-
-            var obj = new Object();
-            obj.nom = this.model.nom;
-            obj.category = cte;
-            obj.fournisseur = fs[0];
-            obj.quantite = this.model.quantite;
-            obj.prix = this.model.prix;
-            obj.quantiteRestante = this.model.quantiteRestante;
-            obj.quantiteCommande = this.model.quantiteCommande;
-            obj.reapprovisionnement = this.model.reapprovisionnement;
-            obj.discontinue = this.model.discontinue;
-            obj.dateCreation = this.model.dateCreation;
-            obj.active = this.model.active;
-            
-            this.produitService.saveProduit(obj).then(data => data?this.$router.push({ name: "ListeProduit"}):"");
-        }
-    },
-    validations : {
-        model : { 
-            nom : {
-                required,
-                alpha
-            },
-            quantite : {
-                required,
-                numeric
-            },
-            prix : {
-                required,
-                decimal
-            },
-            quantiteRestante : {
-                required,
-                numeric
-            },
-            quantiteCommande : {
-                required,
-                numeric
-            },
-            reapprovisionnement : {
-                required,
-                numeric
-            }
-        },
-        others : {
-             categoryId : {
-                 required 
-             },
-             fournisseurId : {
-                 required
-             }
-        } 
+    if (this.$route.params.id) {
+      this.titre = "Modifier";
+      this.produitService
+        .getProduitById(this.$route.params.id)
+        .then(data => this.callback(this, data.body));
     }
-}
+  },
+  methods: {
+    callback(obj, res) {
+      if (typeof res === "object") {
+        obj.model = res;
+        obj.others.categoryId = res.category[0]._id;
+        obj.others.fournisseurId = res.fournisseur._id;
+        obj.radioButtonContainer.Container[0].ClsAttribut.checked =
+          obj.model.discontinue;
+        obj.radioButtonContainer.Container[1].ClsAttribut.checked = !obj.model
+          .discontinue;
+      }
+    },
+    onSubmit() {
+      var cte = this.categories.filter(
+        data => data._id.indexOf(this.others.categoryId) !== -1
+      );
+      var fs = this.fournisseurs.filter(
+        data => data._id.indexOf(this.others.fournisseurId) !== -1
+      );
+
+      if (this.$route.params.id) {
+        this.model.category = cte;
+        this.model.fournisseur = fs[0];
+        this.produitService
+          .updateProduit(this.$route.params.id, this.model)
+          .then(
+            data => (data ? this.$router.push({ name: "ListeProduit" }) : "")
+          );
+        return;
+      }
+
+      var obj = new Object();
+      obj.nom = this.model.nom;
+      obj.category = cte;
+      obj.fournisseur = fs[0];
+      obj.quantite = this.model.quantite;
+      obj.prix = this.model.prix;
+      obj.quantiteRestante = this.model.quantiteRestante;
+      obj.quantiteCommande = this.model.quantiteCommande;
+      obj.reapprovisionnement = this.model.reapprovisionnement;
+      obj.discontinue = this.model.discontinue;
+      obj.dateCreation = this.model.dateCreation;
+      obj.active = this.model.active;
+
+      this.produitService
+        .saveProduit(obj)
+        .then(
+          data => (data ? this.$router.push({ name: "ListeProduit" }) : "")
+        );
+    }
+  },
+  validations: {
+    model: {
+      nom: {
+        required,
+        alpha
+      },
+      quantite: {
+        required,
+        numeric
+      },
+      prix: {
+        required,
+        decimal
+      },
+      quantiteRestante: {
+        required,
+        numeric
+      },
+      quantiteCommande: {
+        required,
+        numeric
+      },
+      reapprovisionnement: {
+        required,
+        numeric
+      }
+    },
+    others: {
+      categoryId: {
+        required
+      },
+      fournisseurId: {
+        required
+      }
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#produitDetail .row{
-    margin: 0 0 5px 0;
+#produitDetail .row {
+  margin: 0 0 5px 0;
 }
 </style>

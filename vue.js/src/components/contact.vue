@@ -127,8 +127,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("xxxxxx");
-      console.log(this.email);
       this.emailService
         .send(this.email)
         .then(

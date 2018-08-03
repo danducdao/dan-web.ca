@@ -58,21 +58,71 @@ export class Employee {
 
     get AbregeOpt():Array<object>
     {
-        return [{name:'M.',value:'M'},{name:'Mme.',value:'Mme'},{name:'Mlle.',value:'Mlle'},{name:'Dr.',value:'Dr'}];
+        return [
+                  {
+                      name:'M.',
+                      value:'M'
+                  },{
+                      name:'Mme.',
+                      value:'Mme'
+                  },{
+                      name:'Mlle.',
+                      value:'Mlle'
+                  },{
+                      name:'Dr.',
+                      value:'Dr'
+                  }
+               ];
     }
 
     get StatutOpt():Array<object>
     {
-         return [{name:'Célibataire',value:'C'},{name:'Marié',value:'M'},{name:'Divorcé',value:'D'},{name:'Veuve',value:'V'}];
+         return [
+                  {
+                     name:'Célibataire',
+                     value:'C'
+                   },{
+                     name:'Marié',
+                     value:'M'
+                   },{
+                     name:'Divorcé',
+                     value:'D'
+                   },{
+                     name:'Veuve',
+                     value:'V'
+                   }
+                 ];
     }
 
     get GenreOpt():Array<object>
     {
-        return [{name:'Homme',value:'H'},{name:'Femme',value:'F'}];
+          return [
+                    {
+                      name:'Homme',
+                      value:'H'
+                    },{
+                      name:'Femme',
+                      value:'F'
+                    }
+                 ];
     }
 
     get ParOpt():Array<object>
     {
-       return [{name:'Heure',value:'H'},{name:'Année',value:'A'},{name:'Semaine',value:'S'},{name:'Chaque 2 semaine',value:'2S'}];
+            return [
+                      {
+                        name:'Heure',
+                        value:'H'
+                      },{
+                        name:'Année',
+                        value:'A'
+                      },{
+                        name:'Semaine',
+                        value:'S'
+                      },{
+                        name:'Chaque 2 semaine',
+                        value:'2S'
+                      }
+                   ];
     }
 }

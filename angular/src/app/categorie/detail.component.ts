@@ -1,5 +1,5 @@
 /*
-* Program : Liste des catégories
+* Program : Détail de catégorie
 * Écrit par : Dan Duc Dao
 */
 

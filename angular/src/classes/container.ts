@@ -2,8 +2,8 @@
 * Program : Class Container
 * Écrit par : Dan Duc Dao
 */
-import { RadioButton } from '../classes/radiobutton';
-import { Produit } from '../classes/produit';
+import { RadioButton } from './radiobutton';
+import { Produit } from './produit';
 
 export class Container
 {

@@ -1,0 +1,51 @@
+<section>
+    <div class="row" style="margin-bottom:20px;">
+        <div class="col-lg-12">
+            <a class="btn btn-primary" routerLink="{{paths.new}}">Nouveau</a>&nbsp;
+        </div>
+    </div>
+    <div *ngIf="categories.length > 0">
+        <div class="row" style="margin-bottom:20px;">
+            <div class="col-lg-9">
+                <span style="font-size:25px;">
+                    <strong>Liste des catégories</strong>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-bordered" cellspacing="1" cellpadding="1">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th [ngStyle]="verticalAlign">Nom</th>
+                        <th [ngStyle]="verticalAlign">Description</th>
+                        <th [ngStyle]="verticalAlign">
+                            <button [disabled]="enabledButton?'':'enabled'" class="btn btn-primary" (click)="MCImage()">{{ showImage ? 'Cacher' : 'Montrer'}} Image</button>
+                        </th>
+                        <th [ngStyle]="verticalAlign">Active</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let categorie of categories">
+                    <tr>
+                        <td [ngClass]="center" [ngStyle]="verticalAlign">
+                            <a href="#" (click)="removeCategorie($event,categorie._id)">Supprimer</a>
+                        </td>
+                        <td [ngClass]="center" [ngStyle]="verticalAlign">
+                            <a routerLink="{{paths.modif + categorie._id}}">Modifier</a>
+                        </td>
+                        <td [ngStyle]="verticalAlign">{{ categorie.nom }}</td>
+                        <td [ngStyle]="verticalAlign">{{ categorie.description }}</td>
+                        <td [ngClass]="center">
+                            <img *ngIf="showImage" [src]="categorie.photo" [alt]="categorie.nom" [style.width.px]="imgWidth" [style.margin.px]="imgMargin"
+                                style="border-radius:10px;" />
+                        </td>
+                        <td [ngClass]="center" [ngStyle]="verticalAlign">
+                            <span [innerHTML]="categorie.active | filtreHtmlTag:'check-square-icon'"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

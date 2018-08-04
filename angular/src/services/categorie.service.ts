@@ -4,7 +4,7 @@
 */
 
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ICategorie } from "../interfaces/categorie";
 import { Service } from "./service";
@@ -33,7 +33,10 @@ export class CategorieService extends Service {
     return this.http.post<ICategorie>(this.Url, newCategorie);
   }
 
-  updateCategorie(id: string, newCategorie: Categorie): any {
+  updateCategorie(
+    id: string,
+    newCategorie: Categorie
+  ): Observable<HttpEvent<ICategorie>> {
     this.Path = "/categorie/" + id;
     return this.http.put<ICategorie>(this.Url, newCategorie, this.HttpOptions);
   }

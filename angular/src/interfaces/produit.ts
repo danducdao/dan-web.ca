@@ -3,7 +3,7 @@
 * Écrit par : Dan Duc Dao
 */
 
-import { ICategorie } from '../interfaces/categorie';
+import { ICategorie } from './categorie';
 
 export interface IProduit
 {

@@ -1,73 +1,105 @@
+/*
+* Program : App Modules
+* Écrit par : Dan Duc Dao
+*/
+
+//Module
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule, routingComponents } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { HomeComponent } from "./home/home.component";
-import { DataBindingComponent } from "./data-binding/data-binding.component";
-import { ClassBindingComponent } from "./class-binding/class-binding.component";
-import { EmployeService } from "../services/employe.service";
-import { ProduitService } from "../services/produit.service";
-import { CategorieService } from "../services/categorie.service";
-import { DistributriceComponent } from "./distributrice/distributrice.component";
 import { HttpClientModule } from "@angular/common/http";
-import { ListeCategorieComponent } from "./categorie/liste.component";
-import { DetailCategorieComponent } from "./categorie/detail.component";
-import { ListeProduitComponent } from "./produit/liste.component";
-import { DetailProduitComponent } from "./produit/detail.component";
-import { ListeEmployeeComponent } from "./employee/liste.component";
-import { FiltreProduitPipe } from "src/pipes/filtre-produit.pipe";
-import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
-import { ShoppingCartProduitComponent } from "./shopping-cart-produit/shopping-cart-produit.component";
-import { FiltreCategoryPipe } from "src/pipes/filtre-category.pipe";
-import { AddToCartComponent } from "./add-to-cart/add-to-cart.component";
-import { FileUploadComponent } from "./file-upload/file-upload.component";
-import { FiltreHtmlTagPipe } from "src/pipes/filtre-html-tag.pipe";
-import { AdminComponent } from "./admin/admin.component";
-import { ShoppingCartBasketComponent } from "./shopping-cart-basket/shopping-cart-basket.component";
-import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from "./login/register.component";
 import { MyDatePickerModule } from "mydatepicker";
-import { EqualValidator } from "src/directives/equal-validator.directive";
-import { ContactComponent } from "./contact/contact.component";
-import { SimpleTinyComponent } from "./tinymce/tinymce.component";
+
+//Components
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "../components/home/index.component";
+import { HelloWorldComponent } from "../components/helloWorld/index.component";
+import { DataBindingComponent } from "../components/dataBinding/index.component";
+import { ClassBindingComponent } from "../components/classBinding/index.component";
+import { DistributriceComponent } from "../components/distributrice/index.component";
+import { ListeCategorieComponent } from "../components/category/index.component";
+import { DetailCategorieComponent } from "../components/category/detail.component";
+import { ListeProduitComponent } from "../components/product/index.component";
+import { DetailProduitComponent } from "../components/product/detail.component";
+import { NgForComponent } from "../components/ngFor/index.component";
+import { ShoppingCartComponent } from "../components/shoppingCart/index.component";
+import { ShoppingCartProduitComponent } from "../components/shoppingCart/shopping-cart-produit.component";
+import { ShoppingCartBasketComponent } from "../components/shoppingCart/shopping-cart-basket.component";
+import { AddToCartComponent } from "../components/shoppingCart/add-to-cart.component";
+import { FileUploadComponent } from "../components/fileUpload/fileUpload.component";
+import { AdminComponent } from "../components/admin/index.component";
+import { LoginComponent } from "../components/login/index.component";
+import { RegisterComponent } from "../components/login/register.component";
+import { ContactComponent } from "../components/contact/index.component";
+import { SimpleTinyComponent } from "../components/tinymce/tinymce.component";
+
+//Service
+import { AdminService } from "../services/admin.service";
+import { CategorieService } from "../services/categorie.service";
+import { EmailService } from "../services/email.service";
+import { EmployeeService } from "../services/employee.service";
+import { FournisseurService } from "../services/fournisseur.service";
+import { GoogleMapService } from "../services/googleMap.service";
+import { ProduitService } from "../services/produit.service";
+import { Service } from "../services/service";
+import { ShoppingCartService } from "../services/shoppingCart.service";
+
+//Filter
+import { FiltreCategoryPipe } from "../pipes/filtre-category.pipe";
+import { FiltreProduitPipe } from "../pipes/filtre-produit.pipe";
+import { FiltreHtmlTagPipe } from "../pipes/filtre-html-tag.pipe";
+
+//Directives
+import { EqualValidator } from "../directives/equal-validator.directive";
 
 @NgModule({
   declarations: [
+    AddToCartComponent,
+    AdminComponent,
     AppComponent,
-    routingComponents,
-    DataBindingComponent,
     ClassBindingComponent,
-    HomeComponent,
-    DistributriceComponent,
-    ListeCategorieComponent,
+    ContactComponent,
+    DataBindingComponent,
     DetailCategorieComponent,
-    ListeProduitComponent,
     DetailProduitComponent,
-    ListeEmployeeComponent,
+    DistributriceComponent,
+    EqualValidator,
+    FileUploadComponent,
+    FiltreCategoryPipe,
     FiltreProduitPipe,
+    FiltreHtmlTagPipe,
+    HelloWorldComponent,
+    HomeComponent,
+    ListeCategorieComponent,
+    ListeProduitComponent,
+    LoginComponent,
+    NgForComponent,
+    RegisterComponent,
+    routingComponents,
+    SimpleTinyComponent,
     ShoppingCartComponent,
     ShoppingCartProduitComponent,
-    FiltreCategoryPipe,
-    AddToCartComponent,
-    FileUploadComponent,
-    FiltreHtmlTagPipe,
-    AdminComponent,
-    ShoppingCartBasketComponent,
-    LoginComponent,
-    RegisterComponent,
-    EqualValidator,
-    ContactComponent,
-    SimpleTinyComponent
+    ShoppingCartBasketComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
     MyDatePickerModule
   ],
-  providers: [EmployeService, ProduitService, CategorieService],
+  providers: [
+    AdminService,
+    CategorieService,
+    EmailService,
+    EmployeeService,
+    FournisseurService,
+    GoogleMapService,
+    ProduitService,
+    Service,
+    ShoppingCartService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

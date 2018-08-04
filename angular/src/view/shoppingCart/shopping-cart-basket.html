@@ -1,0 +1,30 @@
+<section>
+    <div *ngIf="baskets.length > 0;else emptyCart">
+        <table class="table table-bordered" cellspacing="1" cellpadding="1">
+            <thead>
+                <tr>
+                    <th *ngFor="let value of ['','Nom','Quantité','Prix']">{{value}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let basket of baskets">
+                    <td style="width:8%;">
+                        <a href="#" (click)="removeItem($event,basket._id)">Supprimer</a>
+                    </td>
+                    <td>{{basket.nom}}</td>
+                    <td style="width:5%;" [ngClass]="right">{{basket.quantite}}</td>
+                    <td style="width:8%;" [ngClass]="right">{{basket.prix | currency}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a routerLink="/addtocart" class="btn btn-success">
+                <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                <span style="margin-left:5px;font-weight:bold;font-size:18px;">Checkout</span>
+            </a>
+        </div>
+    </div>
+    <ng-template #emptyCart>
+        <div>Votre panier est vide</div>
+    </ng-template>
+</section>

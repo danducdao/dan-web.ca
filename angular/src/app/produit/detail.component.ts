@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from 'src/classes/produit';
 import { Container } from 'src/classes/container';
 import { RadioButton } from 'src/classes/radiobutton';
-import { IFournisseur } from 'src/interfaces/fournisseur';
 import { Regex } from 'src/classes/regex';
 
 @Component({

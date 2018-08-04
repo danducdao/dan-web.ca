@@ -21,7 +21,7 @@ module.exports = function(app) {
       secure: true,
       auth: {
         user: "minhthua011@gmail.com",
-        pass: "asiavn73"
+        pass: "*****"
       }
     });
     transporter.verify(function(error, success) {

@@ -1,5 +1,5 @@
 /*
-* Program : classe AdminService
+* Program : classe EmailService
 * Écrit par : Dan Duc Dao
 */
 
@@ -7,19 +7,26 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Service } from "./service";
-import { Admin } from "../classes/admin";
 
 @Injectable({
   providedIn: "root"
 })
-export class AdminService extends Service {
+export class EmailService extends Service {
   constructor(private http: HttpClient) {
     super();
   }
 
-  authenticate(admin: Admin): Observable<any> {
+  send(email: any): Observable<any> {
     this.Path =
-      "/admin?username=" + admin.username + "&password=" + admin.password;
-    return this.http.get<{ success: boolean }>(this.Url);
+      "/send?nom=" +
+      email.nom +
+      "&sujet=" +
+      email.sujet +
+      "&courriel=" +
+      email.courriel +
+      "&message=" +
+      email.message;
+
+    return this.http.get<any>(this.Url);
   }
 }

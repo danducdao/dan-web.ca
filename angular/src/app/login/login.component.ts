@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Admin } from 'src/classes/admin';
-import { LocalStorage } from 'src/classes/localstorage';
-import { AdminService } from 'src/services/admin.service';
-import { CheckBox } from 'src/classes/checkbox';
-import { Regex } from 'src/classes/regex';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Admin } from "src/classes/admin";
+import { LocalStorage } from "src/classes/localstorage";
+import { AdminService } from "src/services/admin.service";
+import { CheckBox } from "src/classes/checkbox";
+import { Regex } from "src/classes/regex";
 
 @Component({
-  selector: 'app-login',
+  selector: "app-login",
   template: `
                 <section class="login-container">
                       <div class="row">
@@ -27,10 +27,11 @@ import { Regex } from 'src/classes/regex';
                                                      required
                                                      [(ngModel)]="admin.username"
                                                      placeholder="exemple@gmail.com"
-                                                     title="Veuillez entrer votre nom d'utilisateur">
+                                                     title="Veuillez entrer votre nom d'utilisateur"
+                                                     [pattern]="emailPattern">
                                               <div *ngIf="username.errors">
                                                     <div [hidden]="!username.errors.required || username.pristine" class="alert alert-danger">Nom d'utilisateur est obligatoire</div>
-                                                    <div [hidden]="!username.errors.email" class="alert alert-danger">Nom d'utilisateur est invalid</div>
+                                                    <div [hidden]="!username.errors.pattern" class="alert alert-danger">Nom d'utilisateur est invalid</div>
                                               </div>
                                           </div>
                                           <div class="form-group">
@@ -77,53 +78,48 @@ import { Regex } from 'src/classes/regex';
   styles: []
 })
 export class LoginComponent implements OnInit {
-
   public admin = new Admin();
-  public checkbox:any;
-  public passwordPattern:string = Regex.PasswordPattern();
+  public checkbox: any;
+  public passwordPattern: string = Regex.PasswordPattern();
+  public emailPattern: string = Regex.EmailPattern();
 
-  constructor(private _adminService :AdminService,private router: Router) { }
+  constructor(private _adminService: AdminService, private router: Router) {}
 
-  ngOnInit()
-  {
-      this.checkbox = new CheckBox('memo','memo','Mémoriser la connexion');
-      if(LocalStorage.itemExist('rememberMe'))
-      {
-          this.checkbox.ClsAttribut.checked = true;
-          this.admin.username = LocalStorage.getItem('rememberMe').username;
-          this.admin.password = LocalStorage.getItem('rememberMe').password;
-      }else
-      {
-          this.checkbox.ClsAttribut.checked = false;
-      }
+  ngOnInit() {
+    this.checkbox = new CheckBox("memo", "memo", "Mémoriser la connexion");
+    if (LocalStorage.itemExist("rememberMe")) {
+      this.checkbox.ClsAttribut.checked = true;
+      this.admin.username = LocalStorage.getItem("rememberMe").username;
+      this.admin.password = LocalStorage.getItem("rememberMe").password;
+    } else {
+      this.checkbox.ClsAttribut.checked = false;
+    }
   }
 
-  onSubmit():void
-  {
-      this._adminService.authenticate(this.admin)
-                        .subscribe(data => this.callback(data),error => console.log(error));
+  onSubmit(): void {
+    this._adminService
+      .authenticate(this.admin)
+      .subscribe(data => this.callback(data), error => console.log(error));
   }
-  callback(data):void
-  {
-     if(!data.success)
-     {
-         alert("Nom d'utilisateur ou Mot de passe est incorrect");
-         LocalStorage.removeItem('rememberMe');
-         return;
-     }
-     if(this.checkbox.ClsAttribut.checked)
-     {
-          LocalStorage.setItem('rememberMe',{'username':this.admin.username,'password':this.admin.password});
-     }else{
-          if(LocalStorage.itemExist('rememberMe'))
-              LocalStorage.removeItem('rememberMe');
-     }
-     this.router.navigateByUrl('/admin');
+  callback(data): void {
+    if (!data.success) {
+      alert("Nom d'utilisateur ou Mot de passe est incorrect");
+      LocalStorage.removeItem("rememberMe");
+      return;
+    }
+    if (this.checkbox.ClsAttribut.checked) {
+      LocalStorage.setItem("rememberMe", {
+        username: this.admin.username,
+        password: this.admin.password
+      });
+    } else {
+      if (LocalStorage.itemExist("rememberMe"))
+        LocalStorage.removeItem("rememberMe");
+    }
+    this.router.navigateByUrl("/admin");
   }
-  register(event:any):void
-  {
-       this.router.navigateByUrl('/register');
-       event.preventDefault();
+  register(event: any): void {
+    this.router.navigateByUrl("/register");
+    event.preventDefault();
   }
-
 }

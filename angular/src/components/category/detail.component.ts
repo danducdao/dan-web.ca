@@ -62,7 +62,7 @@ export class DetailCategorieComponent implements OnInit {
     if (this.id) {
       this._categorieService
         .updateCategorie(this.id, this.model)
-        .subscribe(data => this.responseSaveCategorie(this, data, this.model));
+        .subscribe(data => this.callback(this, data, this.model));
     } else {
       this._categorieService
         .saveCategorie(this.model)
@@ -71,7 +71,7 @@ export class DetailCategorieComponent implements OnInit {
         );
     }
   }
-  responseSaveCategorie(
+  callback(
     obj: DetailCategorieComponent,
     OldCategorie: ICategorie,
     NewCategorie: ICategorie

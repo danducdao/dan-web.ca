@@ -1,5 +1,5 @@
 <template>
-    <section id="contact">
+    <section id="contact-index-container">
         <form @submit.prevent="onSubmit">
             <div class="row">
                 <div class="hpanel hblue col-sm-5">
@@ -99,9 +99,9 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
-import { EmailService } from "../services/email";
+import { EmailService } from "../../services/email";
 import { required, email } from "vuelidate/lib/validators";
-import { InputBarColorError } from "../directives/classDirective.js";
+import { InputBarColorError } from "../../directives/classDirective.js";
 
 export default {
   name: "Contact",
@@ -158,10 +158,10 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#contact .label-control {
+#contact-index-container .label-control {
   font-weight: normal;
 }
-#contact .row {
+#contact-index-container .row {
   margin: 0 0 5px 0;
 }
 </style>

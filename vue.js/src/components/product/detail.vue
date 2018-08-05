@@ -1,5 +1,5 @@
 <template>
-    <article id="produitDetail">
+    <section id="product-detail-container">
         <form v-on:submit.prevent="onSubmit">
             <div class="row">
                  <div class="col-md-12">
@@ -14,13 +14,9 @@
                             <div class="col-md-8">
                                 <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
                                 <input type="text" 
-                                       :class="{
-                                                    input_form_error:$v.model.nom.$error,
-                                                    input_form_valid:!$v.model.nom.$invalid,
-                                                    'form-control':true
-                                                }" 
-                                       required 
                                        name="nom" 
+                                       v-input-bar-color-error=[$v.model.nom.$error,!$v.model.nom.$invalid]
+                                       required 
                                        v-model.trim="$v.model.nom.$model"/>
                                 <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
                                 <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
@@ -30,13 +26,9 @@
                             <div class="col-md-8">
                                 <label class="control-label" for="prix">Prix</label>&nbsp;<span style="color:red;">*</span>
                                 <input type="text" 
-                                       :class="{
-                                                    input_form_error:$v.model.prix.$error,
-                                                    input_form_valid:!$v.model.prix.$invalid,
-                                                    'form-control':true
-                                                }" 
-                                       required
                                        name="prix" 
+                                       v-input-bar-color-error=[$v.model.prix.$error,!$v.model.prix.$invalid]
+                                       required
                                        v-model.trim="$v.model.prix.$model"/>
                                 <div v-if="$v.model.prix.$error && !$v.model.prix.required" class="alert alert-danger">Prix est obligatoire</div>
                                 <div v-if="!$v.model.prix.decimal" class="alert alert-danger">Prix doit être décimal</div>
@@ -45,12 +37,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="control-label" for="categorie">Catégories</label>&nbsp;<span style="color:red;">*</span>
-                                <select :class="{
-                                                    input_form_error:true,
-                                                    input_form_valid:!$v.others.categoryId.$invalid,
-                                                    'form-control':true
-                                                }" 
-                                        name="categorie" 
+                                <select name="categorie" 
+                                        v-input-bar-color-error=[true,!$v.others.categoryId.$invalid]
                                         v-model.trim="$v.others.categoryId.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
@@ -61,13 +49,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="control-label" for="founisseurId">Fournisseurs</label>&nbsp;<span style="color:red;">*</span>
-                                <select :class="{
-                                                    input_form_error:true,
-                                                    input_form_valid:!$v.others.fournisseurId.$invalid,
-                                                    'form-control':true
-                                                }"  
-                                        name="founisseurId" 
-                                        v-model.trim="$v.others.fournisseurId.$model">
+                                <select  name="founisseurId" 
+                                         v-input-bar-color-error=[true,!$v.others.fournisseurId.$invalid]
+                                         v-model.trim="$v.others.fournisseurId.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="fournisseur in fournisseurs" :value="fournisseur._id">{{fournisseur.compagnie}}</option>
                                 </select>
@@ -77,13 +61,10 @@
                         <div class="row">
                             <div class="col-md-7">
                                 <label class="control-label" for="reapprovisionnement">Réapprovisionnement</label>
-                                <input type="text" :class="{
-                                                                input_form_error:!$v.model.reapprovisionnement.numeric,
-                                                                input_form_valid:!$v.model.reapprovisionnement.$invalid,
-                                                                'form-control':true
-                                                            }"  
-                                                            name="reapprovisionnement" 
-                                                            v-model.trim="$v.model.reapprovisionnement.$model"/>
+                                <input  type="text"
+                                        name="reapprovisionnement"  
+                                        v-input-bar-color-error=[!$v.model.reapprovisionnement.numeric,!$v.model.reapprovisionnement.$invalid]
+                                        v-model.trim="$v.model.reapprovisionnement.$model"/>
                                 <div v-if="!$v.model.reapprovisionnement.numeric" class="alert alert-danger">Réapprovisionnement doit être digit</div>
                             </div>
                         </div>
@@ -97,14 +78,11 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <label class="control-label" for="quantite">Stock</label>&nbsp;<span style="color:red;">*</span>
-                                <input type="text" :class="{
-                                                                input_form_error:$v.model.quantite.$error,
-                                                                input_form_valid:!$v.model.quantite.$invalid,
-                                                                'form-control':true
-                                                            }" 
-                                                            required
-                                                            name="quantite" 
-                                                            v-model.trim="$v.model.quantite.$model"/>
+                                <input  type="text" 
+                                        name="quantite" 
+                                        v-input-bar-color-error=[$v.model.quantite.$error,!$v.model.quantite.$invalid]
+                                        required
+                                        v-model.trim="$v.model.quantite.$model"/>
                                 <div v-if="$v.model.quantite.$error && !$v.model.quantite.required" class="alert alert-danger">Quantité est obligatoire</div>
                                 <div v-if="!$v.model.quantite.numeric" class="alert alert-danger">Quantité doit être digit</div>
                             </div>
@@ -112,14 +90,10 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <label class="control-label" for="quantiteRestante">Restante</label>
-                                <input type="text" 
-                                       :class="{
-                                                    input_form_error:!$v.model.quantiteRestante.numeric,
-                                                    input_form_valid:!$v.model.quantiteRestante.$invalid,
-                                                    'form-control':true
-                                                }"  
-                                       name="quantiteRestante" 
-                                       v-model.trim="$v.model.quantiteRestante.$model"/>
+                                <input  type="text" 
+                                        name="quantiteRestante" 
+                                        v-input-bar-color-error=[!$v.model.quantiteRestante.numeric,!$v.model.quantiteRestante.$invalid]
+                                        v-model.trim="$v.model.quantiteRestante.$model"/>
                                 <div v-if="!$v.model.quantiteRestante.numeric" class="alert alert-danger">Quantité restante doit être digit</div>
                             </div> 
                         </div>
@@ -127,12 +101,8 @@
                             <div class="col-md-8">
                                 <label class="control-label" for="quantiteCommande">Commandée</label>
                                 <input type="text" 
-                                       :class="{
-                                                    input_form_error:!$v.model.quantiteCommande.numeric,
-                                                    input_form_valid:!$v.model.quantiteCommande.$invalid,
-                                                    'form-control':true
-                                                }" 
-                                       name="quantiteCommande" 
+                                       name="quantiteCommande"
+                                       v-input-bar-color-error=[!$v.model.quantiteCommande.numeric,!$v.model.quantiteCommande.$invalid]
                                        v-model.trim="$v.model.quantiteCommande.$model"/>
                                 <div v-if="!$v.model.quantiteCommande.numeric" class="alert alert-danger">Quantité commandée doit être digit</div>
                             </div> 
@@ -156,6 +126,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <button type="submit" 
+                            name="ok"
                             class="btn btn-success" 
                             :disabled="!$v.model.nom.required 
                                       || !$v.model.nom.alpha 
@@ -171,17 +142,17 @@
                         <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                         <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
                     </button>&nbsp;
-                    <button class="btn btn-success" onclick="window.location.href='/admin/produit';return false;">
+                    <button name="back" class="btn btn-success" onclick="window.location.href='/admin/produit';return false;">
                         <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
                         <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
                     </button>
                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="active" v-model="model.active" name="active">
+                        <input type="hidden" name="active" class="form-control" id="active" v-model="model.active">
                     </div>
                 </div>
             </div>
         </form>
-    </article>
+    </section>
 </template>
 
 <script>
@@ -193,6 +164,7 @@ import { ProduitService } from "../../services/produit";
 import { Produit } from "../../classes/produit";
 import { RadioButton } from "../../classes/radioButton";
 import { MyContainer } from "../../classes/myContainer";
+import { InputBarColorError } from "../../directives/classDirective.js";
 
 export default {
   name: "ProduitDetail",
@@ -331,7 +303,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#produitDetail .row {
+#product-detail-container .row {
   margin: 0 0 5px 0;
 }
 </style>

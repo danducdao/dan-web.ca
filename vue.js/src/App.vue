@@ -26,10 +26,10 @@
      					<li>
                             <a href="#"><span class="nav-label">Vue.js</span><span class="fa arrow"></span> </a>
                             <ul class="nav nav-second-level">
-                                <li><router-link to="/first-program">Premier program</router-link></li>
-                                <li><router-link to="/loop-program">v-for</router-link></li>
-                                <li><router-link to="/event-program">event</router-link></li>
-                                <li><router-link to="/string-program">String</router-link></li>
+                                <li><router-link to="/helloworld">Hello world</router-link></li>
+                                <li><router-link to="/loopconditionexample">v-for</router-link></li>
+                                <li><router-link to="/eventexample">event</router-link></li>
+                                <li><router-link to="/stringexample">String</router-link></li>
                                 <li><router-link to="/googleMap">Google Map</router-link></li>
                                 <li><router-link to="/admin">Admin</router-link></li>
                                 <li><router-link to="/shoppingcart">Shopping Cart</router-link></li>

@@ -143,8 +143,8 @@
 
 <script>
 
-import Tuto from '../classes/tuto';
-import youtubeEmbedUrls from '../inc/tutoriel';
+import Tuto from '../../classes/tuto';
+import youtubeEmbedUrls from '../../inc/tutoriel';
 
 export default {
         name: 'Home',

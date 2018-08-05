@@ -5,22 +5,22 @@
 
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/components/home";
-import FirstProgram from "@/components/first-program";
-import LoopProgram from "@/components/loop-program";
-import EventProgram from "@/components/event-program";
-import StringProgram from "@/components/string-program";
-import GoogleMap from "@/components/google-map";
-import Admin from "@/components/admin";
-import ListeProduit from "@/components/produit/liste";
-import DetailProduit from "@/components/produit/detail";
-import ListeCategorie from "@/components/categorie/liste";
-import DetailCategorie from "@/components/categorie/detail";
-import ShoppingCart from "@/components/shoppingCart/shoppingCart";
+import Home from "@/components/home/index";
+import HelloWorld from "@/components/helloWorldExample/index";
+import LoopConditionExample from "@/components/loopConditionExample/index";
+import EventExample from "@/components/eventExample/index";
+import StringExample from "@/components/stringExample/index";
+import GoogleMap from "@/components/googleMap/index";
+import Admin from "@/components/admin/index";
+import ListeProduit from "@/components/product/index";
+import DetailProduit from "@/components/product/detail";
+import ListeCategorie from "@/components/category/index";
+import DetailCategorie from "@/components/category/detail";
+import ShoppingCart from "@/components/shoppingCart/index";
 import AddToCart from "@/components/shoppingCart/addToCart";
-import Login from "@/components/login/login";
+import Login from "@/components/login/index";
 import Register from "@/components/login/register";
-import Contact from "@/components/contact";
+import Contact from "@/components/contact/index";
 
 Vue.use(Router);
 
@@ -28,24 +28,24 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/first-program",
-      name: "FirstProgram",
-      component: FirstProgram
+      path: "/helloworld",
+      name: "HelloWorld",
+      component: HelloWorld
     },
     {
-      path: "/loop-program",
-      name: "Loop",
-      component: LoopProgram
+      path: "/loopconditionexample",
+      name: "loopconditionexample",
+      component: LoopConditionExample
     },
     {
-      path: "/event-program",
-      name: "Event",
-      component: EventProgram
+      path: "/eventexample",
+      name: "eventexample",
+      component: EventExample
     },
     {
-      path: "/string-program",
-      name: "StringProgram",
-      component: StringProgram
+      path: "/stringexample",
+      name: "StringExample",
+      component: StringExample
     },
     {
       path: "/googleMap",
@@ -59,12 +59,11 @@ export default new Router({
     },
     {
       path: "/admin",
-      name: "Admin",
       component: Admin,
       children: [
         {
           path: "",
-          name: "AdminListeCategorie",
+          name: "Admin",
           component: ListeCategorie
         },
         {
@@ -89,7 +88,7 @@ export default new Router({
         },
         {
           path: "produit/new",
-          name: "ListeProduit",
+          name: "DetailProduit",
           component: DetailProduit
         },
         {

@@ -1,3 +1,8 @@
+/*
+* Program : HelloWorldComponent
+* Écrit par : Dan Duc Dao
+*/
+
 import React, { Component } from "react";
 
 class HelloWorldComponent extends Component {

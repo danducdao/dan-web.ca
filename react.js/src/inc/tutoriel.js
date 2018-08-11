@@ -80,6 +80,16 @@ export default function youtubeEmbedUrls() {
         titre: "Route Links",
         url: "https://www.youtube.com/embed/x7Iu9At6BT0"
       }
+    ],
+    [
+      {
+        titre: "JavaScript Tutorial for Beginners",
+        url: "https://www.youtube.com/embed/W6NZfCO5SIk"
+      },
+      {
+        titre: "Object-oriented Programming in JavaScript: Made Super Simple",
+        url: "https://www.youtube.com/embed/PFmuCDHHpwk"
+      }
     ]
   ];
 }

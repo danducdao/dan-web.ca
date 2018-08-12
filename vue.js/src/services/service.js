@@ -3,26 +3,19 @@
 * Écrit par : Dan Duc Dao
 */
 
-export var Service = function()
-{
-    var protocol = "http://",
+export var Service = function() {
+  var protocol = "http://",
     domain = "localhost:4000",
     path,
-
-    setPath = function(p){
-        path = p;
+    setPath = function(p) {
+      path = p;
     },
+    getUrl = function() {
+      return protocol + domain + path;
+    };
 
-    getPath = function(){
-        return path;
-    },
-
-    getUrl = function(){
-        return protocol + domain + path;
-    }
-
-    return {
-        setPath : setPath,
-        getUrl : getUrl
-    }
+  return {
+    setPath: setPath,
+    getUrl: getUrl
+  };
 };

@@ -2,19 +2,63 @@ import React, { Component } from "react";
 import "./App.css";
 import HomeComponent from "./components/home/index";
 import HelloWorldComponent from "./components/helloworld/index";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import MusicStoreListComponent from "./components/musicstore/index";
+import { GenreService } from "./services/genre";
+import { Route, Link, Switch, HashRouter, NavLink } from "react-router-dom";
 
 export class App extends Component {
+  state = {
+    styleObject: {
+      fontWeight: "bold",
+      backgroundColor: "#32454D",
+      color: "#ffffff"
+    },
+    erreur: "",
+    genres: []
+  };
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  loadData = () => {
+    let genreService = new GenreService();
+    genreService.setPath("/genres");
+    genreService
+      .getRequest()
+      .then(result => {
+        this.setState({
+          erreur: false,
+          genres: result.data
+        });
+      })
+      .catch(error => {
+        console.error("erreur: ", error);
+        this.setState({
+          erreur: `${error}`
+        });
+      });
+  };
+
   render() {
+    const { erreur, genres } = this.state;
+    if (erreur) {
+      return (
+        <p>
+          Désolé! Une erreur s'est produite lors du chargement des données.{" "}
+          <button onClick={this.loadData}>Try again</button>
+        </p>
+      );
+    }
     return (
-      <Router>
+      <HashRouter>
         <React.Fragment>
           <div id="header">
             <div className="color-line" />
-            <div id="logo" class="light-version">
+            <div id="logo" className="light-version">
               <span>Dan Duc Dao</span>
             </div>
-            <nav role="navigation">
+            <nav>
               <div className="header-link hide-menu">
                 <i className="fa fa-bars" />
               </div>
@@ -34,7 +78,7 @@ export class App extends Component {
               </div>
               <ul className="nav" id="side-menu">
                 <li>
-                  <Link to={"/"}>Home</Link>
+                  <NavLink to={"/"}>Home</NavLink>
                 </li>
                 <li>
                   <a href="#">
@@ -43,8 +87,32 @@ export class App extends Component {
                   </a>
                   <ul className="nav nav-second-level">
                     <li>
-                      <Link to={"/helloworld"}>Hello world</Link>
+                      <NavLink
+                        to={"/helloworld"}
+                        activeStyle={this.state.styleObject}
+                      >
+                        Hello world
+                      </NavLink>
                     </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">
+                    <span className="nav-label">Shopping cart</span>
+                    <span className="fa arrow" />
+                  </a>
+                  <ul className="nav nav-second-level">
+                    {genres.map((value, key) => (
+                      <li key={key}>
+                        <NavLink
+                          to={"/genre/" + value.id}
+                          replace
+                          activeStyle={this.state.styleObject}
+                        >
+                          {value.nom}
+                        </NavLink>
+                      </li>
+                    ))}
                   </ul>
                 </li>
               </ul>
@@ -62,6 +130,11 @@ export class App extends Component {
                         path="/helloworld"
                         component={HelloWorldComponent}
                       />
+                      <Route
+                        exact
+                        path="/genre/:id"
+                        component={MusicStoreListComponent}
+                      />
                     </Switch>
                   </div>
                 </div>
@@ -69,7 +142,7 @@ export class App extends Component {
             </div>
           </div>
         </React.Fragment>
-      </Router>
+      </HashRouter>
     );
   }
 }

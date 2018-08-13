@@ -3,10 +3,14 @@ import "./App.css";
 import HomeComponent from "./components/home/index";
 import HelloWorldComponent from "./components/helloworld/index";
 import MusicStoreListComponent from "./components/musicstore/index";
-import { GenreService } from "./services/genre";
+import { Service } from "./services/service";
 import { Route, Link, Switch, HashRouter, NavLink } from "react-router-dom";
 
 export class App extends Component {
+  constructor() {
+    super();
+    this.state.service = new Service();
+  }
   state = {
     styleObject: {
       fontWeight: "bold",
@@ -14,7 +18,8 @@ export class App extends Component {
       color: "#ffffff"
     },
     erreur: "",
-    genres: []
+    genres: [],
+    service: null
   };
 
   componentDidMount() {
@@ -22,10 +27,8 @@ export class App extends Component {
   }
 
   loadData = () => {
-    let genreService = new GenreService();
-    genreService.setPath("/genres");
-    genreService
-      .getRequest()
+    this.state.service
+      .get("/genres")
       .then(result => {
         this.setState({
           erreur: false,

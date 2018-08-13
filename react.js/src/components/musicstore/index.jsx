@@ -34,14 +34,19 @@ export default class MusicStoreListComponent extends Component {
     this.state.service
       .get("/genres")
       .then(result => {
-        this.state.service.get("/albums").then(result2 => {
-          this.setState({
-            chargement: false,
-            erreur: false,
-            genres: result.data,
-            albums: result2.data,
-            albumsSearch: result2.data
-          });
+        this.setState({
+          genres: result.data
+        });
+        if (result.status === 200 && result.data) {
+          return this.state.service.get("/albums");
+        }
+      })
+      .then(result => {
+        this.setState({
+          chargement: false,
+          erreur: false,
+          albums: result.data,
+          albumsSearch: result.data
         });
       })
       .catch(error => {
@@ -135,6 +140,7 @@ export default class MusicStoreListComponent extends Component {
                       className={checkbox.clsAttribut}
                       style={{ position: "relative" }}
                       onClick={this.selectItem}
+                      key={key}
                     >
                       <input
                         type="checkbox"
@@ -174,7 +180,7 @@ export default class MusicStoreListComponent extends Component {
               (value, key) =>
                 value.genreId == this.props.match.params.id ? (
                   <li key={key}>
-                    <Link to="/">
+                    <Link to={"/album/" + value.id}>
                       <img alt={value.titre} src={value.albumArtUrl} />
                       <span>{value.titre}</span>
                     </Link>

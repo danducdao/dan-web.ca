@@ -3,6 +3,7 @@ import "./App.css";
 import HomeComponent from "./components/home/index";
 import HelloWorldComponent from "./components/helloworld/index";
 import MusicStoreListComponent from "./components/musicstore/index";
+import AlbumComponent from "./components/musicstore/album";
 import { Service } from "./services/service";
 import { Route, Link, Switch, HashRouter, NavLink } from "react-router-dom";
 
@@ -137,6 +138,11 @@ export class App extends Component {
                         exact
                         path="/genre/:id"
                         component={MusicStoreListComponent}
+                      />
+                      <Route
+                        exact
+                        path="/album/:id"
+                        component={AlbumComponent}
                       />
                     </Switch>
                   </div>

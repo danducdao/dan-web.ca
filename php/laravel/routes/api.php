@@ -5,6 +5,7 @@ header("Content-Type:application/json");
 use Illuminate\Http\Request;
 Use App\Genre;
 Use App\Album;
+Use App\Artiste;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +54,14 @@ Route::get('albums', function() {
     return Album::all();
 });
  
-Route::get('albums/{id}', function($id) {
-    return Album::where('genreId',$id)->get();
+Route::get('albums/{id}', function($genreId) {
+    return Album::where('genreId',$genreId)->get();
 });
+
+Route::get('albumsDetail/{id}', function($id) {
+    return Album::find($id);
+});
+
 
 Route::post('albums', function(Request $request) {
     return Album::create($request->all);
@@ -71,6 +77,34 @@ Route::delete('albums/{id}', function($id) {
     Album::find($id)->delete();
     return 204;
 });
+
+/************** Artiste ************* */
+
+Route::get('artistes', function() {
+    return Artiste::all();
+});
+ 
+Route::get('artistes/{id}', function($id) {
+    return Artiste::find($id);
+});
+
+Route::post('artistes', function(Request $request) {
+    return Artiste::create($request->all);
+});
+
+Route::put('artistes/{id}', function(Request $request, $id) {
+    $artiste= Artiste::findOrFail($id);
+    $artiste->update($request->all());
+    return $artiste;
+});
+
+Route::delete('artistes/{id}', function($id) {
+    Artiste::find($id)->delete();
+    return 204;
+});
+
+
+
 
 
 

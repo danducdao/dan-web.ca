@@ -38,6 +38,12 @@ ul#album-list li a span {
   text-decoration: underline;
 }
 
+div#album-details p {
+  margin-bottom: 5px;
+  color: #5e5b54;
+  font-weight: bold;
+}
+
 /******************** Top Navigation ************************/
 ul#navlist {
   float: right;

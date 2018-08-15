@@ -1,0 +1,23 @@
+.colRight{
+    text-align:right;
+}
+.colCenter{
+    text-align:center;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948 !important; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442 !important;/* red */
+}
+
+table th{
+   text-align:center;
+}
+
+.parent {
+     position: relative;
+     display: inline-block;
+}

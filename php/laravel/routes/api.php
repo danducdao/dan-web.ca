@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type:application/json");
 
 use Illuminate\Http\Request;
-Use App\Genre;
+Use App\Models\Genre;
 Use App\Album;
 Use App\Artiste;
 
@@ -30,7 +30,7 @@ Route::get('genres', function() {
  
 Route::get('genres/{id}', function($id) {
     return Genre::find($id);
-});
+})->where('id','[1-9][0-9]*');
 
 Route::post('genres', function(Request $request) {
     return Genre::create($request->all);

@@ -24,25 +24,22 @@ export class ProduitService extends Service {
   }
 
   getProduitById(id: string): Observable<IProduit> {
-    this.Path = "/produit?id=" + id;
+    this.Path = "/produit/" + id;
     return this.http.get<IProduit>(this.Url);
   }
 
-  updateProduit(
-    id: string,
-    newProduit: Produit
-  ): Observable<HttpEvent<IProduit>> {
+  updateProduit(id: string, newProduit: Produit): Observable<any> {
     this.Path = "/produit/" + id;
-    return this.http.put<IProduit>(this.Url, newProduit, this.HttpOptions);
+    return this.http.put<any>(this.Url, newProduit, this.HttpOptions);
   }
 
-  saveProduit(newProduit: any): Observable<IProduit> {
+  saveProduit(newProduit: any): Observable<any> {
     this.Path = "/produit";
-    return this.http.post<IProduit>(this.Url, newProduit);
+    return this.http.post<any>(this.Url, newProduit);
   }
 
-  removeProduitById(id: string): Observable<IProduit> {
+  removeProduitById(id: string): Observable<any> {
     this.Path = "/produit/" + id;
-    return this.http.delete<IProduit>(this.Url);
+    return this.http.delete<any>(this.Url);
   }
 }

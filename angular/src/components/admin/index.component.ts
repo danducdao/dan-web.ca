@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: "app-admin-index",
-  templateUrl: "../../view/admin/index.html",
+  templateUrl: "../../views/admin/index.html",
   styles: [
     `
       ul {

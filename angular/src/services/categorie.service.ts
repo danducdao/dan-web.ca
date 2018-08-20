@@ -7,8 +7,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ICategorie } from "../interfaces/categorie";
-import { Service } from "./service";
 import { Categorie } from "../classes/categorie";
+import { Service } from "./service";
 
 @Injectable({
   providedIn: "root"
@@ -24,22 +24,22 @@ export class CategorieService extends Service {
   }
 
   getCategorieById(id: string): Observable<ICategorie> {
-    this.Path = "/categorie?id=" + id;
+    this.Path = "/categorie/" + id;
     return this.http.get<ICategorie>(this.Url);
   }
 
-  saveCategorie(newCategorie: any): Observable<ICategorie> {
+  saveCategorie(newCategorie: any): Observable<any> {
     this.Path = "/categorie";
-    return this.http.post<ICategorie>(this.Url, newCategorie);
+    return this.http.post<any>(this.Url, newCategorie);
   }
 
   updateCategorie(id: string, newCategorie: Categorie): Observable<any> {
     this.Path = "/categorie/" + id;
-    return this.http.put<ICategorie>(this.Url, newCategorie, this.HttpOptions);
+    return this.http.put<any>(this.Url, newCategorie, this.HttpOptions);
   }
 
-  removeCategorieById(id: string): Observable<ICategorie> {
+  removeCategorieById(id: string): Observable<any> {
     this.Path = "/categorie/" + id;
-    return this.http.delete<ICategorie>(this.Url);
+    return this.http.delete<any>(this.Url);
   }
 }

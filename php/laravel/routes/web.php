@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomeController@index');
+Route::get('movie/categorie/{id}','MovieStoreController@index')->where(array('id' => '[1-9][0-9]*'));
+Route::get('movie/movie/{id}','MovieStoreController@detail')->where(array('id' => '[1-9][0-9]*'));
 

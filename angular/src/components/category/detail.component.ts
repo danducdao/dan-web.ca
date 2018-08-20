@@ -6,16 +6,14 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CategorieService } from "../../services/categorie.service";
-import { ProduitService } from "../../services/produit.service";
-import { IProduit } from "../../interfaces/produit";
+import { RadioButton } from "../../classes/radiobutton";
 import { Categorie } from "../../classes/categorie";
 import { FileUpload } from "../../classes/fileUpload";
-import { ICategorie } from "../../interfaces/categorie";
 import { Regex } from "../../classes/regex";
 
 @Component({
   selector: "app-categorie-detail",
-  templateUrl: "../../view/category/detail.html",
+  templateUrl: "../../views/category/detail.html",
   styles: [
     `
       #categorieDetail .row {
@@ -25,17 +23,16 @@ import { Regex } from "../../classes/regex";
   ]
 })
 export class DetailCategorieComponent implements OnInit {
+  public isAdd: boolean;
   public model: Categorie;
   public nodigitPattern: string = Regex.NoDigitPattern();
   public uploadStatus: boolean = false;
-  public titre: string;
-  private file: string;
+  public containerActiveRadioButton: RadioButton[] = [];
   private id: string;
   public fileToUpload: FileUpload = new FileUpload();
 
   constructor(
     private _categorieService: CategorieService,
-    private _produitService: ProduitService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -43,26 +40,55 @@ export class DetailCategorieComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     this.model = new Categorie();
-    this.titre = "Ajouter";
+    this.isAdd = true;
+    this.containerActiveRadioButton = [
+      new RadioButton("active", "oui", "Oui", false),
+      new RadioButton("active", "non", "Non", false)
+    ];
     if (this.id) {
-      this.titre = "Modifier";
-      this._categorieService
-        .getCategorieById(this.id)
-        .subscribe(data => this.response(this, data));
+      this.isAdd = false;
+      this._categorieService.getCategorieById(this.id).subscribe(res => {
+        this.model.id = res.id;
+        this.model.nom = res.nom;
+        this.model.description = res.description;
+        this.model.photo = res.photo;
+        this.model.active = res.active;
+        let containerActiveRadioButton: RadioButton[] = this
+          .containerActiveRadioButton;
+        if (this.model.active) {
+          containerActiveRadioButton[0].clsAttribut =
+            containerActiveRadioButton[0].iradioButtonSquare;
+        } else {
+          containerActiveRadioButton[1].clsAttribut =
+            containerActiveRadioButton[1].iradioButtonSquare;
+        }
+      });
     }
   }
-  response(obj, data): void {
-    obj.model._id = data._id;
-    obj.model.nom = data.nom;
-    obj.model.description = data.description;
-    obj.model.photo = data.photo;
-    obj.model.active = data.active;
+
+  selectedActiveItem(index: number) {
+    this.initActiveRadioButton();
+    let containerActiveRadioButton: RadioButton[] = this
+      .containerActiveRadioButton;
+    containerActiveRadioButton[index].clsAttribut =
+      containerActiveRadioButton[index].iradioButtonSquare;
+    this.model.active =
+      containerActiveRadioButton[index].value === "oui" ? 1 : 0;
   }
+
+  initActiveRadioButton() {
+    for (let radioButton of this.containerActiveRadioButton) {
+      radioButton.clsAttribut = radioButton.iradioButtonSquare.split(" ")[0];
+    }
+  }
+
   onSubmit(): void {
     if (this.id) {
       this._categorieService
         .updateCategorie(this.id, this.model)
-        .subscribe(data => this.callback(this, data, this.model));
+        .subscribe(
+          data => (data ? this.router.navigateByUrl("/admin/categorie") : "")
+        );
     } else {
       this._categorieService
         .saveCategorie(this.model)
@@ -70,32 +96,5 @@ export class DetailCategorieComponent implements OnInit {
           data => (data ? this.router.navigateByUrl("/admin/categorie") : "")
         );
     }
-  }
-  callback(
-    obj: DetailCategorieComponent,
-    OldCategorie: ICategorie,
-    NewCategorie: ICategorie
-  ): void {
-    let that: DetailCategorieComponent = obj;
-    obj._produitService.getProduitList().subscribe(function(produits) {
-      that.router.navigateByUrl("/admin/categorie");
-      let produitBD: IProduit[] = produits.filter(
-        data => data.category[0]._id == OldCategorie._id
-      );
-      if (produitBD.length > 0)
-        that.updateProduit(that, produitBD, NewCategorie);
-    });
-  }
-  updateProduit(
-    obj: DetailCategorieComponent,
-    produits: IProduit[],
-    categorie: ICategorie
-  ): void {
-    produits.forEach(function(produit) {
-      produit.category[0] = categorie;
-      obj._produitService
-        .updateProduit(produit._id, produit)
-        .subscribe(data => data);
-    });
   }
 }

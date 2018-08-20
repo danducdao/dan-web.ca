@@ -8,7 +8,7 @@ import { EmployeeService } from "../../services/employee.service";
 
 @Component({
   selector: "app-ngFor-index",
-  templateUrl: "../../view/ngFor/index.html",
+  templateUrl: "../../views/ngFor/index.html",
   styles: []
 })
 export class NgForComponent implements OnInit {

@@ -9,13 +9,12 @@ import { ProduitService } from "../../services/produit.service";
 import { CategorieService } from "../../services/categorie.service";
 import { FournisseurService } from "../../services/fournisseur.service";
 import { Produit } from "../../classes/produit";
-import { Container } from "../../classes/container";
 import { RadioButton } from "../../classes/radiobutton";
 import { Regex } from "../../classes/regex";
 
 @Component({
   selector: "app-product-detail",
-  templateUrl: "../../view/product/detail.html",
+  templateUrl: "../../views/product/detail.html",
   styles: [
     `
       #produitDetail .row {
@@ -26,16 +25,15 @@ import { Regex } from "../../classes/regex";
 })
 export class DetailProduitComponent implements OnInit {
   private id: string;
-  public titre: string;
-  public model: Produit;
+  public isAdd: boolean;
+  public model: Produit = null;
   public categories: any[];
   public fournisseurs: any[];
   public digitPattern: string = Regex.DigitPattern();
   public decimalPattern: string = Regex.DecimalPattern();
   public nodigitPattern: string = Regex.NoDigitPattern();
-  public categorieId: string = "";
-  public fournisseurId: string = "";
-  public radioButtonContainer: Container = new Container();
+  public containerDiscontinueRadioButton: RadioButton[] = [];
+  public containerActiveRadioButton: RadioButton[] = [];
 
   constructor(
     private _produitService: ProduitService,
@@ -45,87 +43,108 @@ export class DetailProduitComponent implements OnInit {
     private router: Router
   ) {}
 
-  setCategorie(categorieId: string): void {
-    this.model.category = this.categories.filter(
-      data => data._id.indexOf(categorieId) !== -1
-    );
-  }
-  setFournisseur(fournisseurId: string): void {
-    this.model.fournisseur = this.fournisseurs.filter(
-      data => data._id.indexOf(fournisseurId) !== -1
-    )[0];
-  }
   ngOnInit() {
     this.model = new Produit();
-    this.radioButtonContainer.setContainer(
-      new RadioButton("discontinue", "Oui", "Oui")
-    );
-    this.radioButtonContainer.setContainer(
-      new RadioButton("discontinue", "Non", "Non")
-    );
+    this.id = this.route.snapshot.params.id;
+    this.isAdd = true;
+    this.containerDiscontinueRadioButton = [
+      new RadioButton("discontinue", "oui", "Oui", false),
+      new RadioButton("discontinue", "non", "Non", false)
+    ];
+    this.containerActiveRadioButton = [
+      new RadioButton("active", "oui", "Oui", false),
+      new RadioButton("active", "non", "Non", false)
+    ];
     this._categorieService
       .getCategorieList()
-      .subscribe(data => (this.categories = data));
+      .subscribe(res => (this.categories = res));
     this._fournisseurService
       .getFournisseurList()
-      .subscribe(data => (this.fournisseurs = data));
-    this.id = this.route.snapshot.params.id;
-    this.titre = "Ajouter";
+      .subscribe(res => (this.fournisseurs = res));
     if (this.id) {
-      this.titre = "Modifier";
-      this._produitService
-        .getProduitById(this.id)
-        .subscribe(data => this.callback(this, data));
+      this.isAdd = false;
+      let containerDiscontinueRadioButton: RadioButton[] = this
+        .containerDiscontinueRadioButton;
+      let containerActiveRadioButton: RadioButton[] = this
+        .containerActiveRadioButton;
+      this._produitService.getProduitById(this.id).subscribe(res => {
+        this.model.id = res.id;
+        this.model.nom = res.nom;
+        this.model.categorie_id = res.categorie_id;
+        this.model.fournisseur_id = res.fournisseur_id;
+        this.model.prix = res.prix;
+        this.model.reapprovisionnement = res.reapprovisionnement;
+        this.model.quantiteParUnite = res.quantiteParUnite;
+        this.model.quantiteEnStock = res.quantiteEnStock;
+        this.model.quantiteCommande = res.quantiteCommande;
+        this.model.discontinue = res.discontinue;
+        this.model.active = res.active;
+        //Le bouton radio discontinue
+        if (this.model.discontinue) {
+          containerDiscontinueRadioButton[0].clsAttribut =
+            containerDiscontinueRadioButton[0].iradioButtonSquare;
+        } else {
+          containerDiscontinueRadioButton[1].clsAttribut =
+            containerDiscontinueRadioButton[1].iradioButtonSquare;
+        }
+        //Le bouton radio active
+        if (this.model.active) {
+          containerActiveRadioButton[0].clsAttribut =
+            containerActiveRadioButton[0].iradioButtonSquare;
+        } else {
+          containerActiveRadioButton[1].clsAttribut =
+            containerActiveRadioButton[1].iradioButtonSquare;
+        }
+      });
     }
   }
-  callback(obj, data): void {
-    obj.model.nom = data.nom;
-    obj.categorieId = data.category[0]._id;
-    obj.fournisseurId = data.fournisseur._id;
-    obj.model.quantite = data.quantite;
-    obj.model.prix = data.prix;
-    obj.model.quantiteRestante = data.quantiteRestante;
-    obj.model.quantiteCommande = data.quantiteCommande;
-    obj.model.reapprovisionnement = data.reapprovisionnement;
-    obj.model.discontinue = data.discontinue;
-    this.radioButtonContainer.getContainer()[0].ClsAttribut.checked =
-      obj.model.discontinue;
-    this.radioButtonContainer.getContainer()[1].ClsAttribut.checked = !obj.model
-      .discontinue;
-    obj.model.active = data.active;
+
+  selectedDiscontinueItem(index: number) {
+    this.initContainerDiscontinueRadioButton();
+    let containerDiscontinueRadioButton: RadioButton[] = this
+      .containerDiscontinueRadioButton;
+    containerDiscontinueRadioButton[index].clsAttribut =
+      containerDiscontinueRadioButton[index].iradioButtonSquare;
+    this.model.discontinue =
+      containerDiscontinueRadioButton[index].value === "oui" ? 1 : 0;
   }
-  selectCategorie(): void {
-    this.setCategorie(this.categorieId);
+
+  selectedActiveItem(index: number) {
+    this.initActiveRadioButton();
+    let containerActiveRadioButton: RadioButton[] = this
+      .containerActiveRadioButton;
+    containerActiveRadioButton[index].clsAttribut =
+      containerActiveRadioButton[index].iradioButtonSquare;
+    this.model.active =
+      containerActiveRadioButton[index].value === "oui" ? 1 : 0;
   }
-  selectFournisseur(): void {
-    this.setFournisseur(this.fournisseurId);
+  initContainerDiscontinueRadioButton() {
+    for (let radioButton of this.containerDiscontinueRadioButton) {
+      radioButton.clsAttribut = radioButton.iradioButtonSquare.split(" ")[0];
+    }
   }
+
+  initActiveRadioButton() {
+    for (let radioButton of this.containerActiveRadioButton) {
+      radioButton.clsAttribut = radioButton.iradioButtonSquare.split(" ")[0];
+    }
+  }
+
   onSubmit(): void {
+    console.log(this.model);
+    let urlRedirect: string = "/admin/produit";
     if (this.id) {
-      this.setCategorie(this.categorieId);
-      this.setFournisseur(this.fournisseurId);
       this._produitService
         .updateProduit(this.id, this.model)
-        .subscribe(
-          data => (data ? this.router.navigateByUrl("/admin/produit") : "")
-        );
+        .subscribe(res => (res ? this.router.navigateByUrl(urlRedirect) : ""));
     } else {
       this._produitService
-        .saveProduit({
-          nom: this.model.nom,
-          category: this.model.category,
-          fournisseur: this.model.fournisseur,
-          quantite: parseInt(this.model.quantite),
-          prix: this.model.prix,
-          quantiteRestante: parseInt(this.model.quantiteRestante),
-          quantiteCommande: parseInt(this.model.quantiteCommande),
-          reapprovisionnement: parseInt(this.model.reapprovisionnement),
-          discontinue: this.model.discontinue,
-          dateCreation: this.model.dateCreation,
-          active: this.model.active
-        })
+        .saveProduit(this.model)
         .subscribe(
-          data => (data ? this.router.navigateByUrl("/admin/produit") : "")
+          res =>
+            res.success
+              ? this.router.navigateByUrl(urlRedirect)
+              : alert("Cet item a été sauvegardé avec sans succès")
         );
     }
   }

@@ -3,17 +3,15 @@
 * Écrit par : Dan Duc Dao
 */
 
-import { Pipe, PipeTransform } from '@angular/core';
-import { IProduit } from '../interfaces/produit';
+import { Pipe, PipeTransform } from "@angular/core";
+import { IProduit } from "../interfaces/produit";
 
 @Pipe({
-  name: 'filtreProduit'
+  name: "filtreProduit"
 })
-
 export class FiltreProduitPipe implements PipeTransform {
-
-  transform(value:IProduit[], filtrePar:any[],motAChercher:string):IProduit[] {
-
+  transform(value: IProduit[], filtrePar: any[], motAChercher: string) {
+    /*
           let produits:IProduit[] = [];
 
           if(motAChercher && filtrePar[0].isChecked){
@@ -36,6 +34,6 @@ export class FiltreProduitPipe implements PipeTransform {
           {
              return value;
           }
-          return produits;
-    }
+          return produits;*/
+  }
 }

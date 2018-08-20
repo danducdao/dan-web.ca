@@ -1,23 +1,20 @@
 /*
-* Program : Class DetailCategorie
+* Program : Class Categorie
 * Écrit par : Dan Duc Dao
 */
 
-export class Categorie
-{
-     public _id:string;
-     public nom:string;
-     public description:string;
-     public photo:string;
-     public dateCreation:string;
-     public active:boolean;
+export class Categorie {
+  public id: number;
+  public nom: string;
+  public description: string;
+  public photo: string;
+  public active: number;
 
-     constructor()
-     {
-       this.nom = "";
-       this.description = "";
-       this.photo = "";
-       this.dateCreation = new Date().toLocaleDateString("en-US");
-       this.active=true;
-     }
+  constructor() {
+    this.id = null;
+    this.nom = "";
+    this.description = "";
+    this.photo = "";
+    this.active = 1;
+  }
 }

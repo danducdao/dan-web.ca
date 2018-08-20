@@ -10,7 +10,7 @@ import { Tuto } from "../../classes/tuto";
 
 @Component({
   selector: "app-home-index",
-  templateUrl: "../../view/home/index.html",
+  templateUrl: "../../views/home/index.html",
   styles: [
     `
       #main .title {

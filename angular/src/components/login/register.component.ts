@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: "app-register",
-  templateUrl: "../../view/login/register.html",
+  templateUrl: "../../views/login/register.html",
   styles: [
     `
       #registerDetail .row {

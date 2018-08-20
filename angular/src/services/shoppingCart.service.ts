@@ -17,8 +17,8 @@ export class ShoppingCartService extends Service {
     super();
   }
 
-  shoppingCartProduitList(): Observable<IProduit[]> {
-    this.Path = "/shoppingCart";
+  shoppingCartByCategorieId(categorieId): Observable<IProduit[]> {
+    this.Path = "/shoppingCart/" + categorieId;
     return this.http.get<IProduit[]>(this.Url);
   }
 }

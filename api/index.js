@@ -4,21 +4,29 @@
 */
 
 const express = require("express");
+const mysql = require("mysql");
 const bodyParse = require("body-parser");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const produitController = require("./controller/produitController");
-const categorieController = require("./controller/categorieController");
-const fournisseurController = require("./controller/fournisseurController");
-const googleMapController = require("./controller/googleMapController");
-const shoppingCartController = require("./controller/shoppingCartController");
-const adminController = require("./controller/adminController");
-const employeeController = require("./controller/employeeController");
-const emailController = require("./controller/emailController");
+const produitController = require("./controller/foods/produitController");
+const categorieController = require("./controller/foods/categorieController");
+const fournisseurController = require("./controller/foods/fournisseurController");
+const googleMapController = require("./controller/foods/googleMapController");
+const shoppingCartController = require("./controller/foods/shoppingCartController");
+const adminController = require("./controller/foods/adminController");
+const employeeController = require("./controller/foods/employeeController");
+const emailController = require("./controller/foods/emailController");
 
-mongoose.connect("mongodb://localhost/test");
-mongoose.Promise = global.Promise;
+// connection configurations
+const food = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "asiavn73",
+  database: "food"
+});
+
+// connect to database
+food.connect();
 
 //app.use(bodyParse.json());
 app.use(bodyParse({ limit: "50mb" }));
@@ -33,25 +41,25 @@ app.use(function(req, res, next) {
 });
 
 //Produit controller
-produitController(app);
+produitController(app, food);
 
 //Categorie controller
-categorieController(app);
+categorieController(app, food);
 
 //Fournisseur controller
-fournisseurController(app);
+fournisseurController(app, food);
 
 //Google map controller
 googleMapController(app);
 
 //Shopping cart controller
-shoppingCartController(app);
+shoppingCartController(app, food);
 
 //Admin controller
-adminController(app);
+adminController(app, food);
 
 //Employee controller
-employeeController(app);
+employeeController(app, food);
 
 //Email controller
 emailController(app);

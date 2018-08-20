@@ -18,8 +18,7 @@ export class AdminService extends Service {
   }
 
   authenticate(admin: Admin): Observable<any> {
-    this.Path =
-      "/admin?username=" + admin.username + "&password=" + admin.password;
-    return this.http.get<{ success: boolean }>(this.Url);
+    this.Path = "/admin/" + admin.username + "/" + admin.password;
+    return this.http.get<any>(this.Url);
   }
 }

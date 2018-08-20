@@ -9,7 +9,7 @@ import { ShoppingCart } from "../../classes/shoppingcart";
 
 @Component({
   selector: "app-add-to-cart",
-  templateUrl: "../../view/shoppingCart/add-to-cart.html",
+  templateUrl: "../../views/shoppingCart/add-to-cart.html",
   styleUrls: []
 })
 export class AddToCartComponent implements OnInit {
@@ -59,7 +59,7 @@ export class AddToCartComponent implements OnInit {
       return;
     }
     this.carts.map(function(value) {
-      if (value._id.indexOf(cartId) !== -1) {
+      if (value.id === parseInt(cartId)) {
         value.quantite = quantite;
         value.total = value.prix * value.quantite;
         return value;
@@ -69,7 +69,7 @@ export class AddToCartComponent implements OnInit {
   }
   removeCart(cartId): void {
     if (confirm("Êtes-vous sûre de vouloir supprimer cet item?")) {
-      this.carts = this.carts.filter(data => data._id.indexOf(cartId) == -1);
+      this.carts = this.carts.filter(data => data.id === parseInt(cartId));
       LocalStorage.setItem("carts", this.carts);
     }
   }

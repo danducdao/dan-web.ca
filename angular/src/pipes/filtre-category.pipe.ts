@@ -16,6 +16,6 @@ export class FiltreCategoryPipe implements PipeTransform {
 
   transform(value:ICategorie[], filtrePar:string): ICategorie[]{
        filtrePar = filtrePar ? filtrePar : null;
-       return filtrePar ? value.filter( (categorie:ICategorie) => categorie._id.indexOf(filtrePar) !== -1 ) : value;
+       return filtrePar ? value.filter( (categorie:ICategorie) => categorie.id === parseInt(filtrePar) ) : value;
    }
 }

@@ -10,75 +10,84 @@ import { CheckBox } from "../../classes/checkbox";
 
 @Component({
   selector: "app-produit-index",
-  templateUrl: "../../view/product/index.html"
+  templateUrl: "../../views/product/index.html"
 })
 export class ListeProduitComponent implements OnInit {
   public produits: IProduit[] = [];
-  public filtreParams: any[] = [];
-  public motAChercher: string = "";
-  public title: string[] = [
-    "",
-    "",
-    "Nom",
-    "Catégorie",
-    "Fournisseur",
-    "Quantité",
-    "Prix",
-    "Quantité restante",
-    "Quantité commandée",
-    "Réapprovisionnement",
-    "Discontinue",
-    "Active"
-  ];
+  public produitsForSearch: IProduit[] = [];
+  public inputSearch: string = "";
   public right: any = { colRight: true };
   public center: any = { colCenter: true };
-  public checkboxContainer: any;
+  public checkboxContainer: CheckBox[] = [];
 
   constructor(private _produitService: ProduitService) {}
 
   ngOnInit() {
-    this.filtreParams = [
-      { type: "Nom", isChecked: true },
-      { type: "Catégorie", isChecked: false },
-      { type: "Quantité", isChecked: false },
-      { type: "Prix", isChecked: false }
-    ];
     this.checkboxContainer = [
-      new CheckBox("Nom", "Nom", "Nom", true),
-      new CheckBox("Catégorie", "Catégorie", "Catégorie"),
-      new CheckBox("Quantité", "Quantité", "Quantité"),
-      new CheckBox("Prix", "Prix", "Prix")
+      new CheckBox("nom", "nom", "Nom", true),
+      new CheckBox("categorie", "categorie", "Catégorie"),
+      new CheckBox("quantiteEnStock", "quantiteEnStock", "Quantité en stock"),
+      new CheckBox("prix", "prix", "Prix")
     ];
     this._produitService
       .getProduitList()
-      .subscribe(data => (this.produits = data));
+      .subscribe(res => (this.produits = this.produitsForSearch = res));
+  }
+  search() {
+    let data: IProduit[] = [];
+    let searchValue: string = (<HTMLInputElement>(
+      document.getElementById("search")
+    )).value;
+
+    for (let checkbox of this.checkboxContainer) {
+      if (checkbox.clsAttribut.indexOf("checked") !== -1) {
+        if (checkbox.value.toLowerCase() === "nom") {
+          data = data.concat(
+            this.produitsForSearch.filter(
+              value =>
+                value.nom.toLowerCase().indexOf(searchValue.toLowerCase()) !==
+                -1
+            )
+          );
+        } else if (checkbox.value === "categorie") {
+          data = data.concat(
+            this.produitsForSearch.filter(
+              value =>
+                value.categorie_nom
+                  .toLowerCase()
+                  .indexOf(searchValue.toLowerCase()) !== -1
+            )
+          );
+        } else if (checkbox.value === "quantiteEnStock") {
+          data = data.concat(
+            this.produitsForSearch.filter(
+              value => value.quantiteEnStock === parseInt(searchValue)
+            )
+          );
+        } else if (checkbox.value === "prix") {
+          data = data.concat(
+            this.produitsForSearch.filter(
+              value => value.prix === parseInt(searchValue)
+            )
+          );
+        }
+      }
+    }
+    this.produits = data;
   }
   removeProduit(event: any, produitId: string): void {
     if (confirm("Êtes-vous sûre de vouloir supprimer ce produit?")) {
-      this._produitService
-        .removeProduitById(produitId)
-        .subscribe(data => this.response(data));
+      this._produitService.removeProduitById(produitId).subscribe(res => {
+        if (res.success) {
+          alert("Cet item a été supprimé avec succès");
+          this._produitService
+            .getProduitList()
+            .subscribe(res => (this.produits = res));
+        } else {
+          alert("Cet item a été supprimé avec sans succès");
+        }
+      });
     }
     event.preventDefault();
   }
-  response(data: IProduit): void {
-    if (data) {
-      alert("Félicitation! Produit a été supprimé avec succès");
-      this._produitService
-        .getProduitList()
-        .subscribe(data => (this.produits = data));
-    }
-  }
-  /*
-  checkValue(event:any):void
-  {
-       this.motAChercher = "";
-       this.filtreParams.map(function(value){
-           if(value.type.match(event.target.id))
-           {
-               value.isChecked = event.target.checked;
-           }
-           return value;
-       });
-   }*/
 }

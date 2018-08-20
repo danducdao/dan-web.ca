@@ -14,7 +14,7 @@ import {
 
 @Component({
   selector: "app-file-upload",
-  templateUrl: "../../view/fileUpload/fileUpload.html",
+  templateUrl: "../../views/fileUpload/fileUpload.html",
   styles: [
     `
       .error {
@@ -40,12 +40,18 @@ import {
 export class FileUploadComponent implements OnInit {
   errors: Array<string> = [];
   dragAreaClass: string = "dragarea";
-  @Input() name: string;
-  @Input() fileExt: string = "JPG, GIF, PNG";
-  @Input() maxFiles: number = 5;
-  @Input() maxSize: number = 5; // 5MB
-  @Output() uploadStatus = new EventEmitter();
-  @Output() FileToSave = new EventEmitter();
+  @Input()
+  name: string;
+  @Input()
+  fileExt: string = "JPG, GIF, PNG";
+  @Input()
+  maxFiles: number = 5;
+  @Input()
+  maxSize: number = 5; // 5MB
+  @Output()
+  uploadStatus = new EventEmitter();
+  @Output()
+  FileToSave = new EventEmitter();
 
   constructor() {}
 

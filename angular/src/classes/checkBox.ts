@@ -3,61 +3,33 @@
 * Écrit par : Dan Duc Dao
 */
 
-export class CheckBox
-{
-     private clsAttribut:any;
-     private name:string;
-     private text:string;
-     private value:string;
+export class CheckBox {
+  public icheckboxSquare: string = "icheckbox_square-green checked";
+  public clsAttribut: any;
+  public name: string;
+  public text: string;
+  public value: string;
 
-     constructor(name:string,value:string,text:string,checked:boolean = false)
-     {
-         this.name = name;
-         this.text = text;
-         this.value = value
-         this.clsAttribut = {'icheckbox_square-green':true,'checked':false};
-         this.clsAttribut.checked = checked;
-     }
+  constructor(
+    name: string,
+    value: string,
+    text: string,
+    checked: boolean = false
+  ) {
+    this.name = name;
+    this.text = text;
+    this.value = value;
+    this.clsAttribut =
+      checked === true
+        ? this.icheckboxSquare
+        : this.icheckboxSquare.split(" ")[0];
+  }
 
-     doCheck():void
-     {
-        this.ClsAttribut.checked = !this.clsAttribut.checked;
-     }
-     get ClsAttribut():any
-     {
-         return this.clsAttribut;
-     }
-
-     get Name():string
-     {
-         return this.name;
-     }
-
-     get Text():string
-     {
-        return this.text;
-     }
-
-     get Value():string
-     {
-        return this.value;
-     }
-
-     public searchBy(filtreParams:any[])
-     {
-         var that = this;
-         this.doCheck();
-         filtreParams.map(function(value)
-         {
-             if(value.type.match(that.Value))
-             {
-                 value.isChecked = that.ClsAttribut.checked;
-             }
-             return value;
-         });
-     }
-     public remember()
-     {
-         this.doCheck();
-     }
+  selectedItem() {
+    if (this.clsAttribut.indexOf("checked") !== -1) {
+      this.clsAttribut = this.icheckboxSquare.split(" ")[0];
+    } else {
+      this.clsAttribut = this.icheckboxSquare;
+    }
+  }
 }

@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-data-binding-index",
-  templateUrl: "../../view/dataBinding/index.html",
+  templateUrl: "../../views/dataBinding/index.html",
   styles: []
 })
 export class DataBindingComponent implements OnInit {

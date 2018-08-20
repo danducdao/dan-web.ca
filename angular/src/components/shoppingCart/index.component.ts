@@ -9,12 +9,12 @@ import { ICategorie } from "../../interfaces/categorie";
 
 @Component({
   selector: "app-shopping-cart-index",
-  templateUrl: "../../view/shoppingCart/index.html",
+  templateUrl: "../../views/shoppingCart/index.html",
   styleUrls: []
 })
 export class ShoppingCartComponent implements OnInit {
   public categories: ICategorie[];
-  public shoppingCartCategories: ICategorie[] = [];
+  public shoppingCartCategorie: ICategorie[] = [];
   public categorieId: string = "";
 
   constructor(private _categorieService: CategorieService) {}
@@ -22,11 +22,11 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this._categorieService
       .getCategorieList()
-      .subscribe(data => (this.categories = data));
+      .subscribe(res => (this.categories = res));
   }
   selectCategorie(): void {
-    this.shoppingCartCategories = this.categories.filter(
-      data => data._id.indexOf(this.categorieId) !== -1
+    this.shoppingCartCategorie = this.categories.filter(
+      res => res.id === parseInt(this.categorieId)
     );
   }
 }

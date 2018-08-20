@@ -12,27 +12,27 @@ import { ShoppingCartBasketComponent } from "./shopping-cart-basket.component";
 
 @Component({
   selector: "app-shopping-cart-produit",
-  templateUrl: "../../view/shoppingCart/shopping-cart-produit.html",
+  templateUrl: "../../views/shoppingCart/shopping-cart-produit.html",
   styles: []
 })
 export class ShoppingCartProduitComponent implements OnInit {
-  @Input() categorieId: string;
-  @Input() shoppingCartBasket: ShoppingCartBasketComponent;
+  @Input()
+  categorieId: string;
+  @Input()
+  shoppingCartBasket: ShoppingCartBasketComponent;
 
-  public shoppingCartList: Array<IProduit> = [];
+  public shoppingCartList: IProduit[] = [];
 
   constructor(private _shoppingCartService: ShoppingCartService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngOnChanges() {
     this._shoppingCartService
-      .shoppingCartProduitList()
-      .subscribe(data => this.callback(this, data));
+      .shoppingCartByCategorieId(this.categorieId)
+      .subscribe(res => (this.shoppingCartList = res));
   }
-  callback(obj: ShoppingCartProduitComponent, data): void {
-    this.shoppingCartList = data.filter(
-      (data: IProduit) => data.category[0]._id.indexOf(obj.categorieId) !== -1
-    );
-  }
+
   onSubmit(event, shoppingCartId): void {
     let quantite: number = parseInt(
       (<HTMLInputElement>document.getElementById(shoppingCartId)).value
@@ -44,26 +44,26 @@ export class ShoppingCartProduitComponent implements OnInit {
     }
     let carts: Array<ShoppingCart> = [];
     let item: IProduit = this.shoppingCartList.filter(
-      data => data._id.indexOf(shoppingCartId) !== -1
+      data => data.id === parseInt(shoppingCartId)
     )[0];
     let total: number = Number(item.prix) * quantite;
     if (!LocalStorage.itemExist("carts")) {
       carts.push(
-        new ShoppingCart(item._id, quantite, item.prix, item.nom, total)
+        new ShoppingCart(item.id, quantite, item.prix, item.nom, total)
       );
     } else {
       let that: any = this;
       carts = LocalStorage.getItem("carts");
       let itemTrouve: Array<ShoppingCart> = carts.filter(
-        data => data._id.indexOf(shoppingCartId) !== -1
+        data => data.id === parseInt(shoppingCartId)
       );
       if (itemTrouve.length == 0) {
         carts.push(
-          new ShoppingCart(item._id, quantite, item.prix, item.nom, total)
+          new ShoppingCart(item.id, quantite, item.prix, item.nom, total)
         );
       } else {
         carts.map(function(value) {
-          if (value._id.indexOf(shoppingCartId) !== -1) {
+          if (value.id === parseInt(shoppingCartId)) {
             value.quantite += quantite;
             value.total = value.prix * value.quantite;
             return value;

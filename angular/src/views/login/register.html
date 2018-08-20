@@ -1,0 +1,400 @@
+<section id="registerDetail">
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <div class="row">
+            <div class="hpanel hblue col-md-6">
+                <div class="panel-heading hbuilt">
+                    <strong>Information</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="abr">Titre de civilité</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <select class="form-control" name="abr" #abrege="ngModel" required [(ngModel)]="employee.abrege">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let abrege of employee.AbregeOpt" [value]="abrege.value">{{abrege.name}}</option>s
+                            </select>
+                            <div *ngIf="abrege.errors">
+                                <div [hidden]="!abrege.errors.required || abrege.pristine" class="alert alert-danger">
+                                    Titre de civilité est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="nom">Nom</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="text" class="form-control" name="nom" #nom="ngModel" required [(ngModel)]="employee.nom" [pattern]="noDigitPattern"
+                            />
+                            <div *ngIf="nom.errors">
+                                <div [hidden]="!nom.errors.required || nom.pristine" class="alert alert-danger">
+                                    Nom est obligatoire
+                                </div>
+                                <div [hidden]="!nom.errors.pattern" class="alert alert-danger">
+                                    Nom contient seulement des caractères
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label" for="prenom">Prénom</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="text" class="form-control" name="prenom" #prenom="ngModel" required [(ngModel)]="employee.prenom" [pattern]="noDigitPattern"
+                            />
+                            <div *ngIf="prenom.errors">
+                                <div [hidden]="!prenom.errors.required || prenom.pristine" class="alert alert-danger">
+                                    Prénom est obligatoire
+                                </div>
+                                <div [hidden]="!prenom.errors.pattern" class="alert alert-danger">
+                                    Prénom contient seulement des caractères
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="titre">Titre</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="text" class="form-control" name="titre" #titre="ngModel" required [(ngModel)]="employee.titre" [pattern]="noDigitPattern"
+                            />
+                            <div *ngIf="titre.errors">
+                                <div [hidden]="!titre.errors.required || titre.pristine" class="alert alert-danger">
+                                    Titre est obligatoire
+                                </div>
+                                <div [hidden]="!titre.errors.pattern" class="alert alert-danger">
+                                    Titre contient seulement des caractères
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="statut">Statut</label>
+                            <span style="color:red;">*</span>
+                            <select class="form-control" name="statut" #statut="ngModel" required [(ngModel)]="employee.statut">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let statut of employee.StatutOpt" [value]="statut.value">{{statut.name}}</option>
+                            </select>
+                            <div *ngIf="statut.errors">
+                                <div [hidden]="!statut.errors.required || statut.pristine" class="alert alert-danger">
+                                    Statut est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="genre">Genre</label>
+                            <span style="color:red;">*</span>
+                            <select class="form-control" name="genre" #genre="ngModel" required [(ngModel)]="employee.genre">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let genre of employee.GenreOpt" [value]="genre.value">{{genre.name}}</option>
+                            </select>
+                            <div *ngIf="genre.errors">
+                                <div [hidden]="!genre.errors.required || genre.pristine" class="alert alert-danger">
+                                    Genre est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="titre">Date de naissance</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <my-date-picker name="dateNaissance" #dateNaissance="ngModel" required [(ngModel)]="DateNaissance" [options]="myDatePickerOptions"
+                                (dateChanged)="selectedDateNaisance($event)"></my-date-picker>
+                            <div *ngIf="dateNaissance.errors">
+                                <div [hidden]="!dateNaissance.errors.required || dateNaissance.pristine" class="alert alert-danger">
+                                    Date de naissance est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hpanel hblue col-md-6">
+                <div class="panel-heading hbuilt">
+                    <strong>Coordonnée</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label class="control-label" for="address">Address</label>
+                            <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="employee.address" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="pays">Pays</label>&nbsp;
+                            <select :class="form-control" name="pays" #pays="ngModel" [(ngModel)]="employee.pays" (change)="selectedPays()">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let pays of paysOpt" [value]="pays.value">{{pays.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="ville">Ville</label>
+                            <select class="form-control" name="ville" #ville="ngModel" [(ngModel)]="employee.ville">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let ville of villesOpt" [value]="ville.value">{{ville.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="region">Région</label>
+                            <select class="form-control" name="region" #region="ngModel" [(ngModel)]="employee.region">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let region of regionsOpt" [value]="region.value">{{region.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="codePostale">Code postale</label>
+                            <input type="text" class="form-control" name="codePostale" #codepostale="ngModel" [(ngModel)]="employee.codePostale" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="hpanel hblue col-md-6">
+                <div class="panel-heading hbuilt">
+                    <strong>Contact</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="telephone">Téléphone</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="text" class="form-control" required name="telephone" #telephone="ngModel" required [(ngModel)]="employee.telephone"
+                                [pattern]="phoneNumPattern" placeholder="(___)-___-____" />
+                            <div *ngIf="telephone.errors">
+                                <div [hidden]="!telephone.errors.required || telephone.pristine" class="alert alert-danger">
+                                    Téléphone est obligatoire
+                                </div>
+                                <div [hidden]="!telephone.errors.pattern" class="alert alert-danger">
+                                    Téléphone est invalid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="cellulaire">Cellulaire</label>
+                            <input class="form-control" name="cellulaire" #cellulaire="ngModel" [(ngModel)]="employee.cellulaire" [pattern]="phoneNumPattern"
+                                placeholder="(___)-___-____" />
+                            <div *ngIf="cellulaire.errors">
+                                <div [hidden]="!cellulaire.errors.pattern" class="alert alert-danger">
+                                    Cellulaire est invalid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="email">Courriel</label>
+                            <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="employee.courriel" placeholder="exemple@gmail.com"
+                                [pattern]="emailPattern" />
+                            <div *ngIf="email.errors">
+                                <div [hidden]="!email.errors.pattern" class="alert alert-danger">
+                                    Courriel est invalid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hpanel hblue col-md-6">
+                <div class="panel-heading hbuilt">
+                    <strong>Statut emploi</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="control-label" for="dateEmbauche">Date d'embauche</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <my-date-picker name="dateEmbauche" #dateembauche="ngModel" required [(ngModel)]="DateEmbauche" [options]="myDatePickerOptions"
+                                (dateChanged)="selectedDateEmbauche($event)"></my-date-picker>
+                            <div *ngIf="dateembauche.errors">
+                                <div [hidden]="!dateembauche.errors.required || dateembauche.pristine" class="alert alert-danger">
+                                    Date d'embauche est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="salaire">Salaire</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="text" class="form-control" required name="salaire" #salaire="ngModel" required [(ngModel)]="employee.salaire"
+                                [pattern]="decimalPattern" />
+                            <div *ngIf="salaire.errors">
+                                <div [hidden]="!salaire.errors.required || salaire.pristine" class="alert alert-danger">
+                                    Salaire est obligatoire
+                                </div>
+                                <div [hidden]="!salaire.errors.pattern" class="alert alert-danger">
+                                    Salaire doit être décimal
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label" for="par">Par</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <select class="form-control" name="par" #par="ngModel" required [(ngModel)]="employee.par">
+                                <option [disabled]="true" value="">--Sélectionner--</option>
+                                <option *ngFor="let par of employee.ParOpt" [value]="par.value">{{par.name}}</option>
+                            </select>
+                            <div *ngIf="par.errors">
+                                <div [hidden]="!par.errors.required || par.pristine" class="alert alert-danger">
+                                    Payé par est obligatoire
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="congeVacance">Congé de vacance</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="text" class="form-control" name="congeVacance" #congevacance="ngModel" required [(ngModel)]="employee.congeVacance"
+                                [pattern]="digitPattern" />
+                            <div *ngIf="congevacance.errors">
+                                <div [hidden]="!congevacance.errors.required || congevacance.pristine" class="alert alert-danger">
+                                    Congé de vacance est obligatoire
+                                </div>
+                                <div [hidden]="!congevacance.errors.pattern || congevacance.pristine" class="alert alert-danger">
+                                    Congé de vacance doit être digit
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label" for="congeMaladie">Congé de maladie</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input class="form-control" name="congeMaladie" #congemaladie="ngModel" required [(ngModel)]="employee.congeMaladie" [pattern]="digitPattern"
+                            />
+                            <div *ngIf="congemaladie.errors">
+                                <div [hidden]="!congemaladie.errors.required || congemaladie.pristine" class="alert alert-danger">
+                                    Congé de maladie est obligatoire
+                                </div>
+                                <div [hidden]="!congemaladie.errors.pattern || congemaladie.pristine" class="alert alert-danger">
+                                    Congé de maladie doit être digit
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div clas="row">
+            <div class="hpanel hblue col-md-6">
+                <div class="panel-heading hbuilt">
+                    <strong>Autres Informations</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="note">Note</label>
+                            <textarea class="form-control" name="note" [(ngModel)]="employee.note"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="image">Image</label>
+                            <app-file-upload name="image" maxFiles="1" maxSize="2" fileExt="JPG, GIF, PNG, JPEG" (uploadStatus)="fileToUpload.refreshImage($event,employee)"
+                                (FileToSave)="fileToUpload.FileToSave($event)">
+                            </app-file-upload>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="well" *ngIf="employee.photo">
+                                <div class="parent">
+                                    <img [src]="employee.photo" [alt]="employee.nom" [height]="fileToUpload.height" [width]="fileToUpload.width" />
+                                    <button class="btn btn-danger" [ngStyle]="fileToUpload.styleXRemove" (click)="fileToUpload.removeImage($event,employee)">X
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hpanel hblue col-md-6">
+                <div class="panel-heading hbuilt">
+                    <strong>Login</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="username">Nom d'utilisateur</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="email" class="form-control" required name="username" #username="ngModel" [(ngModel)]="admin.username" placeholder="exemple@gmail.com"
+                                title="Veuillez entrer votre nom d'utilisateur">
+                            <div *ngIf="username.errors">
+                                <div [hidden]="!username.errors.required || username.pristine" class="alert alert-danger">
+                                    Nom d'utilisateur est obligatoire
+                                </div>
+                                <div [hidden]="!username.errors.email" class="alert alert-danger">
+                                    Nom d'utilisateur est invalid
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="password">Mot de passe</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="password" class="form-control" required name="password" #password="ngModel" [(ngModel)]="admin.password" [pattern]="passwordPattern"
+                                placeholder="******" title="Veuillez entrer votre mot de passe">
+                            <div *ngIf="password.errors">
+                                <div [hidden]="!password.errors.required || password.pristine" class="alert alert-danger">
+                                    Password est obligatoire
+                                </div>
+                                <div [hidden]="!password.errors.pattern" class="alert alert-danger">
+                                    <div>Mot de passe doit contenir:</div>
+                                    <ul style="margin-left:-10px;">
+                                        <li>Au moins un majuscule</li>
+                                        <li>Au moins un minuscule</li>
+                                        <li>Au moins un digit</li>
+                                        <li>Au moins un caractère spéciaux</li>
+                                        <li>Minimum huit de longeur</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="confirmPassword">Confirmer mot de passe</label>&nbsp;
+                            <span style="color:red;">*</span>
+                            <input type="password" class="form-control" required name="confirmPassword" #confirmPassword="ngModel" validateEqual="password"
+                                reverse="false" [(ngModel)]="admin.confirmPassword" placeholder="******" title="Veuillez confimer votre mot de passe">
+                            <div *ngIf="confirmPassword.errors">
+                                <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">
+                                    Mots de passe doivent être identiques
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success" [disabled]="!registerForm.form.valid">
+                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+                </button>&nbsp;
+                <button class="btn btn-success" onclick="window.location.href='/login';return false;">
+                    <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+</section>

@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-class-binding-index",
-  templateUrl: "../../view/classBinding/index.html",
+  templateUrl: "../../views/classBinding/index.html",
   styles: [
     `
       .text-success {

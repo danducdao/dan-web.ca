@@ -8,7 +8,7 @@ import { Regex } from "../../classes/regex";
 
 @Component({
   selector: "app-distributrice-index",
-  templateUrl: "../../view/distributrice/index.html",
+  templateUrl: "../../views/distributrice/index.html",
   styles: [
     `
       .montant {

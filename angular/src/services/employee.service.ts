@@ -16,7 +16,7 @@ export class EmployeeService extends Service {
 
   saveEmployee(employee: Employee, admin: Admin): Observable<any> {
     this.Path = "/employee";
-    return this.http.post<{ success: boolean }>(this.Url, {
+    return this.http.post<any>(this.Url, {
       employee: employee,
       admin: admin
     });

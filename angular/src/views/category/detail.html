@@ -1,0 +1,78 @@
+<article id="categorieDetail">
+    <form (ngSubmit)="onSubmit()" #categorieForm="ngForm">
+        <div class="row">
+            <div class="col-md-12">
+                <h2><em>{{ isAdd? 'Ajouter':'Modifier' }} la catégorie</em></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
+                <input type="text" class="form-control" id="nom" name="nom" #nom="ngModel" required [(ngModel)]="model.nom" [pattern]="nodigitPattern">
+                <div *ngIf="nom.errors">
+                    <div [hidden]="!nom.errors.required || nom.pristine" class="alert alert-danger">
+                        Nom est obligatoire
+                    </div>
+                    <div [hidden]="!nom.errors.pattern" class="alert alert-danger">
+                        Nom contient seulement des caractères
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" for="description">Description</label>
+                <input type="text" class="form-control" id="description" [(ngModel)]="model.description" name="description">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label class="control-label" for="image">Image</label>
+                <app-file-upload name="image" maxFiles="1" maxSize="2" fileExt="JPG, GIF, PNG, JPEG" (uploadStatus)="fileToUpload.refreshImage($event,model)"
+                    (FileToSave)="fileToUpload.FileToSave($event)">
+                </app-file-upload>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="well" *ngIf="model.photo">
+                    <div class="parent">
+                        <img [src]="model.photo" [alt]="model.nom" [height]="fileToUpload.height" [width]="fileToUpload.width" />
+                        <button class="btn btn-danger" [ngStyle]="fileToUpload.styleXRemove" (click)="fileToUpload.removeImage($event,model)">X
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!isAdd">
+            <div class="hpanel hblue col-md-4">
+                <div class="panel-heading hbuilt">
+                    <strong>Active</strong>
+                </div>
+                <div class="panel-body">
+                    <span *ngFor="let radioButton of containerActiveRadioButton;let i = index">
+                        <div [ngClass]="radioButton.clsAttribut" style="position: relative;" (click)="selectedActiveItem(i)">
+                            <input type="radio" require [name]="radioButton.name" style="position: absolute; opacity: 0;" [value]="radioButton.value">
+                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                        </div>&nbsp;{{radioButton.text}}&nbsp;
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-success" [disabled]="!categorieForm.form.valid">
+                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+                </button>&nbsp;
+                <button class="btn btn-success" onclick="window.location.href='/admin/categorie';return false;">
+                    <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="active" [(ngModel)]="model.active" name="active">
+            </div>
+        </div>
+    </form>
+</article>

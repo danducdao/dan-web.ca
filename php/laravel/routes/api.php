@@ -1,12 +1,13 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type:application/json");
+header("Access-Control-Request-Method:GET,HEAD,POST,PUT");
 
 use Illuminate\Http\Request;
-Use App\Models\Genre;
-Use App\Album;
-Use App\Artiste;
-
+Use App\Models\Musics\Genre;
+Use App\Models\Musics\Album;
+Use App\Models\Musics\Artiste;
+Use App\Models\Foods\Categorie;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -103,7 +104,13 @@ Route::delete('artistes/{id}', function($id) {
     return 204;
 });
 
+/************** Food Categorie ************* */
 
+Route::get('food_categories', 'Foods\CategorieController@index');
+
+Route::get('food_categories/{id}', 'Foods\CategorieController@show')->where('id','[1-9][0-9]*');
+
+Route::put('food_categories/{id}', 'Foods\CategorieController@update')->where('id','[1-9][0-9]*');
 
 
 

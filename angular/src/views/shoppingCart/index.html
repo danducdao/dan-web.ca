@@ -1,0 +1,42 @@
+<section>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="hpanel hblue col-md-12">
+                <div class="panel-heading hbuilt">
+                    <strong>Sélection</strong>
+                </div>
+                <div class="panel-body">
+                    <label for="categorie">Catégorie {{nomCategorie}}</label>&nbsp;
+                    <span style="color:red;">*</span>
+                    <select class="form-control" id="categorie" name="categorie" required #category="ngModel" [(ngModel)]="categorieId" (change)="selectCategorie()">
+                        <option [disabled]="true" value="">--Sélectionner--</option>
+                        <option *ngFor="let categorie of categories" [value]="categorie.id">{{categorie.nom}}</option>
+                    </select>
+                    <div *ngIf="category.errors">
+                        <div [hidden]="category.valid || category.pristine" class="alert alert-danger">La catégorie est obligatoire</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="hpanel hblue col-md-12">
+                <div class="panel-heading hbuilt">
+                    <strong>Votre panier</strong>
+                </div>
+                <div class="panel-body">
+                    <app-shopping-cart-basket #shoppingCartBasket></app-shopping-cart-basket>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="shoppingCartCategorie.length > 0">
+        <div class="hpanel hblue col-lg-12">
+            <div class="panel-heading hbuilt">
+                <strong>{{shoppingCartCategorie[0].nom}}</strong>
+            </div>
+            <div class="panel-body">
+                <app-shopping-cart-produit [categorieId]="shoppingCartCategorie[0].id" [shoppingCartBasket]="shoppingCartBasket"></app-shopping-cart-produit>
+            </div>
+        </div>
+    </div>
+</section>

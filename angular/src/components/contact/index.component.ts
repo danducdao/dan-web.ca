@@ -4,7 +4,7 @@ import { Regex } from "../../classes/regex";
 
 @Component({
   selector: "app-contact-index",
-  templateUrl: "../../view/contact/index.html",
+  templateUrl: "../../views/contact/index.html",
   styles: [
     `
       #contact .row {

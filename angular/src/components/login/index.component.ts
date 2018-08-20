@@ -8,7 +8,7 @@ import { Regex } from "../../classes/regex";
 
 @Component({
   selector: "app-login-index",
-  templateUrl: "../../view/login/index.html"
+  templateUrl: "../../views/login/index.html"
 })
 export class LoginComponent implements OnInit {
   public admin = new Admin();
@@ -19,13 +19,18 @@ export class LoginComponent implements OnInit {
   constructor(private _adminService: AdminService, private router: Router) {}
 
   ngOnInit() {
-    this.checkbox = new CheckBox("memo", "memo", "Mémoriser la connexion");
+    this.checkbox = new CheckBox(
+      "memo",
+      "memo",
+      "Mémoriser la connexion",
+      false
+    );
     if (LocalStorage.itemExist("rememberMe")) {
-      this.checkbox.ClsAttribut.checked = true;
+      this.checkbox.clsAttribut = this.checkbox.icheckboxSquare;
       this.admin.username = LocalStorage.getItem("rememberMe").username;
       this.admin.password = LocalStorage.getItem("rememberMe").password;
     } else {
-      this.checkbox.ClsAttribut.checked = false;
+      this.checkbox.clsAttribut = this.checkbox.icheckboxSquare.split(" ")[0];
     }
   }
 
@@ -40,7 +45,7 @@ export class LoginComponent implements OnInit {
       LocalStorage.removeItem("rememberMe");
       return;
     }
-    if (this.checkbox.ClsAttribut.checked) {
+    if (this.checkbox.clsAttribut.indexOf("checked") !== -1) {
       LocalStorage.setItem("rememberMe", {
         username: this.admin.username,
         password: this.admin.password

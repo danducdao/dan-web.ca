@@ -15,7 +15,7 @@ export class CheckBox {
         ? this.icheckboxSquare
         : this.icheckboxSquare.split(" ")[0];
   }
-  selectItem(obj) {
+  selectItem() {
     if (this.clsAttribut.indexOf("checked") !== -1) {
       this.clsAttribut = this.icheckboxSquare.split(" ")[0];
       this.isChecked = false;

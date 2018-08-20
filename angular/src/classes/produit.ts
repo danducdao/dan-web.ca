@@ -3,33 +3,34 @@
 * Écrit par : Dan Duc Dao
 */
 
-export class Produit
-{
-    public _id:string;
-    public nom:string;
-    public category:any[];
-    public fournisseur:any;
-    public quantite:any;
-    public prix:any;
-    public quantiteRestante:any;
-    public quantiteCommande:any;
-    public reapprovisionnement:any;
-    public discontinue:boolean;
-    public dateCreation:string;
-    public active:boolean;
+export class Produit {
+  public id: number;
+  public nom: string;
+  public categorie_id: number;
+  public fournisseur_id: number;
+  public fournisseur_nom: string;
+  public categorie_nom: string;
+  public quantiteParUnite: number;
+  public prix: number;
+  public quantiteEnStock: number;
+  public quantiteCommande: number;
+  public reapprovisionnement: number;
+  public discontinue: number;
+  public active: number;
 
-    constructor()
-    {
-        this.nom = "";
-        this.category = [];
-        this.fournisseur = {};
-        this.quantite = "";
-        this.prix = "";
-        this.quantiteRestante = "";
-        this.quantiteCommande = "";
-        this.reapprovisionnement = "";
-        this.discontinue = false;
-        this.dateCreation = new Date().toLocaleDateString("en-US");
-        this.active = true;
-     }
+  constructor() {
+    this.id = null;
+    this.nom = "";
+    this.categorie_id = null;
+    this.fournisseur_id = null;
+    this.fournisseur_nom = "";
+    this.categorie_nom = "";
+    this.quantiteParUnite = null;
+    this.prix = null;
+    this.quantiteEnStock = null;
+    this.quantiteCommande = null;
+    this.reapprovisionnement = null;
+    this.discontinue = null;
+    this.active = 1;
+  }
 }

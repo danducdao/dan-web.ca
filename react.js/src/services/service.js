@@ -8,7 +8,7 @@ import axios from "axios";
 export class Service {
   constructor() {
     this.protocol = "http://";
-    this.domain = "localhost:8000/api";
+    this.domain = "localhost:4000";
     this.path = "";
   }
 

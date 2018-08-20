@@ -17,11 +17,11 @@ const adminController = require("./controller/foods/adminController");
 const employeeController = require("./controller/foods/employeeController");
 const emailController = require("./controller/foods/emailController");
 
-// connection configurations
+// connection bd food
 const food = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "asiavn73",
+  password: "*****",
   database: "food"
 });
 

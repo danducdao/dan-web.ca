@@ -18,7 +18,7 @@ export class ShoppingCartService extends Service {
   }
 
   shoppingCartByCategorieId(categorieId): Observable<IProduit[]> {
-    this.Path = "/shoppingCart/" + categorieId;
+    this.Path = "/shoppingCartFood/" + categorieId;
     return this.http.get<IProduit[]>(this.Url);
   }
 }

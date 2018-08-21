@@ -262,8 +262,8 @@ class AlbumsTableSeeder extends Seeder
         foreach($albums as $album)
         {
             DB::connection('mysql2')->table('albums')->insert([
-                'genreId' => $album[0], 
-                'artisteId' => $album[1],
+                'genre_id' => $album[0], 
+                'artiste_id' => $album[1],
                 'titre' => $album[2],
                 'prix' => $album[3],
                 'albumArtUrl' => $album[4],

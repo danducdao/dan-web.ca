@@ -16,8 +16,8 @@ class CreateAlbumsTable extends Migration
         Schema::connection("mysql2")->create('albums', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->smallInteger('genreId')->references('id')->on('genres');
-            $table->smallInteger('artisteId')->references('id')->on('artistes');
+            $table->smallInteger('genre_id')->references('id')->on('genres');
+            $table->smallInteger('artiste_id')->references('id')->on('artistes');
             $table->string('titre',160);
             $table->decimal('prix',10,2);
             $table->string('albumArtUrl',250)->default('assets/images/placeholder.gif');

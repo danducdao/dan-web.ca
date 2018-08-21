@@ -8,6 +8,7 @@ import HeaderComponent from "./header";
 import AddToCartComponent from "./addToCart";
 import { Service } from "../../services/service";
 import { LocalStorage } from "../../classes/localstorage";
+import { Album } from "../../classes/album";
 import CurrencyFormat from "react-currency-format";
 import { Link } from "react-router-dom";
 
@@ -17,9 +18,8 @@ export default class AlbumComponent extends Component {
   state = {
     service: new Service(),
     localstorage: new LocalStorage(),
+    myAlbum: new Album(),
     album: [],
-    genre: [],
-    artiste: [],
     cart: [],
     erreur: true,
     chargement: true
@@ -34,32 +34,14 @@ export default class AlbumComponent extends Component {
 
   loadData = () => {
     const { service } = this.state;
-    let artisteId = "";
     service
-      .get("/albumsDetail/" + this.props.match.params.id)
-      .then(res => {
-        if (res.status === 200 && res.data) {
+      .get("/shoppingCartMusic/album/" + this.props.match.params.id)
+      .then(result => {
+        if (result.data) {
           this.setState({
-            album: res.data,
+            album: result.data,
             erreur: false,
             chargement: false
-          });
-          artisteId = res.data.artisteId;
-          return service.get("/genres/" + res.data.genreId);
-        }
-      })
-      .then(res => {
-        if (res.status === 200 && res.data) {
-          this.setState({
-            genre: res.data
-          });
-        }
-        return service.get("/artistes/" + artisteId);
-      })
-      .then(res => {
-        if (res.status === 200 && res.data) {
-          this.setState({
-            artiste: res.data
           });
         }
       })
@@ -73,18 +55,38 @@ export default class AlbumComponent extends Component {
   };
 
   addToCart = () => {
-    const { localstorage, album } = this.state;
+    const { localstorage, album, myAlbum } = this.state;
     let cart = [];
     if (localstorage.itemExist("cart")) {
-      cart = cart.concat(localstorage.getItem("cart"));
+      cart = localstorage.getItem("cart");
+      let cartFound = cart.filter(value => value.id === parseInt(album.id));
+      if (cartFound.length > 0) {
+        cart.map(value => {
+          value.quantite =
+            value.id === album.id ? (value.quantite += 1) : value.quantite;
+          return value;
+        });
+      } else {
+        this.setMyAlbum(myAlbum, album);
+        cart.push(myAlbum);
+      }
+    } else {
+      this.setMyAlbum(myAlbum, album);
+      cart.push(myAlbum);
     }
-    cart.push(album);
     localstorage.setItem("cart", cart);
     this.setState({ cart: localstorage.getItem("cart") });
   };
 
+  setMyAlbum(myAlbum, album) {
+    myAlbum.id = album.id;
+    myAlbum.prix = album.prix;
+    myAlbum.titre = album.titre;
+    myAlbum.quantite = 1;
+  }
+
   render() {
-    const { album, genre, artiste, cart, erreur, chargement } = this.state;
+    const { album, cart, erreur, chargement } = this.state;
 
     if (chargement) {
       return <p>Chargement ...</p>;
@@ -111,11 +113,11 @@ export default class AlbumComponent extends Component {
               <div id="album-details">
                 <p>
                   <em>Genre : </em>
-                  {genre.nom}
+                  {album["genre_nom"]}
                 </p>
                 <p>
                   <em>Artist : </em>
-                  {artiste.nom}
+                  {album["artiste_nom"]}
                 </p>
                 <p>
                   <em>Price : </em>
@@ -141,7 +143,10 @@ export default class AlbumComponent extends Component {
                   </span>
                 </button>
                 &nbsp;
-                <Link className="btn btn-success" to={"/genre/" + genre.id}>
+                <Link
+                  className="btn btn-success"
+                  to={"/genre/" + album["genre_id"]}
+                >
                   <i
                     className="fa fa-backward"
                     style={{ fontSize: 24, float: "left" }}

@@ -22,8 +22,8 @@ export default class MusicStoreListComponent extends Component {
     albums: null,
     albumsSearch: null,
     checkBoxContainer: [
-      new CheckBox("Nom", "Nom", "Nom", true),
-      new CheckBox("Prix", "Prix", "Prix")
+      new CheckBox("nom", "nom", "Nom", true),
+      new CheckBox("prix", "prix", "Prix")
     ],
     service: null
   };
@@ -32,13 +32,13 @@ export default class MusicStoreListComponent extends Component {
   }
   loadData = () => {
     this.state.service
-      .get("/genres")
+      .get("/shoppingCartMusic/genre")
       .then(result => {
         this.setState({
           genres: result.data
         });
-        if (result.status === 200 && result.data) {
-          return this.state.service.get("/albums");
+        if (result.data) {
+          return this.state.service.get("/shoppingCartMusic/album");
         }
       })
       .then(result => {
@@ -66,9 +66,11 @@ export default class MusicStoreListComponent extends Component {
     let data = [];
     for (let checkbox of checkBoxContainer) {
       if (checkbox.isChecked) {
-        if (checkbox.value.toLowerCase() === "prix") {
+        if (checkbox.value === "prix") {
           data = data.concat(
-            albumsSearch.filter(value => value.prix === this.refs.search.value)
+            albumsSearch.filter(
+              value => value.prix === parseFloat(this.refs.search.value)
+            )
           );
         } else {
           data = data.concat(
@@ -140,7 +142,6 @@ export default class MusicStoreListComponent extends Component {
                       className={checkbox.clsAttribut}
                       style={{ position: "relative" }}
                       onClick={this.selectItem}
-                      key={key}
                     >
                       <input
                         type="checkbox"
@@ -178,7 +179,7 @@ export default class MusicStoreListComponent extends Component {
           <ul id="album-list">
             {albums.map(
               (value, key) =>
-                value.genreId == this.props.match.params.id ? (
+                value.genre_id == this.props.match.params.id ? (
                   <li key={key}>
                     <Link to={"/album/" + value.id}>
                       <img alt={value.titre} src={value.albumArtUrl} />

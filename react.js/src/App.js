@@ -29,7 +29,7 @@ export class App extends Component {
 
   loadData = () => {
     this.state.service
-      .get("/genres")
+      .get("/shoppingCartMusic/genre")
       .then(result => {
         this.setState({
           erreur: false,

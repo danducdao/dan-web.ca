@@ -17,22 +17,31 @@ export default class AddToCartComponent extends Component {
   };
   removeItem(event) {
     event.preventDefault();
-    const { localstorage, carts } = this.state;
+    const { localstorage } = this.state;
     if (localstorage.itemExist("cart")) {
       let carts = localstorage
         .getItem("cart")
         .filter(value => value.id !== parseInt(event.target.id));
       localstorage.setItem("cart", carts);
       this.setState({ carts: carts });
+      //supprimer le panier
+      if (carts.length === 0) localstorage.removeItem("cart");
     }
   }
   componentDidMount() {
     this.setState({ carts: this.props.myCart });
   }
   render() {
-    const { NumberColStyle, thStyle, carts } = this.state;
-    return (
-      <React.Fragment>
+    const { NumberColStyle, thStyle, carts, localstorage } = this.state;
+    let myCarts = [];
+    if (localstorage.itemExist("cart")) {
+      myCarts = localstorage.getItem("cart");
+    } else {
+      myCarts = carts;
+    }
+    let cart;
+    if (myCarts.length > 0) {
+      cart = (
         <table className="table table-bordered">
           <thead>
             <tr>
@@ -43,9 +52,8 @@ export default class AddToCartComponent extends Component {
             </tr>
           </thead>
           <tbody>
-            {carts.map((value, key) => (
+            {myCarts.map((value, key) => (
               <tr key={key}>
-                <td>{value.id}</td>
                 <td style={{ width: 40 }}>
                   <Link
                     {...{ id: value.id }}
@@ -53,7 +61,7 @@ export default class AddToCartComponent extends Component {
                     onClick={e => {
                       if (
                         window.confirm(
-                          "Are you sure you wish to delete this item?"
+                          "Êtes-vous sûre de vouloir supprimer cet item?"
                         )
                       )
                         this.removeItem(e);
@@ -63,7 +71,7 @@ export default class AddToCartComponent extends Component {
                   </Link>
                 </td>
                 <td>{value.titre}</td>
-                <td style={NumberColStyle}>1</td>
+                <td style={NumberColStyle}>{value.quantite}</td>
                 <td style={NumberColStyle}>
                   <CurrencyFormat
                     value={value.prix}
@@ -76,7 +84,10 @@ export default class AddToCartComponent extends Component {
             ))}
           </tbody>
         </table>
-      </React.Fragment>
-    );
+      );
+    } else {
+      cart = <span style={{ color: "red" }}>Votre panier est vide</span>;
+    }
+    return cart;
   }
 }

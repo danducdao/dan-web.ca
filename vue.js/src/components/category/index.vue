@@ -10,7 +10,7 @@
                 <span style="font-size:25px;"><strong>Liste des catégories</strong></span>
             </div>
         </div>
-        <div class="row" v-if="categories.length > 0">
+        <div class="row" v-if="!loading && categories.length > 0">
                 <table class="table table-bordered" cellspacing="1" cellpadding="1">
                     <thead>
                         <tr>
@@ -42,6 +42,8 @@
                     </tbody>
                 </table>
         </div>
+        <div style="color:red;" v-else-if="!loading">Aucun catégorie a été trouvé</div>
+        <div style="color:red;text-align:center;" v-else><img src="../../assets/images/ajax-loader.gif" /></div>
     </section>
 </template>
 
@@ -53,7 +55,6 @@ export default {
   name: "ListeCategorie",
   data() {
     return {
-      test: "dfdf",
       categories: [],
       center: { colCenter: true },
       categorieService: new CategorieService(),
@@ -63,33 +64,41 @@ export default {
         margin: "2px",
         borderRadius: "10px"
       },
-      verticalAlign: { verticalAlign: "middle" }
+      verticalAlign: { verticalAlign: "middle" },
+      loading: ""
     };
   },
   created() {
+    this.loading = true;
     this.loadData();
   },
   methods: {
     removeCategorie(categorieId) {
-      if (confirm("Êtes-vous sûre de vouloir supprimer cette catégorie?")) {
-        this.categorieService.removeCategorieById(categorieId).then(res => {
-          console.log(res);
-          if (res.body.success) {
-            alert("Félicitation! Catégorie a été supprimée avec succès");
-            this.loadData();
-          } else {
-            alert("Désolé! Catégorie a été supprimée avec sans succès");
-          }
-        });
+      if (confirm("Êtes-vous sûre de vouloir supprimer cet item?")) {
+        this.categorieService.removeCategorieById(categorieId).then(
+          res => {
+            if (res.body.success) {
+              alert("Catégorie a été supprimée avec succès");
+              this.loadData();
+            } else {
+              alert("Catégorie a été supprimée avec sans succès");
+            }
+          },
+          err => console.log(err)
+        );
       }
     },
     loadData() {
-      this.categorieService
-        .categorieListe()
-        .then(
-          res => (res.body.length > 0 ? (this.categories = res.body) : ""),
-          err => console.log(err)
-        );
+      this.categorieService.categorieListe().then(
+        res => {
+          if (Object.keys(res.body).length > 0) this.categories = res.body;
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+          this.loading = true;
+        }
+      );
     }
   }
 };

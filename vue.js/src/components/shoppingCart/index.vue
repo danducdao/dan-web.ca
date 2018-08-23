@@ -68,7 +68,11 @@ export default {
   created() {
     this.categorieService
       .categorieListe()
-      .then(res => (this.categories = res.body));
+      .then(
+        res =>
+          Object.keys(res.body).length > 0 ? (this.categories = res.body) : "",
+        err => console.log(err)
+      );
   },
   methods: {
     selectedItem($event) {

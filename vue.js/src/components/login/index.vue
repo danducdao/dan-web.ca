@@ -105,7 +105,7 @@ export default {
     onSubmit() {
       this.adminService
         .authenticate(this.admin)
-        .then(res => this.callback(res));
+        .then(res => this.callback(res), err => console.log(err));
     },
     callback(res) {
       if (!res.body.success) {

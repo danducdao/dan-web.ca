@@ -1,6 +1,6 @@
 <template>
     <section id="shopping-cart-product-container">
-        <div class="row show-grid" v-if="shoppingCartData.length > 0">
+        <div class="row show-grid" v-if="shoppingCartList(categoryId).length > 0">
             <div class="col-sm-2" style="max-height:220px;" v-for="shoppingCart in shoppingCartList(categoryId)" >
                 <div><img src="../../assets/images/placeholder.gif" /></div>
                 <div>{{shoppingCart.nom}}</div>
@@ -45,7 +45,13 @@ export default {
   created() {
     this.shoppingCartService
       .shoppingCartListe()
-      .then(res => (this.shoppingCartData = res.body));
+      .then(
+        res =>
+          Object.keys(res.body).length > 0
+            ? (this.shoppingCartData = res.body)
+            : "",
+        err => console.log(err)
+      );
   },
   methods: {
     shoppingCartList(categorieId) {

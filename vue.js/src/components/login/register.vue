@@ -450,19 +450,17 @@ export default {
       this.admin.employee.prenom = this.employee.prenom;
       this.employee.dateNaissance = convertDate(this.employee.dateNaissance);
       this.employee.dateEmbauche = convertDate(this.employee.dateEmbauche);
-      this.employeeService
-        .saveEmployee(this.employee, this.admin)
-        .then(resp => this.callback(resp));
-    },
-    callback(resp) {
-      if (resp.status == 200 && resp.body) {
-        alert(
-          "Félicitation! Vos informations ont été sauvegardées avec succès"
-        );
-        this.$router.push("login");
-        return;
-      }
-      alert("Désolé! Vos informations ont été sauvegardées avec sans succès");
+      this.employeeService.saveEmployee(this.employee, this.admin).then(
+        res => {
+          if (res.body.success) {
+            alert("Cet item a été sauvegardé avec succès");
+            this.$router.push("login");
+          } else {
+            alert("Cet item a été sauvegardé avec sans succès");
+          }
+        },
+        err => console.log(err)
+      );
     }
   },
   validations: {

@@ -5,13 +5,12 @@
                 <router-link :to="{ path: 'new'}" append class="btn btn-primary">Nouveau</router-link>
             </div>
         </div>
-        <template v-if="produits.length > 0">
             <div class="row" style="margin-bottom:20px;">
                 <div class="col-lg-9">
                     <span style="font-size:25px;"><strong>Liste des produits</strong></span>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="!loading && produits.length > 0">
                 <table class="table table-bordered" cellspacing="1" cellpadding="1">
                     <thead>
                         <tr>
@@ -57,7 +56,10 @@
                     </tbody>
                 </table>
             </div>
-        </template>
+            <div style="color:red;" v-else-if="!loading">Aucun produit a été trouvé</div>
+            <div style="color:red;text-align:center;" v-else><img src="../../assets/images/ajax-loader.gif" /></div>
+            
+            
     </section>
 </template>
 
@@ -72,30 +74,42 @@ export default {
       produits: [],
       center: { colCenter: true },
       right: { colRight: true },
-      produitService: new ProduitService()
+      produitService: new ProduitService(),
+      loading: ""
     };
   },
   methods: {
     removeProduit(id) {
-      if (confirm("Êtes-vous sûre de vouloir supprimer ce produit?")) {
-        this.produitService.removeProduitById(id).then(res => {
-          if (res.body.success) {
-            alert("Cet item a été supprimé avec succès");
-            this.loadData();
-          } else {
-            alert("Cet item a été supprimé avec sans succès");
-          }
-        });
+      if (confirm("Êtes-vous sûre de vouloir supprimer cet item?")) {
+        this.produitService.removeProduitById(id).then(
+          res => {
+            if (res.body.success) {
+              alert("Cet item a été supprimé avec succès");
+              this.loadData();
+            } else {
+              alert("Cet item a été supprimé avec sans succès");
+            }
+          },
+          err => console.log(err)
+        );
       }
     },
 
     loadData() {
-      this.produitService
-        .produitListe()
-        .then(res => (this.produits = res.body));
+      this.produitService.produitListe().then(
+        res => {
+          if (Object.keys(res.body).length > 0) this.produits = res.body;
+          this.loading = false;
+        },
+        err => {
+          console.log(err);
+          this.loading = true;
+        }
+      );
     }
   },
   created() {
+    this.loading = true;
     this.loadData();
   }
 };

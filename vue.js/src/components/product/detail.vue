@@ -190,11 +190,21 @@ export default {
     this.isAdd = true;
     this.categorieService
       .categorieListe()
-      .then(res => (this.categories = res.body));
+      .then(
+        res =>
+          Object.keys(res.body).length > 0 ? (this.categories = res.body) : "",
+        err => console.log(err)
+      );
 
     this.fournisseurService
       .fournisseurListe()
-      .then(res => (this.fournisseurs = res.body));
+      .then(
+        res =>
+          Object.keys(res.body).length > 0
+            ? (this.fournisseurs = res.body)
+            : "",
+        err => console.log(err)
+      );
 
     this.containerDiscontinueRadioButton = [
       new RadioButton("discontinue", "oui", "Oui"),
@@ -208,39 +218,44 @@ export default {
 
     if (this.$route.params.id) {
       this.isAdd = false;
-      this.produitService.getProduitById(this.$route.params.id).then(res => {
-        let produit = res.body;
-        this.model.id = produit.id;
-        this.model.nom = produit.nom;
-        this.model.categorie_id = produit.categorie_id;
-        this.model.fournisseur_id = produit.fournisseur_id;
-        this.model.quantiteParUnite = produit.quantiteParUnite;
-        this.model.prix = produit.prix;
-        this.model.quantiteEnStock = produit.quantiteEnStock;
-        this.model.quantiteCommande = produit.quantiteCommande;
-        this.model.reapprovisionnement = produit.reapprovisionnement;
-        this.model.discontinue = produit.discontinue;
-        this.model.active = produit.active;
-        let containerActiveRadioButton = this.containerActiveRadioButton;
-        let containerDiscontinueRadioButton = this
-          .containerDiscontinueRadioButton;
-        //Le bouton radio discontinue
-        if (this.model.discontinue) {
-          containerDiscontinueRadioButton[0].clsAttribut =
-            containerDiscontinueRadioButton[0].iradioButtonSquare;
-        } else {
-          containerDiscontinueRadioButton[1].clsAttribut =
-            containerDiscontinueRadioButton[1].iradioButtonSquare;
-        }
-        //Le bouton radio active
-        if (this.model.active) {
-          containerActiveRadioButton[0].ClsAttribut =
-            containerActiveRadioButton[0].iradioButtonSquare;
-        } else {
-          containerActiveRadioButton[1].ClsAttribut =
-            containerActiveRadioButton[1].iradioButtonSquare;
-        }
-      });
+      this.produitService.getProduitById(this.$route.params.id).then(
+        res => {
+          let produit = res.body;
+          if (Object.keys(produit).length > 0) {
+            this.model.id = produit.id;
+            this.model.nom = produit.nom;
+            this.model.categorie_id = produit.categorie_id;
+            this.model.fournisseur_id = produit.fournisseur_id;
+            this.model.quantiteParUnite = produit.quantiteParUnite;
+            this.model.prix = produit.prix;
+            this.model.quantiteEnStock = produit.quantiteEnStock;
+            this.model.quantiteCommande = produit.quantiteCommande;
+            this.model.reapprovisionnement = produit.reapprovisionnement;
+            this.model.discontinue = produit.discontinue;
+            this.model.active = produit.active;
+            let containerActiveRadioButton = this.containerActiveRadioButton;
+            let containerDiscontinueRadioButton = this
+              .containerDiscontinueRadioButton;
+            //Le bouton radio discontinue
+            if (this.model.discontinue) {
+              containerDiscontinueRadioButton[0].clsAttribut =
+                containerDiscontinueRadioButton[0].iradioButtonSquare;
+            } else {
+              containerDiscontinueRadioButton[1].clsAttribut =
+                containerDiscontinueRadioButton[1].iradioButtonSquare;
+            }
+            //Le bouton radio active
+            if (this.model.active) {
+              containerActiveRadioButton[0].ClsAttribut =
+                containerActiveRadioButton[0].iradioButtonSquare;
+            } else {
+              containerActiveRadioButton[1].ClsAttribut =
+                containerActiveRadioButton[1].iradioButtonSquare;
+            }
+          }
+        },
+        err => console.log(err)
+      );
     }
   },
   methods: {
@@ -282,7 +297,8 @@ export default {
             res =>
               res.body.success
                 ? this.$router.push({ name: "ListeProduit" })
-                : alert("Cet item a été sauvegardé avec sans succès")
+                : alert("Cet item a été sauvegardé avec sans succès"),
+            err => console.log(err)
           );
         return;
       }
@@ -292,10 +308,12 @@ export default {
           res =>
             res.body.success
               ? this.$router.push({ name: "ListeProduit" })
-              : alert("Cet item a été sauvegardé avec sans succès")
+              : alert("Cet item a été sauvegardé avec sans succès"),
+          err => console.log(err)
         );
     }
   },
+
   validations: {
     model: {
       nom: {

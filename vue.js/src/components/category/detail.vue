@@ -11,11 +11,11 @@
                     <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
                     <input  type="text" 
                             name="nom" 
-                            v-input-bar-color-error=[$v.nom.$error,!$v.nom.$invalid]
+                            v-input-bar-color-error=[!$v.model.nom.$error,!$v.model.nom.$invalid]
                             required
-                            v-model.trim="$v.nom.$model"/>
-                        <div v-if="$v.nom.$error && !$v.nom.required" class="alert alert-danger">Nom est obligatoire</div>
-                        <div v-if="!$v.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
+                            v-model.trim="$v.model.nom.$model"/>
+                        <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
+                        <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
                     </div>
             </div>
             <div class="row">
@@ -65,7 +65,7 @@
             </div>
             <div class="row">
                     <div class="col-md-8">
-                    <button type="submit" name="ok" class="btn btn-success" :disabled="!$v.nom.required || !$v.nom.alpha">
+                    <button type="submit" name="ok" class="btn btn-success" :disabled="!$v.model.nom.required || !$v.model.nom.alpha">
                         <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                         <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
                     </button>&nbsp;
@@ -103,7 +103,6 @@ export default {
       categories: [],
       isAdd: "",
       center: { colCenter: true },
-      nom: "",
       model: new Categorie(),
       categorieService: new CategorieService(this.$http),
       produitService: new ProduitService(this.$http),
@@ -122,8 +121,8 @@ export default {
       this.isAdd = false;
       this.categorieService.getCategorieById(this.$route.params.id).then(
         res => {
-          if (res.body.length > 0) {
-            let categorie = res.body;
+          let categorie = res.body;
+          if (Object.keys(categorie).length > 0) {
             this.model.id = categorie.id;
             this.model.nom = categorie.nom;
             this.model.description = categorie.description;
@@ -195,9 +194,11 @@ export default {
     }
   },
   validations: {
-    nom: {
-      required,
-      alpha
+    model: {
+      nom: {
+        required,
+        alpha
+      }
     }
   }
 };

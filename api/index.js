@@ -8,21 +8,21 @@ const mysql = require("mysql");
 const bodyParse = require("body-parser");
 const cors = require("cors");
 const app = express();
-const produitController = require("./controller/foods/produitController");
-const categorieController = require("./controller/foods/categorieController");
-const fournisseurController = require("./controller/foods/fournisseurController");
-const googleMapController = require("./controller/foods/googleMapController");
-const shoppingCartController = require("./controller/foods/shoppingCartController");
-const adminController = require("./controller/foods/adminController");
-const employeeController = require("./controller/foods/employeeController");
-const emailController = require("./controller/foods/emailController");
-const shoppingCartMusicController = require("./controller/musics/shoppingCartController");
+const produitController = require("./controllers/foods/produitController");
+const categorieController = require("./controllers/foods/categorieController");
+const fournisseurController = require("./controllers/foods/fournisseurController");
+const googleMapController = require("./controllers/foods/googleMapController");
+const shoppingCartController = require("./controllers/foods/shoppingCartController");
+const adminController = require("./controllers/foods/adminController");
+const employeeController = require("./controllers/foods/employeeController");
+const emailController = require("./controllers/foods/emailController");
+const shoppingCartMusicController = require("./controllers/musics/shoppingCartController");
 
 // connection bd food
 const food = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "*****",
+  password: "asiavn73",
   database: "food"
 });
 
@@ -30,7 +30,7 @@ const food = mysql.createConnection({
 const music = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "*****",
+  password: "asiavn73",
   database: "music"
 });
 

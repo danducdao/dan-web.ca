@@ -21,6 +21,7 @@ export class ListeCategorieComponent implements OnInit {
   public enabledButton: boolean = false;
   public verticalAlign: object = { verticalAlign: "middle" };
   public paths: any;
+  public loading: boolean;
 
   constructor(
     private _categorieService: CategorieService,
@@ -37,6 +38,7 @@ export class ListeCategorieComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.loadData();
   }
 
@@ -58,15 +60,16 @@ export class ListeCategorieComponent implements OnInit {
   }
 
   loadData() {
-    this._categorieService
-      .getCategorieList()
-      .subscribe(
-        res => (res !== null ? this.response(this, res) : ""),
-        err => console.log(err)
-      );
+    this._categorieService.getCategorieList().subscribe(
+      res => {
+        if (res !== null) this.callback(this, res);
+        this.loading = false;
+      },
+      err => console.log(err)
+    );
   }
 
-  response(obj: ListeCategorieComponent, data: ICategorie[]): void {
+  callback(obj: ListeCategorieComponent, data: ICategorie[]): void {
     obj.categories = data;
     for (var value of this.categories) {
       if (value.photo) {

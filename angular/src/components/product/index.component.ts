@@ -19,6 +19,7 @@ export class ListeProduitComponent implements OnInit {
   public right: any = { colRight: true };
   public center: any = { colCenter: true };
   public checkboxContainer: CheckBox[] = [];
+  public loading: boolean;
 
   constructor(private _produitService: ProduitService) {}
 
@@ -29,6 +30,7 @@ export class ListeProduitComponent implements OnInit {
       new CheckBox("quantiteEnStock", "quantiteEnStock", "Quantité en stock"),
       new CheckBox("prix", "prix", "Prix")
     ];
+    this.loading = true;
     this.loadData();
   }
   search() {
@@ -92,12 +94,12 @@ export class ListeProduitComponent implements OnInit {
   }
 
   loadData() {
-    this._produitService
-      .getProduitList()
-      .subscribe(
-        res =>
-          res !== null ? (this.produits = this.produitsForSearch = res) : "",
-        err => console.log(err)
-      );
+    this._produitService.getProduitList().subscribe(
+      res => {
+        if (res !== null) this.produits = this.produitsForSearch = res;
+        this.loading = false;
+      },
+      err => console.log(err)
+    );
   }
 }

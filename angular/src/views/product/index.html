@@ -33,52 +33,60 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="produits.length > 0">
-            <table class="table table-bordered" cellspacing="1" cellpadding="1">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Nom</th>
-                        <th>Catégorie</th>
-                        <th>Fournisseur</th>
-                        <th>Prix</th>
-                        <th>Quantité par unité</th>
-                        <th>Quantité en stock</th>
-                        <th>Quantité commandée</th>
-                        <th>Réapprovisionnement</th>
-                        <th>Discontinue</th>
-                        <th>Active</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let produit of produits">
-                        <td [ngClass]="center" *ngIf="produit.active;else produitSupprime">
-                            <a href="#" (click)="removeProduit($event,produit.id)">Supprimer</a>
-                        </td>
-                        <ng-template #produitSupprime>
-                            <td></td>
-                        </ng-template>
-                        <td>
-                            <a routerLink="{{produit.id}}">Modifier</a>
-                        </td>
-                        <td>{{ produit.nom }}</td>
-                        <td>{{ produit.categorie_nom }}</td>
-                        <td>{{ produit.fournisseur_nom }}</td>
-                        <td [ngClass]="right">{{ produit.prix | currency }}</td>
-                        <td [ngClass]="right">{{ produit.quantiteParUnite }}</td>
-                        <td [ngClass]="right">{{ produit.quantiteEnStock }}</td>
-                        <td [ngClass]="right">{{ produit.quantiteCommande }}</td>
-                        <td [ngClass]="right">{{ produit.reapprovisionnement }}</td>
-                        <td [ngClass]="center">
-                            <span [innerHTML]="produit.discontinue | filtreHtmlTag:'check-square-icon'"></span>
-                        </td>
-                        <td [ngClass]="center">
-                            <span [innerHTML]="produit.active | filtreHtmlTag:'check-square-icon'"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div *ngIf="loading;else tempProduit;">
+            <div style="color:red;text-align:center;"><img src="../../assets/images/ajax-loader.gif" /></div>
         </div>
+        <ng-template #tempProduit>
+            <div class="row" *ngIf="produits.length > 0;else emptyProduit;">
+                <table class="table table-bordered" cellspacing="1" cellpadding="1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                            <th>Fournisseur</th>
+                            <th>Prix</th>
+                            <th>Quantité par unité</th>
+                            <th>Quantité en stock</th>
+                            <th>Quantité commandée</th>
+                            <th>Réapprovisionnement</th>
+                            <th>Discontinue</th>
+                            <th>Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let produit of produits">
+                            <td [ngClass]="center" *ngIf="produit.active;else produitSupprime">
+                                <a href="#" (click)="removeProduit($event,produit.id)">Supprimer</a>
+                            </td>
+                            <ng-template #produitSupprime>
+                                <td></td>
+                            </ng-template>
+                            <td>
+                                <a routerLink="{{produit.id}}">Modifier</a>
+                            </td>
+                            <td>{{ produit.nom }}</td>
+                            <td>{{ produit.categorie_nom }}</td>
+                            <td>{{ produit.fournisseur_nom }}</td>
+                            <td [ngClass]="right">{{ produit.prix | currency }}</td>
+                            <td [ngClass]="right">{{ produit.quantiteParUnite }}</td>
+                            <td [ngClass]="right">{{ produit.quantiteEnStock }}</td>
+                            <td [ngClass]="right">{{ produit.quantiteCommande }}</td>
+                            <td [ngClass]="right">{{ produit.reapprovisionnement }}</td>
+                            <td [ngClass]="center">
+                                <span [innerHTML]="produit.discontinue | filtreHtmlTag:'check-square-icon'"></span>
+                            </td>
+                            <td [ngClass]="center">
+                                <span [innerHTML]="produit.active | filtreHtmlTag:'check-square-icon'"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #emptyProduit>
+                <div style="color:red;">Aucun produit a été trouvé</div>
+            </ng-template>
+        </ng-template>
     </div>
 </section>

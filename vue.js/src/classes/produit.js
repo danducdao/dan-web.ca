@@ -3,18 +3,18 @@
 * Écrit par : Dan Duc Dao
 */
 
-export var Produit = function()
-{
-    this._id = "";
-    this.nom = "";
-    this.category = [];
-    this.fournisseur = {};
-    this.quantite = "";
-    this.prix = "";
-    this.quantiteRestante = "";
-    this.quantiteCommande = "";
-    this.reapprovisionnement = "";
-    this.discontinue = false;
-    this.dateCreation = new Date().toLocaleDateString("en-US");
-    this.active = true;  
-}
+export var Produit = function() {
+  this.id = "";
+  this.nom = "";
+  this.categorie_id = "";
+  this.fournisseur_id = "";
+  this.fournisseur_nom = "";
+  this.categorie_nom = "";
+  this.quantiteParUnite = "";
+  this.prix = "";
+  this.quantiteEnStock = "";
+  this.quantiteCommande = "";
+  this.reapprovisionnement = "";
+  this.discontinue = "";
+  this.active = "";
+};

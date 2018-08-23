@@ -5,40 +5,59 @@
                 <router-link :to="{ path: 'new'}" append class="btn btn-primary">Nouveau</router-link>
             </div>
         </div>
-        <div class="row" style="margin-bottom:20px;">
-            <div class="col-lg-9">
-                <span style="font-size:25px;"><strong>Liste des produits</strong></span>
+        <template v-if="produits.length > 0">
+            <div class="row" style="margin-bottom:20px;">
+                <div class="col-lg-9">
+                    <span style="font-size:25px;"><strong>Liste des produits</strong></span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <table class="table table-bordered" cellspacing="1" cellpadding="1">
-                <thead>
-                    <tr>
-                        <th v-for="value in title" v-bind:class="center">{{value}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="produit in produits">
-                        <td v-bind:class="center" ><a href="#" @click.prevent="removeProduit(produit._id)">Supprimer</a></td>
-                        <td v-bind:class="center"><router-link :to="{ path: produit._id}" append>Modifier</router-link></td>
-                        <td>{{ produit.nom }}</td>
-                        <td>{{ produit.category[0].nom }}</td>
-                        <td>{{ produit.fournisseur.compagnie }}</td>
-                        <td v-bind:class="right">{{ produit.quantite }}</td>
-                        <td v-bind:class="right">{{ produit.prix | currency}}</td>
-                        <td v-bind:class="right">{{ produit.quantiteRestante }}</td>
-                        <td v-bind:class="right">{{ produit.quantiteCommande }}</td>
-                        <td v-bind:class="right">{{ produit.reapprovisionnement }}</td>
-                        <td v-bind:class="center">
-                            <span v-html="htmlTag(produit.discontinue)"></span>
-                        </td>
-                        <td v-bind:class="center">
-                            <span v-html="htmlTag(produit.active)"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="row">
+                <table class="table table-bordered" cellspacing="1" cellpadding="1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th :class="center">Nom</th>
+                            <th :class="center">Catégorie</th>
+                            <th :class="center">Fournisseur</th>
+                            <th :class="center">Prix</th>
+                            <th :class="center">Quantité par unité</th>
+                            <th :class="center">Quantité en stock</th>
+                            <th :class="center">Quantité commandée</th>
+                            <th :class="center">Réapprovisionnement</th>
+                            <th :class="center">Discontinue</th>
+                            <th :class="center">Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="produit in produits">
+                            <td v-bind:class="center" >
+                                <span v-if='produit.active'>
+                                    <a href="#" @click.prevent="removeProduit(produit.id)">Supprimer</a>
+                                </span>
+                            </td>
+                            <td v-bind:class="center"><router-link :to="{ path: 'produit/' + produit.id}">Modifier</router-link></td>
+                            <td>{{ produit.nom }}</td>
+                            <td>{{ produit.categorie_nom }}</td>
+                            <td>{{ produit.fournisseur_nom }}</td>
+                            <td v-bind:class="right">
+                                <span v-if="produit.prix">{{ produit.prix | currency}}</span>
+                            </td>
+                            <td v-bind:class="right">{{ produit.quantiteParUnite }}</td>
+                            <td v-bind:class="right">{{ produit.quantiteEnStock }}</td>
+                            <td v-bind:class="right">{{ produit.quantiteCommande }}</td>
+                            <td v-bind:class="right">{{ produit.reapprovisionnement }}</td>
+                            <td v-bind:class="center">
+                                <span v-if='produit.discontinue'><i class='fa fa-check-square'></i></span>
+                            </td>
+                            <td v-bind:class="center">
+                                <span v-if='produit.active'><i class='fa fa-check-square'></i></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
     </section>
 </template>
 
@@ -51,53 +70,33 @@ export default {
   data() {
     return {
       produits: [],
-      title: [
-        "",
-        "",
-        "Nom",
-        "Catégorie",
-        "Fournisseur",
-        "Quantité",
-        "Prix",
-        "Quantité restante",
-        "Quantité commandée",
-        "Réapprovisionnement",
-        "Discontinue",
-        "Active"
-      ],
       center: { colCenter: true },
       right: { colRight: true },
-      produitService: new ProduitService(this.$http)
+      produitService: new ProduitService()
     };
   },
   methods: {
-    htmlTag: function(value) {
-      return htmlTag(value);
-    },
-    removeProduit(produitId) {
+    removeProduit(id) {
       if (confirm("Êtes-vous sûre de vouloir supprimer ce produit?")) {
-        this.produitService
-          .removeProduitById(produitId)
-          .then(
-            data =>
-              data
-                ? this.response(this)
-                : alert("Félicitation! Produit a été supprimé avec sans succès")
-          );
+        this.produitService.removeProduitById(id).then(res => {
+          if (res.body.success) {
+            alert("Cet item a été supprimé avec succès");
+            this.loadData();
+          } else {
+            alert("Cet item a été supprimé avec sans succès");
+          }
+        });
       }
     },
-    response(obj) {
-      alert("Félicitation! Produit a été supprimé avec succès");
-      obj.produitService
+
+    loadData() {
+      this.produitService
         .produitListe()
-        .then(data => (obj.produits = data.body));
+        .then(res => (this.produits = res.body));
     }
   },
   created() {
-    this.produitService.produitListe().then(function(data) {
-      var produits = data.body;
-      this.produits = produits.length > 0 ? produits : "";
-    });
+    this.loadData();
   }
 };
 </script>

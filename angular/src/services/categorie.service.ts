@@ -28,14 +28,14 @@ export class CategorieService extends Service {
     return this.http.get<ICategorie>(this.Url);
   }
 
-  saveCategorie(newCategorie: any): Observable<any> {
+  saveCategorie(categorie: any): Observable<any> {
     this.Path = "/categorie";
-    return this.http.post<any>(this.Url, newCategorie);
+    return this.http.post<any>(this.Url, categorie);
   }
 
-  updateCategorie(id: string, newCategorie: Categorie): Observable<any> {
-    this.Path = "/categorie/" + id;
-    return this.http.put<any>(this.Url, newCategorie, this.HttpOptions);
+  updateCategorie(categorie: Categorie): Observable<any> {
+    this.Path = "/categorie";
+    return this.http.put<any>(this.Url, categorie);
   }
 
   removeCategorieById(id: string): Observable<any> {

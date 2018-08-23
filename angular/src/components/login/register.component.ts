@@ -64,16 +64,16 @@ export class RegisterComponent implements OnInit {
     this.admin.employee.prenom = this.employee.prenom;
     this._employeeService
       .saveEmployee(this.employee, this.admin)
-      .subscribe(res => this.callback(res));
+      .subscribe(res => this.callback(res), err => console.log(err));
   }
 
   callback(res) {
-    if (res) {
-      alert("Félicitation! Vos informations ont été sauvegardées avec succès");
+    if (res.success) {
+      alert("Cet item a été sauvegardé avec succès");
       this.router.navigateByUrl("/login");
       return;
     }
-    alert("Désolé! Vos informations ont été sauvegardées avec sans succès");
+    alert("Cet item a été sauvegardées avec sans succès");
   }
 
   selectedDateNaisance(event: IMyDateModel) {

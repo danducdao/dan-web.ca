@@ -14,18 +14,29 @@
                 <table class="table table-bordered" cellspacing="1" cellpadding="1">
                     <thead>
                         <tr>
-                            <th v-for="value in ['','','Nom','Description','Images','Active']" v-bind:class="center">{{value}}</th>
+                            <th></th>
+                            <th></th>
+                            <th :class="center">Nom</th>
+                            <th :class="center">Description</th>
+                            <th :class="center">Image</th>
+                            <th :class="center">Active</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="categorie in categories">
-                            <td :class="center" :style="verticalAlign"><a href="#"  @click.prevent="removeCategorie(categorie._id)">Supprimer</a></td>
-                            <td :class="center" :style="verticalAlign"><router-link :to="{ path: $route.path==='/admin'?'categorie/' + categorie._id:categorie._id}" append>Modifier</router-link></td>
+                            <td :class="center" :style="verticalAlign">
+                              <span v-if='categorie.active === 1'>
+                                <a href="#" @click.prevent="removeCategorie(categorie.id)">Supprimer</a>
+                              </span>
+                            </td>
+                            <td :class="center" :style="verticalAlign">
+                              <router-link :to="{ path: 'categorie/' + categorie.id}">Modifier</router-link>
+                            </td>
                             <td :style="verticalAlign">{{categorie.nom}}</td>
                             <td :style="verticalAlign">{{categorie.description}}</td>
                             <td :class="center"><img :src="categorie.photo" :alt="categorie.photo" :style="imgStyle" /></td>
                             <td :class="center" :style="verticalAlign">
-                                <span v-html="htmlTag(categorie.active)"></span>
+                                <span v-if='categorie.active === 1'><i class='fa fa-check-square'></i></span>
                             </td>
                         </tr>
                     </tbody>
@@ -37,15 +48,15 @@
 <script>
 import { CategorieService } from "../../services/categorie";
 import { ProduitService } from "../../services/produit";
-import { htmlTag } from "../../inc/helper";
 
 export default {
   name: "ListeCategorie",
   data() {
     return {
+      test: "dfdf",
       categories: [],
       center: { colCenter: true },
-      categorieService: new CategorieService(this.$http),
+      categorieService: new CategorieService(),
       produitService: new ProduitService(this.$http),
       imgStyle: {
         width: "50px",
@@ -56,22 +67,28 @@ export default {
     };
   },
   created() {
-    this.categorieService.categorieListe().then(function(data) {
-      var categories = data.body;
-      this.categories = categories.length > 0 ? categories : "";
-    });
+    this.loadData();
   },
   methods: {
-    htmlTag: function(value) {
-      return htmlTag(value);
-    },
     removeCategorie(categorieId) {
       if (confirm("Êtes-vous sûre de vouloir supprimer cette catégorie?")) {
-        this.categorieService
-          .removeCategorieById(categorieId)
-          .then(data => this.responseRemoveCategorie(this, data.body));
+        this.categorieService.removeCategorieById(categorieId).then(res => {
+          console.log(res);
+          if (res.body.success) {
+            alert("Félicitation! Catégorie a été supprimée avec succès");
+            this.loadData();
+          } else {
+            alert("Désolé! Catégorie a été supprimée avec sans succès");
+          }
+        });
       }
     },
+    loadData() {
+      this.categorieService
+        .categorieListe()
+        .then(res => (this.categories = res.body));
+    }
+    /*
     responseRemoveCategorie(obj, oldCategorie) {
       if (oldCategorie) {
         alert("Félicitation! Catégorie a été supprimée avec succès");
@@ -100,7 +117,7 @@ export default {
           that.produitService.removeProduitById(produit._id).then(data => data);
         });
       }
-    }
+    }*/
   }
 };
 </script>

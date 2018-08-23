@@ -3,43 +3,35 @@
 * Écrit par : Dan Duc Dao
 */
 
-import { Service }  from '../services/service';
+import { Service } from "../services/service";
 
-export var ProduitService = function(http)
-{
-    this.service = new Service();
-    this.http = http;  
+export var ProduitService = function() {
+  this.service = new Service();
 };
 
 ProduitService.prototype = {
+  produitListe: function() {
+    this.service.setUrl("/produit");
+    return this.service.http.get(this.service.getUrl());
+  },
 
-    produitListe : function()
-    {
-        this.service.setPath('/produit');
-        return this.http.get(this.service.getUrl());
-    },
+  getProduitById: function(id) {
+    this.service.setUrl("/produit/" + id);
+    return this.service.http.get(this.service.getUrl());
+  },
 
-    getProduitById : function(id)
-    {
-        this.service.setPath('/produit?id=' + id);
-        return this.http.get(this.service.getUrl());
-    },
+  saveProduit: function(produit) {
+    this.service.setUrl("/produit");
+    return this.service.http.post(this.service.getUrl(), produit);
+  },
 
-    saveProduit : function(newProduit)
-    {
-        this.service.setPath('/produit');
-        return this.http.post(this.service.getUrl(),newProduit);
-    },
+  updateProduit: function(produit) {
+    this.service.setUrl("/produit");
+    return this.service.http.put(this.service.getUrl(), produit);
+  },
 
-    updateProduit : function(id,newProduit)
-    {
-        this.service.setPath("/produit/" + id);
-        return this.http.put(this.service.getUrl(),newProduit);
-    },
-
-    removeProduitById : function(id)
-    {
-        this.service.setPath("/produit/" + id);
-        return this.http.delete(this.service.getUrl());
-    }
-}
+  removeProduitById: function(id) {
+    this.service.setUrl("/produit/" + id);
+    return this.service.http.delete(this.service.getUrl());
+  }
+};

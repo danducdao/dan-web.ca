@@ -29,9 +29,7 @@ export class ListeProduitComponent implements OnInit {
       new CheckBox("quantiteEnStock", "quantiteEnStock", "Quantité en stock"),
       new CheckBox("prix", "prix", "Prix")
     ];
-    this._produitService
-      .getProduitList()
-      .subscribe(res => (this.produits = this.produitsForSearch = res));
+    this.loadData();
   }
   search() {
     let data: IProduit[] = [];
@@ -75,19 +73,31 @@ export class ListeProduitComponent implements OnInit {
     }
     this.produits = data;
   }
+
   removeProduit(event: any, produitId: string): void {
     if (confirm("Êtes-vous sûre de vouloir supprimer ce produit?")) {
-      this._produitService.removeProduitById(produitId).subscribe(res => {
-        if (res.success) {
-          alert("Cet item a été supprimé avec succès");
-          this._produitService
-            .getProduitList()
-            .subscribe(res => (this.produits = res));
-        } else {
-          alert("Cet item a été supprimé avec sans succès");
-        }
-      });
+      this._produitService.removeProduitById(produitId).subscribe(
+        res => {
+          if (res.success) {
+            alert("Cet item a été supprimé avec succès");
+            this.loadData();
+          } else {
+            alert("Cet item a été supprimé avec sans succès");
+          }
+        },
+        err => console.log(err)
+      );
     }
     event.preventDefault();
+  }
+
+  loadData() {
+    this._produitService
+      .getProduitList()
+      .subscribe(
+        res =>
+          res !== null ? (this.produits = this.produitsForSearch = res) : "",
+        err => console.log(err)
+      );
   }
 }

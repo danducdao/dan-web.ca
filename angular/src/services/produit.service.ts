@@ -28,14 +28,14 @@ export class ProduitService extends Service {
     return this.http.get<IProduit>(this.Url);
   }
 
-  updateProduit(id: string, newProduit: Produit): Observable<any> {
-    this.Path = "/produit/" + id;
-    return this.http.put<any>(this.Url, newProduit, this.HttpOptions);
+  updateProduit(produit: Produit): Observable<any> {
+    this.Path = "/produit";
+    return this.http.put<any>(this.Url, produit);
   }
 
-  saveProduit(newProduit: any): Observable<any> {
+  saveProduit(produit: any): Observable<any> {
     this.Path = "/produit";
-    return this.http.post<any>(this.Url, newProduit);
+    return this.http.post<any>(this.Url, produit);
   }
 
   removeProduitById(id: string): Observable<any> {

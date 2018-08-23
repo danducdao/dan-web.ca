@@ -35,12 +35,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this._adminService
-      .authenticate(this.admin)
-      .subscribe(data => this.callback(data), error => console.log(error));
+    this._adminService.authenticate(this.admin).subscribe(
+      res => this.callback(res),
+      err => {
+        console.log(err);
+        alert("Nom d'utilisateur ou Mot de passe est incorrect");
+      }
+    );
   }
-  callback(data): void {
-    if (!data.success) {
+  callback(res): void {
+    if (res === null || !res.success) {
       alert("Nom d'utilisateur ou Mot de passe est incorrect");
       LocalStorage.removeItem("rememberMe");
       return;

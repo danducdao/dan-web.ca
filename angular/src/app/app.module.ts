@@ -47,7 +47,6 @@ import { ShoppingCartService } from "../services/shoppingCart.service";
 
 //Filter
 import { FiltreCategoryPipe } from "../pipes/filtre-category.pipe";
-import { FiltreProduitPipe } from "../pipes/filtre-produit.pipe";
 import { FiltreHtmlTagPipe } from "../pipes/filtre-html-tag.pipe";
 
 //Directives
@@ -67,7 +66,6 @@ import { EqualValidator } from "../directives/equal-validator.directive";
     EqualValidator,
     FileUploadComponent,
     FiltreCategoryPipe,
-    FiltreProduitPipe,
     FiltreHtmlTagPipe,
     HelloWorldComponent,
     HomeComponent,

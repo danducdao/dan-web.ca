@@ -3,44 +3,35 @@
 * Écrit par : Dan Duc Dao
 */
 
-import { Service }  from '../services/service';
+import { Service } from "../services/service";
 
-export var CategorieService = function(http)
-{
-    this.service = new Service();
-    this.http = http;  
+export var CategorieService = function() {
+  this.service = new Service();
 };
 
 CategorieService.prototype = {
+  categorieListe: function() {
+    this.service.setUrl("/categorie");
+    return this.service.http.get(this.service.getUrl());
+  },
 
-    categorieListe : function()
-    {
-        this.service.setPath('/categorie');
-        return this.http.get(this.service.getUrl());
-    },
+  getCategorieById: function(id) {
+    this.service.setUrl("/categorie/" + id);
+    return this.service.http.get(this.service.getUrl());
+  },
 
-    getCategorieById : function(id)
-    {
-        this.service.setPath('/categorie?id=' + id);
-        return this.http.get(this.service.getUrl());
-    },
+  saveCategorie: function(categorie) {
+    this.service.setUrl("/categorie");
+    return this.service.http.post(this.service.getUrl(), categorie);
+  },
 
-    saveCategorie : function(newCategorie)
-    {
-        console.log(newCategorie.nom + "=====" + newCategorie.description);
-        this.service.setPath('/categorie');
-        return this.http.post(this.service.getUrl(),newCategorie);
-    },
+  updateCategorie: function(categorie) {
+    this.service.setUrl("/categorie");
+    return this.service.http.put(this.service.getUrl(), categorie);
+  },
 
-    updateCategorie : function(id,categorie)
-    { 
-        this.service.setPath('/categorie/' + id);
-        return this.http.put(this.service.getUrl(),categorie);
-    },
-
-    removeCategorieById : function(id)
-    {
-        this.service.setPath('/categorie/' + id);
-        return this.http.delete(this.service.getUrl());
-    }
-}
+  removeCategorieById: function(id) {
+    this.service.setUrl("/categorie/" + id);
+    return this.service.http.delete(this.service.getUrl());
+  }
+};

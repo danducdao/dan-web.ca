@@ -13,9 +13,9 @@
                                         }" 
                                     name="categoryId" 
                                     required
-                                    v-model.trim="$v.categoryId.$model">
+                                    v-model.trim="$v.categoryId.$model" @change="selectedItem">
                             <option :disabled="true" value="">--Sélectionner--</option>
-                            <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
+                            <option v-for="categorie in categories" :value="categorie.id">{{categorie.nom}}</option>
                         </select>
                         <div v-if="$v.categoryId.$error">
                             <div v-if="!$v.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>
@@ -27,16 +27,16 @@
                 <div class="hpanel hblue col-md-12">
                     <div class="panel-heading hbuilt"><strong>Votre panier</strong></div>
                     <div class="panel-body">
-                        <app-shopping-cart-basket ></app-shopping-cart-basket>
+                        <app-shopping-cart-basket></app-shopping-cart-basket>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="hpanel hblue col-md-12" v-for="categorie in filtreCategorie(categoryId)">
-                <div class="panel-heading hbuilt"><strong>{{categorie.nom}}</strong></div>
+        <div class="row" v-if="shoppingCartData.length > 0">
+            <div class="hpanel hblue col-md-12">
+                <div class="panel-heading hbuilt"><strong>{{shoppingCartData[0].nom}}</strong></div>
                 <div class="panel-body">
-                    <app-shopping-cart-produit v-bind:categoryId="categorie._id"></app-shopping-cart-produit>
+                    <app-shopping-cart-produit v-bind:categoryId="shoppingCartData[0].id"></app-shopping-cart-produit>
                 </div>
             </div>
         </div>
@@ -60,30 +60,21 @@ export default {
     return {
       categories: [],
       shoppingCartData: [],
-      carts: [],
       categoryId: "",
-      categorieService: new CategorieService(this.$http),
-      shoppingCartService: new ShoppingCartService(this.$http)
+      categorieService: new CategorieService(),
+      shoppingCartService: new ShoppingCartService()
     };
   },
   created() {
-    this.categorieService.categorieListe().then(function(data) {
-      var categories = data.body;
-      this.categories = categories.length > 0 ? categories : "";
-    });
-
-    this.shoppingCartService
-      .shoppingCartListe()
-      .then(data => (this.shoppingCartData = data.body));
+    this.categorieService
+      .categorieListe()
+      .then(res => (this.categories = res.body));
   },
   methods: {
-    filtreCategorie(categorieId) {
-      if (categorieId) {
-        var categorie = this.categories.filter(
-          data => data._id.indexOf(categorieId) !== -1
-        );
-        return categorie.length > 0 ? categorie : "";
-      }
+    selectedItem($event) {
+      this.shoppingCartData = this.categories.filter(
+        data => data.id === parseInt($event.target.value)
+      );
     }
   },
   validations: {

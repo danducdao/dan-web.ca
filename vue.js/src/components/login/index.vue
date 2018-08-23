@@ -42,10 +42,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div :class="checkbox.clsAttribut" style="position: relative;" @click="checkbox.remember()">
-                                    <input type="checkbox" :name="checkbox.Name" style="position: absolute; opacity: 0;" :value="checkbox.Value">
+                                <div :class="checkbox.clsAttribut" style="position: relative;" @click="checkbox.selectedItem()">
+                                    <input type="checkbox" :name="checkbox.name" style="position: absolute; opacity: 0;" :value="checkbox.value">
                                     <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                                </div>&nbsp;{{checkbox.Text}}
+                                </div>&nbsp;{{checkbox.text}}
                                 <p class="help-block small">(s'il s'agit d'un ordinateur privé)</p>
                                 <button type="submit" 
                                         name="identifier" 
@@ -79,45 +79,50 @@ export default {
   name: "Login",
   data() {
     return {
-      adminService: new AdminService(this.$http),
+      adminService: new AdminService(),
       admin: new Admin(),
       localStorage: new LocalStorage(),
       checkbox: new CheckBox()
     };
   },
   created() {
-    this.checkbox = new CheckBox("memo", "memo", "Mémoriser la connexion");
+    this.checkbox = new CheckBox(
+      "memo",
+      "memo",
+      "Mémoriser la connexion",
+      false
+    );
 
     if (this.localStorage.itemExist("rememberMe")) {
-      this.checkbox.ClsAttribut.checked = true;
+      this.checkbox.clsAttribut = this.checkbox.icheckboxSquare;
       this.admin.username = this.localStorage.getItem("rememberMe").username;
       this.admin.password = this.localStorage.getItem("rememberMe").password;
     } else {
-      this.checkbox.ClsAttribut.checked = false;
+      this.checkbox.clsAttribut = this.checkbox.icheckboxSquare.split(" ")[0];
     }
   },
   methods: {
     onSubmit() {
       this.adminService
         .authenticate(this.admin)
-        .then(data => this.callback(data));
+        .then(res => this.callback(res));
     },
-    callback(data) {
-      if (data.status == 200 && data.body && data.body.success) {
-        if (this.checkbox.ClsAttribut.checked) {
-          this.localStorage.setItem("rememberMe", {
-            username: this.admin.username,
-            password: this.admin.password
-          });
-        } else {
-          if (this.localStorage.itemExist("rememberMe"))
-            this.localStorage.removeItem("rememberMe");
-        }
-        this.$router.push("admin");
+    callback(res) {
+      if (!res.body.success) {
+        alert("Nom d'utilisateur ou Mot de passe est incorrect");
+        this.localStorage.removeItem("rememberMe");
         return;
       }
-      alert("Nom d'utilisateur ou Mot de passe est incorrect");
-      this.localStorage.removeItem("rememberMe");
+      if (this.checkbox.clsAttribut.indexOf("checked") !== -1) {
+        this.localStorage.setItem("rememberMe", {
+          username: this.admin.username,
+          password: this.admin.password
+        });
+      } else {
+        if (this.localStorage.itemExist("rememberMe"))
+          this.localStorage.removeItem("rememberMe");
+      }
+      this.$router.push("admin");
     },
     register() {
       this.$router.push("register");

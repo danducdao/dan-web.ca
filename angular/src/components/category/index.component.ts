@@ -26,19 +26,46 @@ export class ListeCategorieComponent implements OnInit {
     private _categorieService: CategorieService,
     private route: ActivatedRoute
   ) {
-    this.route.url.subscribe(data => this.setPath(this, data));
+    this.route.url.subscribe(data => this.setPath(data));
   }
-  setPath(obj: ListeCategorieComponent, url: any[]) {
+
+  setPath(url: any[]) {
     this.paths = {
       new: url.length > 0 ? "new" : "categorie/new",
       modif: url.length > 0 ? "" : "categorie/"
     };
   }
+
   ngOnInit() {
+    this.loadData();
+  }
+
+  removeCategorie(event: any, categorieId: string): void {
+    if (confirm("Êtes-vous sûre de vouloir supprimer cette catégorie?")) {
+      this._categorieService.removeCategorieById(categorieId).subscribe(
+        res => {
+          if (res.success) {
+            alert("Catégorie a été supprimée avec succès");
+            this.loadData();
+          } else {
+            alert("Catégorie a été supprimée avec sans succès");
+          }
+        },
+        err => console.log(err)
+      );
+    }
+    event.preventDefault();
+  }
+
+  loadData() {
     this._categorieService
       .getCategorieList()
-      .subscribe(res => this.response(this, res));
+      .subscribe(
+        res => (res !== null ? this.response(this, res) : ""),
+        err => console.log(err)
+      );
   }
+
   response(obj: ListeCategorieComponent, data: ICategorie[]): void {
     obj.categories = data;
     for (var value of this.categories) {
@@ -48,21 +75,7 @@ export class ListeCategorieComponent implements OnInit {
       }
     }
   }
-  removeCategorie(event: any, categorieId: string): void {
-    if (confirm("Êtes-vous sûre de vouloir supprimer cette catégorie?")) {
-      this._categorieService.removeCategorieById(categorieId).subscribe(res => {
-        if (res.success) {
-          alert("Félicitation! Catégorie a été supprimée avec succès");
-          this._categorieService
-            .getCategorieList()
-            .subscribe(res => this.response(this, res));
-        } else {
-          alert("Félicitation! Catégorie a été supprimée avec sans succès");
-        }
-      });
-    }
-    event.preventDefault();
-  }
+
   MCImage(): void {
     this.showImage = !this.showImage;
   }

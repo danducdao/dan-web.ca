@@ -20,10 +20,10 @@ class CreateProduitsTable extends Migration
             $table->Integer('fournisseur_id')->reference('id')->on('fournisseurs');
             $table->Integer('categorie_id')->reference('id')->on('categories');
             $table->string('quantiteParUnite',20)->nullable();
-            $table->decimal('prix',5,2)->nullable()->unsigned();
-            $table->smallInteger('quantiteEnStock')->nullable()->unsigned();
-            $table->smallInteger('quantiteCommande')->nullable()->unsigned();
-            $table->smallInteger('reapprovisionnement')->nullable()->unsigned();
+            $table->decimal('prix',5,2)->nullable();
+            $table->smallInteger('quantiteEnStock')->nullable();
+            $table->smallInteger('quantiteCommande')->nullable();
+            $table->smallInteger('reapprovisionnement')->nullable();
             $table->smallInteger('discontinue')->default(0);
             $table->smallInteger('active')->default(1);
             $table->timestamps();

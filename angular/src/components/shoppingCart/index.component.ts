@@ -22,7 +22,10 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this._categorieService
       .getCategorieList()
-      .subscribe(res => (this.categories = res));
+      .subscribe(
+        res => (res !== null ? (this.categories = res) : ""),
+        err => console.log(err)
+      );
   }
   selectCategorie(): void {
     this.shoppingCartCategorie = this.categories.filter(

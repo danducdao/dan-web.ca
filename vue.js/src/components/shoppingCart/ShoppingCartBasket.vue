@@ -4,12 +4,15 @@
             <table class="table table-bordered" cellspacing="1" cellpadding="1">
                 <thead>
                     <tr>
-                        <th v-for="value in ['','Nom','Quantité','Prix']" :class="center">{{value}}</th>
+                      <th></th>
+                      <th :class="center">Nom</th>
+                      <th :class="center">Quantité</th>
+                      <th :class="center">Prix</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="basket in baskets">
-                        <td style="width:8%;"><a href="#" @click.prevent="removeItem(basket._id)">Supprimer</a></td>
+                        <td style="width:8%;"><a href="#" @click.prevent="removeItem(basket.id)">Supprimer</a></td>
                         <td>{{basket.nom}}</td>
                         <td :class="right" style="width:5%;">{{basket.quantite}}</td>
                         <td :class="right" style="width:8%;">{{basket.prix | currency}}</td>
@@ -28,8 +31,8 @@
 </template>
 
 <script>
-import { bus } from "../../main";
 import { LocalStorage } from "../../classes/localstorage";
+import { bus } from "../../main";
 
 export default {
   name: "ShoppingCartBasket",
@@ -55,7 +58,7 @@ export default {
         this.baskets = [];
       } else {
         this.baskets = this.baskets.filter(
-          data => data._id.indexOf(shoppingCartId) == -1
+          data => data.id === parseInt(shoppingCartId)
         );
       }
       this.localStorage.setItem("carts", this.baskets);

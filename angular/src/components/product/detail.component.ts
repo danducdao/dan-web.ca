@@ -57,45 +57,56 @@ export class DetailProduitComponent implements OnInit {
     ];
     this._categorieService
       .getCategorieList()
-      .subscribe(res => (this.categories = res));
+      .subscribe(
+        res => (res !== null ? (this.categories = res) : ""),
+        err => console.log(err)
+      );
     this._fournisseurService
       .getFournisseurList()
-      .subscribe(res => (this.fournisseurs = res));
+      .subscribe(
+        res => (res !== null ? (this.fournisseurs = res) : ""),
+        err => console.log(err)
+      );
     if (this.id) {
       this.isAdd = false;
       let containerDiscontinueRadioButton: RadioButton[] = this
         .containerDiscontinueRadioButton;
       let containerActiveRadioButton: RadioButton[] = this
         .containerActiveRadioButton;
-      this._produitService.getProduitById(this.id).subscribe(res => {
-        this.model.id = res.id;
-        this.model.nom = res.nom;
-        this.model.categorie_id = res.categorie_id;
-        this.model.fournisseur_id = res.fournisseur_id;
-        this.model.prix = res.prix;
-        this.model.reapprovisionnement = res.reapprovisionnement;
-        this.model.quantiteParUnite = res.quantiteParUnite;
-        this.model.quantiteEnStock = res.quantiteEnStock;
-        this.model.quantiteCommande = res.quantiteCommande;
-        this.model.discontinue = res.discontinue;
-        this.model.active = res.active;
-        //Le bouton radio discontinue
-        if (this.model.discontinue) {
-          containerDiscontinueRadioButton[0].clsAttribut =
-            containerDiscontinueRadioButton[0].iradioButtonSquare;
-        } else {
-          containerDiscontinueRadioButton[1].clsAttribut =
-            containerDiscontinueRadioButton[1].iradioButtonSquare;
-        }
-        //Le bouton radio active
-        if (this.model.active) {
-          containerActiveRadioButton[0].clsAttribut =
-            containerActiveRadioButton[0].iradioButtonSquare;
-        } else {
-          containerActiveRadioButton[1].clsAttribut =
-            containerActiveRadioButton[1].iradioButtonSquare;
-        }
-      });
+      this._produitService.getProduitById(this.id).subscribe(
+        res => {
+          if (res !== null) {
+            this.model.id = res.id;
+            this.model.nom = res.nom;
+            this.model.categorie_id = res.categorie_id;
+            this.model.fournisseur_id = res.fournisseur_id;
+            this.model.prix = res.prix;
+            this.model.reapprovisionnement = res.reapprovisionnement;
+            this.model.quantiteParUnite = res.quantiteParUnite;
+            this.model.quantiteEnStock = res.quantiteEnStock;
+            this.model.quantiteCommande = res.quantiteCommande;
+            this.model.discontinue = res.discontinue;
+            this.model.active = res.active;
+            //Le bouton radio discontinue
+            if (this.model.discontinue) {
+              containerDiscontinueRadioButton[0].clsAttribut =
+                containerDiscontinueRadioButton[0].iradioButtonSquare;
+            } else {
+              containerDiscontinueRadioButton[1].clsAttribut =
+                containerDiscontinueRadioButton[1].iradioButtonSquare;
+            }
+            //Le bouton radio active
+            if (this.model.active) {
+              containerActiveRadioButton[0].clsAttribut =
+                containerActiveRadioButton[0].iradioButtonSquare;
+            } else {
+              containerActiveRadioButton[1].clsAttribut =
+                containerActiveRadioButton[1].iradioButtonSquare;
+            }
+          }
+        },
+        err => console.log(err)
+      );
     }
   }
 
@@ -131,12 +142,17 @@ export class DetailProduitComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.model);
     let urlRedirect: string = "/admin/produit";
     if (this.id) {
       this._produitService
-        .updateProduit(this.id, this.model)
-        .subscribe(res => (res ? this.router.navigateByUrl(urlRedirect) : ""));
+        .updateProduit(this.model)
+        .subscribe(
+          res =>
+            res.success
+              ? this.router.navigateByUrl(urlRedirect)
+              : alert("Cet item a été sauvegardé avec sans succès"),
+          err => console.log(err)
+        );
     } else {
       this._produitService
         .saveProduit(this.model)
@@ -144,7 +160,8 @@ export class DetailProduitComponent implements OnInit {
           res =>
             res.success
               ? this.router.navigateByUrl(urlRedirect)
-              : alert("Cet item a été sauvegardé avec sans succès")
+              : alert("Cet item a été sauvegardé avec sans succès"),
+          err => console.log(err)
         );
     }
   }

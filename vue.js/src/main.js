@@ -1,16 +1,13 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import VueResource from 'vue-resource';
+import Vue from "vue";
+import App from "./App";
+import router from "./router";
 import * as VueGoogleMaps from "vue2-google-maps";
-import VueCurrencyFilter from 'vue-currency-filter'
-import Vuelidate from 'vuelidate'
+import VueCurrencyFilter from "vue-currency-filter";
+import Vuelidate from "vuelidate";
 
-Vue.config.productionTip = false
-
-Vue.use(VueResource);
+Vue.config.productionTip = false;
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -19,13 +16,12 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
-Vue.use(VueCurrencyFilter,
-{
-  symbol : '$',
-  thousandsSeparator: '.',
+Vue.use(VueCurrencyFilter, {
+  symbol: "$",
+  thousandsSeparator: ".",
   fractionCount: 2,
-  fractionSeparator: '.',
-  symbolPosition: 'front',
+  fractionSeparator: ".",
+  symbolPosition: "front",
   symbolSpacing: false
 });
 
@@ -35,8 +31,8 @@ export const bus = new Vue();
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: "#app",
   router,
   components: { App },
-  template: '<App/>'
-})
+  template: "<App/>"
+});

@@ -47,22 +47,27 @@ export class DetailCategorieComponent implements OnInit {
     ];
     if (this.id) {
       this.isAdd = false;
-      this._categorieService.getCategorieById(this.id).subscribe(res => {
-        this.model.id = res.id;
-        this.model.nom = res.nom;
-        this.model.description = res.description;
-        this.model.photo = res.photo;
-        this.model.active = res.active;
-        let containerActiveRadioButton: RadioButton[] = this
-          .containerActiveRadioButton;
-        if (this.model.active) {
-          containerActiveRadioButton[0].clsAttribut =
-            containerActiveRadioButton[0].iradioButtonSquare;
-        } else {
-          containerActiveRadioButton[1].clsAttribut =
-            containerActiveRadioButton[1].iradioButtonSquare;
-        }
-      });
+      this._categorieService.getCategorieById(this.id).subscribe(
+        res => {
+          if (res !== null) {
+            this.model.id = res.id;
+            this.model.nom = res.nom;
+            this.model.description = res.description;
+            this.model.photo = res.photo;
+            this.model.active = res.active;
+            let containerActiveRadioButton: RadioButton[] = this
+              .containerActiveRadioButton;
+            if (this.model.active) {
+              containerActiveRadioButton[0].clsAttribut =
+                containerActiveRadioButton[0].iradioButtonSquare;
+            } else {
+              containerActiveRadioButton[1].clsAttribut =
+                containerActiveRadioButton[1].iradioButtonSquare;
+            }
+          }
+        },
+        err => console.log(err)
+      );
     }
   }
 
@@ -85,15 +90,19 @@ export class DetailCategorieComponent implements OnInit {
   onSubmit(): void {
     if (this.id) {
       this._categorieService
-        .updateCategorie(this.id, this.model)
+        .updateCategorie(this.model)
         .subscribe(
-          data => (data ? this.router.navigateByUrl("/admin/categorie") : "")
+          res =>
+            res.success ? this.router.navigateByUrl("/admin/categorie") : "",
+          err => console.log(err)
         );
     } else {
       this._categorieService
         .saveCategorie(this.model)
         .subscribe(
-          data => (data ? this.router.navigateByUrl("/admin/categorie") : "")
+          res =>
+            res.success ? this.router.navigateByUrl("/admin/categorie") : "",
+          err => console.log(err)
         );
     }
   }

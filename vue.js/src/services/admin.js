@@ -3,19 +3,15 @@
 * Écrit par : Dan Duc Dao
 */
 
-import { Service }  from './service';
+import { Service } from "./service";
 
-export var AdminService = function(http)
-{
-    this.service = new Service();
-    this.http = http;  
+export var AdminService = function() {
+  this.service = new Service();
 };
 
 AdminService.prototype = {
-
-    authenticate : function(admin)
-    {
-        this.service.setPath('/admin?username=' + admin.username + '&password=' + admin.password);
-        return this.http.get(this.service.getUrl());
-    }
-}
+  authenticate: function(admin) {
+    this.service.setUrl("/admin/" + admin.username + "/" + admin.password);
+    return this.service.http.get(this.service.getUrl());
+  }
+};

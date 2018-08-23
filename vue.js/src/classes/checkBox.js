@@ -3,46 +3,21 @@
 * Écrit par : Dan Duc Dao
 */
 
-export var CheckBox = function(name,value,text,checked = false)
-{
-    this.name=name;
-    this.text=text;
-    this.value=value; 
-    this.clsAttribut={'icheckbox_square-green':true,'checked':false};
-    this.clsAttribut.checked = checked;
+export var CheckBox = function(name, value, text, checked = false) {
+  this.icheckboxSquare = "icheckbox_square-green checked";
+  this.name = name;
+  this.text = text;
+  this.value = value;
+  this.clsAttribut =
+    checked === true
+      ? this.icheckboxSquare
+      : this.icheckboxSquare.split(" ")[0];
+};
 
-    Object.defineProperty(this, 'ClsAttribut', {
-        get() {
-          return this.clsAttribut;
-        }
-    });
-
-    Object.defineProperty(this, 'Name', {
-        get() {
-          return this.name;
-        }
-    });
-
-    Object.defineProperty(this, 'Text', {
-        get() {
-          return this.text;
-        }
-    });
-
-    Object.defineProperty(this, 'Value', {
-        get() {
-          return this.value;
-        }
-    });
-
-    this.doCheck = function()
-    {
-        this.ClsAttribut.checked = !this.clsAttribut.checked;
-    }
-
-    this.remember = function()
-    {
-        this.doCheck();
-    }
-}
-
+CheckBox.prototype.selectedItem = function() {
+  if (this.clsAttribut.indexOf("checked") !== -1) {
+    this.clsAttribut = this.icheckboxSquare.split(" ")[0];
+  } else {
+    this.clsAttribut = this.icheckboxSquare;
+  }
+};

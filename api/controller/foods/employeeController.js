@@ -8,6 +8,8 @@ Program : Employee controller
 const passwordHash = require("password-hash");
 const moment = require("moment");
 
+let status = 200;
+
 module.exports = function(app, food) {
   app.post("/employee", function(req, res, next) {
     let employee = req.body.employee;
@@ -63,23 +65,26 @@ module.exports = function(app, food) {
         moment().format("YYYY-MM-DD hh:mm:ss")
       ],
       function(error, result) {
-        if (error) console.log(error);
-        admin.password = passwordHash.generate(admin.password);
-        food.query(
-          "INSERT admins (employee_id, username, password, confirmpassword, created_at) VALUES(?,?,?,?,?)",
-          [
-            result.insertId,
-            admin.username,
-            admin.password,
-            admin.password,
-            moment().format("YYYY-MM-DD hh:mm:ss")
-          ],
-          function(error) {
-            if (error) console.error(error);
-            return res.send({ success: true });
-          }
-        );
-        return res.send({ success: true });
+        if (error) status = 500;
+        if (!result || result.insertId === 0) status = 400;
+        if (status !== 400 && status !== 500) {
+          admin.password = passwordHash.generate(admin.password);
+          food.query(
+            "INSERT admins (employee_id, username, password, confirmpassword, created_at) VALUES(?,?,?,?,?)",
+            [
+              result.insertId,
+              admin.username,
+              admin.password,
+              admin.password,
+              moment().format("YYYY-MM-DD hh:mm:ss")
+            ],
+            function(error, result) {
+              if (error) status = 500;
+              if (!result || result.insertId === 0) status = 400;
+            }
+          );
+        }
+        return res.status(status).send({ success: true });
       }
     );
   });

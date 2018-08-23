@@ -30,7 +30,10 @@ export class ShoppingCartProduitComponent implements OnInit {
   ngOnChanges() {
     this._shoppingCartService
       .shoppingCartByCategorieId(this.categorieId)
-      .subscribe(res => (this.shoppingCartList = res));
+      .subscribe(
+        res => (res !== null ? (this.shoppingCartList = res) : ""),
+        err => console.log(err)
+      );
   }
 
   onSubmit(event, shoppingCartId): void {

@@ -3,7 +3,7 @@
         <form v-on:submit.prevent="onSubmit">
             <div class="row">
                  <div class="col-md-12">
-                    <h1>{{titre}} la produit</h1>
+                    <h2><em>{{isAdd?'Ajouter':'Modifier'}} produit</em></h2>
                  </div>
             </div>
             <div class="row">
@@ -15,7 +15,7 @@
                                 <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
                                 <input type="text" 
                                        name="nom" 
-                                       v-input-bar-color-error=[$v.model.nom.$error,!$v.model.nom.$invalid]
+                                       v-input-bar-color-error=[!$v.model.nom.$error,!$v.model.nom.$invalid]
                                        required 
                                        v-model.trim="$v.model.nom.$model"/>
                                 <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
@@ -24,13 +24,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label" for="prix">Prix</label>&nbsp;<span style="color:red;">*</span>
+                                <label class="control-label" for="prix">Prix</label>
                                 <input type="text" 
                                        name="prix" 
-                                       v-input-bar-color-error=[$v.model.prix.$error,!$v.model.prix.$invalid]
-                                       required
+                                       v-input-bar-color-error=[!$v.model.prix.decimal,!$v.model.prix.$invalid]
                                        v-model.trim="$v.model.prix.$model"/>
-                                <div v-if="$v.model.prix.$error && !$v.model.prix.required" class="alert alert-danger">Prix est obligatoire</div>
                                 <div v-if="!$v.model.prix.decimal" class="alert alert-danger">Prix doit être décimal</div>
                             </div>
                         </div>
@@ -38,24 +36,24 @@
                             <div class="col-md-6">
                                 <label class="control-label" for="categorie">Catégories</label>&nbsp;<span style="color:red;">*</span>
                                 <select name="categorie" 
-                                        v-input-bar-color-error=[true,!$v.others.categoryId.$invalid]
-                                        v-model.trim="$v.others.categoryId.$model">
+                                        v-input-bar-color-error=[true,!$v.model.categorie_id.$invalid]
+                                        v-model.trim="$v.model.categorie_id.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="categorie in categories" :value="categorie._id">{{categorie.nom}}</option>
+                                    <option v-for="categorie in categories" :value="categorie.id">{{categorie.nom}}</option>
                                 </select>
-                                <div v-if="$v.others.categoryId.$error && !$v.others.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>
+                                <div v-if="$v.model.categorie_id.$error && !$v.model.categorie_id.required" class="alert alert-danger">Catégorie est obligatoire</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="control-label" for="founisseurId">Fournisseurs</label>&nbsp;<span style="color:red;">*</span>
                                 <select  name="founisseurId" 
-                                         v-input-bar-color-error=[true,!$v.others.fournisseurId.$invalid]
-                                         v-model.trim="$v.others.fournisseurId.$model">
+                                         v-input-bar-color-error=[true,!$v.model.fournisseur_id.$invalid]
+                                         v-model.trim="$v.model.fournisseur_id.$model">
                                     <option :disabled="true" value="">--Sélectionner--</option>
-                                    <option v-for="fournisseur in fournisseurs" :value="fournisseur._id">{{fournisseur.compagnie}}</option>
+                                    <option v-for="fournisseur in fournisseurs" :value="fournisseur.id">{{fournisseur.nom}}</option>
                                 </select>
-                                <div v-if="$v.others.fournisseurId.$error && !$v.others.fournisseurId.required" class="alert alert-danger">Fournisseur est obligatoire</div> 
+                                <div v-if="$v.model.fournisseur_id.$error && !$v.model.fournisseur_id.required" class="alert alert-danger">Fournisseur est obligatoire</div> 
                             </div>
                         </div>
                         <div class="row">
@@ -77,25 +75,22 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label" for="quantite">Stock</label>&nbsp;<span style="color:red;">*</span>
+                                <label class="control-label" for="quantiteParUnite">Par unité</label>
                                 <input  type="text" 
-                                        name="quantite" 
-                                        v-input-bar-color-error=[$v.model.quantite.$error,!$v.model.quantite.$invalid]
-                                        required
-                                        v-model.trim="$v.model.quantite.$model"/>
-                                <div v-if="$v.model.quantite.$error && !$v.model.quantite.required" class="alert alert-danger">Quantité est obligatoire</div>
-                                <div v-if="!$v.model.quantite.numeric" class="alert alert-danger">Quantité doit être digit</div>
-                            </div>
+                                        name="quantiteParUnite" 
+                                        class="form-control"
+                                        v-model.trim="model.quantiteParUnite"/>
+                            </div> 
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label" for="quantiteRestante">Restante</label>
+                                <label class="control-label" for="quantite">En stock</label>
                                 <input  type="text" 
-                                        name="quantiteRestante" 
-                                        v-input-bar-color-error=[!$v.model.quantiteRestante.numeric,!$v.model.quantiteRestante.$invalid]
-                                        v-model.trim="$v.model.quantiteRestante.$model"/>
-                                <div v-if="!$v.model.quantiteRestante.numeric" class="alert alert-danger">Quantité restante doit être digit</div>
-                            </div> 
+                                        name="quantite" 
+                                        v-input-bar-color-error=[!$v.model.quantiteEnStock.numeric,!$v.model.quantiteEnStock.$invalid]
+                                        v-model.trim="$v.model.quantiteEnStock.$model"/>
+                                <div v-if="!$v.model.quantiteEnStock.numeric" class="alert alert-danger">Quantité doit être digit</div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
@@ -110,12 +105,25 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="!isAdd">
                 <div class="hpanel hblue col-md-4">
                     <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
                     <div class="panel-body">
-                        <span v-for="(radioButton,index) in radioButtonContainer.Container">
-                            <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="radioButtonContainer.discChecked(index,model)">
+                        <span v-for="(radioButton,index) in containerDiscontinueRadioButton">
+                            <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="selectedDiscontinueItem(index)">
+                                <input type="radio" :name="radioButton.Name" style="position: absolute; opacity: 0;" :value="radioButton.Value">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                            </div>&nbsp;{{radioButton.Text}}&nbsp;
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="!isAdd">
+                <div class="hpanel hblue col-md-4">
+                    <div class="panel-heading hbuilt"><strong>Active</strong></div>
+                    <div class="panel-body">
+                        <span v-for="(radioButton,index) in containerActiveRadioButton">
+                            <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="selectedActiveItem(index)">
                                 <input type="radio" :name="radioButton.Name" style="position: absolute; opacity: 0;" :value="radioButton.Value">
                                 <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
                             </div>&nbsp;{{radioButton.Text}}&nbsp;
@@ -130,14 +138,11 @@
                             class="btn btn-success" 
                             :disabled="!$v.model.nom.required 
                                       || !$v.model.nom.alpha 
-                                      || !$v.others.categoryId.required 
-                                      || !$v.others.fournisseurId.required
-                                      || !$v.model.quantite.required 
-                                      || !$v.model.quantite.numeric 
-                                      || !$v.model.prix.required 
-                                      || !$v.model.prix.decimal
-                                      || !$v.model.quantiteRestante.numeric 
+                                      || !$v.model.categorie_id.required 
+                                      || !$v.model.fournisseur_id.required
+                                      || !$v.model.quantiteEnStock.numeric
                                       || !$v.model.quantiteCommande.numeric 
+                                      || !$v.model.prix.decimal
                                       || !$v.model.reapprovisionnement.numeric">
                         <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                         <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
@@ -163,102 +168,131 @@ import { FournisseurService } from "../../services/fournisseur";
 import { ProduitService } from "../../services/produit";
 import { Produit } from "../../classes/produit";
 import { RadioButton } from "../../classes/radioButton";
-import { MyContainer } from "../../classes/myContainer";
 import { InputBarColorError } from "../../directives/classDirective.js";
 
 export default {
   name: "ProduitDetail",
   data() {
     return {
-      titre: "Ajouter",
+      isAdd: "",
       categories: [],
       fournisseurs: [],
-      produitService: new ProduitService(this.$http),
-      categorieService: new CategorieService(this.$http),
-      fournisseurService: new FournisseurService(this.$http),
+      produitService: new ProduitService(),
+      categorieService: new CategorieService(),
+      fournisseurService: new FournisseurService(),
       model: new Produit(),
       radioButton: new RadioButton(),
-      radioButtonContainer: new MyContainer(),
-      others: { categoryId: "", fournisseurId: "" }
+      containerActiveRadioButton: [],
+      containerDiscontinueRadioButton: []
     };
   },
   created() {
-    this.categorieService.categorieListe().then(function(data) {
-      var categories = data.body;
-      this.categories = categories.length > 0 ? categories : "";
-    });
+    this.isAdd = true;
+    this.categorieService
+      .categorieListe()
+      .then(res => (this.categories = res.body));
 
-    this.fournisseurService.fournisseurListe().then(function(data) {
-      var fournisseurs = data.body;
-      this.fournisseurs = fournisseurs.length > 0 ? fournisseurs : "";
-    });
+    this.fournisseurService
+      .fournisseurListe()
+      .then(res => (this.fournisseurs = res.body));
 
-    this.radioButtonContainer.Container = new RadioButton(
-      "discontinue",
-      "Oui",
-      "Oui"
-    );
-    this.radioButtonContainer.Container = new RadioButton(
-      "discontinue",
-      "Non",
-      "Non"
-    );
+    this.containerDiscontinueRadioButton = [
+      new RadioButton("discontinue", "oui", "Oui"),
+      new RadioButton("discontinue", "non", "Non")
+    ];
+
+    this.containerActiveRadioButton = [
+      new RadioButton("active", "oui", "Oui"),
+      new RadioButton("active", "non", "Non")
+    ];
 
     if (this.$route.params.id) {
-      this.titre = "Modifier";
-      this.produitService
-        .getProduitById(this.$route.params.id)
-        .then(data => this.callback(this, data.body));
+      this.isAdd = false;
+      this.produitService.getProduitById(this.$route.params.id).then(res => {
+        let produit = res.body;
+        this.model.id = produit.id;
+        this.model.nom = produit.nom;
+        this.model.categorie_id = produit.categorie_id;
+        this.model.fournisseur_id = produit.fournisseur_id;
+        this.model.quantiteParUnite = produit.quantiteParUnite;
+        this.model.prix = produit.prix;
+        this.model.quantiteEnStock = produit.quantiteEnStock;
+        this.model.quantiteCommande = produit.quantiteCommande;
+        this.model.reapprovisionnement = produit.reapprovisionnement;
+        this.model.discontinue = produit.discontinue;
+        this.model.active = produit.active;
+        let containerActiveRadioButton = this.containerActiveRadioButton;
+        let containerDiscontinueRadioButton = this
+          .containerDiscontinueRadioButton;
+        //Le bouton radio discontinue
+        if (this.model.discontinue) {
+          containerDiscontinueRadioButton[0].clsAttribut =
+            containerDiscontinueRadioButton[0].iradioButtonSquare;
+        } else {
+          containerDiscontinueRadioButton[1].clsAttribut =
+            containerDiscontinueRadioButton[1].iradioButtonSquare;
+        }
+        //Le bouton radio active
+        if (this.model.active) {
+          containerActiveRadioButton[0].ClsAttribut =
+            containerActiveRadioButton[0].iradioButtonSquare;
+        } else {
+          containerActiveRadioButton[1].ClsAttribut =
+            containerActiveRadioButton[1].iradioButtonSquare;
+        }
+      });
     }
   },
   methods: {
-    callback(obj, res) {
-      if (typeof res === "object") {
-        obj.model = res;
-        obj.others.categoryId = res.category[0]._id;
-        obj.others.fournisseurId = res.fournisseur._id;
-        obj.radioButtonContainer.Container[0].ClsAttribut.checked =
-          obj.model.discontinue;
-        obj.radioButtonContainer.Container[1].ClsAttribut.checked = !obj.model
-          .discontinue;
+    selectedDiscontinueItem(index) {
+      this.initContainerDiscontinueRadioButton();
+      let containerDiscontinueRadioButton = this
+        .containerDiscontinueRadioButton;
+      containerDiscontinueRadioButton[index].clsAttribut =
+        containerDiscontinueRadioButton[index].iradioButtonSquare;
+      this.model.discontinue =
+        containerDiscontinueRadioButton[index].value === "oui" ? 1 : 0;
+    },
+
+    selectedActiveItem(index) {
+      this.initActiveRadioButton();
+      let containerActiveRadioButton = this.containerActiveRadioButton;
+      containerActiveRadioButton[index].ClsAttribut =
+        containerActiveRadioButton[index].iradioButtonSquare;
+      this.model.active =
+        containerActiveRadioButton[index].Value === "oui" ? 1 : 0;
+    },
+
+    initContainerDiscontinueRadioButton() {
+      for (let radioButton of this.containerDiscontinueRadioButton) {
+        radioButton.clsAttribut = radioButton.iradioButtonSquare.split(" ")[0];
       }
     },
-    onSubmit() {
-      var cte = this.categories.filter(
-        data => data._id.indexOf(this.others.categoryId) !== -1
-      );
-      var fs = this.fournisseurs.filter(
-        data => data._id.indexOf(this.others.fournisseurId) !== -1
-      );
+    initActiveRadioButton() {
+      for (let radioButton of this.containerActiveRadioButton) {
+        radioButton.clsAttribut = radioButton.iradioButtonSquare.split(" ")[0];
+      }
+    },
 
+    onSubmit() {
       if (this.$route.params.id) {
-        this.model.category = cte;
-        this.model.fournisseur = fs[0];
         this.produitService
-          .updateProduit(this.$route.params.id, this.model)
+          .updateProduit(this.model)
           .then(
-            data => (data ? this.$router.push({ name: "ListeProduit" }) : "")
+            res =>
+              res.body.success
+                ? this.$router.push({ name: "ListeProduit" })
+                : alert("Cet item a été sauvegardé avec sans succès")
           );
         return;
       }
-
-      var obj = new Object();
-      obj.nom = this.model.nom;
-      obj.category = cte;
-      obj.fournisseur = fs[0];
-      obj.quantite = this.model.quantite;
-      obj.prix = this.model.prix;
-      obj.quantiteRestante = this.model.quantiteRestante;
-      obj.quantiteCommande = this.model.quantiteCommande;
-      obj.reapprovisionnement = this.model.reapprovisionnement;
-      obj.discontinue = this.model.discontinue;
-      obj.dateCreation = this.model.dateCreation;
-      obj.active = this.model.active;
-
       this.produitService
-        .saveProduit(obj)
+        .saveProduit(this.model)
         .then(
-          data => (data ? this.$router.push({ name: "ListeProduit" }) : "")
+          res =>
+            res.body.success
+              ? this.$router.push({ name: "ListeProduit" })
+              : alert("Cet item a été sauvegardé avec sans succès")
         );
     }
   },
@@ -268,33 +302,23 @@ export default {
         required,
         alpha
       },
-      quantite: {
-        required,
+      fournisseur_id: {
+        required
+      },
+      categorie_id: {
+        required
+      },
+      quantiteEnStock: {
         numeric
       },
       prix: {
-        required,
         decimal
       },
-      quantiteRestante: {
-        required,
-        numeric
-      },
       quantiteCommande: {
-        required,
         numeric
       },
       reapprovisionnement: {
-        required,
         numeric
-      }
-    },
-    others: {
-      categoryId: {
-        required
-      },
-      fournisseurId: {
-        required
       }
     }
   }

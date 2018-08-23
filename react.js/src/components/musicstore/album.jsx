@@ -37,7 +37,8 @@ export default class AlbumComponent extends Component {
     service
       .get("/shoppingCartMusic/album/" + this.props.match.params.id)
       .then(result => {
-        if (result.data) {
+        let album = result.data;
+        if (Object.keys(album).length > 0) {
           this.setState({
             album: result.data,
             erreur: false,

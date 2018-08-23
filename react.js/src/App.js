@@ -31,10 +31,13 @@ export class App extends Component {
     this.state.service
       .get("/shoppingCartMusic/genre")
       .then(result => {
-        this.setState({
-          erreur: false,
-          genres: result.data
-        });
+        let genres = result.data;
+        if (Object.keys(genres).length > 0) {
+          this.setState({
+            erreur: false,
+            genres: genres
+          });
+        }
       })
       .catch(error => {
         console.error("erreur: ", error);
@@ -49,8 +52,8 @@ export class App extends Component {
     if (erreur) {
       return (
         <p>
-          Désolé! Une erreur s'est produite lors du chargement des données.{" "}
-          <button onClick={this.loadData}>Try again</button>
+          Une erreur s'est produite lors du chargement des données.{" "}
+          <button onClick={this.loadData}>Veuillez réessayer</button>
         </p>
       );
     }

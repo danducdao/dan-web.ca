@@ -22,7 +22,7 @@ const shoppingCartMusicController = require("./controllers/musics/shoppingCartCo
 const food = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "asiavn73",
+  password: "*****",
   database: "food"
 });
 
@@ -30,7 +30,7 @@ const food = mysql.createConnection({
 const music = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "asiavn73",
+  password: "*****",
   database: "music"
 });
 

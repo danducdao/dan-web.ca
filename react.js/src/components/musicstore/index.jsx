@@ -34,20 +34,24 @@ export default class MusicStoreListComponent extends Component {
     this.state.service
       .get("/shoppingCartMusic/genre")
       .then(result => {
-        this.setState({
-          genres: result.data
-        });
-        if (result.data) {
+        let genres = result.data;
+        if (Object.keys(genres).length > 0) {
+          this.setState({
+            genres: genres
+          });
           return this.state.service.get("/shoppingCartMusic/album");
         }
       })
       .then(result => {
-        this.setState({
-          chargement: false,
-          erreur: false,
-          albums: result.data,
-          albumsSearch: result.data
-        });
+        let albums = result.data;
+        if (Object.keys(albums).length > 0) {
+          this.setState({
+            chargement: false,
+            erreur: false,
+            albums: albums,
+            albumsSearch: albums
+          });
+        }
       })
       .catch(error => {
         console.error("erreur: ", error);

@@ -5,14 +5,17 @@ Program : shopping cart music controller
 
 "use strict";
 
+let status = 200;
+
 module.exports = function(app, music) {
   app.get("/shoppingCartMusic/genre", function(req, res, next) {
     music.query(
       "SELECT * FROM genres WHERE active = ? ORDER BY nom",
       1,
       function(error, results) {
-        if (error) return;
-        return res.send(results);
+        if (error) status = 500;
+        else if (results.length === 0) status = 204;
+        return res.status(status).send(results);
       }
     );
   });
@@ -22,8 +25,9 @@ module.exports = function(app, music) {
       "SELECT * FROM albums WHERE active = ? ORDER BY titre",
       1,
       function(error, results) {
-        if (error) return;
-        return res.send(results);
+        if (error) status = 500;
+        else if (results.length === 0) status = 204;
+        return res.status(status).send(results);
       }
     );
   });
@@ -42,8 +46,9 @@ module.exports = function(app, music) {
         "WHERE albums.id = ? AND albums.active = ?",
       [req.params.id, 1],
       function(error, result) {
-        if (error) return;
-        return res.send(result[0]);
+        if (error) status = 500;
+        else if (result.length === 0) status = 204;
+        return res.status(status).send(result[0]);
       }
     );
   });

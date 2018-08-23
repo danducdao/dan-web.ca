@@ -66,7 +66,7 @@ module.exports = function(app, food) {
       ],
       function(error, result) {
         if (error) status = 500;
-        if (!result || result.insertId === 0) status = 400;
+        else if (!result || result.insertId === 0) status = 400;
         if (status !== 400 && status !== 500) {
           admin.password = passwordHash.generate(admin.password);
           food.query(
@@ -80,7 +80,7 @@ module.exports = function(app, food) {
             ],
             function(error, result) {
               if (error) status = 500;
-              if (!result || result.insertId === 0) status = 400;
+              else if (!result || result.insertId === 0) status = 400;
             }
           );
         }

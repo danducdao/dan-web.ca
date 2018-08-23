@@ -18,20 +18,20 @@ module.exports = function(app, food) {
       results
     ) {
       if (error) status = 500;
-      if (results.length === 0) status = 204;
+      else if (results.length === 0) status = 204;
       return res.status(status).send(results);
     });
   });
 
   app.get("/categorie/:id", function(req, res, next) {
     let id = req.params.id;
-    if (!id || id === "undefined") status = 400;
+    if (!id || id === "undefined") return res.status(400).send();
     food.query("SELECT * FROM categories WHERE id = ?", id, function(
       error,
       result
     ) {
       if (error) status = 500;
-      if (result.length === 0) status = 204;
+      else if (result.length === 0) status = 204;
       return res.status(status).send(result[0]);
     });
   });
@@ -48,7 +48,7 @@ module.exports = function(app, food) {
       ],
       function(error, result) {
         if (error) status = 500;
-        if (!result || result.insertId === 0) status = 400;
+        else if (!result || result.insertId === 0) status = 400;
         return res.status(status).send({ success: true });
       }
     );
@@ -70,20 +70,20 @@ module.exports = function(app, food) {
       ],
       function(error, result) {
         if (error) status = 500;
-        if (!result || result.affectedRows === 0) status = 400;
+        else if (!result || result.affectedRows === 0) status = 400;
         if (status !== 400 && status !== 500) {
           food.query(
             "SELECT count(*) AS num FROM produits WHERE categorie_id = ?",
             [id],
             function(error, result) {
               if (error) status = 500;
-              if (result.length > 0 && result[0].num > 0) {
+              else if (result.length > 0 && result[0].num > 0) {
                 food.query(
                   "UPDATE produits SET active = ? WHERE categorie_id = ?",
                   [active, id],
                   function(error, result) {
                     if (error) status = 500;
-                    if (!result || result.affectedRows === 0) status = 400;
+                    else if (!result || result.affectedRows === 0) status = 400;
                   }
                 );
               }
@@ -97,26 +97,27 @@ module.exports = function(app, food) {
 
   app.delete("/categorie/:id", function(req, res, next) {
     let id = req.params.id;
-    if (!id || id === "undefined") status = 400;
+    if (!id || id === "undefined")
+      return res.status(400).send({ success: false });
     food.query(
       "UPDATE categories SET active = ? WHERE id = ?",
       [0, id],
       function(error, result) {
         if (error) status = 500;
-        if (!result || result.affectedRows === 0) status = 400;
+        else if (!result || result.affectedRows === 0) status = 400;
         if (status !== 400 && status !== 500) {
           food.query(
             "SELECT count(*) AS num FROM produits WHERE categorie_id = ? AND active = ?",
             [id, 1],
             function(error, result) {
               if (error) status = 500;
-              if (result.length > 0 && result[0].num > 0) {
+              else if (result.length > 0 && result[0].num > 0) {
                 food.query(
                   "UPDATE produits SET active = ? WHERE categorie_id = ?",
                   [0, id],
                   function(error, result) {
                     if (error) status = 500;
-                    if (!result || result.affectedRows === 0) status = 400;
+                    else if (!result || result.affectedRows === 0) status = 400;
                   }
                 );
               }

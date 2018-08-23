@@ -120,26 +120,29 @@ export default {
     ];
     if (this.$route.params.id) {
       this.isAdd = false;
-      this.categorieService
-        .getCategorieById(this.$route.params.id)
-        .then(res => {
-          let categorie = res.body;
-          this.model.id = categorie.id;
-          this.model.nom = categorie.nom;
-          this.model.description = categorie.description;
-          this.model.photo = categorie.photo;
-          this.model.active = categorie.active;
-          this.nom = this.model.nom;
-          let containerActiveRadioButton = this.containerActiveRadioButton;
-          //Le bouton radio active
-          if (this.model.active) {
-            containerActiveRadioButton[0].ClsAttribut =
-              containerActiveRadioButton[0].iradioButtonSquare;
-          } else {
-            containerActiveRadioButton[1].ClsAttribut =
-              containerActiveRadioButton[1].iradioButtonSquare;
+      this.categorieService.getCategorieById(this.$route.params.id).then(
+        res => {
+          if (res.body.length > 0) {
+            let categorie = res.body;
+            this.model.id = categorie.id;
+            this.model.nom = categorie.nom;
+            this.model.description = categorie.description;
+            this.model.photo = categorie.photo;
+            this.model.active = categorie.active;
+            this.nom = this.model.nom;
+            let containerActiveRadioButton = this.containerActiveRadioButton;
+            //Le bouton radio active
+            if (this.model.active) {
+              containerActiveRadioButton[0].ClsAttribut =
+                containerActiveRadioButton[0].iradioButtonSquare;
+            } else {
+              containerActiveRadioButton[1].ClsAttribut =
+                containerActiveRadioButton[1].iradioButtonSquare;
+            }
           }
-        });
+        },
+        err => console.log(err)
+      );
     }
   },
   methods: {
@@ -171,7 +174,8 @@ export default {
             res =>
               res.body.success
                 ? this.$router.push({ name: "ListeCategorie" })
-                : alert("Cet item a été sauvegardé avec sans succès")
+                : alert("Cet item a été sauvegardé avec sans succès"),
+            err => console.log(err)
           );
       } else {
         this.model.nom = this.nom;
@@ -181,7 +185,8 @@ export default {
             res =>
               res.body.success
                 ? this.$router.push({ name: "ListeCategorie" })
-                : alert("Cet item a été sauvegardé avec sans succès")
+                : alert("Cet item a été sauvegardé avec sans succès"),
+            err => console.log(err)
           );
       }
     },

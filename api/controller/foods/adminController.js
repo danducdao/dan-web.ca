@@ -16,7 +16,7 @@ module.exports = function(app, food) {
       [req.params.username, 1],
       function(error, result) {
         if (error) status = 500;
-        if (result.length === 0) status = 204;
+        else if (result.length === 0) status = 204;
         if (status === 500 || status === 204) {
           return res.status(status).send(result[0]);
         }

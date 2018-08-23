@@ -22,7 +22,7 @@ module.exports = function(app, food) {
       1,
       function(error, results) {
         if (error) status = 500;
-        if (results.length === 0) status = 204;
+        else if (results.length === 0) status = 204;
         return res.status(status).send(results);
       }
     );
@@ -30,13 +30,13 @@ module.exports = function(app, food) {
 
   app.get("/produit/:id", function(req, res, next) {
     let id = req.params.id;
-    if (!id || id === "undefined") status = 400;
+    if (!id || id === "undefined") return res.status(400).send();
     food.query("SELECT * FROM produits WHERE id = ? ORDER BY nom", id, function(
       error,
       result
     ) {
       if (error) status = 500;
-      if (result.length === 0) status = 204;
+      else if (result.length === 0) status = 204;
       return res.status(status).send(result[0]);
     });
   });
@@ -72,7 +72,7 @@ module.exports = function(app, food) {
       ],
       function(error, result) {
         if (error) status = 500;
-        if (!result || result.insertId === 0) status = 400;
+        else if (!result || result.insertId === 0) status = 400;
         return res.status(status).send({ success: true });
       }
     );
@@ -114,7 +114,7 @@ module.exports = function(app, food) {
       ],
       function(error, result) {
         if (error) status = 500;
-        if (!result || result.affectedRows === 0) status = 400;
+        else if (!result || result.affectedRows === 0) status = 400;
         return res.status(status).send({ success: true });
       }
     );
@@ -122,12 +122,13 @@ module.exports = function(app, food) {
 
   app.delete("/produit/:id", function(req, res, next) {
     let id = req.params.id;
-    if (!id || id === "undefined") status = 400;
+    if (!id || id === "undefined")
+      return res.status(400).send({ success: false });
     food.query("UPDATE produits SET active = ? WHERE id = ?", [0, id], function(
       error
     ) {
       if (error) status = 500;
-      if (!result || result.affectedRows === 0) status = 400;
+      else if (!result || result.affectedRows === 0) status = 400;
       return res.status(status).send({ success: true });
     });
   });

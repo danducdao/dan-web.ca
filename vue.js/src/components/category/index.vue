@@ -10,7 +10,7 @@
                 <span style="font-size:25px;"><strong>Liste des catégories</strong></span>
             </div>
         </div>
-        <div class="row">
+        <div class="row" v-if="categories.length > 0">
                 <table class="table table-bordered" cellspacing="1" cellpadding="1">
                     <thead>
                         <tr>
@@ -86,38 +86,11 @@ export default {
     loadData() {
       this.categorieService
         .categorieListe()
-        .then(res => (this.categories = res.body));
+        .then(
+          res => (res.body.length > 0 ? (this.categories = res.body) : ""),
+          err => console.log(err)
+        );
     }
-    /*
-    responseRemoveCategorie(obj, oldCategorie) {
-      if (oldCategorie) {
-        alert("Félicitation! Catégorie a été supprimée avec succès");
-        obj.categorieService
-          .categorieListe()
-          .then(data =>
-            obj.responseCategorieList(obj, data.body, oldCategorie)
-          );
-      } else {
-        alert("Désolé! Catégorie a été supprimée avec sans succès");
-      }
-    },
-    responseCategorieList(obj, categories, oldCategorie) {
-      obj.categories = categories;
-      obj.produitService
-        .produitListe()
-        .then(data => obj.suppimerProduit(obj, data.body, oldCategorie));
-    },
-    suppimerProduit(obj, produitBD, oldCategorie) {
-      var produits = produitBD.filter(
-        data => data.category[0]._id == oldCategorie._id
-      );
-      if (produits.length > 0) {
-        var that = obj;
-        produits.forEach(function(produit) {
-          that.produitService.removeProduitById(produit._id).then(data => data);
-        });
-      }
-    }*/
   }
 };
 </script>

@@ -12,6 +12,8 @@
 */
 
 Route::get('/','HomeController@index');
-Route::get('movie/categorie/{id}','MovieStoreController@index')->where(array('id' => '[1-9][0-9]*'));
-Route::get('movie/movie/{id}','MovieStoreController@detail')->where(array('id' => '[1-9][0-9]*'));
+Route::get('movie/categorie/{id}','Movies\MovieStoreController@index')->where(array('id' => '[1-9][0-9]*'));
+Route::get('movie/movie/{id}','Movies\MovieStoreController@detail')->where(array('id' => '[1-9][0-9]*'));
 
+Route::get('movie/rapport/prix','Movies\Rapports\Excels\RapportPrixController@index');
+Route::post('movie/rapport/prix','Movies\Rapports\Excels\RapportPrixController@send')->where(array('id' => '[1-9][0-9]*'));

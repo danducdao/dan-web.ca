@@ -58,11 +58,27 @@
 					  $categories = App\Models\Movies\Categorie::all();
 				@endphp
 				<ul class="nav nav-second-level">
-					@foreach($categories as $categorie)
-					<li><a href="{{url('/movie/categorie/'.$categorie->id)}}">{{$categorie->nom}}</a></li>
-					@endforeach
+					<li>
+					    <a href="#">
+							<span class="nav-label">Catégories</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-third-level">
+							@foreach($categories as $categorie)
+								<li><a href="{{url('/movie/categorie/'.$categorie->id)}}">{{$categorie->nom}}</a></li>
+							@endforeach
+						</ul>
+					</li>
+                    <li>
+						<a href="#">
+							<span class="nav-label">Rapports</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-third-level">
+							<li><a href="{{url('/movie/rapport/prix')}}">Prix</a></li>
+						</ul>
+					</li>
 				</ul>
-              
 			</li>
 		</ul>
 	</div>

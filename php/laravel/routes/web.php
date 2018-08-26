@@ -15,5 +15,6 @@ Route::get('/','HomeController@index');
 Route::get('movie/categorie/{id}','Movies\MovieStoreController@index')->where(array('id' => '[1-9][0-9]*'));
 Route::get('movie/movie/{id}','Movies\MovieStoreController@detail')->where(array('id' => '[1-9][0-9]*'));
 
-Route::get('movie/rapport/prix','Movies\Rapports\Excels\RapportPrixController@index');
-Route::post('movie/rapport/prix','Movies\Rapports\Excels\RapportPrixController@send')->where(array('id' => '[1-9][0-9]*'));
+Route::get('movie/excel/write','Movies\Excels\WriteExcelController@index');
+Route::post('movie/excel/writeXLSX','Movies\Excels\WriteExcelController@writeXLSX')->where(array('id' => '[1-9][0-9]*'));
+Route::post('movie/excel/writeCSV','Movies\Excels\WriteExcelController@writeCSV')->where(array('id' => '[1-9][0-9]*'));

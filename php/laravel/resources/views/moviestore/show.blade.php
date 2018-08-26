@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-    $categorie = App\Models\Movies\Categorie::where('id',$id)->where('active',1)->firstOrFail();;
+    $categorie = App\Models\Movies\Categorie::where('id',$id)->where('active',1)->firstOrFail();
 @endphp
 
 <section>

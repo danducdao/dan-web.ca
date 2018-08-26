@@ -1,5 +1,10 @@
 <?php
 
+/*
+* Program : Model Admin
+* Écrit par : Dan Duc Dao
+*/
+
 namespace App\Models\Foods;
 
 use Illuminate\Database\Eloquent\Model;

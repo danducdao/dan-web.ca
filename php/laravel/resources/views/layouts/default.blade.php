@@ -7,6 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- ***************** Chosen plugin ***************** -->
+
+  <link rel="stylesheet" href="{{URL::asset('chosen/docsupport/prism.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('chosen/chosen.css')}}">
+
+  <!-- ***************** HOMER plugin ***************** -->
+
   <link rel="stylesheet" href="{{ URL::asset('temp/css/fontawesome/css/font-awesome.css') }}" />
   <link rel="stylesheet" href="{{ URL::asset('temp/css/metisMenu/dist/metisMenu.css') }}" />
   <link rel="stylesheet" href="{{ URL::asset('temp/css/animate.css/animate.css') }}"/>
@@ -71,11 +79,11 @@
 					</li>
                     <li>
 						<a href="#">
-							<span class="nav-label">Rapports</span>
+							<span class="nav-label">Excels</span>
 							<span class="fa arrow"></span>
 						</a>
 						<ul class="nav nav-third-level">
-							<li><a href="{{url('/movie/rapport/prix')}}">Prix</a></li>
+							<li><a href="{{url('/movie/excel/write')}}">Écriture excel</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -94,6 +102,17 @@
 		</div>
 	</div>
 </div>
+
+
+  <!-- ***************** Chosen plugin ***************** -->
+
+  <script src="{{URL::asset('chosen/docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
+  <script src="{{URL::asset('chosen/chosen.jquery.js')}}" type="text/javascript"></script>
+  <script src="{{URL::asset('chosen/docsupport/prism.js')}}" type="text/javascript" charset="utf-8"></script>
+  <script src="{{URL::asset('chosen/docsupport/init.js')}}" type="text/javascript" charset="utf-8"></script>
+
+  <!-- ***************** HOMER plugin ***************** -->
+
   <script src="{{ URL::asset('temp/js/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/jquery-ui/jquery-ui.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/slimScroll/jquery.slimscroll.min.js') }}"></script>
@@ -109,5 +128,6 @@
   <script src="{{ URL::asset('temp/js/datatables/media/js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/homer.js') }}"></script>
+  
 </body>
 </html>

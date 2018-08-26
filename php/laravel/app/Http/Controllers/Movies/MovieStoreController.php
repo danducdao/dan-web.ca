@@ -1,5 +1,10 @@
 <?php
 
+/*
+* Program : class MovieStoreController
+* Écrit par : Dan Duc Dao
+*/
+
 namespace App\Http\Controllers\Movies;
 
 use Illuminate\Http\Request;

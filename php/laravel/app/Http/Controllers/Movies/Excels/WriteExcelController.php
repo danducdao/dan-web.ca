@@ -17,20 +17,23 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Models\Movies\Film;
 use App\Models\Movies\Acteur;
 use Input;
-require_once ('../vendor/autoload.php');
 
 class WriteExcelController extends Controller
 {
     public function index()
     {
-        $acteurs = Acteur::where('active',"=",1)->select(DB::raw("CONCAT(prenom,' ',nom) AS nom"),"id")->pluck("nom","id");
+        $acteurs = Acteur::where('active',"=",1)
+                           ->select(DB::raw("CONCAT(prenom,' ',nom) AS nom"),"id")
+                           ->pluck("nom","id");
 
         return View::make('moviestore/excels/writeexcel',compact('acteurs'));
     }
 
     public function writeXLSX()
     {
-        $movies = Film::where('prix',Input::post('prix'))->where('active',1)->get();
+        $movies = Film::where('prix',Input::post('prix'))
+                        ->where('active',1)
+                        ->get();
 
         $myMovies = array();
 
@@ -91,7 +94,7 @@ class WriteExcelController extends Controller
             ],
         ];
 
-        $spreadsheet->getActiveSheet()->getStyle('A1:D1')->applyFromArray($styleArray);
+        $spreadsheet->getActiveSheet()->getStyle('A1:J1')->applyFromArray($styleArray);
 
         $dernierLigne = $spreadsheet->getActiveSheet()->getHighestRow();
 
@@ -123,7 +126,7 @@ class WriteExcelController extends Controller
         $writer->setOffice2003Compatibility(true);
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="test.xlsx"');
+        header('Content-Disposition: attachment;filename="testXLSX.xlsx"');
         header('Cache-Control: max-age=0');
 
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
@@ -166,7 +169,7 @@ class WriteExcelController extends Controller
         $writer->setLineEnding("\r\n");
     
         header('Content-Type: application/csv');
-        header('Content-Disposition: attachment;filename="test.csv"');
+        header('Content-Disposition: attachment;filename="testCSV.csv"');
         header('Cache-Control: max-age=0');
 
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Csv');

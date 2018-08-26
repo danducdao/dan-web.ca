@@ -84,6 +84,8 @@
 						</a>
 						<ul class="nav nav-third-level">
 							<li><a href="{{url('/movie/excel/write')}}">Écriture excel</a></li>
+							<li><a href="{{url('/movie/excel/readXLSX')}}">Lecture excel (XSLX)</a></li>
+							<li><a href="{{url('/movie/excel/readCSV')}}">Lecture excel (CSV)</a></li>
 						</ul>
 					</li>
 				</ul>

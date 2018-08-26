@@ -18,3 +18,6 @@ Route::get('movie/movie/{id}','Movies\MovieStoreController@detail')->where(array
 Route::get('movie/excel/write','Movies\Excels\WriteExcelController@index');
 Route::post('movie/excel/writeXLSX','Movies\Excels\WriteExcelController@writeXLSX')->where(array('id' => '[1-9][0-9]*'));
 Route::post('movie/excel/writeCSV','Movies\Excels\WriteExcelController@writeCSV')->where(array('id' => '[1-9][0-9]*'));
+
+Route::get('movie/excel/readXLSX','Movies\Excels\ReadExcelController@readXSLX');
+Route::get('movie/excel/readCSV','Movies\Excels\ReadExcelController@readCSV');

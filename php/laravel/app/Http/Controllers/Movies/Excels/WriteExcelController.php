@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Movies\Excels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -22,7 +23,7 @@ class WriteExcelController extends Controller
 {
     public function index()
     {
-        $acteurs = Acteur::where('active',"=",1)->pluck('nom','id');
+        $acteurs = Acteur::where('active',"=",1)->select(DB::raw("CONCAT(prenom,' ',nom) AS nom"),"id")->pluck("nom","id");
 
         return View::make('moviestore/excels/writeexcel',compact('acteurs'));
     }

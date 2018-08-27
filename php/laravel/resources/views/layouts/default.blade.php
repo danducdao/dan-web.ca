@@ -8,13 +8,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- ***************** Chosen plugin ***************** -->
-
-  <link rel="stylesheet" href="{{URL::asset('chosen/docsupport/prism.css')}}">
-  <link rel="stylesheet" href="{{URL::asset('chosen/chosen.css')}}">
-
-  <!-- ***************** HOMER plugin ***************** -->
-
   <link rel="stylesheet" href="{{ URL::asset('temp/css/fontawesome/css/font-awesome.css') }}" />
   <link rel="stylesheet" href="{{ URL::asset('temp/css/metisMenu/dist/metisMenu.css') }}" />
   <link rel="stylesheet" href="{{ URL::asset('temp/css/animate.css/animate.css') }}"/>
@@ -27,6 +20,7 @@
   <link rel="stylesheet" href="{{ URL::asset('temp/css/styles/static_custom.css') }}"/>
   <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}"/>
   <link rel="stylesheet" href="{{ URL::asset('css/musicstore.css') }}"/>
+  <link rel="stylesheet" href="{{ URL::asset('css/autocomplete.css') }}"/>
 
 </head>
 <body>
@@ -105,16 +99,7 @@
 	</div>
 </div>
 
-
-  <!-- ***************** Chosen plugin ***************** -->
-
-  <script src="{{URL::asset('chosen/docsupport/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
-  <script src="{{URL::asset('chosen/chosen.jquery.js')}}" type="text/javascript"></script>
-  <script src="{{URL::asset('chosen/docsupport/prism.js')}}" type="text/javascript" charset="utf-8"></script>
-  <script src="{{URL::asset('chosen/docsupport/init.js')}}" type="text/javascript" charset="utf-8"></script>
-
-  <!-- ***************** HOMER plugin ***************** -->
-
+  <script src="{{mix('js/app.js')}}" ></script>
   <script src="{{ URL::asset('temp/js/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/jquery-ui/jquery-ui.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/slimScroll/jquery.slimscroll.min.js') }}"></script>
@@ -130,6 +115,6 @@
   <script src="{{ URL::asset('temp/js/datatables/media/js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
   <script src="{{ URL::asset('temp/js/homer.js') }}"></script>
-  
+
 </body>
 </html>

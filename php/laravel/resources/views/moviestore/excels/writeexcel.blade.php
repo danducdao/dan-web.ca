@@ -3,18 +3,18 @@
 <section>
 <div class="row">
     <div class="hpanel hblue col-md-6">
-        <div class="panel-heading hbuilt">
-            <strong>Trouver la liste des films</strong>
-        </div>
+        <div class="panel-heading hbuilt">&nbsp;</div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     {{ Form::open(array('url' => 'movie/excel/writeXLSX'))}}
-                    <div style="padding:10px 0 10px 0;">
-                        {{ Form::label('prix','Prix du film',array('class' => 'control-label'))}}
+                    <div class="col-md-1" style="height:37px;width:40px;padding-left:0">
+                        {{ Form::label('prix','Prix',array('class' => 'control-label'))}}
+                    </div>
+                    <div class="col-md-4" style="padding-left:0;padding-right:0;">
                         {{ Form::text('prix','',array('class' => 'form-control'))}}
                     </div>
-                    <div>
+                    <div class="col-md-2">
                         {{ Form::submit("OK",array('class' => 'btn btn-success'))}}
                     </div>
                     {{Form::close()}}
@@ -25,18 +25,20 @@
 </div>
 <div class="row">   
     <div class="hpanel hblue col-md-6">
-        <div class="panel-heading hbuilt">
-            <strong>Trouver la liste des films</strong>
-        </div>
+        <div class="panel-heading hbuilt">&nbsp;</div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     {{ Form::open(array('url' => 'movie/excel/writeCSV'))}}
-                    <div style="padding:10px 0 10px 0;">
-                        {{ Form::label('acteur','Nom d\'acteur',array('class' => 'control-label'))}}
-                        {{ Form::select('acteur', $acteurs,"1", ['class'=> 'chosen-select-width', "tabindex" => "15", "data-placeholder" => "Liste auteur"]) }}
+                    <div class="col-md-1" style="height:37px;width:60px;padding-left:0">
+                         {{ Form::label('acteur','Acteur')}}
                     </div>
-                    <div>
+                    <div class="col-md-4" style="padding-left:0;padding-right:0;">
+                        <div id="autocomplete-app">
+                            <autocomplete-component :items="{{ $acteurs }}" :name="'acteur'"></autocomplete-component>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                          {{ Form::submit("OK",array('class' => 'btn btn-success'))}}
                     </div>
                     {{Form::close()}}

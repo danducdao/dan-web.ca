@@ -25,7 +25,7 @@ class WriteExcelController extends Controller
         $acteurs = Acteur::where('active',"=",1)
                            ->select(DB::raw("CONCAT(prenom,' ',nom) AS nom"),"id")
                            ->pluck("nom","id");
-
+                           
         return View::make('moviestore/excels/writeexcel',compact('acteurs'));
     }
 

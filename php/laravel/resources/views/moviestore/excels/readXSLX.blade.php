@@ -4,7 +4,7 @@
 <div class="row">
     <div class="hpanel hblue col-md-6">
         <div class="panel-heading hbuilt">
-            <strong>La liste des commandes</strong>
+           <strong>Lecture excel (XSLX)</strong>
         </div>
         <div class="panel-body">
             <div class="row">

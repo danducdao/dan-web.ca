@@ -1,0 +1,66 @@
+.autocomplete {
+  width: 100%;
+  position: relative;
+}
+
+.autocomplete .input {
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  -webkit-box-shadow: 0 0 10px #eceaea;
+          box-shadow: 0 0 10px #eceaea;
+  font-size: 12px;
+  padding-left: 10px;
+  padding-top: 10px;
+  cursor: text;
+}
+
+.autocomplete .mypopover {
+  min-height: 45px;
+  border-bottom: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-radius: 3px;
+  position: relative;
+  top: 0px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  text-align: center;
+}
+
+.autocomplete .mypopover input {
+  width: 95%;
+  margin-top: 5px;
+  height: 35px;
+  font-size: 12px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  padding-left: 8px;
+}
+
+.options {
+  margin-top: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.options ul {
+  list-style-type: none;
+  text-align: left;
+  padding-left: 0;
+}
+
+.options ul li {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.options ul .selected {
+  background: #58bd4c;
+  color: #fff;
+}
+
+

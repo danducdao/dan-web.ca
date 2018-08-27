@@ -4,7 +4,7 @@
 <div class="row">
     <div class="hpanel hblue col-md-6">
         <div class="panel-heading hbuilt">
-            <strong>Exemple de lecture CSV</strong>
+            <strong>Lecture excel (CSV)</strong>
         </div>
         <div class="panel-body">
             <div class="row">

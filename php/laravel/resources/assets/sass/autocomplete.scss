@@ -1,10 +1,14 @@
+$autocomplete-border: 1px solid lightgray;
+$autocomplete-color: #fff;
+$autocomplete-postion: relative;
+
 .autocomplete {
   width: 100%;
-  position: relative;
+  position: $autocomplete-postion;
   .input {
     height: 35px;
     border-radius: 3px;
-    border: 1px solid lightgray;
+    border: $autocomplete-border;
     box-shadow: 0 0 10px #eceaea;
     font-size: 12px;
     padding-left: 10px;
@@ -13,15 +17,15 @@
   }
   .mypopover {
     min-height: 45px;
-    border-bottom: 1px solid lightgray;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
+    border-bottom: $autocomplete-border;
+    border-left: $autocomplete-border;
+    border-right: $autocomplete-border;
     border-radius: 3px;
-    position: relative;
+    position: $autocomplete-postion;
     top: 0px;
     left: 0;
     right: 0;
-    background: #fff;
+    background: $autocomplete-color;
     text-align: center;
     input {
       width: 95%;
@@ -29,7 +33,7 @@
       height: 35px;
       font-size: 12px;
       border-radius: 3px;
-      border: 1px solid lightgray;
+      border: $autocomplete-border;
       padding-left: 8px;
     }
   }
@@ -44,14 +48,14 @@
 
     padding-left: 0;
     li {
-      border: 1px solid lightgrey;
+      border: $autocomplete-border;
       padding: 10px;
       cursor: pointer;
-      background: #fff;
+      background: $autocomplete-color;
     }
     .selected {
       background: #58bd4c;
-      color: #fff;
+      color: $autocomplete-color;
     }
   }
 }

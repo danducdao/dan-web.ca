@@ -17,6 +17,7 @@ const adminController = require("./controllers/foods/adminController");
 const employeeController = require("./controllers/foods/employeeController");
 const emailController = require("./controllers/foods/emailController");
 const shoppingCartMusicController = require("./controllers/musics/shoppingCartController");
+const filmController = require("./controllers/movies/filmController");
 
 // connection bd food
 const food = mysql.createConnection({
@@ -34,9 +35,18 @@ const music = mysql.createConnection({
   database: "music"
 });
 
+// connection bd movie
+const movie = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "*****",
+  database: "movie"
+});
+
 // connect to database
 food.connect();
 music.connect();
+movie.connect();
 
 //app.use(bodyParse.json());
 app.use(bodyParse({ limit: "50mb" }));
@@ -76,6 +86,9 @@ emailController(app);
 
 //shopping cart music controller
 shoppingCartMusicController(app, music);
+
+//film controller
+filmController(app, movie);
 
 app.use(function(err, req, res, next) {
   res.status(422).send({ erreur: err.message });

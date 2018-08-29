@@ -71,6 +71,16 @@
 							@endforeach
 						</ul>
 					</li>
+					<li>
+						<a href="#">
+							<span class="nav-label">Admin</span>
+							<span class="fa arrow"></span>
+						</a>
+						<ul class="nav nav-third-level">
+							<li><a href="{{url('movieadmin/film')}}">Film</a></li>
+							<li><a href="{{url('movieadmin/film/create')}}">2</a></li>
+						</ul>
+				    </li>
                     <li>
 						<a href="#">
 							<span class="nav-label">Excels</span>

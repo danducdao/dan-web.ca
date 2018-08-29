@@ -34,7 +34,7 @@
                          {{ Form::label('acteur','Acteur')}}
                     </div>
                     <div class="col-md-4" style="padding-left:0;padding-right:0;">
-                        <div id="autocomplete-app">
+                        <div id="app">
                             <autocomplete-component :items="{{ $acteurs }}" :name="'acteur'"></autocomplete-component>
                         </div>
                     </div>

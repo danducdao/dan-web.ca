@@ -52,7 +52,7 @@
 }
 
 .options ul li {
-  border: 1px solid lightgrey;
+  border: 1px solid lightgray;
   padding: 10px;
   cursor: pointer;
   background: #fff;
@@ -62,5 +62,4 @@
   background: #58bd4c;
   color: #fff;
 }
-
 

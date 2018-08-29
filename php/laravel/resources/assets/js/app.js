@@ -15,19 +15,15 @@ window.Vue = require("vue");
  */
 
 Vue.component(
-  "example-component",
-  require("./components/ExampleComponent.vue")
-);
-
-Vue.component(
   "autocomplete-component",
   require("./components/autoCompleteComponent.vue")
 );
 
-const app = new Vue({
-  el: "#vue-app"
-});
+Vue.component(
+  "my-custom-list-component",
+  require("./components/myCustomListComponent.vue")
+);
 
-const autocomplete = new Vue({
-  el: "#autocomplete-app"
+const app = new Vue({
+  el: "#app"
 });

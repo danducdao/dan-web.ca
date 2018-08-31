@@ -856,6 +856,8 @@ Vue.component("fileupload-component", __webpack_require__(66));
 
 Vue.component("image-component", __webpack_require__(71));
 
+Vue.component("select-component", __webpack_require__(84));
+
 var app = new Vue({
   el: "#wrapper"
 });
@@ -49876,7 +49878,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49903,39 +49905,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        'divClass': {
+        divClass: {
             type: String,
             required: false
         },
-        'labelClass': {
+        labelClass: {
             type: String,
             required: false
         },
-        'labelText': {
+        labelText: {
             type: String,
             required: true
         },
-        'textareaName': {
+        textareaName: {
             type: String,
             required: true
         },
-        'textareaId': {
+        textareaId: {
             type: String,
             required: false
         },
-        'textareaText': {
+        textareaText: {
             type: String,
             required: true
         },
-        'textareaCols': {
+        textareaCols: {
             type: String,
             required: false
         },
-        'textareaRows': {
+        textareaRows: {
             type: String,
             required: false
         },
-        'textareaClass': {
+        textareaClass: {
+            type: String,
+            required: false
+        },
+        spanError: {
+            type: Boolean,
+            required: false
+        },
+        spanErrorMessage: {
             type: String,
             required: false
         }
@@ -49951,9 +49961,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { class: _vm.divClass }, [
-    _c("label", { class: _vm.labelClass, attrs: { for: _vm.mytxtName } }, [
+    _c("label", { class: _vm.labelClass, attrs: { for: _vm.textareaName } }, [
       _vm._v(_vm._s(_vm.labelText))
     ]),
+    _vm._v(" "),
+    _vm.spanError
+      ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+      : _vm._e(),
     _vm._v(" "),
     _c("textarea", {
       class: _vm.textareaClass,
@@ -49964,7 +49978,11 @@ var render = function() {
         rows: _vm.textareaRows
       },
       domProps: { textContent: _vm._s(_vm.textareaText) }
-    })
+    }),
+    _vm._v(" "),
+    _vm.spanErrorMessage.length > 0
+      ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -50392,7 +50410,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var STATUS_SUCCESS = 1,
     STATUS_FAILED = 0;
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'fileUpload',
     data: function data() {
         return {
             uploadError: null,
@@ -50402,6 +50419,10 @@ var STATUS_SUCCESS = 1,
     },
 
     props: {
+        name: {
+            type: String,
+            reuired: true
+        },
         maxFiles: {
             type: String,
             required: false
@@ -50767,6 +50788,241 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(85)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(87)
+/* template */
+var __vue_template__ = __webpack_require__(88)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-10a50e4c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\selectComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-10a50e4c", Component.options)
+  } else {
+    hotAPI.reload("data-v-10a50e4c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(86);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("7dd5887f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10a50e4c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./selectComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10a50e4c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./selectComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        divClass: {
+            type: String,
+            required: false
+        },
+        labelClass: {
+            type: String,
+            required: false
+        },
+        labelText: {
+            type: String,
+            required: true
+        },
+        selectOptClass: {
+            type: String,
+            required: false
+        },
+        selectOptName: {
+            type: String,
+            required: true
+        },
+        selectOptItems: {
+            type: Array,
+            required: true
+        },
+        selectedOptItem: {
+            type: String,
+            required: true
+        },
+        spanError: {
+            type: Boolean,
+            required: false
+        },
+        spanErrorMessage: {
+            type: String,
+            required: false
+        }
+    }
+});
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.divClass }, [
+    _c("label", { class: _vm.labelClass, attrs: { for: _vm.selectOptName } }, [
+      _vm._v(_vm._s(_vm.labelText))
+    ]),
+    _vm._v(" "),
+    _vm.spanError
+      ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-group m-b" }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selectedOptItem,
+              expression: "selectedOptItem"
+            }
+          ],
+          class: _vm.selectOptClass,
+          attrs: { name: _vm.selectOptName },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.selectedOptItem = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { disabled: true, value: "" } }, [
+            _vm._v("--Sélectionner--")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.selectOptItems, function(selectOpt) {
+            return _c("option", { domProps: { value: selectOpt.id } }, [
+              _vm._v(_vm._s(selectOpt.nom))
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm.spanErrorMessage
+        ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-10a50e4c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

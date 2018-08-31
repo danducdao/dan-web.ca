@@ -1,53 +1,61 @@
 <template>
      <div :class="divClass">
-        <label :for="mytxtName" :class="labelClass">{{labelText}}</label>
+        <label :for="textareaName" :class="labelClass">{{labelText}}</label>
+        <span v-if="spanError" style="color:red;">*</span>
         <textarea :name="textareaName" 
                   :id="textareaId" 
                   :cols="textareaCols" 
                   :rows="textareaRows" 
-                  :class="textareaClass" v-text="textareaText">
-            
-        </textarea>
+                  :class="textareaClass" v-text="textareaText" />
+         <span v-if="spanErrorMessage.length > 0" style="color:red;">*</span>        
     </div>   
 </template>
 
 <script>
     export default {
         props: {
-            'divClass' : {
+            divClass : {
                 type:String,
                 required:false
             },
-            'labelClass' : {
+            labelClass : {
                 type:String,
                 required:false
             },
-            'labelText' : {
+            labelText : {
                 type:String,
                 required:true
             },
-            'textareaName' : {
+            textareaName : {
                 type:String,
                 required:true
             },
-            'textareaId' : {
+            textareaId : {
                 type:String,
                 required:false
             },
-            'textareaText' : {
+            textareaText : {
                 type:String,
                 required:true
             },
-            'textareaCols' : {
+            textareaCols : {
                 type:String,
                 required:false
             },
-            'textareaRows' : {
+            textareaRows : {
                 type:String,
                 required:false
             },
-            'textareaClass' : {
+            textareaClass : {
                 type:String,
+                required:false
+            },
+            spanError : {
+                type : Boolean,
+                required:false
+            },
+            spanErrorMessage:{
+                type : String,
                 required:false
             }
         }

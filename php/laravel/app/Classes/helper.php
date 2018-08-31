@@ -1,5 +1,10 @@
 <?php
 
+/*
+* Program : class Helper
+* Écrit par : Dan Duc Dao
+*/
+
 namespace App\Classes;
 
 class Helper{
@@ -7,7 +12,7 @@ class Helper{
      public const CONNECTION_DB_MUSIC = "mysql2";
      public const CONNECTION_DB_MOVIE = "mysql3"; 
      
-     public static function radioBtnActiveAttribut($active)
+     public static function radioBtnActiveAttribut(int $active):array
      {
          return array(
             array( 'name' => 'active',

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\MovieAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Movies\Film;
 use App\Models\Movies\Langue;
 use Input;
@@ -28,8 +30,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-
-        return 'Film admin create';
+        return View::make('movieadmin.film.create');
     }
 
     /**
@@ -64,7 +65,16 @@ class FilmController extends Controller
     {
         $film = Film::with('Langue')->find($id);
         $langues = Langue::where('active',1)->pluck('nom','id'); 
-        return View::make('movieadmin.film.edit',compact('film','langues'));
+        $selectOptItems = []; 
+        $app = app();
+        foreach($langues as $key => $value)
+        {
+            $item = $app->make('stdClass');
+            $item->id = $key;
+            $item->nom = $value;
+            $selectOptItems[] = $item;
+        }
+        return View::make('movieadmin.film.edit',compact('film','selectOptItems'));
     }
 
     /**
@@ -76,20 +86,28 @@ class FilmController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $film = Film::find($id);
-       $film->titre = $request->input('titre');
-       $film->description = $request->input('description');
-       $film->anneeSortie = $request->input('anneeSortie');
-       $film->langue_id = $request->input('langue_id');
-       $film->dureeLocation = $request->input('dureeLocation'); 
-       $film->prix = $request->input('prix');
-       $film->longeur = $request->input('longeur');
-       $film->coutRemplacement = $request->input('coutRemplacement');
-       $film->evaluation = $request->input('evaluation');
-       $film->nouveaute = $request->input('nouveaute');
-       $film->photo = $request->input('file');
-       $film->active = $request->input('active');
-       $film->save();
-       return redirect('movieadmin/film');
+        $valid = Validator::make(Input::all(),Film::$rules);
+
+        if($valid->fails())
+        {
+            return Redirect::back()->withInput()->withErrors($valid);
+        }
+
+        $film = Film::find($id);
+        $film->titre = $request->input('titre');
+        $film->description = $request->input('description');
+        $film->anneeSortie = $request->input('anneeSortie');
+        $film->langue_id = $request->input('langue');
+        $film->dureeLocation = $request->input('dureeLocation'); 
+        $film->prix = $request->input('prix');
+        $film->longeur = $request->input('longeur');
+        $film->coutRemplacement = $request->input('coutRemplacement');
+        $film->evaluation = $request->input('evaluation');
+        $film->nouveaute = $request->input('nouveaute');
+        $film->photo = $request->input('file');
+        $film->active = $request->input('active');
+        $film->save();
+        
+        return redirect('movieadmin/film');
     }
 }

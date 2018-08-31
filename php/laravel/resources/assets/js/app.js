@@ -40,6 +40,8 @@ Vue.component(
 
 Vue.component("image-component", require("./components/imageComponent.vue"));
 
+Vue.component("select-component", require("./components/selectComponent.vue"));
+
 const app = new Vue({
   el: "#wrapper"
 });

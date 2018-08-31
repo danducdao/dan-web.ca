@@ -3,14 +3,21 @@
 <section>
     {{Form::model($film,array('route' => array('film.update',$film->id), 'method' => 'put' ))}}
     <div class="row">
+        <div class="col-md-12">
+        <h2><em>Modifier film</em></h2>
+        </div>
+    </div>
+    <div class="row">
         <div class="hpanel hblue col-md-6">
             <div class="panel-heading hbuilt"><strong>Information</strong></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
                         {{Form::label('titre','Titre',array('class' => 'control-label'))}}
+                        <span style="color:red;">*</span>
                         <div class="input-group m-b">
                              {{Form::text('titre',$film->titre,array('class' => 'form-control'))}} 
+                             <span style="color:red;">{{ $errors->first('titre') }}</span>
                         </div>
                     </div>
                 </div>
@@ -23,7 +30,9 @@
                                         :textarea-text = "'{{ $film->description }}'"
                                         :textarea-cols = "'6'"
                                         :textarea-rows = "'3'" 
-                                        :textarea-class = "'form-control'">
+                                        :textarea-class = "'form-control'"
+                                        :span-error = "true"
+                                        :span-error-message = "'{{ $errors->first('titre') }}'">
                     </textarea-component>
                 </div><br>
                 <div class="row">
@@ -43,12 +52,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        {{Form::label('langue_id','Langue',array('class' => 'control-label'))}}
-                        <div class="input-group m-b">
-                            {{Form::select('langue_id',$langues,$film->nom,array('class' => 'form-control'))}} 
-                        </div>
-                    </div>
+                    <select-component :div-class="'col-md-6'"
+                                      :label-class="'control-label'"
+                                      :label-text="'Langue'"
+                                      :select-opt-class="'form-control'"
+                                      :select-opt-name = "'langue'"
+                                      :select-opt-items = "{{ json_encode($selectOptItems) }}"
+                                      :selected-opt-item="'{{ $film->langue_id }}'"
+                                      :span-error = "true"
+                                      :span-error-message = "'{{ $errors->first('langue') }}'" />
                 </div>
             </div>
         </div>
@@ -60,6 +72,7 @@
                         {{Form::label('dureeLocation','Durée du prêt',array('class' => 'control-label'))}}
                         <div class="input-group m-b">
                             {{Form::text('dureeLocation',$film->dureeLocation,array('class' => 'form-control'))}}  
+                            <span style="color:red;">{{ $errors->first('dureeLocation') }}</span>
                         </div> 
                     </div>
                 </div>
@@ -69,7 +82,12 @@
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
                             {{Form::text('prix',$film->prix,array('class' => 'form-control'))}}
-                        </div> 
+                        </div>
+                        @if($errors->first('prix'))
+                            <div style='position:absolute;top:55px;'>
+                                <span style="color:red;">{{ $errors->first('prix') }}</span>
+                            </div><br>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
@@ -78,6 +96,9 @@
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
                             {{Form::text('coutRemplacement',$film->coutRemplacement,array('class' => 'form-control'))}} 
+                        </div>
+                        <div style='position:absolute;top:55px;'>
+                            <span style="color:red;">{{ $errors->first('coutRemplacement') }}</span>
                         </div>
                     </div>
                 </div>
@@ -90,7 +111,8 @@
             <div class="panel-body">
                 <div class="row">
                         <div class="col-md-4">
-                            <fileupload-component 
+                            <fileupload-component
+                                    :name="'Image'" 
                                     :max-files = "'1'"
                                     :max-size = "'2'"
                                     :file-ext = "'JPG, GIF, PNG, JPEG'">
@@ -104,21 +126,20 @@
             <div class="panel-heading hbuilt"><strong>Autres</strong></div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        {{Form::label('evaluation','Évaluation',array('class' => 'control-label'))}}
-                        <div class="input-group m-b">
-                            {{Form::select('evaluation',App\Models\Movies\Film::evaluations(),$film->evaluation,array('class' => 'form-control'))}} 
-                        </div>
-                    </div>
+                    <select-component :div-class="'col-md-6'"
+                                      :label-class="'control-label'"
+                                      :label-text="'Évaluation'"
+                                      :select-opt-class="'form-control'"
+                                      :select-opt-name = "'evaluation'"
+                                      :select-opt-items = "{{ json_encode(App\Models\Movies\Film::evaluations()) }}"
+                                      :selected-opt-item="'{{ $film->evaluation }}'" />
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         {{Form::label('nouveaute','Nouveauté',array('class' => 'control-label'))}}
-                        <div class="input-group m-b">
-                            {{Form::select('nouveaute',App\Models\Movies\Film::nouveautes(),$film->nouveaute,array('class' => 'form-control'))}} 
-                        </div>
+                        {{Form::text('nouveaute',$film->nouveaute,array('class' => 'form-control'))}}  
                     </div>
-                </div>
+                </div><br>
                 <div class="row">
                     <div class="col-md-6">
                         {{Form::label('nouveaute','Nouveauté',array('class' => 'control-label'))}}

@@ -24,7 +24,6 @@ import { bus } from '../app';
 
 const STATUS_SUCCESS = 1, STATUS_FAILED = 0;
 export default {
-    name: 'fileUpload',
     data () {
         return {
             uploadError: null,
@@ -33,6 +32,10 @@ export default {
         }
     },
     props : {
+            name : {
+                type:String,
+                reuired:true
+            },
             maxFiles : {
                 type:String,
                 required:false

@@ -34,9 +34,7 @@
                          {{ Form::label('acteur','Acteur')}}
                     </div>
                     <div class="col-md-4" style="padding-left:0;padding-right:0;">
-                        <div id="app">
-                            <autocomplete-component :items="{{ $acteurs }}" :name="'acteur'"></autocomplete-component>
-                        </div>
+                        <autocomplete-component :items="{{ $acteurs }}" :name="'acteur'"></autocomplete-component>
                     </div>
                     <div class="col-md-2">
                          {{ Form::submit("OK",array('class' => 'btn btn-success'))}}

@@ -27,7 +27,7 @@ class CreateFilmsTable extends Migration
             $table->decimal('coutRemplacement',5,2)->default(19.99);
             $table->enum('evaluation', array('G','PG','PG-13','R','NC-17'))->default('G');
             $table->enum('nouveaute', array('Trailers','Commentaries','Deleted Scenes','Behind the Scenes'))->nullable();
-            $table->string('filmArtUrl')->default('images/placeholder.gif');
+            $table->longText('photo')->nullable();
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });

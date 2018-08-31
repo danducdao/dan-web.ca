@@ -1028,6 +1028,7 @@ class FilmsTableSeeder extends Seeder
                 'coutRemplacement' => $film[9],
                 'evaluation' => $film[10],
                 'nouveaute' => $film[11],
+                'photo' => NULL,
                 'created_at' => new \DateTime(),
                 'updated_at' => $film[12],
             ]);

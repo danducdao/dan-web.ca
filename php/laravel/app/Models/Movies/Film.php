@@ -29,4 +29,25 @@ class Film extends Model
     {
         return $this->belongsTo('App\Models\Movies\Langue');
     }
+
+    static function evaluations()
+    {
+        return array( 
+             'G' => 'General Audiences',
+             'PG' => 'Parental Guidance Suggested',
+             'PG-13' => 'Parents Strongly Cautioned' ,
+             'R' => 'Restricted',
+             'NC-17' => 'No One 17 And Under Admitted'
+        );
+    }
+
+    static function nouveautes()
+    {
+         return array(
+             'Trailers' => 'Trailers',
+             'Commentairies' => 'Commentairies',
+             'Deleted Scenes' =>  'Deleted Scenes',
+             'Behind the Scenes' => 'Behind the Scenes'
+         );
+    }
 }

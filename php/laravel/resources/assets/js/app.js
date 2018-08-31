@@ -14,16 +14,32 @@ window.Vue = require("vue");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+export const bus = new Vue();
+
 Vue.component(
   "autocomplete-component",
-  require("./components/autoCompleteComponent.vue")
+  require("./components/autocompleteComponent.vue")
 );
 
 Vue.component(
-  "my-custom-list-component",
-  require("./components/myCustomListComponent.vue")
+  "listing-component",
+  require("./components/listingComponent.vue")
 );
 
+Vue.component(
+  "textarea-component",
+  require("./components/textareaComponent.vue")
+);
+
+Vue.component("radio-component", require("./components/radioComponent.vue"));
+
+Vue.component(
+  "fileupload-component",
+  require("./components/fileUploadComponent.vue")
+);
+
+Vue.component("image-component", require("./components/imageComponent.vue"));
+
 const app = new Vue({
-  el: "#app"
+  el: "#wrapper"
 });

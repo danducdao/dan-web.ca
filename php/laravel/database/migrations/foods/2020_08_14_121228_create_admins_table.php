@@ -13,16 +13,20 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql')->create('admins', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->smallInteger('employee_id')->refrence('id')->on('employees');
-            $table->string('username',100);
-            $table->string('password',250);
-            $table->string('confirmPassword',250);
-            $table->smallInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql')->hasTable('admins'))
+        {
+            Schema::connection('mysql')->create('admins', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->integer('employee_id')->unsigned();
+                $table->foreign('employee_id')->references('id')->on('employees');
+                $table->string('username',100);
+                $table->string('password',250);
+                $table->string('confirm_password',250);
+                $table->smallInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

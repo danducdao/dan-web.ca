@@ -13,14 +13,17 @@ class CreateGenresTable extends Migration
      */
     public function up()
     {
-        Schema::connection("mysql2")->create('genres', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('nom',120);
-            $table->text('description')->nullable();
-            $table->smallInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection("mysql2")->hasTable('genres'))
+        {
+            Schema::connection("mysql2")->create('genres', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->string('nom',120);
+                $table->text('description')->nullable();
+                $table->smallInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

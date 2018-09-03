@@ -13,14 +13,19 @@ class CreateActeurFilmTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('acteur_film', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->smallInteger('acteur_id')->unsigned()->refrence('id')->on('acteurs');
-            $table->smallInteger('film_id')->unsigned()->refrence('id')->on('films');
-            $table->tinyInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('acteur_film'))
+        {
+            Schema::connection('mysql3')->create('acteur_film', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->integer('acteur_id')->unsigned();
+                $table->foreign('acteur_id')->references('id')->on('acteurs');
+                $table->integer('film_id')->unsigned();
+                $table->foreign('film_id')->references('id')->on('films');
+                $table->tinyInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

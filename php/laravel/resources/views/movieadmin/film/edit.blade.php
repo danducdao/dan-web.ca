@@ -45,9 +45,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('anneeSortie','Année sortie',array('class' => 'control-label'))}}
+                        {{Form::label('annee_sortie','Année sortie',array('class' => 'control-label'))}}
                         <div class="input-group m-b">
-                            {{Form::text('anneeSortie',$film->anneeSortie,array('class' => 'form-control'))}} 
+                            {{Form::text('annee_sortie',$film->annee_sortie,array('class' => 'form-control'))}} 
                         </div>
                     </div>
                 </div>
@@ -57,10 +57,19 @@
                                       :label-text="'Langue'"
                                       :select-opt-class="'form-control'"
                                       :select-opt-name = "'langue'"
-                                      :select-opt-items = "{{ json_encode($selectOptItems) }}"
+                                      :select-opt-items = "{{ json_encode($selectOptLangue) }}"
                                       :selected-opt-item="'{{ $film->langue_id }}'"
                                       :span-error = "true"
                                       :span-error-message = "'{{ $errors->first('langue') }}'" />
+                </div>
+                <div class="row">
+                    <select-component :div-class="'col-md-6'"
+                                      :label-class="'control-label'"
+                                      :label-text="'Langue original'"
+                                      :select-opt-class="'form-control'"
+                                      :select-opt-name = "'langue_original'"
+                                      :select-opt-items = "{{ json_encode($selectOptLangueOriginal) }}"
+                                      :selected-opt-item="'{{ $film->langue_original_id }}'" />
                 </div>
             </div>
         </div>
@@ -69,9 +78,9 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('dureeLocation','Durée du prêt',array('class' => 'control-label'))}}
+                        {{Form::label('duree_location','Durée du prêt',array('class' => 'control-label'))}}
                         <div class="input-group m-b">
-                            {{Form::text('dureeLocation',$film->dureeLocation,array('class' => 'form-control'))}}  
+                            {{Form::text('duree_location',$film->duree_location,array('class' => 'form-control'))}}  
                             <span style="color:red;">{{ $errors->first('dureeLocation') }}</span>
                         </div> 
                     </div>
@@ -92,10 +101,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('coutRemplacement','Coût de remplacement',array('class' => 'control-label'))}}
+                        {{Form::label('cout_remplacement','Coût de remplacement',array('class' => 'control-label'))}}
                         <div class="input-group m-b">
                             <span class="input-group-addon">$</span>
-                            {{Form::text('coutRemplacement',$film->coutRemplacement,array('class' => 'form-control'))}} 
+                            {{Form::text('cout_remplacement',$film->cout_remplacement,array('class' => 'form-control'))}} 
                         </div>
                         <div style='position:absolute;top:55px;'>
                             <span style="color:red;">{{ $errors->first('coutRemplacement') }}</span>

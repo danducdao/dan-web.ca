@@ -60,8 +60,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.admin.employee.nom = this.employee.nom;
-    this.admin.employee.prenom = this.employee.prenom;
     this._employeeService
       .saveEmployee(this.employee, this.admin)
       .subscribe(res => this.callback(res), err => console.log(err));
@@ -77,10 +75,10 @@ export class RegisterComponent implements OnInit {
   }
 
   selectedDateNaisance(event: IMyDateModel) {
-    this.employee.dateNaissance = event.formatted;
+    this.employee.date_naissance = event.formatted;
   }
 
   selectedDateEmbauche(event: IMyDateModel) {
-    this.employee.dateEmbauche = event.formatted;
+    this.employee.date_embauche = event.formatted;
   }
 }

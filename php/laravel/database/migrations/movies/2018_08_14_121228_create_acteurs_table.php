@@ -13,14 +13,17 @@ class CreateActeursTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('acteurs', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('prenom',45);
-            $table->string('nom',45);
-            $table->smallInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('acteurs'))
+        {
+            Schema::connection('mysql3')->create('acteurs', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->string('prenom',120);
+                $table->string('nom',120);
+                $table->smallInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

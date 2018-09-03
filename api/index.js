@@ -23,7 +23,7 @@ const filmController = require("./controllers/movies/filmController");
 const food = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "*****",
+  password: "asiavn73",
   database: "food"
 });
 
@@ -31,7 +31,7 @@ const food = mysql.createConnection({
 const music = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "*****",
+  password: "asiavn73",
   database: "music"
 });
 
@@ -39,7 +39,7 @@ const music = mysql.createConnection({
 const movie = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "*****",
+  password: "asiavn73",
   database: "movie"
 });
 

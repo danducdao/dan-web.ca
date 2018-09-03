@@ -4,7 +4,7 @@
         <span v-if="spanError" style="color:red;">*</span>
         <div class="input-group m-b">
             <select :name="selectOptName" :class="selectOptClass" v-model="selectedOptItem">
-                <option :disabled="true" value="">--Sélectionner--</option>
+                <option :disabled="spanError" value="">--Sélectionner--</option>
                 <option v-for="selectOpt in selectOptItems" :value="selectOpt.id" >{{selectOpt.nom}}</option>
             </select>
             <span v-if="spanErrorMessage" style="color:red;">*</span>

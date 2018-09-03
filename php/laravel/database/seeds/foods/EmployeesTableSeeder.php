@@ -14,7 +14,7 @@ class EmployeesTableSeeder extends Seeder
     public function run()
     {
         $employees = [
-            [1,'Andrew','Fuller','Dr.','Vice Président, Vente','M','M','908 W. Capital Way','Tacoma','WA','98401','USA','(206) 555-9482',NULL,'exemple@gmail.com','1952-02-19','1992-08-14',100000.00,'A',67,20,'Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager in January 1992 and to vice president of sales in March 1993.  Andrew is a member of the Sales Management Roundtable, the Seattle Chamber of Commerce, and the Pacific Rim Importers Association.',NULL]
+            [1,'Andrew','Fuller','Dr.','Vice Président, Vente','M','M','908 W. Capital Way','Tacoma','WA','98401','USA','(206) 555-9482',NULL,'exemple@gmail.com','1952-02-19','1992-08-14',100000.00,'A',67,20,NULL,'Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager in January 1992 and to vice president of sales in March 1993.  Andrew is a member of the Sales Management Roundtable, the Seattle Chamber of Commerce, and the Pacific Rim Importers Association.']
         ];
         foreach($employees as $employee)
         {
@@ -29,17 +29,17 @@ class EmployeesTableSeeder extends Seeder
                 'adresse' => $employee[7],
                 'ville' => $employee[8],
                 'region' => $employee[9],
-                'codePostale' => $employee[10],
+                'code_postale' => $employee[10],
                 'pays' => $employee[11],
                 'telephone' => $employee[12],
                 'cellulaire' => $employee[13],
                 'courriel' => $employee[14],
-                'dateNaissance' => $employee[15],
-                'dateEmbauche' => $employee[16],
+                'date_naissance' => $employee[15],
+                'date_embauche' => $employee[16],
                 'salaire' => $employee[17],
                 'par' =>  $employee[18],
-                'congeVacance' => $employee[19],
-                'congeMaladie' => $employee[20],
+                'conge_vacance' => $employee[19],
+                'conge_maladie' => $employee[20],
                 'photo' => $employee[21],
                 'note' => $employee[22],
                 'created_at' => new \DateTime()

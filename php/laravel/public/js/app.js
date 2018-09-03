@@ -856,7 +856,7 @@ Vue.component("fileupload-component", __webpack_require__(66));
 
 Vue.component("image-component", __webpack_require__(71));
 
-Vue.component("select-component", __webpack_require__(84));
+Vue.component("select-component", __webpack_require__(76));
 
 var app = new Vue({
   el: "#wrapper"
@@ -14341,9 +14341,9 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(5);
-__webpack_require__(76);
-__webpack_require__(77);
-module.exports = __webpack_require__(78);
+__webpack_require__(81);
+__webpack_require__(82);
+module.exports = __webpack_require__(83);
 
 
 /***/ }),
@@ -49762,7 +49762,14 @@ var render = function() {
                               },
                               [
                                 body
-                                  ? [_c("img", { attrs: { src: body } })]
+                                  ? [
+                                      _c("img", {
+                                        attrs: {
+                                          src:
+                                            "../../../assets/images/placeholder.gif"
+                                        }
+                                      })
+                                    ]
                                   : _vm._e()
                               ],
                               2
@@ -50773,41 +50780,18 @@ if (false) {
 
 /***/ }),
 /* 76 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(85)
+  __webpack_require__(77)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(87)
+var __vue_script__ = __webpack_require__(79)
 /* template */
-var __vue_template__ = __webpack_require__(88)
+var __vue_template__ = __webpack_require__(80)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50846,13 +50830,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(86);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -50872,7 +50856,7 @@ if(false) {
 }
 
 /***/ }),
-/* 86 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -50886,7 +50870,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 87 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50948,7 +50932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50995,7 +50979,7 @@ var render = function() {
           }
         },
         [
-          _c("option", { attrs: { disabled: true, value: "" } }, [
+          _c("option", { attrs: { disabled: _vm.spanError, value: "" } }, [
             _vm._v("--Sélectionner--")
           ]),
           _vm._v(" "),
@@ -51023,6 +51007,24 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-10a50e4c", module.exports)
   }
 }
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

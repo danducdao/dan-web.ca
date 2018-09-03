@@ -266,7 +266,7 @@ class AlbumsTableSeeder extends Seeder
                 'artiste_id' => $album[1],
                 'titre' => $album[2],
                 'prix' => $album[3],
-                'albumArtUrl' => $album[4],
+                'photo' => $album[4],
                 'created_at' => new \DateTime()
             ]);
         }

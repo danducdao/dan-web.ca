@@ -42,9 +42,9 @@
                             <td v-bind:class="right">
                                 <span v-if="produit.prix">{{ produit.prix | currency}}</span>
                             </td>
-                            <td v-bind:class="right">{{ produit.quantiteParUnite }}</td>
-                            <td v-bind:class="right">{{ produit.quantiteEnStock }}</td>
-                            <td v-bind:class="right">{{ produit.quantiteCommande }}</td>
+                            <td v-bind:class="right">{{ produit.quantite_par_unite }}</td>
+                            <td v-bind:class="right">{{ produit.quantite_en_stock }}</td>
+                            <td v-bind:class="right">{{ produit.quantite_commande }}</td>
                             <td v-bind:class="right">{{ produit.reapprovisionnement }}</td>
                             <td v-bind:class="center">
                                 <span v-if='produit.discontinue'><i class='fa fa-check-square'></i></span>

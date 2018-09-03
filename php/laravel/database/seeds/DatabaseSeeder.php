@@ -11,37 +11,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         //Food store
-        $this->call(database\seeds\foods\AdminsTableSeeder::class);
-        $this->call(database\seeds\foods\CategoriesTableSeeder::class); 
-        $this->call(database\seeds\foods\EmployeesTableSeeder::class);
+        //Food store
         $this->call(FournisseursTableSeeder::class);
+        $this->call(database\seeds\foods\CategoriesTableSeeder::class);
         $this->call(ProduitsTableSeeder::class);  
+        $this->call(database\seeds\foods\EmployeesTableSeeder::class);
+        $this->call(database\seeds\foods\AdminsTableSeeder::class);
+         
+        //Movie store
+        $this->call(PaysTableSeeder::class);
+        $this->call(VillesTableSeeder::class); 
+        $this->call(LanguesTableSeeder::class);
+        $this->call(LangueOriginalsTableSeeder::class);
+        $this->call(ActeursTableSeeder::class); 
+        $this->call(AdressesTableSeeder::class); 
+        $this->call(StoresTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(FilmsTableSeeder::class);
+        $this->call(FilmTextesTableSeeder::class);
+        $this->call(InventairesTableSeeder::class);
+        $this->call(AdminsTableSeeder::class);
+        $this->call(CategorieFilmTableSeeder::class);
+        $this->call(ActeurFilmTableSeeder::class);
 
         //Music store
-        $this->call(ArtistesTableSeeder::class);
         $this->call(GenresTableSeeder::class);
-        $this->call(AlbumsTableSeeder::class);
-         
-         //Movie store
-        $this->call(ActeursTableSeeder::class);   
-        $this->call(AdressesTableSeeder::class); 
-        $this->call(CategoriesTableSeeder::class); 
-        $this->call(VillesTableSeeder::class); 
-        $this->call(PaysTableSeeder::class);
-        $this->call(FilmsTableSeeder::class);
-        $this->call(ActeurFilmTableSeeder::class);
-        $this->call(CategorieFilmTableSeeder::class);
-        $this->call(FilmTextesTableSeeder::class);
-        $this->call(LanguesTableSeeder::class);
-        $this->call(AdminsTableSeeder::class);
-        $this->call(StoresTableSeeder::class);
-
-        
-        
-         
-        
-         
-          
+        $this->call(ArtistesTableSeeder::class);
+        $this->call(AlbumsTableSeeder::class);   
     }
 }

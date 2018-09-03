@@ -15,7 +15,7 @@ class Langue extends Model
     protected $connection = Helper::CONNECTION_DB_MOVIE;
     protected $fillable = ['created_at','updated_at'];
 
-    public function Films()
+    public function films()
     {
         return $this->hasMany('App\Models\Movies\Film');
     }

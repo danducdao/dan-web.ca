@@ -91,13 +91,13 @@
                               <div class="row">
                                     <div class="col-md-8">
                                           <label for="quantiteParUnite">Par unité</label>
-                                          <input type="text" class="form-control" name="quantiteParUnite" #quantiteParUnite="ngModel" [(ngModel)]="model.quantiteParUnite">
+                                          <input type="text" class="form-control" name="quantiteParUnite" #quantiteParUnite="ngModel" [(ngModel)]="model.quantite_par_unite">
                                     </div>
                               </div>
                               <div class="row">
                                     <div class="col-md-8">
                                           <label for="qty">En stock</label>&nbsp;
-                                          <input type="text" class="form-control" name="qty" #qty="ngModel" [(ngModel)]="model.quantiteEnStock" [pattern]="digitPattern">
+                                          <input type="text" class="form-control" name="qty" #qty="ngModel" [(ngModel)]="model.quantite_en_stock" [pattern]="digitPattern">
                                           <div *ngIf="qty.errors">
                                                 <div [hidden]="!qty.errors.pattern" class="alert alert-danger">
                                                       Quantité en stock doit être digit
@@ -108,7 +108,7 @@
                               <div class="row">
                                     <div class="col-md-8">
                                           <label for="quantiteCommande">Commandée</label>
-                                          <input type="text" class="form-control" id="quantiteCommande" name="quantiteCommande" #quantiteCommande="ngModel" [(ngModel)]="model.quantiteCommande"
+                                          <input type="text" class="form-control" id="quantiteCommande" name="quantiteCommande" #quantiteCommande="ngModel" [(ngModel)]="model.quantite_commande"
                                                 [pattern]="digitPattern">
                                           <div *ngIf="quantiteCommande.errors">
                                                 <div [hidden]="!quantiteCommande.errors.pattern" class="alert alert-danger">

@@ -3,12 +3,11 @@
 * Écrit par : Dan Duc Dao
 */
 
-export var Admin = function()
-{
-    this.employee={nom:"",prenom:""};
-    this.username="";
-    this.password="";
-    this.confirmPassword="";
-    this.dateCreation = new Date().toLocaleDateString("en-US");
-    this.active = true; 
-}
+export var Admin = function() {
+  this.id = "";
+  this.employee_id = "";
+  this.username = "";
+  this.password = "";
+  this.confirm_password = "";
+  this.active = 1;
+};

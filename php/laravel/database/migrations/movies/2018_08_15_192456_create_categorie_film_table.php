@@ -13,14 +13,19 @@ class CreateCategorieFilmTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('categorie_film', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->smallInteger('film_id')->unsigned()->reference('id')->on('films');
-            $table->tinyInteger('categorie_id')->unsigned()->reference('id')->on('categories');
-            $table->tinyInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('categorie_film'))
+        {
+            Schema::connection('mysql3')->create('categorie_film', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->integer('film_id')->unsigned();
+                $table->foreign('film_id')->references('id')->on('films');
+                $table->integer('categorie_id')->unsigned();
+                $table->foreign('categorie_id')->references('id')->on('categories');
+                $table->tinyInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

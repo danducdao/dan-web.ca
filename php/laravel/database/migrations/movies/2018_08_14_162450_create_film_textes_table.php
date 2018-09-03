@@ -13,15 +13,19 @@ class CreateFilmTextesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('film_textes', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->smallInteger('film_id')->unique()->reference('id')->on('films');
-            $table->string('titre',255);
-            $table->longText('description');
-            $table->tinyInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('film_textes'))
+        {
+            Schema::connection('mysql3')->create('film_textes', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->integer('film_id')->unsigned();
+                $table->foreign('film_id')->references('id')->on('films');
+                $table->string('titre',255);
+                $table->longText('description');
+                $table->tinyInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

@@ -61,7 +61,7 @@ export class ListeProduitComponent implements OnInit {
         } else if (checkbox.value === "quantiteEnStock") {
           data = data.concat(
             this.produitsForSearch.filter(
-              value => value.quantiteEnStock === parseInt(searchValue)
+              value => value.quantite_en_stock === parseInt(searchValue)
             )
           );
         } else if (checkbox.value === "prix") {

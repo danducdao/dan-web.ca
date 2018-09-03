@@ -10,10 +10,10 @@ export interface IProduit {
   fournisseur_id: number;
   fournisseur_nom: string;
   categorie_nom: string;
-  quantiteParUnite: number;
+  quantite_par_unite: number;
   prix: number;
-  quantiteEnStock: number;
-  quantiteCommande: number;
+  quantite_en_stock: number;
+  quantite_commande: number;
   reapprovisionnement: number;
   discontinue: number;
   active: number;

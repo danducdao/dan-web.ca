@@ -166,7 +166,7 @@ class ArtistesTableSeeder extends Seeder
         {
             DB::connection('mysql2')->table('artistes')->insert([
                 'id' => $artiste[0],
-                'nom' => $artiste[1], 
+                'nom_complet' => $artiste[1], 
                 'created_at' => new \DateTime()
             ]);
         }

@@ -39,6 +39,11 @@ class Film extends Model
         return $this->belongsTo('App\Models\Movies\Langue');
     }
 
+    public function langue_original()
+    {
+        return $this->belongsTo('App\Models\Movies\LangueOriginal');
+    }
+
     public static function evaluations():array
     {
         $evaluations = array(

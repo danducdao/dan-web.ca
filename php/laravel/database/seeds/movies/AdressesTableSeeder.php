@@ -624,7 +624,7 @@ class AdressesTableSeeder extends Seeder
                 'adresse2' => $adresse[2],
                 'district' => $adresse[3],
                 'ville_id' => $adresse[4],
-                'codePostal' => $adresse[5],
+                'code_postale' => $adresse[5],
                 'telephone' => $adresse[6],
                 'created_at' => new \DateTime(),
                 'updated_at' => $adresse[7]

@@ -10,7 +10,7 @@ class ActeurFilmTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {  
         $acteurFilms = [
             [1, 1, '2006-02-15 13:05:03'],
             [1, 23, '2006-02-15 13:05:03'],

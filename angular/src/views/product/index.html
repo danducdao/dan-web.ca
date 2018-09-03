@@ -70,9 +70,9 @@
                             <td>{{ produit.categorie_nom }}</td>
                             <td>{{ produit.fournisseur_nom }}</td>
                             <td [ngClass]="right">{{ produit.prix | currency }}</td>
-                            <td [ngClass]="right">{{ produit.quantiteParUnite }}</td>
-                            <td [ngClass]="right">{{ produit.quantiteEnStock }}</td>
-                            <td [ngClass]="right">{{ produit.quantiteCommande }}</td>
+                            <td [ngClass]="right">{{ produit.quantite_par_unite }}</td>
+                            <td [ngClass]="right">{{ produit.quantite_en_stock }}</td>
+                            <td [ngClass]="right">{{ produit.quantite_commande }}</td>
                             <td [ngClass]="right">{{ produit.reapprovisionnement }}</td>
                             <td [ngClass]="center">
                                 <span [innerHTML]="produit.discontinue | filtreHtmlTag:'check-square-icon'"></span>

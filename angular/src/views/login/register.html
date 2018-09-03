@@ -120,13 +120,13 @@
                     <div class="row">
                         <div class="col-md-7">
                             <label class="control-label" for="address">Address</label>
-                            <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="employee.address" />
+                            <input type="text" class="form-control" name="address" [(ngModel)]="employee.address" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <label class="control-label" for="pays">Pays</label>&nbsp;
-                            <select :class="form-control" name="pays" #pays="ngModel" [(ngModel)]="employee.pays" (change)="selectedPays()">
+                            <select :class="form-control" name="pays" [(ngModel)]="employee.pays" (change)="selectedPays()">
                                 <option [disabled]="true" value="">--Sélectionner--</option>
                                 <option *ngFor="let pays of paysOpt" [value]="pays.value">{{pays.name}}</option>
                             </select>
@@ -135,7 +135,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label class="control-label" for="ville">Ville</label>
-                            <select class="form-control" name="ville" #ville="ngModel" [(ngModel)]="employee.ville">
+                            <select class="form-control" name="ville" [(ngModel)]="employee.ville">
                                 <option [disabled]="true" value="">--Sélectionner--</option>
                                 <option *ngFor="let ville of villesOpt" [value]="ville.value">{{ville.name}}</option>
                             </select>
@@ -144,7 +144,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label class="control-label" for="region">Région</label>
-                            <select class="form-control" name="region" #region="ngModel" [(ngModel)]="employee.region">
+                            <select class="form-control" name="region" [(ngModel)]="employee.region">
                                 <option [disabled]="true" value="">--Sélectionner--</option>
                                 <option *ngFor="let region of regionsOpt" [value]="region.value">{{region.name}}</option>
                             </select>
@@ -153,7 +153,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label class="control-label" for="codePostale">Code postale</label>
-                            <input type="text" class="form-control" name="codePostale" #codepostale="ngModel" [(ngModel)]="employee.codePostale" />
+                            <input type="text" class="form-control" name="codePostale" [(ngModel)]="employee.code_postale" />
                         </div>
                     </div>
                 </div>
@@ -259,7 +259,7 @@
                         <div class="col-md-4">
                             <label class="control-label" for="congeVacance">Congé de vacance</label>&nbsp;
                             <span style="color:red;">*</span>
-                            <input type="text" class="form-control" name="congeVacance" #congevacance="ngModel" required [(ngModel)]="employee.congeVacance"
+                            <input type="text" class="form-control" name="congeVacance" #congevacance="ngModel" required [(ngModel)]="employee.conge_vacance"
                                 [pattern]="digitPattern" />
                             <div *ngIf="congevacance.errors">
                                 <div [hidden]="!congevacance.errors.required || congevacance.pristine" class="alert alert-danger">
@@ -275,7 +275,7 @@
                         <div class="col-md-4">
                             <label class="control-label" for="congeMaladie">Congé de maladie</label>&nbsp;
                             <span style="color:red;">*</span>
-                            <input class="form-control" name="congeMaladie" #congemaladie="ngModel" required [(ngModel)]="employee.congeMaladie" [pattern]="digitPattern"
+                            <input class="form-control" name="congeMaladie" #congemaladie="ngModel" required [(ngModel)]="employee.conge_maladie" [pattern]="digitPattern"
                             />
                             <div *ngIf="congemaladie.errors">
                                 <div [hidden]="!congemaladie.errors.required || congemaladie.pristine" class="alert alert-danger">
@@ -369,10 +369,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="control-label" for="confirmPassword">Confirmer mot de passe</label>&nbsp;
+                            <label class="control-label" for="confirm_password">Confirmer mot de passe</label>&nbsp;
                             <span style="color:red;">*</span>
-                            <input type="password" class="form-control" required name="confirmPassword" #confirmPassword="ngModel" validateEqual="password"
-                                reverse="false" [(ngModel)]="admin.confirmPassword" placeholder="******" title="Veuillez confimer votre mot de passe">
+                            <input type="password" class="form-control" name="confirm_password" #confirmPassword="ngModel" validateEqual="password" reverse="false"
+                                [(ngModel)]="admin.confirm_password" placeholder="******" title="Veuillez confimer votre mot de passe"
+                                required>
                             <div *ngIf="confirmPassword.errors">
                                 <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">
                                     Mots de passe doivent être identiques

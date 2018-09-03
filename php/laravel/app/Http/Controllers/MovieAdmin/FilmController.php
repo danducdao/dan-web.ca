@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Movies\Film;
 use App\Models\Movies\Langue;
+use App\Models\Movies\LangueOriginal;
 use Input;
+
 class FilmController extends Controller
 {
     /**
@@ -44,6 +46,20 @@ class FilmController extends Controller
         //
     }
 
+    private function initLangue($langues,array & $array_langue)
+    {
+        foreach($langues as $key => $langue)
+        {
+            $item = app()->make('stdClass');
+            $item->id = $key;
+            $item->nom = $langue;
+            $array_langue[] = $item;
+        }
+    }
+
+    public function test(){
+      echo "tesss";
+    }
     /**
      * Display the specified resource.
      *
@@ -63,18 +79,19 @@ class FilmController extends Controller
      */
     public function edit($id)
     {
-        $film = Film::with('Langue')->find($id);
-        $langues = Langue::where('active',1)->pluck('nom','id'); 
-        $selectOptItems = []; 
-        $app = app();
-        foreach($langues as $key => $value)
-        {
-            $item = $app->make('stdClass');
-            $item->id = $key;
-            $item->nom = $value;
-            $selectOptItems[] = $item;
-        }
-        return View::make('movieadmin.film.edit',compact('film','selectOptItems'));
+        $langue_array = [];
+
+        $film = Film::with('Langue','langue_original')->find($id);
+        
+        array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
+        array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
+
+        $selectOptLangue = $selectOptLangueOriginal = []; 
+
+        $this->initLangue($langue_array[0],$selectOptLangue);
+        $this->initLangue($langue_array[1],$selectOptLangueOriginal);
+
+        return View::make('movieadmin.film.edit',compact('film','selectOptLangue','selectOptLangueOriginal'));
     }
 
     /**
@@ -96,12 +113,13 @@ class FilmController extends Controller
         $film = Film::find($id);
         $film->titre = $request->input('titre');
         $film->description = $request->input('description');
-        $film->anneeSortie = $request->input('anneeSortie');
+        $film->annee_sortie = $request->input('annee_sortie');
         $film->langue_id = $request->input('langue');
-        $film->dureeLocation = $request->input('dureeLocation'); 
+        $film->langue_original_id = $request->input('langue_original');
+        $film->duree_location = $request->input('duree_location'); 
         $film->prix = $request->input('prix');
         $film->longeur = $request->input('longeur');
-        $film->coutRemplacement = $request->input('coutRemplacement');
+        $film->cout_remplacement = $request->input('cout_remplacement');
         $film->evaluation = $request->input('evaluation');
         $film->nouveaute = $request->input('nouveaute');
         $film->photo = $request->input('file');

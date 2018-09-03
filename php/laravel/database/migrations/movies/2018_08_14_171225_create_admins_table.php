@@ -13,20 +13,26 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('admins', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('prenom',45);
-            $table->string('nom',45);
-            $table->smallInteger('adresse_id')->unsigned()->reference('id')->on('adresses');
-            $table->binary('photo')->nullable();
-            $table->string('courriel',50)->nullable();
-            $table->tinyInteger('store_id')->unsigned()->reference('id')->on('stores');
-            $table->tinyInteger('active')->default(1);
-            $table->string('username',16);
-            $table->string('password',40)->nullable();
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('admins'))
+        {
+            Schema::connection('mysql3')->create('admins', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->string('prenom',120);
+                $table->string('nom',120);
+                $table->integer('adresse_id')->unsigned();
+                $table->foreign('adresse_id')->references('id')->on('adresses');
+                $table->binary('photo')->nullable();
+                $table->string('courriel',50)->nullable();
+                $table->integer('store_id')->unsigned();
+                $table->foreign('store_id')->references('id')->on('stores');
+                $table->tinyInteger('active')->default(1);
+                $table->string('username',16);
+                $table->string('password',250);
+                $table->string('confirm_password',250);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

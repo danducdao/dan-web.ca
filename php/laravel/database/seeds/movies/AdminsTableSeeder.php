@@ -10,10 +10,9 @@ class AdminsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    { 
         $admins = [
-            [1, 'Mike', 'Hillyer', 3,NULL,'Mike.Hillyer@sakilastaff.com', 1, 1, 'Mike', NULL , '2006-02-15 11:57:16'],
-            [2, 'Jon', 'Stephens', 4, NULL, 'Jon.Stephens@sakilastaff.com', 2, 1, 'Jon', NULL, '2006-02-15 11:57:16']
+            [1, 'Mike', 'Hillyer', 3,NULL,'Mike.Hillyer@sakilastaff.com', 1, 1, 'Mike', 'sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e','sha1$147388cc$1$f397d36f29901b7f6bf26e05ab0672f2de7b234e','2006-02-15 11:57:16']
         ];
         foreach($admins as $admin)
         {
@@ -28,8 +27,9 @@ class AdminsTableSeeder extends Seeder
                 'active' => $admin[7],
                 'username' => $admin[8],
                 'password' => $admin[9],
+                'confirm_password' => $admin[10],
                 'created_at' => new \DateTime(),
-                'updated_at' => $admin[10]
+                'updated_at' => $admin[11]
             ]);
         }
     }

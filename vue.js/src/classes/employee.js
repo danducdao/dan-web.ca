@@ -13,20 +13,20 @@ export var Employee = function() {
   this.address = "";
   this.ville = "";
   this.region = "";
-  this.codePostale = "";
+  this.code_postale = "";
   this.pays = "";
   this.telephone = "";
   this.cellulaire = "";
-  this.email = "";
-  this.dateNaissance = "";
-  this.dateEmbauche = "";
-  this.salaire = { montant: "", par: "" };
-  this.congeVacance = "";
-  this.congeMaladie = "";
+  this.courriel = "";
+  this.date_naissance = "";
+  this.date_embauche = "";
+  this.salaire = "";
+  this.par = "";
+  this.conge_vacance = "";
+  this.conge_maladie = "";
   this.photo = "";
   this.note = "";
-  this.dateCreation = new Date().toLocaleDateString("en-US");
-  this.active = true;
+  this.active = 1;
 
   Object.defineProperties(this, {
     AbregeOpt: {

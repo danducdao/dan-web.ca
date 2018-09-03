@@ -75,31 +75,31 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label" for="quantiteParUnite">Par unité</label>
+                                <label class="control-label" for="quantite_par_unite">Par unité</label>
                                 <input  type="text" 
-                                        name="quantiteParUnite" 
+                                        name="quantite_par_unite" 
                                         class="form-control"
-                                        v-model.trim="model.quantiteParUnite"/>
+                                        v-model.trim="model.quantite_par_unite"/>
                             </div> 
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label" for="quantite">En stock</label>
+                                <label class="control-label" for="quantite_en_stock">En stock</label>
                                 <input  type="text" 
-                                        name="quantite" 
-                                        v-input-bar-color-error=[!$v.model.quantiteEnStock.numeric,!$v.model.quantiteEnStock.$invalid]
-                                        v-model.trim="$v.model.quantiteEnStock.$model"/>
-                                <div v-if="!$v.model.quantiteEnStock.numeric" class="alert alert-danger">Quantité doit être digit</div>
+                                        name="quantite_en_stock" 
+                                        v-input-bar-color-error=[!$v.model.quantite_en_stock.numeric,!$v.model.quantite_en_stock.$invalid]
+                                        v-model.trim="$v.model.quantite_en_stock.$model"/>
+                                <div v-if="!$v.model.quantite_en_stock.numeric" class="alert alert-danger">Quantité doit être digit</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <label class="control-label" for="quantiteCommande">Commandée</label>
+                                <label class="control-label" for="quantite_commande">Commandée</label>
                                 <input type="text" 
-                                       name="quantiteCommande"
-                                       v-input-bar-color-error=[!$v.model.quantiteCommande.numeric,!$v.model.quantiteCommande.$invalid]
-                                       v-model.trim="$v.model.quantiteCommande.$model"/>
-                                <div v-if="!$v.model.quantiteCommande.numeric" class="alert alert-danger">Quantité commandée doit être digit</div>
+                                       name="quantite_commande"
+                                       v-input-bar-color-error=[!$v.model.quantite_commande.numeric,!$v.model.quantite_commande.$invalid]
+                                       v-model.trim="$v.model.quantite_commande.$model"/>
+                                <div v-if="!$v.model.quantite_commande.numeric" class="alert alert-danger">Quantité commandée doit être digit</div>
                             </div> 
                         </div>
                     </div>
@@ -140,8 +140,8 @@
                                       || !$v.model.nom.alpha 
                                       || !$v.model.categorie_id.required 
                                       || !$v.model.fournisseur_id.required
-                                      || !$v.model.quantiteEnStock.numeric
-                                      || !$v.model.quantiteCommande.numeric 
+                                      || !$v.model.quantite_en_stock.numeric
+                                      || !$v.model.quantite_commande.numeric 
                                       || !$v.model.prix.decimal
                                       || !$v.model.reapprovisionnement.numeric">
                         <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
@@ -226,10 +226,10 @@ export default {
             this.model.nom = produit.nom;
             this.model.categorie_id = produit.categorie_id;
             this.model.fournisseur_id = produit.fournisseur_id;
-            this.model.quantiteParUnite = produit.quantiteParUnite;
+            this.model.quantite_par_unite = produit.quantite_par_unite;
             this.model.prix = produit.prix;
-            this.model.quantiteEnStock = produit.quantiteEnStock;
-            this.model.quantiteCommande = produit.quantiteCommande;
+            this.model.quantite_en_stock = produit.quantite_en_stock;
+            this.model.quantite_commande = produit.quantite_commande;
             this.model.reapprovisionnement = produit.reapprovisionnement;
             this.model.discontinue = produit.discontinue;
             this.model.active = produit.active;
@@ -326,13 +326,13 @@ export default {
       categorie_id: {
         required
       },
-      quantiteEnStock: {
+      quantite_en_stock: {
         numeric
       },
       prix: {
         decimal
       },
-      quantiteCommande: {
+      quantite_commande: {
         numeric
       },
       reapprovisionnement: {

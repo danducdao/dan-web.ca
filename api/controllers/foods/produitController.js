@@ -47,10 +47,10 @@ module.exports = function(app, food) {
       "INSERT produits(nom," +
         "fournisseur_id," +
         "categorie_id," +
-        "quantiteParUnite," +
+        "quantite_par_unite," +
         "prix," +
-        "quantiteEnStock," +
-        "quantiteCommande," +
+        "quantite_en_stock," +
+        "quantite_commande," +
         "reapprovisionnement," +
         "created_at) " +
         "VALUES(?,?,?,?,?,?,?,?,?)",
@@ -58,12 +58,12 @@ module.exports = function(app, food) {
         produit.nom,
         produit.fournisseur_id,
         produit.categorie_id,
-        produit.quantiteParUnite,
+        produit.quantite_par_unite,
         (produit.prix = produit.prix === "" ? null : produit.prix),
-        (produit.quantiteEnStock =
-          produit.quantiteEnStock === "" ? null : produit.quantiteEnStock),
-        (produit.quantiteCommande =
-          produit.quantiteCommande === "" ? null : produit.quantiteCommande),
+        (produit.quantite_en_stock =
+          produit.quantite_en_stock === "" ? null : produit.quantite_en_stock),
+        (produit.quantite_commande =
+          produit.quantite_commande === "" ? null : produit.quantite_commande),
         (produit.reapprovisionnement =
           produit.reapprovisionnement === ""
             ? null
@@ -84,10 +84,10 @@ module.exports = function(app, food) {
       "UPDATE produits SET nom = ?," +
         "fournisseur_id = ?," +
         "categorie_id = ?," +
-        "quantiteParUnite = ?," +
+        "quantite_par_unite = ?," +
         "prix = ?," +
-        "quantiteEnStock = ?," +
-        "quantiteCommande = ?," +
+        "quantite_en_stock = ?," +
+        "quantite_commande = ?," +
         "reapprovisionnement = ?," +
         "discontinue = ?," +
         "active = ?," +
@@ -97,12 +97,12 @@ module.exports = function(app, food) {
         produit.nom,
         produit.fournisseur_id,
         produit.categorie_id,
-        produit.quantiteParUnite,
+        produit.quantite_par_unite,
         (produit.prix = produit.prix === "" ? null : produit.prix),
-        (produit.quantiteEnStock =
-          produit.quantiteEnStock === "" ? null : produit.quantiteEnStock),
-        (produit.quantiteCommande =
-          produit.quantiteCommande === "" ? null : produit.quantiteCommande),
+        (produit.quantite_en_stock =
+          produit.quantite_en_stock === "" ? null : produit.quantite_en_stock),
+        (produit.quantite_commande =
+          produit.quantite_commande === "" ? null : produit.quantite_commande),
         (produit.reapprovisionnement =
           produit.reapprovisionnement === ""
             ? null

@@ -23,7 +23,7 @@ class AdminsTableSeeder extends Seeder
                 'employee_id' => $admin[1],
                 'username' => $admin[2],
                 'password' => $admin[3],
-                'confirmPassword' => $admin[4],
+                'confirm_password' => $admin[4],
                 'created_at' => new \DateTime(),
             ]);
         }

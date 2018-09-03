@@ -3,21 +3,19 @@
 * Écrit par : Dan Duc Dao
 */
 
-export class Admin
-{
-     public _id:string;
-     public employee:any;
-     public username:string;
-     public password:string;
-     public dateCreation:string;
-     public active:boolean;
+export class Admin {
+  public id: string;
+  public employee_id: number;
+  public username: string;
+  public password: string;
+  public confirm_password: string;
+  public active: number;
 
-     constructor()
-     {
-       this.employee = { nom : "", prenom:""};
-       this.username = "";
-       this.password = "";
-       this.dateCreation = new Date().toLocaleDateString("en-US");
-       this.active=true;
-     }
+  constructor() {
+    this.employee_id = null;
+    this.username = "";
+    this.password = "";
+    this.confirm_password = "";
+    this.active = 1;
+  }
 }

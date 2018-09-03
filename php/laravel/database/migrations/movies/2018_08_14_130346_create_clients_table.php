@@ -13,17 +13,22 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('clients', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->tinyInteger('store_id')->unsigned()->reference('id')->on('stores');
-            $table->string('prenom',45);
-            $table->string('nom',45);
-            $table->string('courriel',50)->nullable();
-            $table->smallInteger('adresse_id')->unsigned()->references('id')->on('adresses');
-            $table->tinyInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('clients'))
+        {
+            Schema::connection('mysql3')->create('clients', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->integer('store_id')->unsigned();
+                $table->foreign('store_id')->references('id')->on('stores');
+                $table->string('prenom',120);
+                $table->string('nom',120);
+                $table->string('courriel',50)->nullable();
+                $table->integer('adresse_id')->unsigned();
+                $table->foreign('adresse_id')->references('id')->on('adresses');
+                $table->tinyInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

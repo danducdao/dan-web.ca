@@ -40,6 +40,7 @@ class FournisseursTableSeeder extends Seeder
             [26,'Pasta Buttini s.r.l.','Giovanni Giudici','Order Administrator','Via dei Gelsomini, 153','Salerno',NULL,'84100','Italy','(089] 6547665','(089] 6547667',NULL],
             [27,'Escargots Nouveaux','Marie Delamare','Sales Manager','22, rue H. Voiron','Montceau',NULL,'71300','France','85.57.00.07',NULL,NULL],
             [28,'Gai pâturage','Eliane Noz','Sales Representative','Bat. B 3, rue des Alpes','Annecy',NULL,'74000','France','38.76.98.06','38.76.98.58',NULL],
+            [29,'Forêts d\'érables','Chantal Goulet','Accounting Manager','148 rue Chasseur','Ste-Hyacinthe','Québec','J2S 7S8','Canada','(514) 555-2955','(514) 555-2921',NULL]
         ];
         foreach($fournisseurs as $fournisseur)
         {
@@ -51,11 +52,11 @@ class FournisseursTableSeeder extends Seeder
                 'adresse' => $fournisseur[4],
                 'ville' => $fournisseur[5],
                 'region' => $fournisseur[6],
-                'codePostal' => $fournisseur[7],
+                'code_postale' => $fournisseur[7],
                 'pays' => $fournisseur[8],
                 'telephone' => $fournisseur[9],
                 'fax' => $fournisseur[10],
-                'siteWeb' => $fournisseur[11],
+                'site_web' => $fournisseur[11],
                 'created_at' => new \DateTime(),
             ]);
         }

@@ -82,9 +82,9 @@ export class DetailProduitComponent implements OnInit {
             this.model.fournisseur_id = res.fournisseur_id;
             this.model.prix = res.prix;
             this.model.reapprovisionnement = res.reapprovisionnement;
-            this.model.quantiteParUnite = res.quantiteParUnite;
-            this.model.quantiteEnStock = res.quantiteEnStock;
-            this.model.quantiteCommande = res.quantiteCommande;
+            this.model.quantite_par_unite = res.quantite_par_unite;
+            this.model.quantite_en_stock = res.quantite_en_stock;
+            this.model.quantite_commande = res.quantite_commande;
             this.model.discontinue = res.discontinue;
             this.model.active = res.active;
             //Le bouton radio discontinue

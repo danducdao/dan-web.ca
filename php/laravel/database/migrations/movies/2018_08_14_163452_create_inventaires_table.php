@@ -13,14 +13,19 @@ class CreateInventairesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql3')->create('inventaires', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->smallInteger('film_id')->unsigned()->reference('id')->on('films');
-            $table->tinyInteger('store_id')->unsigned()->reference('id')->on('stores');
-            $table->tinyInteger('active')->default(1);
-            $table->timestamps();
-        });
+        if(!Schema::connection('mysql3')->hasTable('inventaires'))
+        {
+            Schema::connection('mysql3')->create('inventaires', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+                $table->increments('id');
+                $table->integer('film_id')->unsigned();
+                $table->foreign('film_id')->references('id')->on('films');
+                $table->integer('store_id')->unsigned();
+                $table->foreign('store_id')->references('id')->on('stores');
+                $table->tinyInteger('active')->default(1);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

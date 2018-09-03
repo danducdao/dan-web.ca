@@ -13,19 +13,20 @@
         </div>
         <div class="row">
                 @php
-                    $myCustomFilms = array();
+                    $movies = array();
                     foreach($films as $film)
                     {
-                        $myCustomFilms[] = array(
+                        $movies[] = array(
                                 'id' => $film->id,
                                 'Titre' => $film->titre,
                                 'Description' => $film->description,
                                 'Prix' => sprintf('$%s',$film->prix),
-                                'Année sortie' => $film->anneeSortie,
+                                'Année sortie' => $film->annee_sortie,
                                 'Langue' => $film->langue->nom,
-                                'Durée du prêt' => $film->dureeLocation,
+                                'Langue original' => $film->langue_original !== null? $film->langue_original->nom:"",
+                                'Durée du prêt' => $film->duree_location,
                                 'Longeur' => $film->longeur,
-                                'Coût remplacement' => sprintf('$%s',$film->coutRemplacement),
+                                'Coût remplacement' => sprintf('$%s',$film->cout_remplacement),
                                 'Évaluation' => $film->evaluation,
                                 'Nouveauté' => $film->nouveaute,
                                 'Image' => $film->photo,
@@ -34,17 +35,17 @@
                     }
                     $style = array(
                         3 => "text-align:right;",
-                        6 => "text-align:right;",
                         7 => "text-align:right;",
                         8 => "text-align:right;",
-                        12 => "text-align:center"
+                        9 => "text-align:right;",
+                        13 => "text-align:center"
                     )
                 @endphp
-                <listing-component :data="{{ json_encode($myCustomFilms) }}" 
+                <listing-component :data="{{ json_encode($movies) }}" 
                                    :listing-style="{{ json_encode($style) }}" 
                                    :url="'movieadmin/film'" 
-                                   :active-col="12"
-                                   :img-col="11">
+                                   :active-col="13"
+                                   :img-col="12">
                 </listing-component>   
         </div>
     </section>

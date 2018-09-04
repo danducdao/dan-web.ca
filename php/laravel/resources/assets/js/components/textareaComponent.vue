@@ -7,7 +7,7 @@
                   :cols="textareaCols" 
                   :rows="textareaRows" 
                   :class="textareaClass" v-text="textareaText" />
-         <span v-if="spanErrorMessage.length > 0" style="color:red;">*</span>        
+         <span v-if="spanErrorMessage.length > 0" style="color:red;">{{spanErrorMessage}}</span>        
     </div>   
 </template>
 
@@ -36,7 +36,7 @@
             },
             textareaText : {
                 type:String,
-                required:true
+                required:false
             },
             textareaCols : {
                 type:String,

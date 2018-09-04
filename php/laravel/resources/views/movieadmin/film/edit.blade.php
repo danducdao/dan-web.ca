@@ -58,7 +58,7 @@
                                       :select-opt-class="'form-control'"
                                       :select-opt-name = "'langue'"
                                       :select-opt-items = "{{ json_encode($selectOptLangue) }}"
-                                      :selected-opt-item="'{{ $film->langue_id }}'"
+                                      :select-opt-item="'{{ $film->langue_id }}'"
                                       :span-error = "true"
                                       :span-error-message = "'{{ $errors->first('langue') }}'" />
                 </div>
@@ -69,7 +69,7 @@
                                       :select-opt-class="'form-control'"
                                       :select-opt-name = "'langue_original'"
                                       :select-opt-items = "{{ json_encode($selectOptLangueOriginal) }}"
-                                      :selected-opt-item="'{{ $film->langue_original_id }}'" />
+                                      :select-opt-item="'{{ $film->langue_original_id }}'" />
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
                                       :select-opt-class="'form-control'"
                                       :select-opt-name = "'evaluation'"
                                       :select-opt-items = "{{ json_encode(App\Models\Movies\Film::evaluations()) }}"
-                                      :selected-opt-item="'{{ $film->evaluation }}'" />
+                                      :select-opt-item="'{{ $film->evaluation }}'" />
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -164,14 +164,10 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <button type="submit" name="ok" class="btn btn-success">
-                <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
-            </button>&nbsp;
-            <button name="back" class="btn btn-success" onclick="window.location.href='movieadmin/film';return false;">
-                <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
-                <span style="margin-left:5px;font-weight:bold;font-size:18px;" >BACK</span>
-            </button>
+            <submit-button-component button-text="OK"></submit-button-component>&nbsp;
+            <back-button-component button-text="BACK"
+                                    redirect-url="movieadmin/film">
+            </back-button-component>
         </div>
     </div>
     {{Form::close()}}

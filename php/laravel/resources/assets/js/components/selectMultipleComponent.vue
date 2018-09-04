@@ -16,9 +16,9 @@
                             :checked="selectedItem.split(',').includes(selectOpt.nom)?'checked':''">&nbsp;{{selectOpt.nom}}
                     </label>
                 </div>
-                <input type="hidden" :name="selectOptName" :value="selectedItem" />
+                <input type="hidden" :name="selectOptName" :value="inputValue" />
             </div>
-            <span v-if="spanErrorMessage" style="color:red;">*</span>
+            <span v-if="spanErrorMessage" style="color:red;" v-text="spanErrorMessage" />
         </div>
     </div>
 </template>
@@ -62,13 +62,9 @@
         data(){
             return {
                 visible:false,
-                selectedItem:this.selectOptItem !== ""?this.selectOptItem:"---Sélectionner--"
+                selectedItem:this.selectOptItem?this.selectOptItem:"---Sélectionner--",
+                inputValue:this.selectOptItem?this.selectOptItem:""
             }
-        },
-        created(){
-            console.log('xxxx')
-            console.log(this.selectOptItem);
-            console.log(this.selectedItem.split(','));
         },
         methods:{
             toggleVisible(){
@@ -91,8 +87,8 @@
                             this.selectedItem = selectedValues.join();
                         }
                     }
-                    console.log(this.selectedItem);
                 }
+                this.inputValue = this.selectedItem;
             }
         }
     }

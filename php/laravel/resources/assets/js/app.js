@@ -47,6 +47,16 @@ Vue.component(
   require("./components/selectMultipleComponent.vue")
 );
 
+Vue.component(
+  "submit-button-component",
+  require("./components/submitButtonComponent.vue")
+);
+
+Vue.component(
+  "back-button-component",
+  require("./components/backButtonComponent.vue")
+);
+
 const app = new Vue({
   el: "#wrapper"
 });

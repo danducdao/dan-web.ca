@@ -20,10 +20,21 @@ class Film extends Model
         'description' => 'required',
         'langue' => 'required',
         'dureeLocation' => 'regex:/^[1-9][0-9]*$/',
-        'prix' => 'regex:/^[0-9]+\\.?[0-9]*$/',
-        'coutRemplacement' => 'regex:/^[0-9]+\\.?[0-9]*$/'
+        'prix' => 'nullable|regex:/^[0-9]+\\.?[0-9]*$/',
+        'cout_remplacement' => 'nullable|regex:/^[0-9]+\\.?[0-9]*$/'
     );
 
+    public static function boot(){
+		parent::boot();
+		self::creating(function ($my_model) {
+            $my_model->duree_location = 3;
+            $my_model->prix = 4.99;
+            $my_model->cout_remplacement = 19.99;
+            $my_model->evaluation = 'G';
+            $my_model->active = 1;
+		});
+    }
+    
     public function categories()
     {
         return $this->belongsToMany('App\Models\Movies\Categorie')->withTimestamps();

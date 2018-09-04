@@ -32,7 +32,17 @@ class FilmsController extends Controller
      */
     public function create()
     {
-        return View::make('movieadmin.film.create');
+        $langue_array = [];
+
+        array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
+        array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
+
+        $selectOptLangue = $selectOptLangueOriginal = []; 
+
+        $this->initLangue($langue_array[0],$selectOptLangue);
+        $this->initLangue($langue_array[1],$selectOptLangueOriginal);
+
+        return View::make('movieadmin.film.create',compact('selectOptLangue','selectOptLangueOriginal'));
     }
 
     /**
@@ -43,7 +53,29 @@ class FilmsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid = Validator::make(Input::all(),Film::$rules);
+
+        if($valid->fails())
+        {
+            return Redirect::back()->withInput()->withErrors($valid);
+        }
+
+        $film = new Film();
+        $film->titre = $request->input('titre');
+        $film->description = $request->input('description');
+        $film->annee_sortie = $request->input('annee_sortie');
+        $film->langue_id = $request->input('langue');
+        $film->langue_original_id = $request->input('langue_original');
+        $film->duree_location = $request->input('duree_location'); 
+        $film->prix = $request->input('prix');
+        $film->longeur = $request->input('longeur');
+        $film->cout_remplacement = $request->input('cout_remplacement');
+        $film->evaluation = $request->input('evaluation');
+        $film->nouveaute =  trim($request->input('nouveaute'));
+        $film->photo = $request->input('file');
+        
+        if($film->save())
+            return redirect('movieadmin/film');
     }
 
     private function initLangue($langues,array & $array_langue)
@@ -121,8 +153,8 @@ class FilmsController extends Controller
         $film->nouveaute =  trim($request->input('nouveaute'));
         $film->photo = $request->input('file');
         $film->active = $request->input('active');
-        $film->save();
         
-        return redirect('movieadmin/film');
+        if($film->save())
+            return redirect('movieadmin/film');
     }
 }

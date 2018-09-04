@@ -860,6 +860,10 @@ Vue.component("select-component", __webpack_require__(76));
 
 Vue.component("select-multiple-component", __webpack_require__(81));
 
+Vue.component("submit-button-component", __webpack_require__(101));
+
+Vue.component("back-button-component", __webpack_require__(106));
+
 var app = new Vue({
   el: "#wrapper"
 });
@@ -49929,7 +49933,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         textareaText: {
             type: String,
-            required: true
+            required: false
         },
         textareaCols: {
             type: String,
@@ -49983,7 +49987,9 @@ var render = function() {
     }),
     _vm._v(" "),
     _vm.spanErrorMessage.length > 0
-      ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+      ? _c("span", { staticStyle: { color: "red" } }, [
+          _vm._v(_vm._s(_vm.spanErrorMessage))
+        ])
       : _vm._e()
   ])
 }
@@ -50671,13 +50677,13 @@ var HEIGHT = 135,
     props: {
         fileData: {
             type: String,
-            required: true
+            required: false
         }
     },
     data: function data() {
         return {
             uploadStatus: 0,
-            file: this.fileData,
+            file: this.fileData ? this.fileData : "",
             largeur: HEIGHT,
             longeur: WIDTH,
             styleXRemove: {
@@ -50911,7 +50917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: Array,
             required: true
         },
-        selectedOptItem: {
+        selectOptItem: {
             type: String,
             required: true
         },
@@ -50951,8 +50957,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.selectedOptItem,
-              expression: "selectedOptItem"
+              value: _vm.selectOptItem,
+              expression: "selectOptItem"
             }
           ],
           class: _vm.selectOptClass,
@@ -50967,7 +50973,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.selectedOptItem = $event.target.multiple
+              _vm.selectOptItem = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }
@@ -50988,7 +50994,10 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm.spanErrorMessage
-        ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+        ? _c("span", {
+            staticStyle: { color: "red" },
+            domProps: { textContent: _vm._s(_vm.spanErrorMessage) }
+          })
         : _vm._e()
     ])
   ])
@@ -51193,13 +51202,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             visible: false,
-            selectedItem: this.selectOptItem !== "" ? this.selectOptItem : "---Sélectionner--"
+            selectedItem: this.selectOptItem ? this.selectOptItem : "---Sélectionner--",
+            inputValue: this.selectOptItem ? this.selectOptItem : ""
         };
-    },
-    created: function created() {
-        console.log('xxxx');
-        console.log(this.selectOptItem);
-        console.log(this.selectedItem.split(','));
     },
 
     methods: {
@@ -51224,8 +51229,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         this.selectedItem = selectedValues.join();
                     }
                 }
-                console.log(this.selectedItem);
             }
+            this.inputValue = this.selectedItem;
         }
     }
 });
@@ -51294,14 +51299,17 @@ var render = function() {
           _vm._v(" "),
           _c("input", {
             attrs: { type: "hidden", name: _vm.selectOptName },
-            domProps: { value: _vm.selectedItem }
+            domProps: { value: _vm.inputValue }
           })
         ],
         2
       ),
       _vm._v(" "),
       _vm.spanErrorMessage
-        ? _c("span", { staticStyle: { color: "red" } }, [_vm._v("*")])
+        ? _c("span", {
+            staticStyle: { color: "red" },
+            domProps: { textContent: _vm._s(_vm.spanErrorMessage) }
+          })
         : _vm._e()
     ])
   ])
@@ -51333,6 +51341,337 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(102)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(105)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\submitButtonComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8707bb28", Component.options)
+  } else {
+    hotAPI.reload("data-v-8707bb28", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(103);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6b4cd563", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8707bb28\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./submitButtonComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8707bb28\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./submitButtonComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        buttonText: {
+            type: String,
+            require: true
+        }
+    }
+});
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    { staticClass: "btn btn-success", attrs: { type: "submit", name: "ok" } },
+    [
+      _c("i", {
+        staticClass: "fa fa-check-square-o",
+        staticStyle: { "font-size": "24px", float: "left" }
+      }),
+      _vm._v(" "),
+      _c("span", {
+        staticStyle: {
+          "margin-left": "5px",
+          "font-weight": "bold",
+          "font-size": "18px"
+        },
+        domProps: { textContent: _vm._s(_vm.buttonText) }
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8707bb28", module.exports)
+  }
+}
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(107)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(109)
+/* template */
+var __vue_template__ = __webpack_require__(110)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backButtonComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1cb5697d", Component.options)
+  } else {
+    hotAPI.reload("data-v-1cb5697d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(108);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6a7150ac", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1cb5697d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./backButtonComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1cb5697d\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./backButtonComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        buttonText: {
+            type: String,
+            require: true
+        },
+        redirectUrl: {
+            type: String,
+            required: true
+        }
+    },
+    methods: {
+        redirect: function redirect() {
+            window.location.href = this.redirectUrl;
+        }
+    }
+});
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn btn-success",
+      attrs: { name: "back" },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.redirect($event)
+        }
+      }
+    },
+    [
+      _c("i", {
+        staticClass: "fa fa-backward",
+        staticStyle: { "font-size": "24px", float: "left" }
+      }),
+      _vm._v(" "),
+      _c("span", {
+        staticStyle: {
+          "margin-left": "5px",
+          "font-weight": "bold",
+          "font-size": "18px"
+        },
+        domProps: { textContent: _vm._s(_vm.buttonText) }
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1cb5697d", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

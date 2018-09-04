@@ -22,13 +22,13 @@
         props : {
             fileData : {
                 type:String,
-                required:true
+                required:false
             }
         },
         data() {
             return {
                 uploadStatus:0,
-                file:this.fileData,
+                file:this.fileData?this.fileData:"",
                 largeur:HEIGHT,
                 longeur:WIDTH,
                 styleXRemove : {

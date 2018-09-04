@@ -3,7 +3,7 @@
 <section>
         <div class="row" style="margin-bottom:20px;">
             <div class="col-lg-12" style="padding-left:0">
-                <a href="{{url('movieadmin/film/store')}}" class="btn btn-primary">Nouveau</a>
+                <a href="{{url('movieadmin/film/create')}}" class="btn btn-primary">Nouveau</a>
             </div>
         </div>
         <div class="row" style="margin-bottom:20px;">

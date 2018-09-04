@@ -3,11 +3,11 @@
         <label :for="selectOptName" :class="labelClass">{{labelText}}</label>
         <span v-if="spanError" style="color:red;">*</span>
         <div class="input-group m-b">
-            <select :name="selectOptName" :class="selectOptClass" v-model="selectedOptItem">
+            <select :name="selectOptName" :class="selectOptClass" v-model="selectOptItem">
                 <option :disabled="spanError" value="">--Sélectionner--</option>
                 <option v-for="selectOpt in selectOptItems" :value="selectOpt.id" >{{selectOpt.nom}}</option>
             </select>
-            <span v-if="spanErrorMessage" style="color:red;">*</span>
+            <span v-if="spanErrorMessage" style="color:red;" v-text="spanErrorMessage" />
         </div>      
     </div>
 </template>
@@ -39,7 +39,7 @@
                 type:Array,
                 required:true
             },
-            selectedOptItem :{
+            selectOptItem :{
                 type:String,
                 required:true
             },

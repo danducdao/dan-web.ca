@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //Food store
-        $this->call(FournisseursTableSeeder::class);
+      /*  $this->call(FournisseursTableSeeder::class);
         $this->call(database\seeds\foods\CategoriesTableSeeder::class);
         $this->call(ProduitsTableSeeder::class);  
         $this->call(database\seeds\foods\EmployeesTableSeeder::class);
-        $this->call(database\seeds\foods\AdminsTableSeeder::class);
+        $this->call(database\seeds\foods\AdminsTableSeeder::class); */
          
         //Movie store
         $this->call(PaysTableSeeder::class);
@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ActeurFilmTableSeeder::class);
 
         //Music store
-        $this->call(GenresTableSeeder::class);
+      /*  $this->call(GenresTableSeeder::class);
         $this->call(ArtistesTableSeeder::class);
-        $this->call(AlbumsTableSeeder::class);   
+        $this->call(AlbumsTableSeeder::class);   */
     }
 }

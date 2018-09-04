@@ -145,13 +145,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('nouveaute','Nouveauté',array('class' => 'control-label'))}}
-                        {{Form::text('nouveaute',$film->nouveaute,array('class' => 'form-control'))}}  
+                        <select-multiple-component :label-text="'Nouveauté'"
+                                                   :label-class ="'control-label'"
+                                                   :select-opt-name = "'nouveaute'"
+                                                   :select-opt-item="'{{ $film->nouveaute }}'"
+                                                   :select-opt-items = "{{ json_encode(App\Models\Movies\Film::nouveautes()) }}" />
+                        
                     </div>
-                </div><br>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('nouveaute','Nouveauté',array('class' => 'control-label'))}}
+                        {{Form::label('active','Active',array('class' => 'control-label'))}}
                         <radio-component :attributs="{{ json_encode(App\Classes\Helper::radioBtnActiveAttribut($film->active)) }}"></radio-component>
                     </div>
                 </div>

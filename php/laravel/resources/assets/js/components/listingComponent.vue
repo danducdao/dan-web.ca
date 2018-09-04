@@ -28,7 +28,7 @@
                             <template v-if="key === imgCol">
                                 <td :style="listingStyle[key]?listingStyle[key]:''" >
                                     <template v-if="body">
-                                        <img :src="'../../../assets/images/placeholder.gif'" />
+                                        <img :src="body" />
                                     </template>
                                 </td>
                             </template>

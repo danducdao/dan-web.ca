@@ -12,7 +12,7 @@ use App\Models\Movies\Langue;
 use App\Models\Movies\LangueOriginal;
 use Input;
 
-class FilmController extends Controller
+class FilmsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,9 +57,6 @@ class FilmController extends Controller
         }
     }
 
-    public function test(){
-      echo "tesss";
-    }
     /**
      * Display the specified resource.
      *
@@ -121,7 +118,7 @@ class FilmController extends Controller
         $film->longeur = $request->input('longeur');
         $film->cout_remplacement = $request->input('cout_remplacement');
         $film->evaluation = $request->input('evaluation');
-        $film->nouveaute = $request->input('nouveaute');
+        $film->nouveaute =  trim($request->input('nouveaute'));
         $film->photo = $request->input('file');
         $film->active = $request->input('active');
         $film->save();

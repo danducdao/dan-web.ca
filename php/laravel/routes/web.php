@@ -23,6 +23,6 @@ Route::get('movie/excel/readXLSX','Movies\Excels\ReadExcelController@readXSLX');
 Route::get('movie/excel/readCSV','Movies\Excels\ReadExcelController@readCSV');
 
 Route::group(array('prefix' => 'movieadmin'), function(){
-     Route::resource('film','MovieAdmin\FilmController');
+     Route::resource('film','MovieAdmin\FilmsController');
 });
 

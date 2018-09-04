@@ -60,7 +60,7 @@ class Film extends Model
     {
         $nouveautes = array(
              'Trailers' => 'Trailers',
-             'Commentairies' => 'Commentairies',
+             'Commentaries' => 'Commentaries',
              'Deleted Scenes' =>  'Deleted Scenes',
              'Behind the Scenes' => 'Behind the Scenes'
          );

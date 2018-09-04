@@ -32,15 +32,9 @@ class FilmsController extends Controller
      */
     public function create()
     {
-        $langue_array = [];
-
-        array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
-        array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
-
         $selectOptLangue = $selectOptLangueOriginal = []; 
 
-        $this->initLangue($langue_array[0],$selectOptLangue);
-        $this->initLangue($langue_array[1],$selectOptLangueOriginal);
+        $this->getLangues($selectOptLangue,$selectOptLangueOriginal);
 
         return View::make('movieadmin.film.create',compact('selectOptLangue','selectOptLangueOriginal'));
     }
@@ -78,6 +72,16 @@ class FilmsController extends Controller
             return redirect('movieadmin/film');
     }
 
+    private function getLangues(array & $selectOptLangue,array & $selectOptLangueOriginal)
+    {
+        $langue_array = [];
+
+        array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
+        array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
+
+        $this->initLangue($langue_array[0],$selectOptLangue);
+        $this->initLangue($langue_array[1],$selectOptLangueOriginal);
+    }
     private function initLangue($langues,array & $array_langue)
     {
         foreach($langues as $key => $langue)
@@ -108,17 +112,11 @@ class FilmsController extends Controller
      */
     public function edit($id)
     {
-        $langue_array = [];
-
         $film = Film::with('Langue','langue_original')->find($id);
-        
-        array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
-        array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
 
         $selectOptLangue = $selectOptLangueOriginal = []; 
 
-        $this->initLangue($langue_array[0],$selectOptLangue);
-        $this->initLangue($langue_array[1],$selectOptLangueOriginal);
+        $this->getLangues($selectOptLangue,$selectOptLangueOriginal);
 
         return View::make('movieadmin.film.edit',compact('film','selectOptLangue','selectOptLangueOriginal'));
     }

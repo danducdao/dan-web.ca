@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategorieFilmTableSeeder extends Seeder
+class CategorieFilmsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -1015,7 +1015,7 @@ class CategorieFilmTableSeeder extends Seeder
         ];
         foreach($categorieFilms as $categorieFilm)
         {
-            DB::connection('mysql3')->table('categorie_film')->insert([
+            DB::connection('mysql3')->table('categorie_films')->insert([
                 'film_id' => $categorieFilm[0], 
                 'categorie_id' => $categorieFilm[1],
                 'created_at' => new \DateTime(),

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Movies\Film;
 use App\Models\Movies\Langue;
 use App\Models\Movies\LangueOriginal;
+use App\Models\Movies\Categorie;
+use App\Models\Movies\CategorieFilm;
 use Input;
 
 class FilmsController extends Controller
@@ -21,7 +23,12 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::all();
+        $films = Film::leftJoin('categorie_films',function($join){
+             $join->on('Films.id','=','categorie_films.film_id');
+        })->leftJoin('categories',function($join){
+            $join->on('categorie_films.categorie_id','=','categories.id');
+        })->select('films.*','categories.nom AS nom_categorie')->get();
+
         return View::make('movieadmin.film.index',compact('films'));
     }
 
@@ -32,11 +39,15 @@ class FilmsController extends Controller
      */
     public function create()
     {
-        $selectOptLangue = $selectOptLangueOriginal = []; 
+        $selectOptLangue = $this->optLangue();
 
-        $this->getLangues($selectOptLangue,$selectOptLangueOriginal);
+        $selectOptCategorie = $this->getOptions(Categorie::where('active',1)->pluck('nom','id'));
 
-        return View::make('movieadmin.film.create',compact('selectOptLangue','selectOptLangueOriginal'));
+        return View::make('movieadmin.film.create')->with([
+                                                            'selectOptLangue' => $selectOptLangue[0],
+                                                            'selectOptLangueOriginal' => $selectOptLangue[1],
+                                                            'selectOptCategorie' => $selectOptCategorie
+                                                          ]);
     }
 
     /**
@@ -67,41 +78,47 @@ class FilmsController extends Controller
         $film->evaluation = $request->input('evaluation');
         $film->nouveaute =  trim($request->input('nouveaute'));
         $film->photo = $request->input('file');
-        
+    
         if($film->save())
-            return redirect('movieadmin/film');
+        {
+            $categorieFilm = new CategorieFilm();
+            $categorieFilm->categorie_id = $request->input('categorie');
+            $categorieFilm->film_id = $film->id;
+            if(!$categorieFilm->save())
+            {
+                $message = "Table catégorie film a été sauvegardé avec sans succès";
+                return $this->redirect_with_message_errors('film.index',array("errors",$message));
+            }
+        }else{
+            $message = "Table Filma été sauvegardé avec sans succès";
+            return $this->redirect_with_message_errors('film.index',array("errors",$message));
+        }
+        return $this->redirect_with_message_success("film.index","Items ont été sauvegardés avec succès");
     }
 
-    private function getLangues(array & $selectOptLangue,array & $selectOptLangueOriginal)
+    private function optLangue() : array
     {
         $langue_array = [];
 
         array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
         array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
 
-        $this->initLangue($langue_array[0],$selectOptLangue);
-        $this->initLangue($langue_array[1],$selectOptLangueOriginal);
-    }
-    private function initLangue($langues,array & $array_langue)
-    {
-        foreach($langues as $key => $langue)
-        {
-            $item = app()->make('stdClass');
-            $item->id = $key;
-            $item->nom = $langue;
-            $array_langue[] = $item;
-        }
-    }
+        $langue_array[0] = $this->getOptions($langue_array[0]);
+        $langue_array[1] = $this->getOptions($langue_array[1]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+        return $langue_array;
+    }
+    private function getOptions(object $items) : array
     {
-        //
+        $options = array();
+        foreach($items as $key => $item)
+        {
+            $std = app()->make('stdClass');
+            $std->id = $key;
+            $std->nom = $item;
+            $options[] = $std;
+        }
+        return $options;
     }
 
     /**
@@ -112,13 +129,23 @@ class FilmsController extends Controller
      */
     public function edit($id)
     {
-        $film = Film::with('Langue','langue_original')->find($id);
+        $film = Film::with('Langue','langue_original')->where(['id' => $id,'active' => 1])->firstOrFail();
 
-        $selectOptLangue = $selectOptLangueOriginal = []; 
+        $selectOptLangue = $this->optLangue();
 
-        $this->getLangues($selectOptLangue,$selectOptLangueOriginal);
+        $selectOptCategorie = $this->getOptions(Categorie::where('active',1)->pluck('nom','id'));
 
-        return View::make('movieadmin.film.edit',compact('film','selectOptLangue','selectOptLangueOriginal'));
+        $categorie = Categorie::join('categorie_films',function($join){
+             $join->on('categories.id', '=', 'categorie_films.categorie_id');
+        })->where('categorie_films.film_id',$id)->first();
+        
+        return View::make('movieadmin.film.edit')->with([
+                                                          'film' => $film,
+                                                          'categorie' => $categorie,
+                                                          'selectOptLangue' => $selectOptLangue[0],
+                                                          'selectOptLangueOriginal' => $selectOptLangue[1],
+                                                          'selectOptCategorie' => $selectOptCategorie
+                                                        ]);
     }
 
     /**
@@ -153,6 +180,19 @@ class FilmsController extends Controller
         $film->active = $request->input('active');
         
         if($film->save())
-            return redirect('movieadmin/film');
+        {
+            $categorieFilm = CategorieFilm::where('film_id', $id)->first();
+            $categorieFilm->active = $film->active;
+            $categorieFilm->categorie_id = $request->input('categorie');
+            if(!$categorieFilm->save())
+            {
+                $message = "Table catégorie film a été sauvegardé avec sans succès";
+                return $this->redirect_with_message_errors('film.index',array("errors", $message ));
+            }
+        }else{
+            $message = "Table Film a été sauvegardé avec sans succès";
+            return $this->redirect_with_message_errors('film.index',array("errors",$message));
+        }
+        return $this->redirect_with_message_success("film.index","Items ont été sauvegardés avec succès");
     }
 }

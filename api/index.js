@@ -9,7 +9,7 @@ const bodyParse = require("body-parser");
 const cors = require("cors");
 const app = express();
 const produitController = require("./controllers/foods/produitController");
-const categorieController = require("./controllers/foods/categorieController");
+const foodCategorieController = require("./controllers/foods/categorieController");
 const fournisseurController = require("./controllers/foods/fournisseurController");
 const googleMapController = require("./controllers/foods/googleMapController");
 const shoppingCartController = require("./controllers/foods/shoppingCartController");
@@ -18,6 +18,7 @@ const employeeController = require("./controllers/foods/employeeController");
 const emailController = require("./controllers/foods/emailController");
 const shoppingCartMusicController = require("./controllers/musics/shoppingCartController");
 const filmController = require("./controllers/movies/filmController");
+const movieCategorieController = require("./controllers/movies/categorieController");
 
 // connection bd food
 const food = mysql.createConnection({
@@ -64,7 +65,7 @@ app.use(function(req, res, next) {
 produitController(app, food);
 
 //Categorie controller
-categorieController(app, food);
+foodCategorieController(app, food);
 
 //Fournisseur controller
 fournisseurController(app, food);
@@ -89,6 +90,9 @@ shoppingCartMusicController(app, music);
 
 //film controller
 filmController(app, movie);
+
+//categorie controller
+movieCategorieController(app, movie);
 
 app.use(function(err, req, res, next) {
   res.status(422).send({ erreur: err.message });

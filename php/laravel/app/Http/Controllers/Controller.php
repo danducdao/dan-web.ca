@@ -10,4 +10,17 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function redirect_with_message_errors(string $route,array $message,array $id = null) : array{
+        return redirect()->route($route,$id)->withErrors($message);
+    }
+
+    protected function redirect_with_message_success(string $route,string $message) : string
+    {
+        return redirect()->route($route)->withSuccess($message);
+    }
+
+    protected function back_message_errors(object $message) : object{
+        return back()->withInput()->withErrors($message);
+    }
 }

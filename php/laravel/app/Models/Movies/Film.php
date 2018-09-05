@@ -19,6 +19,7 @@ class Film extends Model
         'titre' => 'required',
         'description' => 'required',
         'langue' => 'required',
+        'categorie' => 'required',
         'dureeLocation' => 'regex:/^[1-9][0-9]*$/',
         'prix' => 'nullable|regex:/^[0-9]+\\.?[0-9]*$/',
         'cout_remplacement' => 'nullable|regex:/^[0-9]+\\.?[0-9]*$/'
@@ -37,7 +38,7 @@ class Film extends Model
     
     public function categories()
     {
-        return $this->belongsToMany('App\Models\Movies\Categorie')->withTimestamps();
+        return $this->belongsToMany('App\Models\Movies\Categorie','categorie_films','film_id','categorie_id')->withTimestamps();
     }
 
     public function acteurs()

@@ -8,7 +8,7 @@
         </div>
         <div class="row" style="margin-bottom:20px;">
             <div class="col-lg-12" style="padding-left:0">
-                <span style="font-size:25px;"><strong>Liste des catégories</strong></span>
+                <span style="font-size:25px;"><strong>Liste des films</strong></span>
             </div>
         </div>
         <div class="row">
@@ -19,6 +19,7 @@
                         $movies[] = array(
                                 'id' => $film->id,
                                 'Titre' => $film->titre,
+                                'Catégorie' => $film->nom_categorie,
                                 'Description' => $film->description,
                                 'Prix' => sprintf('$%s',$film->prix),
                                 'Année sortie' => $film->annee_sortie,
@@ -34,15 +35,16 @@
                             );
                     }
                     $style = array(
-                        3 => "text-align:right;",
-                        7 => "text-align:right;",
+                        4 => "text-align:right;",
                         8 => "text-align:right;",
                         9 => "text-align:right;",
-                        13 => "text-align:center"
+                        10 => "text-align:right;",
+                        14 => "text-align:center"
                     )
                 @endphp
                 <listing-component :data="{{ json_encode($movies) }}" 
                                    :listing-style="{{ json_encode($style) }}" 
+                                   :table-style="'width:100%;'"
                                    :url="'movieadmin/film'" 
                                    :active-col="13"
                                    :img-col="12">

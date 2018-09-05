@@ -13,10 +13,14 @@ use App\Classes\Helper;
 class Categorie extends Model
 {
     protected $connection = Helper::CONNECTION_DB_MOVIE;
-    protected $fillable = ['created_at','updated_at'];
+    protected $fillable = ['nom','active','created_at','updated_at'];
+
+    public static $rules = array(
+        'nom' => 'required'
+    );
 
     public function films()
     {
-        return $this->belongsToMany('App\Models\Movies\Film')->withTimestamps();
+        return $this->belongsToMany('App\Models\Movies\Film','categorie_films','categorie_id','film_id')->withTimestamps();
     }
 }

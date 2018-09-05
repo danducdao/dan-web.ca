@@ -1,9 +1,9 @@
 <template>
-        <table class="table table-bordered" cellspacing="1" cellpadding="1">
+        <table class="table table-bordered" cellspacing="1" cellpadding="1" :style="tableStyle">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
+                    <th style="width:20px;"></th>
+                    <th style="width:20px;"></th>
                     <template v-for="(headers,key) in this.data">
                         <template v-if="key === 0" v-for="header in Object.keys(headers)">
                             <th v-if="header !== 'id'" style="text-align:center;vertical-align:top;">{{ header }}</th>
@@ -18,15 +18,15 @@
                         <td><a href="#" @click.prevent="redirect(bodies['id'])">modifier</a></td>
                         <template v-for="(body,key) in Object.values(bodies)">
                             <template v-if="key === activeCol">
-                            <td :style="listingStyle[key]?listingStyle[key]:''" >
+                            <td :style="listingStyle && listingStyle[key]?listingStyle[key]:''" >
                                 <span v-if='body == 1'><i class='fa fa-check-square'></i></span>
                             </td>
                             </template>
                             <template v-else-if="key !== 0 && key !== imgCol">
-                                <td :style="listingStyle[key]?listingStyle[key]:''" >{{ body }}</td>
+                                <td :style="listingStyle && listingStyle[key]?listingStyle[key]:''" >{{ body }}</td>
                             </template>
                             <template v-if="key === imgCol">
-                                <td :style="listingStyle[key]?listingStyle[key]:''" >
+                                <td :style="listingStyle && listingStyle[key]?listingStyle[key]:''" >
                                     <template v-if="body">
                                         <img :src="body" />
                                     </template>
@@ -43,7 +43,32 @@
     import VueResource from "vue-resource";
     Vue.use(VueResource);
     export default {
-        props: ['data', 'listingStyle','url','activeCol','imgCol'],
+        props: {
+            data:{
+                type:Array,
+                required:true
+            },
+            listingStyle:{
+                type:Object,
+                required:false
+            },
+            url:{
+                type:String,
+                required:true
+            },
+            activeCol:{
+                type:Number,
+                required:true
+            },
+            imgCol:{
+                type:Number,
+                required:false
+            },
+            tableStyle:{
+                type:String,
+                required:false
+            }
+        },
         methods:{
             removeItem(id)
             {

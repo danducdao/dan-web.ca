@@ -3,7 +3,7 @@
         <label :for="selectOptName" :class="labelClass">{{labelText}}</label>
         <span v-if="spanError" style="color:red;">*</span>
         <div class="input-group m-b">
-            <select :name="selectOptName" :class="selectOptClass" v-model="selectOptItem">
+            <select :name="selectOptName" :class="selectOptClass" v-model="selecteOptValue">
                 <option :disabled="spanError" value="">--Sélectionner--</option>
                 <option v-for="selectOpt in selectOptItems" :value="selectOpt.id" >{{selectOpt.nom}}</option>
             </select>
@@ -14,6 +14,11 @@
 
 <script>
    export default {
+    data() {
+         return {
+             selecteOptValue:""
+         }
+    },
     props: {
             divClass : {
                 type:String,
@@ -51,6 +56,9 @@
                 type:String,
                 required:false
             }
+        },
+        created(){
+            this.selecteOptValue = this.selectOptItem;
         }
     }
 </script>

@@ -36,6 +36,17 @@
                     </textarea-component>
                 </div><br>
                 <div class="row">
+                         <select-component :div-class="'col-md-6'"
+                                            :label-class="'control-label'"
+                                            :label-text="'Catégorie'"
+                                            :select-opt-class="'form-control'"
+                                            :select-opt-name = "'categorie'"
+                                            :select-opt-items = "{{ json_encode($selectOptCategorie) }}"
+                                            :select-opt-item="'{{ $categorie->categorie_id }}'"
+                                            :span-error = "true"
+                                            :span-error-message = "'{{ $errors->first('categorie') }}'" />
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         {{Form::label('longeur','Longeur',array('class' => 'control-label'))}}
                         <div class="input-group m-b">

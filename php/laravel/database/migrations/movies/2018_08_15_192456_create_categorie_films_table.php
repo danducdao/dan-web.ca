@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategorieFilmTable extends Migration
+class CreateCategorieFilmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCategorieFilmTable extends Migration
      */
     public function up()
     {
-        if(!Schema::connection('mysql3')->hasTable('categorie_film'))
+        if(!Schema::connection('mysql3')->hasTable('categorie_films'))
         {
-            Schema::connection('mysql3')->create('categorie_film', function (Blueprint $table) {
+            Schema::connection('mysql3')->create('categorie_films', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 $table->integer('film_id')->unsigned();
@@ -35,6 +35,6 @@ class CreateCategorieFilmTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql3')->dropIfExists('categorie_film');
+        Schema::connection('mysql3')->dropIfExists('categorie_films');
     }
 }

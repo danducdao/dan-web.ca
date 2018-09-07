@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class MovieDatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -11,13 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //Food store
-       /* $this->call(FournisseursTableSeeder::class);
-        $this->call(database\seeds\foods\CategoriesTableSeeder::class);
-        $this->call(ProduitsTableSeeder::class);  
-        $this->call(database\seeds\foods\EmployeesTableSeeder::class);
-        $this->call(database\seeds\foods\AdminsTableSeeder::class); */
-         
         //Movie store
         $this->call(PaysTableSeeder::class);
         $this->call(VillesTableSeeder::class); 
@@ -32,11 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(InventairesTableSeeder::class);
         $this->call(AdminsTableSeeder::class);
         $this->call(CategorieFilmsTableSeeder::class);
-        $this->call(ActeurFilmTableSeeder::class);
-
-        //Music store
-      /*  $this->call(GenresTableSeeder::class);
-        $this->call(ArtistesTableSeeder::class);
-        $this->call(AlbumsTableSeeder::class);  */ 
+        $this->call(ActeurFilmsTableSeeder::class);
     }
 }

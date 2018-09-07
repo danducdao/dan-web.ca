@@ -8,17 +8,19 @@ const mysql = require("mysql");
 const bodyParse = require("body-parser");
 const cors = require("cors");
 const app = express();
-const produitController = require("./controllers/foods/produitController");
+
+const acteurController = require("./controllers/movies/acteurController");
+const adminController = require("./controllers/foods/adminController");
+const emailController = require("./controllers/foods/emailController");
+const employeeController = require("./controllers/foods/employeeController");
+const filmController = require("./controllers/movies/filmController");
 const foodCategorieController = require("./controllers/foods/categorieController");
 const fournisseurController = require("./controllers/foods/fournisseurController");
 const googleMapController = require("./controllers/foods/googleMapController");
-const shoppingCartController = require("./controllers/foods/shoppingCartController");
-const adminController = require("./controllers/foods/adminController");
-const employeeController = require("./controllers/foods/employeeController");
-const emailController = require("./controllers/foods/emailController");
-const shoppingCartMusicController = require("./controllers/musics/shoppingCartController");
-const filmController = require("./controllers/movies/filmController");
 const movieCategorieController = require("./controllers/movies/categorieController");
+const produitController = require("./controllers/foods/produitController");
+const shoppingCartController = require("./controllers/foods/shoppingCartController");
+const shoppingCartMusicController = require("./controllers/musics/shoppingCartController");
 
 // connection bd food
 const food = mysql.createConnection({
@@ -61,8 +63,20 @@ app.use(function(req, res, next) {
   next();
 });
 
-//Produit controller
-produitController(app, food);
+//Acteur controller
+acteurController(app, movie);
+
+//Admin controller
+adminController(app, food);
+
+//Email controller
+emailController(app);
+
+//Employee controller
+employeeController(app, food);
+
+//film controller
+filmController(app, movie);
 
 //Categorie controller
 foodCategorieController(app, food);
@@ -73,26 +87,17 @@ fournisseurController(app, food);
 //Google map controller
 googleMapController(app);
 
+//categorie controller
+movieCategorieController(app, movie);
+
+//Produit controller
+produitController(app, food);
+
 //Shopping cart food controller
 shoppingCartController(app, food);
 
-//Admin controller
-adminController(app, food);
-
-//Employee controller
-employeeController(app, food);
-
-//Email controller
-emailController(app);
-
 //shopping cart music controller
 shoppingCartMusicController(app, music);
-
-//film controller
-filmController(app, movie);
-
-//categorie controller
-movieCategorieController(app, movie);
 
 app.use(function(err, req, res, next) {
   res.status(422).send({ erreur: err.message });

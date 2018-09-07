@@ -23,14 +23,13 @@
                             );
                     }
                     $style = array(
-                        2 => "text-align:center;width:50px;"
+                        'Active' => "text-align:center;width:50px;"
                     )
                 @endphp
                 <listing-component :data="{{ json_encode($my_categories) }}" 
                                    :url="'movieadmin/categorie'" 
-                                   :listing-style="{{ json_encode($style) }}" 
-                                   :table-style="'width:20%;'"
-                                   :active-col="2" />
+                                   :item-style="{{ json_encode($style) }}" 
+                                   :table-style="'width:20%;'" />
         </div>
     </section>
 @stop

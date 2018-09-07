@@ -13,5 +13,5 @@ use App\Classes\Helper;
 class ActeurFilm extends Model
 {
     protected $connection = Helper::CONNECTION_DB_MOVIE;
-    protected $fillable = ['created_at','updated_at'];
+    protected $fillable = ['acteur_id','film_id','created_at','updated_at'];
 }

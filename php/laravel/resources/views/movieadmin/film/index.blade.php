@@ -35,19 +35,17 @@
                             );
                     }
                     $style = array(
-                        4 => "text-align:right;",
-                        8 => "text-align:right;",
-                        9 => "text-align:right;",
-                        10 => "text-align:right;",
-                        14 => "text-align:center"
+                        'Prix' => "text-align:right;",
+                        'Durée du prêt' => "text-align:right;",
+                        'Longeur' => "text-align:right;",
+                        'Coût remplacement'> "text-align:right;",
+                        'Active' => "text-align:center"
                     )
                 @endphp
                 <listing-component :data="{{ json_encode($movies) }}" 
-                                   :listing-style="{{ json_encode($style) }}" 
+                                   :item-style="{{ json_encode($style) }}" 
                                    :table-style="'width:100%;'"
-                                   :url="'movieadmin/film'" 
-                                   :active-col="13"
-                                   :img-col="12">
+                                   :url="'movieadmin/film'" >
                 </listing-component>   
         </div>
     </section>

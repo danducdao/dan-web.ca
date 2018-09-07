@@ -47976,7 +47976,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48016,19 +48016,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
@@ -48038,25 +48025,17 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
             type: Array,
             required: true
         },
-        listingStyle: {
+        itemStyle: {
             type: Object,
-            required: false
-        },
-        url: {
-            type: String,
-            required: true
-        },
-        activeCol: {
-            type: Number,
-            required: true
-        },
-        imgCol: {
-            type: Number,
             required: false
         },
         tableStyle: {
             type: String,
             required: false
+        },
+        url: {
+            type: String,
+            required: true
         }
     },
     methods: {
@@ -49678,27 +49657,20 @@ var render = function() {
             _vm._v(" "),
             _c("th", { staticStyle: { width: "20px" } }),
             _vm._v(" "),
-            _vm._l(this.data, function(headers, key) {
-              return [
-                _vm._l(Object.keys(headers), function(header) {
-                  return key === 0
-                    ? [
-                        header !== "id"
-                          ? _c(
-                              "th",
-                              {
-                                staticStyle: {
-                                  "text-align": "center",
-                                  "vertical-align": "top"
-                                }
-                              },
-                              [_vm._v(_vm._s(header))]
-                            )
-                          : _vm._e()
-                      ]
-                    : _vm._e()
-                })
-              ]
+            _vm._l(_vm.data, function(items, key) {
+              return key === 0
+                ? _vm._l(items, function(item, index) {
+                    return index !== "id"
+                      ? _c("th", [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(index) +
+                              "\n                "
+                          )
+                        ])
+                      : _vm._e()
+                  })
+                : _vm._e()
             })
           ],
           2
@@ -49708,13 +49680,13 @@ var render = function() {
       _c(
         "tbody",
         [
-          _vm._l(this.data, function(bodies) {
+          _vm._l(_vm.data, function(items) {
             return [
               _c(
                 "tr",
                 [
                   _c("td", [
-                    bodies["Active"] === 1
+                    items["Active"] === 1
                       ? _c(
                           "a",
                           {
@@ -49722,7 +49694,7 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                _vm.removeItem(bodies["id"])
+                                _vm.removeItem(items["id"])
                               }
                             }
                           },
@@ -49739,7 +49711,7 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            _vm.redirect(bodies["id"])
+                            _vm.redirect(items["id"])
                           }
                         }
                       },
@@ -49747,64 +49719,20 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._l(Object.values(bodies), function(body, key) {
-                    return [
-                      key === _vm.activeCol
-                        ? [
-                            _c(
-                              "td",
-                              {
-                                style:
-                                  _vm.listingStyle && _vm.listingStyle[key]
-                                    ? _vm.listingStyle[key]
-                                    : ""
-                              },
-                              [
-                                body == 1
-                                  ? _c("span", [
-                                      _c("i", {
-                                        staticClass: "fa fa-check-square"
-                                      })
-                                    ])
-                                  : _vm._e()
-                              ]
-                            )
-                          ]
-                        : key !== 0 && key !== _vm.imgCol
-                          ? [
-                              _c(
-                                "td",
-                                {
-                                  style:
-                                    _vm.listingStyle && _vm.listingStyle[key]
-                                      ? _vm.listingStyle[key]
-                                      : ""
-                                },
-                                [_vm._v(_vm._s(body))]
-                              )
-                            ]
-                          : _vm._e(),
-                      _vm._v(" "),
-                      key === _vm.imgCol
-                        ? [
-                            _c(
-                              "td",
-                              {
-                                style:
-                                  _vm.listingStyle && _vm.listingStyle[key]
-                                    ? _vm.listingStyle[key]
-                                    : ""
-                              },
-                              [
-                                body
-                                  ? [_c("img", { attrs: { src: body } })]
-                                  : _vm._e()
-                              ],
-                              2
-                            )
-                          ]
-                        : _vm._e()
-                    ]
+                  _vm._l(items, function(item, key) {
+                    return key !== "id"
+                      ? _c("td", { style: _vm.itemStyle[key] }, [
+                          key === "Image"
+                            ? _c("span", {
+                                domProps: {
+                                  innerHTML: _vm._s("<img src=" + items[key])
+                                }
+                              })
+                            : _c("span", {
+                                domProps: { innerHTML: _vm._s(items[key]) }
+                              })
+                        ])
+                      : _vm._e()
                   })
                 ],
                 2
@@ -51137,7 +51065,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.custom-select[data-v-3eb8c7aa] {\r\n    background: #FFF url(" + escape(__webpack_require__(85)) + ") no-repeat center right 2px;\r\n    display: inline-block;\r\n    padding: 5px 15px;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    cursor:pointer;\r\n    text-overflow: ellipsis;\r\n    overflow: hidden;\r\n    white-space: nowrap;\n}\ndiv#custom-select-option-box[data-v-3eb8c7aa] {\r\n    background: #FFF;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    z-index:1;\r\n    margin-top:-3px;\n}\n.custom-select-option[data-v-3eb8c7aa] {\r\n    width: 100%;\r\n    padding: 0px 15px;\r\n    margin: 1px 0px;\r\n    cursor: pointer;\n}\nlabel[data-v-3eb8c7aa]{\r\n    cursor: pointer;\r\n    font-weight:normal;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.custom-select[data-v-3eb8c7aa] {\r\n    background: #FFF url(" + escape(__webpack_require__(85)) + ") no-repeat center right 2px;\r\n    display: inline-block;\r\n    padding: 5px 15px;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    cursor:pointer;\r\n    text-overflow: ellipsis;\r\n    overflow: hidden;\r\n    white-space: nowrap;\n}\ndiv#custom-select-option-box[data-v-3eb8c7aa] {\r\n    background: #FFF;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    z-index:1;\r\n    margin-top:-3px;\r\n    max-height:100px;\r\n    overflow-y:scroll;\n}\n.custom-select-option[data-v-3eb8c7aa] {\r\n    width: 100%;\r\n    padding: 0px 15px;\r\n    margin: 1px 0px;\r\n    cursor: pointer;\n}\nlabel[data-v-3eb8c7aa]{\r\n    cursor: pointer;\r\n    font-weight:normal;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -51240,35 +51168,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             visible: false,
-            selectedItem: this.selectOptItem ? this.selectOptItem : "---Sélectionner--",
-            inputValue: this.selectOptItem ? this.selectOptItem : ""
+            divValue: [],
+            inputValue: []
         };
+    },
+    created: function created() {
+        var _this = this;
+
+        var selectOptItem = this.selectOptItem;
+        var ids = selectOptItem ? selectOptItem.split(',') : "";
+        if (ids) {
+            var _loop = function _loop(i) {
+                var item = _this.selectOptItems.filter(function (res) {
+                    return typeof res.id !== "string" ? res.id === parseInt(ids[i]) : res.id.indexOf("3") !== -1;
+                })[0];
+                _this.divValue[i] = item.nom;
+                _this.inputValue[i] = item.id;
+            };
+
+            for (var i = 0; i < ids.length; i++) {
+                _loop(i);
+            }
+        }
     },
 
     methods: {
         toggleVisible: function toggleVisible() {
             this.visible = !this.visible;
         },
-        itemChanged: function itemChanged(event) {
-            var checkbox = event.target;
-            if (this.selectedItem.indexOf('Sélectionner') !== -1) {
-                this.selectedItem = checkbox.value;
+        itemChanged: function itemChanged(event, id) {
+            var item = this.selectOptItems.filter(function (res) {
+                return typeof res.id !== "string" ? res.id === parseInt(id) : res.id.indexOf(id) !== -1;
+            })[0];
+            if (event.target.checked) {
+                var len = this.inputValue.length === 0 ? 0 : this.inputValue.length;
+                this.inputValue[len] = id;
+                this.divValue[len] = item.nom;
             } else {
-                if (checkbox.checked) {
-                    this.selectedItem += "," + checkbox.value;
-                } else {
-                    var selectedValues = this.selectedItem.split(",");
-                    selectedValues = selectedValues.filter(function (text) {
-                        return text.indexOf(checkbox.value) === -1;
-                    });
-                    if (selectedValues.length === 0) {
-                        this.selectedItem = "--Sélectionner--";
-                    } else {
-                        this.selectedItem = selectedValues.join();
-                    }
-                }
+                this.inputValue = this.inputValue.filter(function (id) {
+                    return typeof id !== "string" ? id !== parseInt(item.id) : id.indexOf(item.id) === -1;
+                });
+                this.divValue = this.divValue.filter(function (nom) {
+                    return typeof nom !== "string" ? nom !== parseInt(item.nom) : nom.indexOf(item.nom) === -1;
+                });
             }
-            this.inputValue = this.selectedItem;
+        },
+        close: function close() {
+            this.visible = false;
         }
     }
 });
@@ -51281,7 +51227,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.divClass }, [
+  return _c("div", { class: _vm.divClass, on: { mouseleave: _vm.close } }, [
     _c("label", { class: _vm.labelClass }, [
       _c("strong", [_vm._v(_vm._s(_vm.labelText))])
     ]),
@@ -51294,7 +51240,13 @@ var render = function() {
       _c("div", {
         staticClass: "custom-select",
         attrs: { id: "custom-select" },
-        domProps: { textContent: _vm._s(_vm.selectedItem) },
+        domProps: {
+          textContent: _vm._s(
+            _vm.divValue.length > 0
+              ? _vm.divValue.join(",")
+              : "---Sélectionner--"
+          )
+        },
         on: { click: _vm.toggleVisible }
       }),
       _vm._v(" "),
@@ -51324,11 +51276,15 @@ var render = function() {
                   },
                   domProps: {
                     value: selectOpt.nom,
-                    checked: _vm.selectedItem.split(",").includes(selectOpt.nom)
+                    checked: _vm.inputValue.includes(selectOpt.id)
                       ? "checked"
                       : ""
                   },
-                  on: { change: _vm.itemChanged }
+                  on: {
+                    change: function($event) {
+                      _vm.itemChanged($event, selectOpt.id)
+                    }
+                  }
                 }),
                 _vm._v(" " + _vm._s(selectOpt.nom) + "\n                ")
               ])
@@ -51337,7 +51293,9 @@ var render = function() {
           _vm._v(" "),
           _c("input", {
             attrs: { type: "hidden", name: _vm.selectOptName },
-            domProps: { value: _vm.inputValue }
+            domProps: {
+              value: _vm.inputValue.length > 0 ? _vm.inputValue.join(",") : ""
+            }
           })
         ],
         2

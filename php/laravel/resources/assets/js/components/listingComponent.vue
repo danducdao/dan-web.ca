@@ -4,35 +4,22 @@
                 <tr>
                     <th style="width:20px;"></th>
                     <th style="width:20px;"></th>
-                    <template v-for="(headers,key) in this.data">
-                        <template v-if="key === 0" v-for="header in Object.keys(headers)">
-                            <th v-if="header !== 'id'" style="text-align:center;vertical-align:top;">{{ header }}</th>
-                        </template>  
-                    </template> 
+                    <template v-for="(items,key) in data" v-if="key === 0">
+                        <th v-for="(item,index) in items" v-if="index !== 'id'">
+                            {{index}}
+                        </th>
+                    </template>
                 </tr>
             </thead>
             <tbody>
-                <template v-for="bodies in this.data">
+                <template v-for="items in data">
                     <tr>
-                        <td><a v-if="bodies['Active'] === 1" href="#" @click.prevent="removeItem(bodies['id'])">supprimer</a></td>
-                        <td><a href="#" @click.prevent="redirect(bodies['id'])">modifier</a></td>
-                        <template v-for="(body,key) in Object.values(bodies)">
-                            <template v-if="key === activeCol">
-                            <td :style="listingStyle && listingStyle[key]?listingStyle[key]:''" >
-                                <span v-if='body == 1'><i class='fa fa-check-square'></i></span>
-                            </td>
-                            </template>
-                            <template v-else-if="key !== 0 && key !== imgCol">
-                                <td :style="listingStyle && listingStyle[key]?listingStyle[key]:''" >{{ body }}</td>
-                            </template>
-                            <template v-if="key === imgCol">
-                                <td :style="listingStyle && listingStyle[key]?listingStyle[key]:''" >
-                                    <template v-if="body">
-                                        <img :src="body" />
-                                    </template>
-                                </td>
-                            </template>
-                        </template>
+                        <td><a v-if="items['Active'] === 1" href="#" @click.prevent="removeItem(items['id'])">supprimer</a></td>
+                        <td><a href="#" @click.prevent="redirect(items['id'])">modifier</a></td>
+                        <td v-for="(item,key) in items" v-if="key !== 'id'" :style="itemStyle[key]">
+                           <span v-if="key === 'Image'" v-html="'<img src=' + items[key]"></span>
+                           <span v-else v-html="items[key]"></span>
+                        </td>
                     </tr>
                 </template>
             </tbody>
@@ -48,26 +35,18 @@
                 type:Array,
                 required:true
             },
-            listingStyle:{
+            itemStyle:{
                 type:Object,
-                required:false
-            },
-            url:{
-                type:String,
-                required:true
-            },
-            activeCol:{
-                type:Number,
-                required:true
-            },
-            imgCol:{
-                type:Number,
                 required:false
             },
             tableStyle:{
                 type:String,
                 required:false
-            }
+            },
+            url:{
+                type:String,
+                required:true
+            } 
         },
         methods:{
             removeItem(id)

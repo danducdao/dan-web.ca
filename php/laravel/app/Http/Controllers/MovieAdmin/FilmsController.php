@@ -12,6 +12,7 @@ use App\Models\Movies\Langue;
 use App\Models\Movies\LangueOriginal;
 use App\Models\Movies\Categorie;
 use App\Models\Movies\CategorieFilm;
+use App\Classes\Helper;
 use Input;
 
 class FilmsController extends Controller
@@ -41,7 +42,7 @@ class FilmsController extends Controller
     {
         $selectOptLangue = $this->optLangue();
 
-        $selectOptCategorie = $this->getOptions(Categorie::where('active',1)->pluck('nom','id'));
+        $selectOptCategorie = Helper::myListItem(Categorie::where('active',1)->pluck('nom','id'));
 
         return View::make('movieadmin.film.create')->with([
                                                             'selectOptLangue' => $selectOptLangue[0],
@@ -103,24 +104,12 @@ class FilmsController extends Controller
         array_push($langue_array,Langue::where('active',1)->pluck('nom','id')); 
         array_push($langue_array,LangueOriginal::where('active',1)->pluck('nom','id')); 
 
-        $langue_array[0] = $this->getOptions($langue_array[0]);
-        $langue_array[1] = $this->getOptions($langue_array[1]);
+        $langue_array[0] = Helper::myListItem($langue_array[0]);
+        $langue_array[1] = Helper::myListItem($langue_array[1]);
 
         return $langue_array;
     }
-    private function getOptions(object $items) : array
-    {
-        $options = array();
-        foreach($items as $key => $item)
-        {
-            $std = app()->make('stdClass');
-            $std->id = $key;
-            $std->nom = $item;
-            $options[] = $std;
-        }
-        return $options;
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -133,7 +122,7 @@ class FilmsController extends Controller
 
         $selectOptLangue = $this->optLangue();
 
-        $selectOptCategorie = $this->getOptions(Categorie::where('active',1)->pluck('nom','id'));
+        $selectOptCategorie = Helper::myListItem(Categorie::where('active',1)->pluck('nom','id'));
 
         $categorie = Categorie::join('categorie_films',function($join){
              $join->on('categories.id', '=', 'categorie_films.categorie_id');

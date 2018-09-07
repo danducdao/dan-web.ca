@@ -1,5 +1,5 @@
 /*
-Program : Movie categorie controller
+Program : Movie acteur controller
 Écrit par : Dan Duc Dao
 */
 
@@ -8,14 +8,13 @@ Program : Movie categorie controller
 let status = 200;
 
 module.exports = function(app, movie) {
-  app.put("/movieadmin/categorie/:id", function(req, res, next) {
+  app.put("/movieadmin/acteur/:id", function(req, res, next) {
     movie.query(
-      "UPDATE categories " +
-        "INNER JOIN categorie_films ON categories.id = categorie_films.categorie_id " +
-        "INNER JOIN films ON categorie_films.film_id = films.id " +
-        "SET categories.active = ?, categorie_films.active = ?, films.active = ? " +
-        "WHERE categories.id = ?",
-      [0, 0, 0, req.params.id],
+      "UPDATE acteurs " +
+        "INNER JOIN acteur_films ON acteurs.id = acteur_films.acteur_id " +
+        "SET acteurs.active = ?, acteur_films.active = ? " +
+        "WHERE acteurs.id = ?",
+      [0, 0, req.params.id],
       function(error, result) {
         if (error) status = 500;
         else if (!result || result.affectedRows === 0) status = 400;

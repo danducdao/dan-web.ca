@@ -43,7 +43,7 @@ class Film extends Model
 
     public function acteurs()
     {
-        return $this->belongsToMany('App\Models\Movies\Acteur')->withTimestamps();
+        return $this->belongsToMany('App\Models\Movies\Acteur','acteur_films','film_id','acteur_id')->withTimestamps();
     }
 
     public function langue()

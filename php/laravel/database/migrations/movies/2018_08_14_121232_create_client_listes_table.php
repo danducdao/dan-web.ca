@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientListeTable extends Migration
+class CreateClientListesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateClientListeTable extends Migration
      */
     public function up()
     {
-        if(!Schema::connection('mysql3')->hasTable('client_liste'))
+        if(!Schema::connection('mysql3')->hasTable('client_listes'))
         {
-            Schema::connection('mysql3')->create('client_liste', function (Blueprint $table) {
+            Schema::connection('mysql3')->create('client_listes', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 $table->string('nom_complet',120);
@@ -39,6 +39,6 @@ class CreateClientListeTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql3')->dropIfExists('client_liste');
+        Schema::connection('mysql3')->dropIfExists('client_listes');
     }
 }

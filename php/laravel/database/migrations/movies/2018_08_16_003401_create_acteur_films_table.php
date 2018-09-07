@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActeurFilmTable extends Migration
+class CreateActeurFilmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateActeurFilmTable extends Migration
      */
     public function up()
     {
-        if(!Schema::connection('mysql3')->hasTable('acteur_film'))
+        if(!Schema::connection('mysql3')->hasTable('acteur_films'))
         {
-            Schema::connection('mysql3')->create('acteur_film', function (Blueprint $table) {
+            Schema::connection('mysql3')->create('acteur_films', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 $table->integer('acteur_id')->unsigned();
@@ -35,6 +35,6 @@ class CreateActeurFilmTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql3')->dropIfExists('acteur_film');
+        Schema::connection('mysql3')->dropIfExists('acteur_films');
     }
 }

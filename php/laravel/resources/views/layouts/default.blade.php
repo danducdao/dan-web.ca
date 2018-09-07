@@ -79,6 +79,7 @@
 						<ul class="nav nav-third-level">
 							<li><a href="{{url('movieadmin/film')}}">Films</a></li>
 							<li><a href="{{url('movieadmin/categorie')}}">Catégories</a></li>
+							<li><a href="{{url('movieadmin/acteur')}}">Acteurs</a></li>
 						</ul>
 				    </li>
                     <li>

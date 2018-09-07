@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateActeurInfoTable extends Migration
+class CreateActeurInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateActeurInfoTable extends Migration
      */
     public function up()
     {
-        if(!Schema::connection('mysql3')->hasTable('acteur_info'))
+        if(!Schema::connection('mysql3')->hasTable('acteur_infos'))
         {
-            Schema::connection('mysql3')->create('acteur_info', function (Blueprint $table) {
+            Schema::connection('mysql3')->create('acteur_infos', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 $table->string('prenom',120)->nullable();
@@ -34,6 +34,6 @@ class CreateActeurInfoTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql3')->dropIfExists('acteur_info');
+        Schema::connection('mysql3')->dropIfExists('acteur_infos');
     }
 }

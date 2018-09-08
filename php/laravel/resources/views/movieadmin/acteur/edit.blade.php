@@ -32,15 +32,15 @@
                     </div>
                 </div>
                 @if($acteur->active === 1)
-                <div class="row">
-                    <div class="col-md-6">
-                        <select-multiple-component :label-text="'Films'"
-                                                    :label-class ="'control-label'"
-                                                    :select-opt-name = "'film'"
-                                                    :select-opt-items = "{{ json_encode($selectOptFilms) }}"
-                                                    :select-opt-item="'{{ $selectOptFilm }}'"  />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select-multiple-component :label-text="'Films'"
+                                                        :label-class ="'control-label'"
+                                                        :select-opt-name = "'film'"
+                                                        :select-opt-items = "{{ json_encode($selectOptFilms) }}"
+                                                        :select-opt-item="'{{ $selectOptFilm }}'"  />
+                        </div>
                     </div>
-                </div>
                 @endif
                 <div class="row">
                     <div class="col-md-6">

@@ -47976,7 +47976,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48016,7 +48016,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
+// <span v-else-if="key === 'Active' && items[key] === 1" v-html="<i class='fa fa-check-square'></i>"></span>
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49728,9 +49730,13 @@ var render = function() {
                                   innerHTML: _vm._s("<img src=" + items[key])
                                 }
                               })
-                            : _c("span", {
-                                domProps: { innerHTML: _vm._s(items[key]) }
-                              })
+                            : key === "Active" && items[key] === 1
+                              ? _c("span", [
+                                  _c("i", { staticClass: "fa fa-check-square" })
+                                ])
+                              : _c("span", {
+                                  domProps: { innerHTML: _vm._s(items[key]) }
+                                })
                         ])
                       : _vm._e()
                   })
@@ -51180,7 +51186,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (ids) {
             var _loop = function _loop(i) {
                 var item = _this.selectOptItems.filter(function (res) {
-                    return typeof res.id !== "string" ? res.id === parseInt(ids[i]) : res.id.indexOf("3") !== -1;
+                    return typeof res.id !== "string" ? res.id === parseInt(ids[i]) : res.id.indexOf(ids[i]) !== -1;
                 })[0];
                 _this.divValue[i] = item.nom;
                 _this.inputValue[i] = item.id;

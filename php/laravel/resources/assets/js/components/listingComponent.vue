@@ -18,6 +18,7 @@
                         <td><a href="#" @click.prevent="redirect(items['id'])">modifier</a></td>
                         <td v-for="(item,key) in items" v-if="key !== 'id'" :style="itemStyle[key]">
                            <span v-if="key === 'Image'" v-html="'<img src=' + items[key]"></span>
+                           <span  v-else-if="key === 'Active' && items[key] === 1"><i class='fa fa-check-square'></i></span>
                            <span v-else v-html="items[key]"></span>
                         </td>
                     </tr>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+// <span v-else-if="key === 'Active' && items[key] === 1" v-html="<i class='fa fa-check-square'></i>"></span>
     import VueResource from "vue-resource";
     Vue.use(VueResource);
     export default {

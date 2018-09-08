@@ -73,7 +73,7 @@
             {
                 for(let i = 0;i <ids.length;i++ )
                 {
-                    let item = this.selectOptItems.filter(res => typeof(res.id) !== "string"?res.id === parseInt(ids[i]): res.id.indexOf("3") !== -1)[0];
+                    let item = this.selectOptItems.filter(res => typeof(res.id) !== "string"?res.id === parseInt(ids[i]): res.id.indexOf(ids[i]) !== -1)[0];
                     this.divValue[i] = item.nom;
                     this.inputValue[i] = item.id;
                 }

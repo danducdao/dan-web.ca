@@ -23,7 +23,7 @@ class ActeursController extends Controller
      */
     public function index()
     {
-        $acteurs = Acteur::all();
+        $acteurs = Acteur::orderByRaw('prenom ASC , nom ASC')->get();
         return View::make('movieadmin.acteur.index',compact('acteurs'));
     }
 
@@ -35,8 +35,8 @@ class ActeursController extends Controller
     public function create()
     {
         $films = Film::where('active',1)->pluck("titre","id");
-        $selectOptFilm=Helper::myListItem($films);
-        return View::make('movieadmin.acteur.create',compact('selectOptFilm'));
+        $selectOptFilms=Helper::myListItem($films);
+        return View::make('movieadmin.acteur.create',compact('selectOptFilms'));
     }
 
     /**
@@ -84,7 +84,13 @@ class ActeursController extends Controller
      */
     public function edit($id)
     {
-        $acteur = Acteur::where('id',$id)->first();
+        $acteur = Acteur::find($id)->first();
+
+        if(!$acteur)
+        {
+            $message = "Aucun item existe";
+            return $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
+        }
 
         $selectOptFilm = "";    
         if(count($acteur->films)  > 0)
@@ -120,7 +126,7 @@ class ActeursController extends Controller
             return $this->back_message_errors($valid);
         }
 
-        $acteur = Acteur::where('id',$id)->first();
+        $acteur = Acteur::find($id)->first();
         $acteur->prenom = $request->input('prenom');
         $acteur->nom = $request->input('nom');
         $acteur->active = $request->input('active');
@@ -131,7 +137,7 @@ class ActeursController extends Controller
             return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
         }
         //effectue cette opération seulement si acteur est active
-        if($request->input('active') === 1)
+        if((int)$request->input('active') === 1)
         {
             $isCompleted = $this->addActeurFilmRecord($request->input('film'),$acteur->id);
 
@@ -157,16 +163,14 @@ class ActeursController extends Controller
     {
         $affectedRows = ActeurFilm::where('acteur_id',$acteurId)->delete();  
 
-        $acteurFilm = new ActeurFilm();
-
         if($idFilm)
         {
             $idFilms = $idFilm?explode(',',$idFilm):"";
             foreach($idFilms as $idFilm)
             {
+                $acteurFilm = new ActeurFilm();
                 $acteurFilm->acteur_id = $acteurId;
                 $acteurFilm->film_id = $idFilm;
-                $acteurFilm->active = $active; 
                 if(!$acteurFilm->save())
                 {
                     $message = "Table Film a été sauvegardé avec sans succès";

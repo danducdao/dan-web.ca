@@ -22,14 +22,23 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8">
-                        <submit-button-component button-text="OK"></submit-button-component>&nbsp;
-                        <back-button-component button-text="BACK"
-                                                redirect-url="movieadmin/categorie">
-                        </back-button-component>
+                    <div class="col-md-6">
+                        <select-multiple-component :label-text="'Films'"
+                                                    :label-class ="'control-label'"
+                                                    :select-opt-name = "'film'"
+                                                    :select-opt-items = "{{ json_encode($selectOptFilms) }}"
+                                                    :select-opt-item="'{{ old('film') }}'"  />
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <submit-button-component button-text="OK"></submit-button-component>&nbsp;
+            <back-button-component button-text="BACK"
+                                    redirect-url="movieadmin/categorie">
+            </back-button-component>
         </div>
     </div>
 {{ Form::close() }}

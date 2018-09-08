@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Movies\Categorie;
+use App\Models\Movies\CategorieFilm;
+use App\Models\Movies\Film;
+use App\Classes\Helper;
 use Input;
 
 class CategoriesController extends Controller
@@ -18,7 +21,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categorie::all();
+        $categories = Categorie::orderBy('nom')->get();
         return View::make('movieadmin.categorie.index',compact('categories'));
     }
 
@@ -29,7 +32,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return View::make('movieadmin.categorie.create');
+        $films = Film::where('active',1)->pluck("titre","id");
+        $selectOptFilms = Helper::myListItem($films);
+        return View::make('movieadmin.categorie.create',compact('selectOptFilms'));
     }
 
     /**
@@ -53,11 +58,19 @@ class CategoriesController extends Controller
        
         if(!$categorie)
         {
-            $message = "Item a été sauvegardé avec sans succès";
+            $message = "Table categories a été sauvegardé avec sans succès";
             return  $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
 
-        return $this->redirect_with_message_success('categorie.index','Item a été sauvegardé avec succès');
+        $isCompleted = $this->addCategorieFilmRecord($request->input('film'),$categorie->id);
+    
+        if(!$isCompleted)
+        {
+            $message = "Table categorie_films a été sauvegardé avec sans succès";
+            return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
+        }
+
+        return $this->redirect_with_message_success('categorie.index','Tables ont été sauvegardés avec succès');
     }
 
     /**
@@ -68,7 +81,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $categorie = Categorie::where(['id' => $id,'active' => 1])->first();
+        $categorie = Categorie::find($id);
 
         if(!$categorie)
         {
@@ -76,7 +89,22 @@ class CategoriesController extends Controller
             return $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
 
-        return View::make('movieadmin.categorie.edit',compact('categorie'));
+        $selectOptFilm = "";    
+        if(count($categorie->films)  > 0)
+        {
+            foreach($categorie->films as $film){
+                $selectOptFilm .= $film->id . ",";
+            }
+        }
+
+        $films = Film::where('active',1)->pluck("titre","id");
+        $selectOptFilms = Helper::myListItem($films);
+
+        return View::make('movieadmin.categorie.edit')->with([
+                                                                'categorie' => $categorie,
+                                                                'selectOptFilms' => $selectOptFilms,
+                                                                'selectOptFilm' =>  rtrim($selectOptFilm,',')
+                                                             ]);
     }
 
     /**
@@ -95,15 +123,45 @@ class CategoriesController extends Controller
             return $this->back_message_errors($valid);
         }
 
-        $categorie = Categorie::where(['id' => $id,'active' => 1])->update([
-            'nom' => $request->input('nom') 
+        $categorie = Categorie::find($id)->update([
+            'nom' => $request->input('nom'),
+            'active' => $request->input('active')
         ]);
 
         if(!$categorie)
         {
-            $message = "Item a été sauvegardé avec sans succès";
+            $message = "Table categories a été sauvegardé avec sans succès";
             return  $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
-        return $this->redirect_with_message_success('categorie.index','Item a été sauvegardé avec succès');
+
+        if((int)$request->input('active') === 1)
+        {
+            $isCompleted = $this->addCategorieFilmRecord($request->input('film'),$id);
+        }
+
+        return $this->redirect_with_message_success('categorie.index','Tables ont été sauvegardés avec succès');
+    }
+
+    private function addCategorieFilmRecord(?string $idFilm,int $categorieId):bool
+    {
+        $affectedRows = CategorieFilm::where('categorie_id',$categorieId)->delete();  
+
+        if($idFilm)
+        {
+            $idFilms = $idFilm?explode(',',$idFilm):"";
+
+            foreach($idFilms as $idFilm)
+            {
+                $categorieFilm = new CategorieFilm();
+                $categorieFilm->categorie_id = $categorieId;
+                $categorieFilm->film_id = $idFilm;
+                if(!$categorieFilm->save())
+                {
+                    $message = "Table Film a été sauvegardé avec sans succès";
+                    return false;
+                }   
+            }
+        }
+        return true;
     }
 }

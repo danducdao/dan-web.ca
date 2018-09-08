@@ -36,7 +36,7 @@
                         <select-multiple-component :label-text="'Films'"
                                                     :label-class ="'control-label'"
                                                     :select-opt-name = "'film'"
-                                                    :select-opt-items = "{{ json_encode($selectOptFilm) }}"
+                                                    :select-opt-items = "{{ json_encode($selectOptFilms) }}"
                                                     :select-opt-item="'{{ old('film') }}'"  />
                     </div>
                 </div>

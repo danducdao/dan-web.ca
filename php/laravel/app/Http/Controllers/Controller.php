@@ -11,11 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function redirect_with_message_errors(string $route,array $message,array $id = null) : array{
+    protected function redirect_with_message_errors(string $route,array $message,array $id = null):object{
         return redirect()->route($route,$id)->withErrors($message);
     }
 
-    protected function redirect_with_message_success(string $route,string $message) : string
+    protected function redirect_with_message_success(string $route,string $message) : object
     {
         return redirect()->route($route)->withSuccess($message);
     }

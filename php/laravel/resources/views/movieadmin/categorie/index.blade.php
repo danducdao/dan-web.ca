@@ -17,12 +17,13 @@
                     foreach($categories as $categorie)
                     {
                         $titre_film = "";
-                        if(count($categorie->films) > 0 && $categorie->active === 1)
+                        if(count($categorie->films) > 0)
                         {
                             $titre_film="<select>";
                             foreach($categorie->films as $key => $film)
                             {
-                                $titre_film .= "<option>" . ++$key . ' - ' . $film->titre . "</option>";
+                                if($film->active === 1)
+                                    $titre_film .= "<option>" . ++$key . ' - ' . $film->titre . "</option>";
                             }
                             $titre_film .= "</select>";
                         }

@@ -49725,17 +49725,19 @@ var render = function() {
                     return key !== "id"
                       ? _c("td", { style: _vm.itemStyle[key] }, [
                           key === "Image"
-                            ? _c("span", {
-                                domProps: {
-                                  innerHTML: _vm._s("<img src=" + items[key])
-                                }
-                              })
+                            ? _c("span", [
+                                _c("img", { attrs: { src: items[key] } })
+                              ])
                             : key === "Active" && items[key] === 1
                               ? _c("span", [
                                   _c("i", { staticClass: "fa fa-check-square" })
                                 ])
                               : _c("span", {
-                                  domProps: { innerHTML: _vm._s(items[key]) }
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      items[key] ? items[key] : ""
+                                    )
+                                  }
                                 })
                         ])
                       : _vm._e()
@@ -51250,7 +51252,7 @@ var render = function() {
           textContent: _vm._s(
             _vm.divValue.length > 0
               ? _vm.divValue.join(",")
-              : "---Sélectionner--"
+              : "--Sélectionner--"
           )
         },
         on: { click: _vm.toggleVisible }

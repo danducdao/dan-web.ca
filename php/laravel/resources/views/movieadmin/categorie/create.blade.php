@@ -22,13 +22,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
-                        <select-multiple-component :label-text="'Films'"
-                                                    :label-class ="'control-label'"
-                                                    :select-opt-name = "'film'"
-                                                    :select-opt-items = "{{ json_encode($selectOptFilms) }}"
-                                                    :select-opt-item="'{{ old('film') }}'"  />
-                    </div>
+                    @if($selectOptFilms)
+                        <select-multiple-component :div-class="'col-md-6'"
+                                                :label-text="'Films'"
+                                                :label-class ="'control-label'"
+                                                :select-opt-name = "'film'"
+                                                :select-opt-items = "{{ json_encode($selectOptFilms) }}"
+                                                :select-opt-item="'{{ old('film') }}'"  />
+                    @else
+                        <div class="col-md-6"><strong>Aucun film disponible</strong></div>
+                    @endif
                 </div>
             </div>
         </div>

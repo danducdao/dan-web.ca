@@ -3,7 +3,7 @@
         <label :class="labelClass"><strong>{{labelText}}</strong></label>
         <span v-if="spanError" style="color:red;">*</span>
         <div class="input-group m-b">
-            <div class="custom-select" id="custom-select" @click="toggleVisible" v-text="divValue.length > 0?divValue.join(','):'---Sélectionner--'"></div>
+            <div class="custom-select" id="custom-select" @click="toggleVisible" v-text="divValue.length > 0?divValue.join(','):'--Sélectionner--'"></div>
             <div id="custom-select-option-box" v-show="visible">
                 <div class="custom-select-option" v-for="selectOpt in selectOptItems">
                     <label :for="selectOpt.id">

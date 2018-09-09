@@ -34,7 +34,9 @@ class ActeursController extends Controller
      */
     public function create()
     {
-        $films = Film::where('active',1)->pluck("titre","id");
+        $films = Film::where('active',1)->orderBy('titre')
+                                        ->pluck("titre","id");
+
         $selectOptFilms=Helper::myListItem($films);
         return View::make('movieadmin.acteur.create',compact('selectOptFilms'));
     }
@@ -65,11 +67,11 @@ class ActeursController extends Controller
             return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
         }
 
-        $isCompleted = $this->addActeurFilmRecord($request->input('film'),$acteur->id);
-
-        if(!$isCompleted)
+        $acteurFilm = new ActeurFilm;
+        $acteurFilmSaved = $acteurFilm->saveActeurFilmsRecord($request->input('film'),$acteur->id);
+        if(!$acteurFilmSaved)
         {
-            $message = "Table Acteur Film a été sauvegardé avec sans succès";
+            $message = "Table acteur_films a été sauvegardé avec sans succès";
             return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
         }
 
@@ -84,7 +86,7 @@ class ActeursController extends Controller
      */
     public function edit($id)
     {
-        $acteur = Acteur::find($id)->first();
+        $acteur = Acteur::find($id);
 
         if(!$acteur)
         {
@@ -100,7 +102,9 @@ class ActeursController extends Controller
             }
         }
         
-        $films = Film::where('active',1)->pluck("titre","id");
+        $films = Film::where('active',1)->orderBy('titre')
+                                        ->pluck("titre","id");
+                                        
         $selectOptFilms=Helper::myListItem($films);
 
         return View::make('movieadmin.acteur.edit')->with([
@@ -136,48 +140,15 @@ class ActeursController extends Controller
             $message = "Table Acteur a été sauvegardé avec sans succès";
             return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
         }
-        //effectue cette opération seulement si acteur est active
-        if((int)$request->input('active') === 1)
+        
+        $acteurFilm = new ActeurFilm;
+        $acteurFilmSaved = $acteurFilm->saveActeurFilmsRecord($request->input('film'),$acteur->id);
+        if(!$acteurFilmSaved)
         {
-            $isCompleted = $this->addActeurFilmRecord($request->input('film'),$acteur->id);
-
-            if(!$isCompleted)
-            {
-                $message = "Table Acteur Film a été sauvegardé avec sans succès";
-                return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
-            }
+            $message = "Table acteur_films a été sauvegardé avec sans succès";
+            return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
         }
-
-        $this->setActiveRecordActeurFilm($acteur->id,$request->input('active'));
 
         return $this->redirect_with_message_success('acteur.index','Items ont été sauvegardés avec succès');
-    }
-
-    private function setActiveRecordActeurFilm(int $acteurId, int $active)
-    {
-        ActeurFilm::where('acteur_id',$acteurId)->update([
-            'active' => $active
-        ]);
-    }
-    private function addActeurFilmRecord(?string $idFilm,int $acteurId):bool
-    {
-        $affectedRows = ActeurFilm::where('acteur_id',$acteurId)->delete();  
-
-        if($idFilm)
-        {
-            $idFilms = $idFilm?explode(',',$idFilm):"";
-            foreach($idFilms as $idFilm)
-            {
-                $acteurFilm = new ActeurFilm();
-                $acteurFilm->acteur_id = $acteurId;
-                $acteurFilm->film_id = $idFilm;
-                if(!$acteurFilm->save())
-                {
-                    $message = "Table Film a été sauvegardé avec sans succès";
-                    return false;
-                }   
-            }
-        }
-        return true;
     }
 }

@@ -19,7 +19,6 @@ class Film extends Model
         'titre' => 'required',
         'description' => 'required',
         'langue' => 'required',
-        'categorie' => 'required',
         'dureeLocation' => 'regex:/^[1-9][0-9]*$/',
         'prix' => 'nullable|regex:/^[0-9]+\\.?[0-9]*$/',
         'cout_remplacement' => 'nullable|regex:/^[0-9]+\\.?[0-9]*$/'

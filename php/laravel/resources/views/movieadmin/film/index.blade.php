@@ -16,29 +16,50 @@
                     $movies = array();
                     foreach($films as $film)
                     {
+                        $categorie_nom = $acteur_nom = "";
+
+                        if(count($film->categories) > 0)
+                        {
+                            foreach($film->categories as $categorie)
+                            {
+                               $categorie_nom .= $categorie->nom;
+                            }
+                        }
+
+                        if(count($film->acteurs) > 0)
+                        {
+                            $acteur_nom = "<select multiple size='4' style='width:200px;'>";
+                            foreach($film->acteurs as $acteur)
+                            {
+                                $acteur_nom .= sprintf("<option>%s</option>",$acteur->fullName($acteur->prenom,$acteur->nom));
+                            }
+                            $acteur_nom .= "</select>";
+                        }
+
                         $movies[] = array(
-                                'id' => $film->id,
-                                'Titre' => $film->titre,
-                                'Catégorie' => $film->nom_categorie,
-                                'Description' => $film->description,
-                                'Prix' => sprintf('$%s',$film->prix),
-                                'Année sortie' => $film->annee_sortie,
-                                'Langue' => $film->langue->nom,
-                                'Langue original' => $film->langue_original !== null? $film->langue_original->nom:"",
-                                'Durée du prêt' => $film->duree_location,
-                                'Longeur' => $film->longeur,
-                                'Coût remplacement' => sprintf('$%s',$film->cout_remplacement),
-                                'Évaluation' => $film->evaluation,
-                                'Nouveauté' => $film->nouveaute,
-                                'Image' => $film->photo,
-                                'Active' => $film->active
-                            );
+                                            'id' => $film->id,
+                                            'Titre' => $film->titre,
+                                            'Catégorie' => $categorie_nom,
+                                            'Acteurs' => $acteur_nom,
+                                            'Description' => $film->description,
+                                            'Prix' => sprintf('$%s',$film->prix),
+                                            'Année sortie' => $film->annee_sortie,
+                                            'Langue' => $film->langue->nom,
+                                            'Langue original' => $film->langue_original !== null? $film->langue_original->nom:"",
+                                            'Durée du prêt' => $film->duree_location,
+                                            'Longeur' => $film->longeur,
+                                            'Coût remplacement' => sprintf('$%s',$film->cout_remplacement),
+                                            'Évaluation' => $film->evaluation,
+                                            'Nouveauté' => $film->nouveaute,
+                                            'Image' => $film->photo,
+                                            'Active' => $film->active
+                                        );
                     }
                     $style = array(
                         'Prix' => "text-align:right;",
                         'Durée du prêt' => "text-align:right;",
                         'Longeur' => "text-align:right;",
-                        'Coût remplacement'> "text-align:right;",
+                        'Coût remplacement' => "text-align:right;",
                         'Active' => "text-align:center"
                     )
                 @endphp

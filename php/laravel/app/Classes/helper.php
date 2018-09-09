@@ -11,7 +11,7 @@ class Helper{
      public const CONNECTION_DB_FOOD = "mysql";
      public const CONNECTION_DB_MUSIC = "mysql2";
      public const CONNECTION_DB_MOVIE = "mysql3"; 
-     
+
      public static function radioBtnActiveAttribut(int $active):array
      {
          return array(
@@ -25,6 +25,7 @@ class Helper{
                    'checked' => $active === 0?true:false )
             );
     }
+    
     public static function myListItem(object $items) : array
     {
         $myListe = array();
@@ -38,4 +39,8 @@ class Helper{
         return $myListe;
     }
 
+    public function sortMyListItem($a, $b):bool
+    {  
+        return strcmp(strtolower($a->nom), strtolower($b->nom));  
+    }
 }

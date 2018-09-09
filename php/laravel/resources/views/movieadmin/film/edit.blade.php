@@ -36,51 +36,63 @@
                     </textarea-component>
                 </div><br>
                 <div class="row">
-                         <select-component :div-class="'col-md-6'"
+                        <select-component :div-class="'col-md-6'"
                                             :label-class="'control-label'"
                                             :label-text="'Catégorie'"
                                             :select-opt-class="'form-control'"
                                             :select-opt-name = "'categorie'"
-                                            :select-opt-items = "{{ json_encode($selectOptCategorie) }}"
-                                            :select-opt-item="'{{ $categorie->categorie_id }}'"
-                                            :span-error = "true"
-                                            :span-error-message = "'{{ $errors->first('categorie') }}'" />
+                                            :select-opt-items = "{{ json_encode($selectOptCategories) }}"
+                                            :select-opt-item="'{{ $selectOptCategorie }}'"></select-component>
+
+                        <select-multiple-component :label-text="'Acteurs'"
+                                                           :div-class="'col-md-6'"
+                                                           :label-class ="'control-label'"
+                                                           :select-opt-name = "'acteur'"
+                                                           :select-opt-items = "{{ json_encode($selectOptActeurs) }}"
+                                                           :select-opt-item="'{{ $selectOptActeur }}'"  />
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('longeur','Longeur',array('class' => 'control-label'))}}
-                        <div class="input-group m-b">
-                            {{Form::text('longeur',$film->longeur,array('class' => 'form-control'))}} 
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{Form::label('longeur','Longeur',array('class' => 'control-label'))}}
+                                <div class="input-group m-b">
+                                    {{Form::text('longeur',$film->longeur,array('class' => 'form-control'))}} 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{Form::label('annee_sortie','Année sortie',array('class' => 'control-label'))}}
+                                <div class="input-group m-b">
+                                    {{Form::text('annee_sortie',$film->annee_sortie,array('class' => 'form-control'))}} 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6">
-                        {{Form::label('annee_sortie','Année sortie',array('class' => 'control-label'))}}
-                        <div class="input-group m-b">
-                            {{Form::text('annee_sortie',$film->annee_sortie,array('class' => 'form-control'))}} 
+                        <div class="row">
+                            <select-component :div-class="'col-md-6'"
+                                              :label-class="'control-label'"
+                                              :label-text="'Langue'"
+                                              :select-opt-class="'form-control'"
+                                              :select-opt-name = "'langue'"
+                                              :select-opt-items = "{{ json_encode($selectOptLangue) }}"
+                                              :select-opt-item="'{{ $film->langue_id }}'"
+                                              :span-error = "true"
+                                              :span-error-message = "'{{ $errors->first('langue') }}'" />
+
+                        </div>
+                        <div class="row">
+                            <select-component :div-class="'col-md-6'"
+                                              :label-class="'control-label'"
+                                              :label-text="'Langue original'"
+                                              :select-opt-class="'form-control'"
+                                              :select-opt-name = "'langue_original'"
+                                              :select-opt-items = "{{ json_encode($selectOptLangueOriginal) }}"
+                                              :select-opt-item="'{{ $film->langue_original_id }}'" />
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <select-component :div-class="'col-md-6'"
-                                      :label-class="'control-label'"
-                                      :label-text="'Langue'"
-                                      :select-opt-class="'form-control'"
-                                      :select-opt-name = "'langue'"
-                                      :select-opt-items = "{{ json_encode($selectOptLangue) }}"
-                                      :select-opt-item="'{{ $film->langue_id }}'"
-                                      :span-error = "true"
-                                      :span-error-message = "'{{ $errors->first('langue') }}'" />
-                </div>
-                <div class="row">
-                    <select-component :div-class="'col-md-6'"
-                                      :label-class="'control-label'"
-                                      :label-text="'Langue original'"
-                                      :select-opt-class="'form-control'"
-                                      :select-opt-name = "'langue_original'"
-                                      :select-opt-items = "{{ json_encode($selectOptLangueOriginal) }}"
-                                      :select-opt-item="'{{ $film->langue_original_id }}'" />
                 </div>
             </div>
         </div>

@@ -5,13 +5,16 @@ namespace App\Http\Controllers\MovieAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Movies\Film;
 use App\Models\Movies\Langue;
 use App\Models\Movies\LangueOriginal;
 use App\Models\Movies\Categorie;
+use App\Models\Movies\Acteur;
 use App\Models\Movies\CategorieFilm;
+use App\Models\Movies\ActeurFilm;
 use App\Classes\Helper;
 use Input;
 
@@ -24,12 +27,7 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::leftJoin('categorie_films',function($join){
-             $join->on('Films.id','=','categorie_films.film_id');
-        })->leftJoin('categories',function($join){
-            $join->on('categorie_films.categorie_id','=','categories.id');
-        })->select('films.*','categories.nom AS nom_categorie')->get();
-
+        $films = Film::orderBy('titre')->get();
         return View::make('movieadmin.film.index',compact('films'));
     }
 
@@ -44,10 +42,17 @@ class FilmsController extends Controller
 
         $selectOptCategorie = Helper::myListItem(Categorie::where('active',1)->pluck('nom','id'));
 
+        $acteurs = Acteur::where('active',1)->orderByRaw('prenom ASC , nom ASC')
+                                            ->select(DB::raw("CONCAT(prenom,' ',nom) AS nom"),"id")
+                                            ->pluck("nom","id");
+
+        $selectOptActeurs = Helper::myListItem($acteurs);
+        
         return View::make('movieadmin.film.create')->with([
                                                             'selectOptLangue' => $selectOptLangue[0],
                                                             'selectOptLangueOriginal' => $selectOptLangue[1],
-                                                            'selectOptCategorie' => $selectOptCategorie
+                                                            'selectOptCategorie' => $selectOptCategorie,
+                                                            'selectOptActeurs' => $selectOptActeurs
                                                           ]);
     }
 
@@ -80,21 +85,31 @@ class FilmsController extends Controller
         $film->nouveaute =  trim($request->input('nouveaute'));
         $film->photo = $request->input('file');
     
-        if($film->save())
+        if(!$film->save())
         {
-            $categorieFilm = new CategorieFilm();
-            $categorieFilm->categorie_id = $request->input('categorie');
-            $categorieFilm->film_id = $film->id;
-            if(!$categorieFilm->save())
-            {
-                $message = "Table catégorie film a été sauvegardé avec sans succès";
-                return $this->redirect_with_message_errors('film.index',array("errors",$message));
-            }
-        }else{
-            $message = "Table Filma été sauvegardé avec sans succès";
+            $message = "Table Films été sauvegardé avec sans succès";
             return $this->redirect_with_message_errors('film.index',array("errors",$message));
         }
-        return $this->redirect_with_message_success("film.index","Items ont été sauvegardés avec succès");
+
+        //Sauvegarder la catégorie de ce film
+        $categorieFilm = new CategorieFilm;
+        $categorieFilmSaved = $categorieFilm->saveFilmCategorieRecord($request->input('categorie'), $film->id);
+        if(!$categorieFilmSaved)
+        {
+            $message = "Table categorie_films a été sauvegardé avec sans succès";
+            return $this->redirect_with_message_errors('film.index',array("errors",$message));
+        }
+
+        //Sauvegarde des acteurs de ce film
+        $acteurFilm = new ActeurFilm;
+        $filmActeur = $acteurFilm->saveFilmActeursRecord($request->input('acteur'),$film->id);
+        if(!$filmActeur)
+        {
+            $message = "Table acteur_films a été sauvegardé avec sans succès";
+            return $this->redirect_with_message_errors('film.index',array("errors",$message));
+        }
+        
+        return $this->redirect_with_message_success("film.index","Tables ont été sauvegardés avec succès");
     }
 
     private function optLangue() : array
@@ -118,22 +133,45 @@ class FilmsController extends Controller
      */
     public function edit($id)
     {
-        $film = Film::with('Langue','langue_original')->where(['id' => $id,'active' => 1])->firstOrFail();
+        $film = Film::find($id);
 
+        //obtenir la liste des langues du film
         $selectOptLangue = $this->optLangue();
 
-        $selectOptCategorie = Helper::myListItem(Categorie::where('active',1)->pluck('nom','id'));
+        //obtenir la liste des catégories du film
+        $selectOptCategories = Helper::myListItem(Categorie::where('active',1)->pluck('nom','id'));
+        $selectOptCategorie = "";
+        if(count($film->categories) > 0)
+        {
+            foreach($film->categories as $categorie)
+            {
+                $selectOptCategorie = $categorie->id;
+            }
+        }
 
-        $categorie = Categorie::join('categorie_films',function($join){
-             $join->on('categories.id', '=', 'categorie_films.categorie_id');
-        })->where('categorie_films.film_id',$id)->first();
-        
+        $acteurs = Acteur::where('active',1)->orderByRaw('prenom ASC , nom ASC')
+                                            ->select(DB::raw("CONCAT(prenom,' ',nom) AS nom"),"id")
+                                            ->pluck("nom","id");
+
+        //obtenir la liste des acteurs du film
+        $selectOptActeurs = Helper::myListItem($acteurs);
+        $selectOptActeur = "";
+        if(count($film->acteurs) > 0)
+        {
+           foreach($film->acteurs as $acteur) 
+           {
+              $selectOptActeur .= $acteur->id . ",";
+           }   
+        }
+
         return View::make('movieadmin.film.edit')->with([
                                                           'film' => $film,
-                                                          'categorie' => $categorie,
                                                           'selectOptLangue' => $selectOptLangue[0],
                                                           'selectOptLangueOriginal' => $selectOptLangue[1],
-                                                          'selectOptCategorie' => $selectOptCategorie
+                                                          'selectOptCategories' => $selectOptCategories,
+                                                          'selectOptCategorie' => $selectOptCategorie,
+                                                          'selectOptActeurs' => $selectOptActeurs,
+                                                          'selectOptActeur' => rtrim($selectOptActeur,',')
                                                         ]);
     }
 
@@ -168,20 +206,30 @@ class FilmsController extends Controller
         $film->photo = $request->input('file');
         $film->active = $request->input('active');
         
-        if($film->save())
+        if(!$film->save())
         {
-            $categorieFilm = CategorieFilm::where('film_id', $id)->first();
-            $categorieFilm->active = $film->active;
-            $categorieFilm->categorie_id = $request->input('categorie');
-            if(!$categorieFilm->save())
-            {
-                $message = "Table catégorie film a été sauvegardé avec sans succès";
-                return $this->redirect_with_message_errors('film.index',array("errors", $message ));
-            }
-        }else{
-            $message = "Table Film a été sauvegardé avec sans succès";
+            $message = "Table Films a été sauvegardé avec sans succès";
             return $this->redirect_with_message_errors('film.index',array("errors",$message));
         }
+        
+        //Sauvegarder la catégorie de ce film
+        $categorieFilm = new CategorieFilm;
+        $categorieFilmSaved = $categorieFilm->saveFilmCategorieRecord($request->input('categorie'), $film->id);
+        if(!$categorieFilmSaved)
+        {
+            $message = "Table categorie_films a été sauvegardé avec sans succès";
+            return $this->redirect_with_message_errors('film.index',array("errors",$message));
+        }
+
+        //Sauvegarder les acteurs de ce film
+        $acteurFilm = new ActeurFilm;
+        $filmActeur = $acteurFilm->saveFilmActeursRecord($request->input('acteur'),$film->id);
+        if(!$filmActeur)
+        {
+            $message = "Table acteur_films a été sauvegardé avec sans succès";
+            return $this->redirect_with_message_errors('film.index',array("errors",$message));
+        }
+        
         return $this->redirect_with_message_success("film.index","Items ont été sauvegardés avec succès");
     }
 }

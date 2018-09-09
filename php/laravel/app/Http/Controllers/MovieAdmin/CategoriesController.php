@@ -32,8 +32,15 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        $films = Film::where('active',1)->pluck("titre","id");
+        //Montrer seulement les films qui n'appartiennent à aucun catégorie
+        $films = Film::leftJoin('categorie_films',function($join){
+            $join->on('films.id','=','categorie_films.film_id');
+        })->where('categorie_films.id', null)
+          ->orderBy('films.titre')
+          ->pluck("films.titre","films.id");
+
         $selectOptFilms = Helper::myListItem($films);
+        
         return View::make('movieadmin.categorie.create',compact('selectOptFilms'));
     }
 
@@ -62,14 +69,14 @@ class CategoriesController extends Controller
             return  $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
 
-        $isCompleted = $this->addCategorieFilmRecord($request->input('film'),$categorie->id);
-    
-        if(!$isCompleted)
+        $categorieFilm = new CategorieFilm;
+        $categorieFilmSaved = $categorieFilm->saveCategorieFilmsRecord($request->input('film'),$id);
+        if(!$categorieFilmSaved)
         {
             $message = "Table categorie_films a été sauvegardé avec sans succès";
-            return  $this->redirect_with_message_errors('acteur.index',array('errors'=>$message));
+            return  $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
-
+        
         return $this->redirect_with_message_success('categorie.index','Tables ont été sauvegardés avec succès');
     }
 
@@ -97,13 +104,28 @@ class CategoriesController extends Controller
             }
         }
 
-        $films = Film::where('active',1)->pluck("titre","id");
+        //Montrer seulement les films qui n'appartiennent à aucun catégorie
+        $films = Film::leftJoin('categorie_films',function($join){
+            $join->on('films.id','=','categorie_films.film_id');
+        })->where('categorie_films.id', null)
+          ->orderBy('films.titre')
+          ->pluck("films.titre","films.id");
+
         $selectOptFilms = Helper::myListItem($films);
 
+        $films = Film::join('categorie_films',function($join){
+            $join->on('films.id','=','categorie_films.film_id');
+        })->where('categorie_films.categorie_id', $id)
+          ->groupBy('films.id')
+          ->orderBy('films.titre')
+          ->pluck("films.titre","films.id");
+        
+        $selectOptFilms = array_merge($selectOptFilms, Helper::myListItem($films));
+        
         return View::make('movieadmin.categorie.edit')->with([
                                                                 'categorie' => $categorie,
                                                                 'selectOptFilms' => $selectOptFilms,
-                                                                'selectOptFilm' =>  rtrim($selectOptFilm,',')
+                                                                'selectOptFilm' => rtrim($selectOptFilm,',')
                                                              ]);
     }
 
@@ -134,34 +156,14 @@ class CategoriesController extends Controller
             return  $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
 
-        if((int)$request->input('active') === 1)
+        $categorieFilm = new CategorieFilm;
+        $categorieFilmSaved = $categorieFilm->saveCategorieFilmsRecord($request->input('film'),$id);
+        if(!$categorieFilmSaved)
         {
-            $isCompleted = $this->addCategorieFilmRecord($request->input('film'),$id);
+            $message = "Table categorie_films a été sauvegardé avec sans succès";
+            return  $this->redirect_with_message_errors('categorie.index',array('errors'=>$message));
         }
 
         return $this->redirect_with_message_success('categorie.index','Tables ont été sauvegardés avec succès');
-    }
-
-    private function addCategorieFilmRecord(?string $idFilm,int $categorieId):bool
-    {
-        $affectedRows = CategorieFilm::where('categorie_id',$categorieId)->delete();  
-
-        if($idFilm)
-        {
-            $idFilms = $idFilm?explode(',',$idFilm):"";
-
-            foreach($idFilms as $idFilm)
-            {
-                $categorieFilm = new CategorieFilm();
-                $categorieFilm->categorie_id = $categorieId;
-                $categorieFilm->film_id = $idFilm;
-                if(!$categorieFilm->save())
-                {
-                    $message = "Table Film a été sauvegardé avec sans succès";
-                    return false;
-                }   
-            }
-        }
-        return true;
     }
 }

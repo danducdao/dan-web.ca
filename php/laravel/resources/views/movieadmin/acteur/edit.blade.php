@@ -4,7 +4,7 @@
 {{Form::model($acteur,array('route' => array('acteur.update',$acteur->id), 'method' => 'put' ))}}
     <div class="row">
         <div class="col-md-12">
-            <h2><em>Ajouter acteur</em></h2>
+            <h2><em>Modifier acteur</em></h2>
         </div>
     </div>
     <div class="row">

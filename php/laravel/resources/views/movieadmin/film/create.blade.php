@@ -36,15 +36,21 @@
                         </textarea-component>
                     </div><br>
                     <div class="row">
-                         <select-component :div-class="'col-md-6'"
-                                            :label-class="'control-label'"
-                                            :label-text="'Catégorie'"
-                                            :select-opt-class="'form-control'"
-                                            :select-opt-name = "'categorie'"
-                                            :select-opt-items = "{{ json_encode($selectOptCategorie) }}"
-                                            :select-opt-item="'{{ old('categorie') }}'"
-                                            :span-error = "true"
-                                            :span-error-message = "'{{ $errors->first('categorie') }}'" />
+                                <select-component :div-class="'col-md-6'"
+                                                    :label-class="'control-label'"
+                                                    :label-text="'Catégorie'"
+                                                    :select-opt-class="'form-control'"
+                                                    :select-opt-name = "'categorie'"
+                                                    :select-opt-items = "{{ json_encode($selectOptCategorie) }}"
+                                                    :select-opt-item="'{{ old('categorie') }}'" ></select-component>
+                           
+                                <select-multiple-component :label-text="'Acteurs'"
+                                                           :div-class="'col-md-6'"
+                                                           :label-class ="'control-label'"
+                                                           :select-opt-name = "'acteur'"
+                                                           :select-opt-items = "{{ json_encode($selectOptActeurs) }}"
+                                                           :select-opt-item="'{{ old('acteur') }}'"  />
+                           
                     </div>
                     <div class="row">
                         <div class="col-md-6">

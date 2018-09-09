@@ -17,7 +17,7 @@
                     foreach($acteurs as $acteur)
                     {
                         $titre_film = "";
-                        if(count($acteur->films) > 0 && $acteur->active === 1)
+                        if(count($acteur->films) > 0)
                         {
                             $titre_film="<select>";
                             foreach($acteur->films as $key => $film)

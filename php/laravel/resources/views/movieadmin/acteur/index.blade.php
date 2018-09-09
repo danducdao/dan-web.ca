@@ -12,6 +12,11 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-12" style="padding-left:0">
+                {{ $acteurs->links() }}
+            </div>
+        </div>
+        <div class="row">
                 @php
                     $my_acteurs = array();
                     foreach($acteurs as $acteur)
@@ -40,6 +45,11 @@
                                    :url="'movieadmin/acteur'" 
                                    :item-style="{{ json_encode($style) }}" 
                                    :table-style="'width:40%;'" />
+        </div>
+        <div class="row">
+            <div class="col-lg-12" style="padding-left:0">
+                {{ $acteurs->links() }}
+            </div>
         </div>
     </section>
 @stop

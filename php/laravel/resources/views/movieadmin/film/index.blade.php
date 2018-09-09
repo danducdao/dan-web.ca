@@ -12,6 +12,11 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-12" style="padding-left:0">
+                {{ $films->links() }}
+            </div>
+        </div>
+        <div class="row">
                 @php
                     $movies = array();
                     foreach($films as $film)
@@ -68,6 +73,11 @@
                                    :table-style="'width:100%;'"
                                    :url="'movieadmin/film'" >
                 </listing-component>   
+        </div>
+        <div class="row">
+            <div class="col-lg-12" style="padding-left:0">
+                {{ $films->links() }}
+            </div>
         </div>
     </section>
 @stop

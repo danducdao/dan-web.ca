@@ -23,7 +23,7 @@ class ActeursController extends Controller
      */
     public function index()
     {
-        $acteurs = Acteur::orderByRaw('prenom ASC , nom ASC')->get();
+        $acteurs = Acteur::orderByRaw('prenom ASC , nom ASC')->paginate(10);
         return View::make('movieadmin.acteur.index',compact('acteurs'));
     }
 

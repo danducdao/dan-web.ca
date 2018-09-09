@@ -1,5 +1,5 @@
 <template>
-        <table class="table table-bordered" cellspacing="1" cellpadding="1" :style="tableStyle">
+        <table class="table table-bordered" :style="tableStyle">
             <thead>
                 <tr>
                     <th style="width:20px;"></th>

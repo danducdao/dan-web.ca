@@ -21,7 +21,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categorie::orderBy('nom')->get();
+        $categories = Categorie::orderBy('nom')->paginate(10);
         return View::make('movieadmin.categorie.index',compact('categories'));
     }
 

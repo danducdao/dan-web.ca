@@ -49645,11 +49645,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "table",
-    {
-      staticClass: "table table-bordered",
-      style: _vm.tableStyle,
-      attrs: { cellspacing: "1", cellpadding: "1" }
-    },
+    { staticClass: "table table-bordered", style: _vm.tableStyle },
     [
       _c("thead", [
         _c(

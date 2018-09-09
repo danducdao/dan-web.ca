@@ -12,6 +12,11 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-lg-12" style="padding-left:0">
+                {{ $categories->links() }}
+            </div>
+        </div>
+        <div class="row">
                 @php
                     $my_categories = array();
                     foreach($categories as $categorie)
@@ -42,6 +47,11 @@
                                    :url="'movieadmin/categorie'" 
                                    :item-style="{{ json_encode($style) }}" 
                                    :table-style="'width:20%;'" />
+        </div>
+        <div class="row">
+            <div class="col-lg-12" style="padding-left:0">
+                {{ $categories->links() }}
+            </div>
         </div>
     </section>
 @stop

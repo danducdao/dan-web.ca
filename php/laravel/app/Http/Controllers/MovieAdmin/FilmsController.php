@@ -27,7 +27,7 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::orderBy('titre')->get();
+        $films = Film::orderBy('titre')->paginate(10);
         return View::make('movieadmin.film.index',compact('films'));
     }
 

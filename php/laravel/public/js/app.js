@@ -844,25 +844,27 @@ window.Vue = __webpack_require__(39);
 
 var bus = new Vue();
 
-Vue.component("autocomplete-component", __webpack_require__(42));
+Vue.component("home-component", __webpack_require__(42));
 
-Vue.component("listing-component", __webpack_require__(48));
+Vue.component("autocomplete-component", __webpack_require__(50));
 
-Vue.component("textarea-component", __webpack_require__(55));
+Vue.component("listing-component", __webpack_require__(55));
 
-Vue.component("radio-component", __webpack_require__(60));
+Vue.component("textarea-component", __webpack_require__(62));
 
-Vue.component("fileupload-component", __webpack_require__(66));
+Vue.component("radio-component", __webpack_require__(67));
 
-Vue.component("image-component", __webpack_require__(71));
+Vue.component("fileupload-component", __webpack_require__(73));
 
-Vue.component("select-component", __webpack_require__(76));
+Vue.component("image-component", __webpack_require__(78));
 
-Vue.component("select-multiple-component", __webpack_require__(81));
+Vue.component("select-component", __webpack_require__(83));
 
-Vue.component("submit-button-component", __webpack_require__(88));
+Vue.component("select-multiple-component", __webpack_require__(88));
 
-Vue.component("back-button-component", __webpack_require__(93));
+Vue.component("submit-button-component", __webpack_require__(95));
+
+Vue.component("back-button-component", __webpack_require__(100));
 
 var app = new Vue({
   el: "#wrapper"
@@ -14347,9 +14349,9 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(5);
-__webpack_require__(98);
-__webpack_require__(99);
-module.exports = __webpack_require__(100);
+__webpack_require__(105);
+__webpack_require__(106);
+module.exports = __webpack_require__(107);
 
 
 /***/ }),
@@ -47634,13 +47636,13 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(46)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(49)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-6d6d4617"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -47651,7 +47653,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\autocompleteComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\homeComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47660,9 +47662,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a771dea4", Component.options)
+    hotAPI.createRecord("data-v-6d6d4617", Component.options)
   } else {
-    hotAPI.reload("data-v-a771dea4", Component.options)
+    hotAPI.reload("data-v-6d6d4617", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47683,13 +47685,13 @@ var content = __webpack_require__(44);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("63faeddb", content, false, {});
+var update = __webpack_require__(2)("844e9f9c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a771dea4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./autocompleteComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a771dea4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./autocompleteComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d6d4617\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./homeComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d6d4617\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./homeComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -47707,7 +47709,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n#main .title[data-v-6d6d4617]{\n    text-align:left;\n}\n#previous[data-v-6d6d4617]{\n    float:left;\n}\n#next[data-v-6d6d4617]{\n    float:right;\n}\n.titre[data-v-6d6d4617]{\n    min-height:50px;\n    padding:10px;\n    font-weight:bold;\n    font-size:18px;\n    text-align:center;\n    border:1px solid #ccc;\n}\n", ""]);
 
 // exports
 
@@ -47747,6 +47749,1113 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 /* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_tuto__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__ = __webpack_require__(48);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+        name: 'Home',
+        data: function data() {
+                return {
+                        tutoriels: {}
+                };
+        },
+        created: function created() {
+                var i = 0;
+                this.tutoriels = {
+                        "Vuejs2": new __WEBPACK_IMPORTED_MODULE_0__classes_tuto__["a" /* default */](Object(__WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__["a" /* default */])()[i]),
+                        "TypeScriptBasic": new __WEBPACK_IMPORTED_MODULE_0__classes_tuto__["a" /* default */](Object(__WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__["a" /* default */])()[++i]),
+                        "Nodejs": new __WEBPACK_IMPORTED_MODULE_0__classes_tuto__["a" /* default */](Object(__WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__["a" /* default */])()[++i]),
+                        "Python3": new __WEBPACK_IMPORTED_MODULE_0__classes_tuto__["a" /* default */](Object(__WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__["a" /* default */])()[++i]),
+                        "PythonOOP": new __WEBPACK_IMPORTED_MODULE_0__classes_tuto__["a" /* default */](Object(__WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__["a" /* default */])()[++i]),
+                        "PHP7": new __WEBPACK_IMPORTED_MODULE_0__classes_tuto__["a" /* default */](Object(__WEBPACK_IMPORTED_MODULE_1__inc_tutoriel__["a" /* default */])()[++i])
+                };
+        }
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = Tuto;
+/*
+* Program : Class Tuto
+* Écrit par : Dan Duc Dao
+*/
+
+function Tuto(myVideos) {
+  this.myVideos = myVideos;
+  this.url = "";
+  this.titre = "";
+  this.count = 0;
+  this.i = 0;
+  this.itemSelected = "";
+  this.setVideo(this.myVideos[this.i].url, this.myVideos[this.i].titre);
+}
+
+Tuto.prototype.setVideo = function (url, titre) {
+  this.url = url;
+  this.titre = titre;
+  this.count = this.i + 1;
+};
+
+Tuto.prototype.next = function () {
+  var i = 0;
+  if (this.i < this.myVideos.length - 1) {
+    i = ++this.i;
+  } else {
+    this.i = 0;
+    i = this.i;
+  }
+  this.setVideo(this.myVideos[i].url, this.myVideos[i].titre);
+};
+
+Tuto.prototype.previous = function () {
+  var i = 0;
+  if (this.i > 0) {
+    i = --this.i;
+  } else {
+    this.i = this.myVideos.length - 1;
+    i = this.i;
+  }
+  this.setVideo(this.myVideos[i].url, this.myVideos[i].titre);
+};
+
+Tuto.prototype.listItem = function () {
+  var listItem = [];
+  this.myVideos.forEach(function (data, index) {
+    listItem.push({
+      titre: data.titre,
+      id: index
+    });
+  });
+  return listItem;
+};
+
+Tuto.prototype.selectedItem = function () {
+  this.i = parseInt(this.itemSelected);
+  this.count = this.i + 1;
+  this.setVideo(this.myVideos[this.i].url, this.myVideos[this.i].titre);
+};
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = youtubeEmbedUrls;
+/*
+* Program : fonction youtubeEmbedUrls qui retourne un tableau de tutoriel youtube
+* Écrit par : Dan Duc Dao
+*/
+
+function youtubeEmbedUrls() {
+    return [[{ titre: "Introduction", url: "https://www.youtube.com/embed/5LYrN_cAJoA" }, { titre: "The Vue Instance", url: "https://www.youtube.com/embed/3ROjxrSa5pk" }, { titre: "Data & Methods", url: "https://www.youtube.com/embed/2MAoq2-2nnE" }, { titre: "Data Binding", url: "https://www.youtube.com/embed/xIOwFTCBBDg" }, { titre: "Events", url: "https://www.youtube.com/embed/DCwOPBxsXDs" }, { titre: "Event Modifiers", url: "https://www.youtube.com/embed/VqKjr4I4Fdo" }, { titre: "Keyboard Events", url: "https://www.youtube.com/embed/Ni6qd0uRoKY" }, { titre: "Two-Way Data Binding", url: "https://www.youtube.com/embed/FgvjjYBP2A0" }, { titre: "Computed Properties", url: "https://www.youtube.com/embed/O14qJr5sKXo" }, { titre: "Dynamic CSS Classes", url: "https://www.youtube.com/embed/4Gh5YcvGDjI" }, { titre: "Conditionals", url: "https://www.youtube.com/embed/0EJqZLcwVLY" }, { titre: "Looping with v-for", url: "https://www.youtube.com/embed/9Hcswbo0nCY" }, { titre: "Simple Punchbag Game", url: "https://www.youtube.com/embed/WjfpQlVem-8" }, { titre: "Multiple Vue Instances", url: "https://www.youtube.com/embed/k5p3TozQt84" }, { titre: "Intro to Components", url: "https://www.youtube.com/embed/EAONyIKrZN0" }, { titre: "Refs", url: "https://www.youtube.com/embed/rSyFM2FANtk" }, { titre: "The Vue CLI", url: "https://www.youtube.com/embed/MBZVDsB4VMA" }, { titre: "Vue Files & The Root Component", url: "https://www.youtube.com/embed/yP5Tu3S_FtU" }, { titre: "Nesting Components", url: "https://www.youtube.com/embed/ko5Eijiaozo" }, { titre: "Component CSS (scoped)", url: "https://www.youtube.com/embed/LsoLfELhG74" }, { titre: "Nesting Components Examples", url: "https://www.youtube.com/embed/6-us2D7GQCk" }, { titre: "Props", url: "https://www.youtube.com/embed/9qqFH60isFc" }, { titre: "Primitive vs Reference Types", url: "https://www.youtube.com/embed/gfT0udzYkyw" }, { titre: "Events (child to parent)", url: "https://www.youtube.com/embed/5pvG6fzkdFM" }, { titre: "The Event Bus", url: "https://www.youtube.com/embed/jzh4zQcfB0o" }, { titre: "Life-cycle Hooks", url: "https://www.youtube.com/embed/8rn3SK4N8Go" }, { titre: "Slots", url: "https://www.youtube.com/embed/F44OoFk8spg" }, { titre: "Dynamic Components", url: "https://www.youtube.com/embed/09n2945JW_0" }, { titre: "Input Binding (Creating a blog, part 1)", url: "https://www.youtube.com/embed/yopDG8t60ko" }, { titre: "Checkbox Binding", url: "https://www.youtube.com/embed/IkymKuIkajE" }, { titre: "Select Box Binding", url: "https://www.youtube.com/embed/xtmZVV9QpaA" }, { titre: "HTTP Requests", url: "https://www.youtube.com/embed/btDfVBPYI-U" }, { titre: "GET Requests", url: "https://www.youtube.com/embed/aoWqFLGCK60" }, { titre: "Custom Directives", url: "https://www.youtube.com/embed/3-fLYMEKOU0" }, { titre: "Filters", url: "https://www.youtube.com/embed/o8UspKnsV_0" }, { titre: "Custom Search Filter", url: "https://www.youtube.com/embed/G34_yNV8FMY" }, { titre: "Registering Things Locally", url: "https://www.youtube.com/embed/T5h6L5MFLRA" }, { titre: "Mixins", url: "https://www.youtube.com/embed/YZuml1Y9BmQ" }, { titre: "Setting up Routing", url: "https://www.youtube.com/embed/Zflo2-s4768" }, { titre: "Hash vs History (Routing)", url: "https://www.youtube.com/embed/js5Sr_ZSHDs" }, { titre: "Adding Router Links", url: "https://www.youtube.com/embed/yn0_6T4HwHs" }, { titre: "Route Parameters", url: "https://www.youtube.com/embed/KGFcgnCSS6A" }, { titre: "Posting to Firebase", url: "https://www.youtube.com/embed/CzJyGo5rh7M" }, { titre: "Retrieving Posts from Firebase", url: "https://www.youtube.com/embed/ieCsEdq94TA" }], [{ titre: "Course plan and prerequisites", url: "https://www.youtube.com/embed/YPShu0H3RbM" }, { titre: "Examining some problems with JavaScript", url: "https://www.youtube.com/embed/BaCWKZr-lEE" }, { titre: "How TypeScript works", url: "https://www.youtube.com/embed/g486mWGk8VM" }, { titre: "TypeScript versus JavaScript", url: "https://www.youtube.com/embed/JAT0xC-5_Jk" }, { titre: "Setting up TypeScript", url: "https://www.youtube.com/embed/F7dq4Ec02A0" }, { titre: "Introducing type declarations", url: "https://www.youtube.com/embed/oinvkh5B05E" }, { titre: "Arrays and tuples", url: "https://www.youtube.com/embed/yYblYVQKn2U" }, { titre: "Type erasure and error behavior", url: "https://www.youtube.com/embed/lxcywrPzCGI" }, { titre: "Typing with functions", url: "https://www.youtube.com/embed/do_8hnj45zg" }, { titre: "Implicit typing", url: "https://www.youtube.com/embed/leErA89nzB8" }, { titre: "Any and union types", url: "https://www.youtube.com/embed/bDxVddA1Y-k" }, { titre: "TypeScript classes", url: "https://www.youtube.com/embed/B_lYZ715ja4" }, { titre: "Methods and constructors", url: "https://www.youtube.com/embed/d9IJyMOmJoE" }, { titre: "Inheritance and Polymorphism In TypeScript", url: "https://www.youtube.com/embed/Sn6K57YSuwU" }, { titre: "Interfaces and Duck Typing", url: "https://www.youtube.com/embed/v1ShOuVKikM" }, { titre: "Member visibility", url: "https://www.youtube.com/embed/_rVFmuX8wMU" }, { titre: "readonly modifier", url: "https://www.youtube.com/embed/cYBDtNnjmlA" }, { titre: "Enums", url: "https://www.youtube.com/embed/tkPzU-pYErk" }, { titre: "Generics", url: "https://www.youtube.com/embed/VPuk5gDXzoo" }, { titre: "Modules", url: "https://www.youtube.com/embed/BqZvveICURk" }, { titre: "TypeScript compiler arguments", url: "https://www.youtube.com/embed/iIVIv1izd8k" }, { titre: "Using tsconfig json file", url: "https://www.youtube.com/embed/JwFaSxCS-2g" }, { titre: "Creating an npm project", url: "https://www.youtube.com/embed/90b9MgQvwUY" }, { titre: "Installing libraries and type definitions", url: "https://www.youtube.com/embed/HRrGr0FIPAg" }, { titre: "Setting up the project", url: "https://www.youtube.com/embed/F_wlRz-tpZ4" }, { titre: "Installing dependencies", url: "https://www.youtube.com/embed/5A_u1g7Z-hc" }, { titre: "Creating model classes", url: "https://www.youtube.com/embed/Mps99WoVcWI" }, { titre: "Creating an api request service", url: "https://www.youtube.com/embed/0OL8DlbGYQg" }, { titre: "Calling service and troubleshooting errors", url: "https://www.youtube.com/embed/5hqzQKaHgj8" }, { titre: "Convert response to model object", url: "https://www.youtube.com/embed/zCdjVGqc3gk" }, { titre: "Using callbacks and handling repo response", url: "https://www.youtube.com/embed/7E9U3XxHU2Y" }, { titre: "Chaining calls and accepting commandline argument", url: "https://www.youtube.com/embed/XfEtSYujbpk" }, { titre: "Conclusion", url: "https://www.youtube.com/embed/6Km-4HkYkbA" }], [{ titre: "Introduction", url: "https://www.youtube.com/embed/w-7RQ46RgxU" }, { titre: "Installing Node JS", url: "https://www.youtube.com/embed/1US-P13yKVs" }, { titre: "The V8 Engine", url: "https://www.youtube.com/embed/86tgU7UaJmU" }, { titre: "The Global Object", url: "https://www.youtube.com/embed/PY-AycMkEAg" }, { titre: "Function Expressions", url: "https://www.youtube.com/embed/lK42xIMcA0Y" }, { titre: "Modules and require", url: "https://www.youtube.com/embed/xHLd36QoS4k" }, { titre: "Module Patterns", url: "https://www.youtube.com/embed/9UaZtgB5tQI" }, { titre: "The Node Event Emitter", url: "https://www.youtube.com/embed/NtrnaTKqFPQ" }, { titre: "Reading & Writing Files (fs)", url: "https://www.youtube.com/embed/U57kU311-nE" }, { titre: "Creating & Removing Directories", url: "https://www.youtube.com/embed/Ejgd-la6nSY" }, { titre: "Clients & Servers", url: "https://www.youtube.com/embed/qSAze9b0wrY" }, { titre: "Creating a Server", url: "https://www.youtube.com/embed/lm86czWdrk0" }, { titre: "Streams and Buffers", url: "https://www.youtube.com/embed/GlybFFMXXmQ" }, { titre: "Readable Streams", url: "https://www.youtube.com/embed/E3tTzx0Qoj0" }, { titre: "Writable Streams", url: "https://www.youtube.com/embed/DvlCT0N7yQI" }, { titre: "Pipes", url: "https://www.youtube.com/embed/a8W90jDHSho" }, { titre: "Serving HTML Pages", url: "https://www.youtube.com/embed/BBOUfdUZIVo" }, { titre: "Serving JSON Data", url: "https://www.youtube.com/embed/QxjVZFa1XUM" }, { titre: "Basic Routing", url: "https://www.youtube.com/embed/_zvWeGwVkCY" }, { titre: "The Node Package Manager", url: "https://www.youtube.com/embed/kQ1j0rEI7EI" }, { titre: "The package.json File", url: "https://www.youtube.com/embed/_eRwjuIDJ2Y" }, { titre: "Installing Nodemon", url: "https://www.youtube.com/embed/4N0d8HhU5DE" }, { titre: "Introduction to Express", url: "https://www.youtube.com/embed/9TSBKO59u0Y" }, { titre: "Express Route Params", url: "https://www.youtube.com/embed/MuMs1pLuT7I" }, { titre: "Template Engines", url: "https://www.youtube.com/embed/oZGmHNZv7Sc" }, { titre: "Template Engines ( part 2 )", url: "https://www.youtube.com/embed/RczQp3zCPXs" }, { titre: "Partial Templates", url: "https://www.youtube.com/embed/CdvSVkF9m_Y" }, { titre: "Middleware & Static Files", url: "https://www.youtube.com/embed/-lRgL9kj_h0" }, { titre: "Query Strings", url: "https://www.youtube.com/embed/QTAYRmMsVCI" }, { titre: "Handling POST Requests", url: "https://www.youtube.com/embed/rin7gb9kdpk" }, { titre: "Making a To-do App (part 1)", url: "https://www.youtube.com/embed/edOmvng5IQc" }, { titre: "Making a To-do App (part 2)", url: "https://www.youtube.com/embed/nleI7IbpGhc" }, { titre: "Making a To-do App (part 3)", url: "https://www.youtube.com/embed/NA21dUBfJhw" }, { titre: "Making a To-do App (part 4)", url: "https://www.youtube.com/embed/IgAH0NqsJso" }, { titre: "Intro to NoSQL / MongoDB", url: "https://www.youtube.com/embed/L4OP8JGKbQU" }, { titre: "Making a To-do App (part 5)", url: "https://www.youtube.com/embed/yevfxvt5r7Y" }, { titre: "Making a To-do App (part 6)", url: "https://www.youtube.com/embed/yox93sB2PyQ" }], [{ titre: "Why Learn Python?", url: "https://www.youtube.com/embed/Ozrduu2W9B8" }, { titre: "Installing Python 3", url: "https://www.youtube.com/embed/SbQAAuom-GA" }, { titre: "Numbers", url: "https://www.youtube.com/embed/Gqby4v5JOu4" }, { titre: "Strings", url: "https://www.youtube.com/embed/---_iWTjtB4" }, { titre: "Lists", url: "https://www.youtube.com/embed/cl0R4Tbf2v0" }, { titre: "Standard Input", url: "https://www.youtube.com/embed/CEO614YbQCY" }, { titre: "String Formatting", url: "https://www.youtube.com/embed/yVGSeRcQfyI" }, { titre: "If Statements", url: "https://www.youtube.com/embed/t3c41sKJS20" }, { titre: "For Loops", url: "https://www.youtube.com/embed/ENMCxQ9kNS4" }, { titre: "While Loops", url: "https://www.youtube.com/embed/7p-BJ92aZp0" }, { titre: "Ranges", url: "https://www.youtube.com/embed/GhrChSfaiu0" }, { titre: "Functions", url: "https://www.youtube.com/embed/l0E1tK-O8ew" }, { titre: "Variable Scope", url: "https://www.youtube.com/embed/wueXfiVkw1I" }, { titre: "Dictionaries", url: "https://www.youtube.com/embed/q8H5R6eP3zQ" }, { titre: "Sorting & Sets", url: "https://www.youtube.com/embed/UirJNoJ9KT8" }, { titre: "Classes", url: "https://www.youtube.com/embed/H--VDcDSHdg" }, { titre: "The init function", url: "https://www.youtube.com/embed/TO1K8_BVCT4" }, { titre: "Methods & Attributes", url: "https://www.youtube.com/embed/LwFnF9XoEfM" }, { titre: "Modules & Packages", url: "https://www.youtube.com/embed/f26nAmfJggw" }, { titre: "Bar Tab Calculator", url: "https://www.youtube.com/embed/h4NetyxAhv4" }, { titre: "List Comprehensions", url: "https://www.youtube.com/embed/7G0jqG_kiig" }, { titre: "Maps", url: "https://www.youtube.com/embed/3Da00hgQ834" }, { titre: "Filters", url: "https://www.youtube.com/embed/jPoY--eTG5A" }, { titre: "Lambdas", url: "https://www.youtube.com/embed/3waZGETmzjY" }, { titre: "Decorators", url: "https://www.youtube.com/embed/mmiIjmo-GwQ" }, { titre: "Reading Files", url: "https://www.youtube.com/embed/EPHK0X3yxLs" }, { titre: "Reading Files", url: "https://www.youtube.com/embed/EPHK0X3yxLs" }, { titre: "Writing Files", url: "https://www.youtube.com/embed/cVUhE0-NUzs" }, { titre: "Themed Lorem Ipsum Generator", url: "https://www.youtube.com/embed/iLS4Hk-kJXE" }, { titre: "Downloading Images", url: "https://www.youtube.com/embed/2Rf01wfbQLk" }], [{ titre: "Classes and Instances", url: "https://www.youtube.com/embed/ZDa-Z5JzLYM" }, { titre: "Class Variables", url: "https://www.youtube.com/embed/BJ-VvGyQxho" }, { titre: "classmethods and staticmethods", url: "https://www.youtube.com/embed/rq8cL2XMM5M" }, { titre: "Inheritance - Creating Subclasses", url: "https://www.youtube.com/embed/RSl87lqOXDE" }, { titre: "Special (Magic/Dunder) Methods", url: "https://www.youtube.com/embed/3ohzBxoFHAY" }, { titre: "Property Decorators - Getters, Setters, and Deleters", url: "https://www.youtube.com/embed/jCzT9XFZ5bw" }], [{ titre: "Introduction", url: "https://www.youtube.com/embed/pIG1A7UdozM" }, { titre: "XAMPP PHP7 setup", url: "https://www.youtube.com/embed/yWCo5Iae9ak" }, { titre: "Primitive type declarations", url: "https://www.youtube.com/embed/3RtYLZaUUdU" }, { titre: "Object type declarations", url: "https://www.youtube.com/embed/Ms_O8GdmuTw" }, { titre: "Return type declarations", url: "https://www.youtube.com/embed/P1tinI0HJr0" }, { titre: "Null coalescing operator", url: "https://www.youtube.com/embed/gS-Ym5dRmUI" }, { titre: "Spaceship operator", url: "https://www.youtube.com/embed/XYfHeQRm6UA" }, { titre: "Constant arrays using define", url: "https://www.youtube.com/embed/sL7espPTVvM" }, { titre: "Anonymous classes", url: "https://www.youtube.com/embed/__S6cs4sKAE" }, { titre: "Unicode codepoint escape syntax", url: "https://www.youtube.com/embed/IlE9hAQ73ok" }, { titre: "Functional call context", url: "https://www.youtube.com/embed/VuS_xLa_Tjo" }, { titre: "Unserialize filtering", url: "https://www.youtube.com/embed/U1TdOtYHWVk" }, { titre: "Expectations", url: "https://www.youtube.com/embed/FjLA8nnwuwM" }, { titre: "Namespacing, use and group use declarations in PHP", url: "https://www.youtube.com/embed/V0CtmYaSju8" }, { titre: "Integer division", url: "https://www.youtube.com/embed/iVDFCTmXJmA" }, { titre: "Session options", url: "https://www.youtube.com/embed/b66pbZe512U" }, { titre: "Random bytes and random int functions", url: "https://www.youtube.com/embed/KAS4yZGHR_4" }, { titre: "Revamped regular expression function", url: "https://www.youtube.com/embed/BILQ1FBGDSw" }, { titre: "What are Generators?", url: "https://www.youtube.com/embed/AtoIOT18-mw" }, { titre: "Generator Syntax", url: "https://www.youtube.com/embed/2a-d2lcIcn8" }, { titre: "Generator Yielding Values", url: "https://www.youtube.com/embed/RGABOv-MgdU" }, { titre: "PHP7 Generator new features", url: "https://www.youtube.com/embed/A81TAMMb3sk" }, { titre: "Deprecated features of PHP7", url: "https://www.youtube.com/embed/sioobwq0TAk" }, { titre: "Conclusion", url: "https://www.youtube.com/embed/ju13ePdnqNM" }], [{ titre: "Install and Setup for Mac and Windows", url: "https://www.youtube.com/embed/YYXdXT2l-Gg" }, { titre: "Strings - Working with Textual Data", url: "https://www.youtube.com/embed/k9TUPpGqYTo" }, { titre: "Integers and Floats - Working with Numeric Data", url: "https://www.youtube.com/embed/khKv-8q7YmY" }, { titre: "Lists, Tuples, and Sets", url: "https://www.youtube.com/embed/W8KRzm-HUcc" }, { titre: "Dictionaries - Working with Key-Value Pairs", url: "https://www.youtube.com/embed/daefaLgNkw0" }, { titre: "Conditionals and Booleans - If, Else, and Elif Statements", url: "https://www.youtube.com/embed/DZwmZ8Usvnk" }, { titre: "Loops and Iterations - For/While Loops", url: "https://www.youtube.com/embed/6iF8Xb7Z3wQ" }, { titre: "Functions", url: "https://www.youtube.com/embed/9Os0o3wzS_I" }, { titre: "Import Modules and Exploring The Standard Library", url: "https://www.youtube.com/embed/CqvZ3vGoGs0" }]];
+};
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { attrs: { id: "main" } }, [
+    _c("div", { staticClass: "hpanel col-md-9" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-6 border-right" }, [
+            _c("label", { staticClass: "col-sm-2 control-label" }, [
+              _vm._v("Vidéo : ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tutoriels.Vuejs2.itemSelected,
+                    expression: "tutoriels.Vuejs2.itemSelected"
+                  }
+                ],
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.tutoriels.Vuejs2,
+                        "itemSelected",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.tutoriels.Vuejs2.selectedItem()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tutoriels.Vuejs2.listItem(), function(item, index) {
+                return _c("option", { domProps: { value: item.id } }, [
+                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("p", [
+              _c("iframe", {
+                attrs: {
+                  width: "580",
+                  height: "315",
+                  src: _vm.tutoriels.Vuejs2.url,
+                  frameborder: "1",
+                  allow: "autoplay; encrypted-media",
+                  allowfullscreen: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "titre" }, [
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.tutoriels.Vuejs2.count) +
+                    " - " +
+                    _vm._s(_vm.tutoriels.Vuejs2.titre)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.Vuejs2.previous()
+                    }
+                  }
+                },
+                [_vm._v("Précédent")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "next" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.Vuejs2.next()
+                    }
+                  }
+                },
+                [_vm._v("Suivant")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c("label", { staticClass: "col-sm-2 control-label" }, [
+              _vm._v("Vidéo : ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tutoriels.TypeScriptBasic.itemSelected,
+                    expression: "tutoriels.TypeScriptBasic.itemSelected"
+                  }
+                ],
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.tutoriels.TypeScriptBasic,
+                        "itemSelected",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.tutoriels.TypeScriptBasic.selectedItem()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tutoriels.TypeScriptBasic.listItem(), function(
+                item,
+                index
+              ) {
+                return _c("option", { domProps: { value: item.id } }, [
+                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("p", [
+              _c("iframe", {
+                attrs: {
+                  width: "580",
+                  height: "315",
+                  src: _vm.tutoriels.TypeScriptBasic.url,
+                  frameborder: "1",
+                  allow: "autoplay; encrypted-media",
+                  allowfullscreen: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "titre" }, [
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.tutoriels.TypeScriptBasic.count) +
+                    " - " +
+                    _vm._s(_vm.tutoriels.TypeScriptBasic.titre)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.TypeScriptBasic.previous()
+                    }
+                  }
+                },
+                [_vm._v("Précédent")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "next" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.TypeScriptBasic.next()
+                    }
+                  }
+                },
+                [_vm._v("Suivant")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "hpanel col-md-9" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-6 border-right" }, [
+            _c("label", { staticClass: "col-sm-2 control-label" }, [
+              _vm._v("Vidéo : ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tutoriels.Nodejs.itemSelected,
+                    expression: "tutoriels.Nodejs.itemSelected"
+                  }
+                ],
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.tutoriels.Nodejs,
+                        "itemSelected",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.tutoriels.Nodejs.selectedItem()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tutoriels.Nodejs.listItem(), function(item, index) {
+                return _c("option", { domProps: { value: item.id } }, [
+                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("p", [
+              _c("iframe", {
+                attrs: {
+                  width: "580",
+                  height: "315",
+                  src: _vm.tutoriels.Nodejs.url,
+                  frameborder: "1",
+                  allow: "autoplay; encrypted-media",
+                  allowfullscreen: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "titre" }, [
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.tutoriels.Nodejs.count) +
+                    " - " +
+                    _vm._s(_vm.tutoriels.Nodejs.titre)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.Nodejs.previous()
+                    }
+                  }
+                },
+                [_vm._v("Précédent")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "next" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.Nodejs.next()
+                    }
+                  }
+                },
+                [_vm._v("Suivant")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c("label", { staticClass: "col-sm-2 control-label" }, [
+              _vm._v("Vidéo : ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tutoriels.PHP7.itemSelected,
+                    expression: "tutoriels.PHP7.itemSelected"
+                  }
+                ],
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.tutoriels.PHP7,
+                        "itemSelected",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.tutoriels.PHP7.selectedItem()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tutoriels.PHP7.listItem(), function(item, index) {
+                return _c("option", { domProps: { value: item.id } }, [
+                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _c("p", [
+              _c("iframe", {
+                attrs: {
+                  width: "580",
+                  height: "315",
+                  src: _vm.tutoriels.PHP7.url,
+                  frameborder: "1",
+                  allow: "autoplay; encrypted-media",
+                  allowfullscreen: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "titre" }, [
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.tutoriels.PHP7.count) +
+                    " - " +
+                    _vm._s(_vm.tutoriels.PHP7.titre)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.PHP7.previous()
+                    }
+                  }
+                },
+                [_vm._v("Précédent")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "next" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.PHP7.next()
+                    }
+                  }
+                },
+                [_vm._v("Suivant")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "hpanel col-md-9" }, [
+      _vm._m(6),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-6 border-right" }, [
+            _c("label", { staticClass: "col-sm-2 control-label" }, [
+              _vm._v("Vidéo : ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tutoriels.Python3.itemSelected,
+                    expression: "tutoriels.Python3.itemSelected"
+                  }
+                ],
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.tutoriels.Python3,
+                        "itemSelected",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.tutoriels.Python3.selectedItem()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tutoriels.Python3.listItem(), function(item, index) {
+                return _c("option", { domProps: { value: item.id } }, [
+                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _c("p", [
+              _c("iframe", {
+                attrs: {
+                  width: "580",
+                  height: "315",
+                  src: _vm.tutoriels.Python3.url,
+                  frameborder: "1",
+                  allow: "autoplay; encrypted-media",
+                  allowfullscreen: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "titre" }, [
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.tutoriels.Python3.count) +
+                    " - " +
+                    _vm._s(_vm.tutoriels.Python3.titre)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.Python3.previous()
+                    }
+                  }
+                },
+                [_vm._v("Précédent")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "next" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.Python3.next()
+                    }
+                  }
+                },
+                [_vm._v("Suivant")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c("label", { staticClass: "col-sm-2 control-label" }, [
+              _vm._v("Vidéo : ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tutoriels.PythonOOP.itemSelected,
+                    expression: "tutoriels.PythonOOP.itemSelected"
+                  }
+                ],
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.tutoriels.PythonOOP,
+                        "itemSelected",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    function($event) {
+                      _vm.tutoriels.PythonOOP.selectedItem()
+                    }
+                  ]
+                }
+              },
+              _vm._l(_vm.tutoriels.PythonOOP.listItem(), function(item, index) {
+                return _c("option", { domProps: { value: item.id } }, [
+                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _vm._m(8),
+            _vm._v(" "),
+            _c("p", [
+              _c("iframe", {
+                attrs: {
+                  width: "580",
+                  height: "315",
+                  src: _vm.tutoriels.PythonOOP.url,
+                  frameborder: "1",
+                  allow: "autoplay; encrypted-media",
+                  allowfullscreen: ""
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "titre" }, [
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.tutoriels.PythonOOP.count) +
+                    " - " +
+                    _vm._s(_vm.tutoriels.PythonOOP.titre)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.PythonOOP.previous()
+                    }
+                  }
+                },
+                [_vm._v("Précédent")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button", id: "next" },
+                  on: {
+                    click: function($event) {
+                      _vm.tutoriels.PythonOOP.next()
+                    }
+                  }
+                },
+                [_vm._v("Suivant")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading hbuilt" }, [
+      _c("div", { staticClass: "panel-tools" }, [
+        _c("a", { staticClass: "showhide" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ])
+      ]),
+      _vm._v("\n            Vue JS 2, TypeScript Basics\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "title" }, [
+      _c("strong", [_vm._v("Vue JS 2")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "title" }, [
+      _c("strong", [_vm._v("TypeScript Basics")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading hbuilt" }, [
+      _c("div", { staticClass: "panel-tools" }, [
+        _c("a", { staticClass: "showhide" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ])
+      ]),
+      _vm._v("\n            Node JS, PHP7 New Features\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "title" }, [
+      _c("strong", [_vm._v("Node JS")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "title" }, [
+      _c("strong", [_vm._v("PHP7 New Features")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading hbuilt" }, [
+      _c("div", { staticClass: "panel-tools" }, [
+        _c("a", { staticClass: "showhide" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ])
+      ]),
+      _vm._v("\n            Python 3 for beginners, Python OOP, \n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "title" }, [
+      _c("strong", [_vm._v("Python 3 for beginners")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "title" }, [
+      _c("strong", [_vm._v("Python OOP")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6d6d4617", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(51)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(53)
+/* template */
+var __vue_template__ = __webpack_require__(54)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\autocompleteComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a771dea4", Component.options)
+  } else {
+    hotAPI.reload("data-v-a771dea4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(52);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("63faeddb", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a771dea4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./autocompleteComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a771dea4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./autocompleteComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47806,7 +48915,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 47 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47891,19 +49000,19 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(49)
+  __webpack_require__(56)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(51)
+var __vue_script__ = __webpack_require__(58)
 /* template */
-var __vue_template__ = __webpack_require__(54)
+var __vue_template__ = __webpack_require__(61)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47942,13 +49051,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(50);
+var content = __webpack_require__(57);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -47968,7 +49077,7 @@ if(false) {
 }
 
 /***/ }),
-/* 50 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -47982,12 +49091,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 51 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(59);
 //
 //
 //
@@ -48064,7 +49173,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
 });
 
 /***/ }),
-/* 52 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49162,7 +50271,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(53);
+    var client = __webpack_require__(60);
 
     return new PromiseObj(function (resolve) {
 
@@ -49630,13 +50739,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 
 /***/ }),
-/* 53 */
+/* 60 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 54 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49760,19 +50869,19 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(56)
+  __webpack_require__(63)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(58)
+var __vue_script__ = __webpack_require__(65)
 /* template */
-var __vue_template__ = __webpack_require__(59)
+var __vue_template__ = __webpack_require__(66)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49811,13 +50920,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -49837,7 +50946,7 @@ if(false) {
 }
 
 /***/ }),
-/* 57 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -49851,7 +50960,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 58 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49920,7 +51029,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 59 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49965,19 +51074,19 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(61)
+  __webpack_require__(68)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(63)
+var __vue_script__ = __webpack_require__(70)
 /* template */
-var __vue_template__ = __webpack_require__(65)
+var __vue_template__ = __webpack_require__(72)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50016,13 +51125,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(69);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -50042,7 +51151,7 @@ if(false) {
 }
 
 /***/ }),
-/* 62 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -50056,12 +51165,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 63 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_radioButton__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_radioButton__ = __webpack_require__(71);
 //
 //
 //
@@ -50130,7 +51239,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50188,7 +51297,7 @@ var RadioButton = function RadioButton(name, value, text) {
 };
 
 /***/ }),
-/* 65 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50255,19 +51364,19 @@ if (false) {
 }
 
 /***/ }),
-/* 66 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(67)
+  __webpack_require__(74)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(69)
+var __vue_script__ = __webpack_require__(76)
 /* template */
-var __vue_template__ = __webpack_require__(70)
+var __vue_template__ = __webpack_require__(77)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50306,13 +51415,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 67 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(68);
+var content = __webpack_require__(75);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -50332,7 +51441,7 @@ if(false) {
 }
 
 /***/ }),
-/* 68 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -50346,7 +51455,7 @@ exports.push([module.i, "\n.dropbox {\r\n    outline: 2px dashed grey; /* the da
 
 
 /***/ }),
-/* 69 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50453,7 +51562,7 @@ var STATUS_SUCCESS = 1,
 });
 
 /***/ }),
-/* 70 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50515,19 +51624,19 @@ if (false) {
 }
 
 /***/ }),
-/* 71 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(72)
+  __webpack_require__(79)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(74)
+var __vue_script__ = __webpack_require__(81)
 /* template */
-var __vue_template__ = __webpack_require__(75)
+var __vue_template__ = __webpack_require__(82)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50566,13 +51675,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(73);
+var content = __webpack_require__(80);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -50592,7 +51701,7 @@ if(false) {
 }
 
 /***/ }),
-/* 73 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -50606,7 +51715,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 74 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50685,7 +51794,7 @@ var HEIGHT = 135,
 });
 
 /***/ }),
-/* 75 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50741,19 +51850,19 @@ if (false) {
 }
 
 /***/ }),
-/* 76 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(77)
+  __webpack_require__(84)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(79)
+var __vue_script__ = __webpack_require__(86)
 /* template */
-var __vue_template__ = __webpack_require__(80)
+var __vue_template__ = __webpack_require__(87)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50792,13 +51901,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(78);
+var content = __webpack_require__(85);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -50818,7 +51927,7 @@ if(false) {
 }
 
 /***/ }),
-/* 78 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -50832,7 +51941,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 79 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50903,7 +52012,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 80 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50983,19 +52092,19 @@ if (false) {
 }
 
 /***/ }),
-/* 81 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(82)
+  __webpack_require__(89)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(86)
+var __vue_script__ = __webpack_require__(93)
 /* template */
-var __vue_template__ = __webpack_require__(87)
+var __vue_template__ = __webpack_require__(94)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -51034,13 +52143,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 82 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(83);
+var content = __webpack_require__(90);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -51060,22 +52169,22 @@ if(false) {
 }
 
 /***/ }),
-/* 83 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(84);
+var escape = __webpack_require__(91);
 exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.custom-select[data-v-3eb8c7aa] {\r\n    background: #FFF url(" + escape(__webpack_require__(85)) + ") no-repeat center right 2px;\r\n    display: inline-block;\r\n    padding: 5px 15px;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    cursor:pointer;\r\n    text-overflow: ellipsis;\r\n    overflow: hidden;\r\n    white-space: nowrap;\n}\ndiv#custom-select-option-box[data-v-3eb8c7aa] {\r\n    background: #FFF;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    z-index:1;\r\n    margin-top:-3px;\r\n    max-height:100px;\r\n    overflow-y:scroll;\n}\n.custom-select-option[data-v-3eb8c7aa] {\r\n    width: 100%;\r\n    padding: 0px 15px;\r\n    margin: 1px 0px;\r\n    cursor: pointer;\n}\nlabel[data-v-3eb8c7aa]{\r\n    cursor: pointer;\r\n    font-weight:normal;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.custom-select[data-v-3eb8c7aa] {\r\n    background: #FFF url(" + escape(__webpack_require__(92)) + ") no-repeat center right 2px;\r\n    display: inline-block;\r\n    padding: 5px 15px;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    cursor:pointer;\r\n    text-overflow: ellipsis;\r\n    overflow: hidden;\r\n    white-space: nowrap;\n}\ndiv#custom-select-option-box[data-v-3eb8c7aa] {\r\n    background: #FFF;\r\n    border: #e4e5e7 1px solid;\r\n    color: #555;\r\n    border-radius: 2px;\r\n    width: 300px;\r\n    z-index:1;\r\n    margin-top:-3px;\r\n    max-height:100px;\r\n    overflow-y:scroll;\n}\n.custom-select-option[data-v-3eb8c7aa] {\r\n    width: 100%;\r\n    padding: 0px 15px;\r\n    margin: 1px 0px;\r\n    cursor: pointer;\n}\nlabel[data-v-3eb8c7aa]{\r\n    cursor: pointer;\r\n    font-weight:normal;\n}\r\n\r\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 84 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = function escape(url) {
@@ -51097,13 +52206,13 @@ module.exports = function escape(url) {
 
 
 /***/ }),
-/* 85 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = "/images/downward-arrow.png?7a925cb92889a1e805c858a0771d1f94";
 
 /***/ }),
-/* 86 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51224,7 +52333,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 87 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51325,19 +52434,19 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(89)
+  __webpack_require__(96)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(91)
+var __vue_script__ = __webpack_require__(98)
 /* template */
-var __vue_template__ = __webpack_require__(92)
+var __vue_template__ = __webpack_require__(99)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -51376,13 +52485,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 89 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(97);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -51402,7 +52511,7 @@ if(false) {
 }
 
 /***/ }),
-/* 90 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -51416,7 +52525,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 
 /***/ }),
-/* 91 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51438,7 +52547,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 92 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51476,19 +52585,19 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(94)
+  __webpack_require__(101)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(96)
+var __vue_script__ = __webpack_require__(103)
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(104)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -51527,13 +52636,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(102);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -51553,7 +52662,7 @@ if(false) {
 }
 
 /***/ }),
-/* 95 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
@@ -51567,7 +52676,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
 
 /***/ }),
-/* 96 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51599,7 +52708,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 97 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51646,19 +52755,19 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 105 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 99 */
+/* 106 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 100 */
+/* 107 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

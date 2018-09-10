@@ -1,6 +1,4 @@
 @extends('layouts/default')
-
 @section('content')
-Home
-
+<home-component></home-component>
 @stop

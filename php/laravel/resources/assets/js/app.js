@@ -16,6 +16,8 @@ window.Vue = require("vue");
 
 export const bus = new Vue();
 
+Vue.component("home-component", require("./components/homeComponent.vue"));
+
 Vue.component(
   "autocomplete-component",
   require("./components/autocompleteComponent.vue")

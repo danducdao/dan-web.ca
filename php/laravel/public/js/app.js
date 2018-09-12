@@ -47898,8 +47898,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48012,66 +48051,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { attrs: { id: "main" } }, [
-    _c("div", { staticClass: "hpanel col-md-9" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-6 border-right" }, [
-            _c("label", { staticClass: "col-sm-2 control-label" }, [
-              _vm._v("Vidéo : ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tutoriels.Vuejs2.itemSelected,
-                    expression: "tutoriels.Vuejs2.itemSelected"
-                  }
-                ],
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.tutoriels.Vuejs2,
-                        "itemSelected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    function($event) {
-                      _vm.tutoriels.Vuejs2.selectedItem()
+  return _c("div", { staticClass: "content" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-4" }, [
+        _c("div", { staticClass: "hpanel hgreen" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("p", [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Vidéo :")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tutoriels.Vuejs2.itemSelected,
+                      expression: "tutoriels.Vuejs2.itemSelected"
                     }
-                  ]
-                }
-              },
-              _vm._l(_vm.tutoriels.Vuejs2.listItem(), function(item, index) {
-                return _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
-                ])
-              })
-            ),
-            _vm._v(" "),
-            _vm._m(1),
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.tutoriels.Vuejs2,
+                          "itemSelected",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.tutoriels.Vuejs2.selectedItem()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: true, value: "" } }, [
+                    _vm._v("--Sélectionner--")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tutoriels.Vuejs2.listItem(), function(
+                    item,
+                    index
+                  ) {
+                    return _c("option", { domProps: { value: item.id } }, [
+                      _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("p", [
               _c("iframe", {
+                staticStyle: { width: "100%" },
                 attrs: {
-                  width: "580",
                   height: "315",
                   src: _vm.tutoriels.Vuejs2.url,
                   frameborder: "1",
@@ -48120,65 +48170,79 @@ var render = function() {
                 [_vm._v("Suivant")]
               )
             ])
-          ]),
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-4" }, [
+        _c("div", { staticClass: "hpanel hgreen" }, [
+          _vm._m(1),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-6" }, [
-            _c("label", { staticClass: "col-sm-2 control-label" }, [
-              _vm._v("Vidéo : ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tutoriels.TypeScriptBasic.itemSelected,
-                    expression: "tutoriels.TypeScriptBasic.itemSelected"
-                  }
-                ],
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.tutoriels.TypeScriptBasic,
-                        "itemSelected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    function($event) {
-                      _vm.tutoriels.TypeScriptBasic.selectedItem()
+          _c("div", { staticClass: "panel-body" }, [
+            _c("p", [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Vidéo : ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tutoriels.TypeScriptBasic.itemSelected,
+                      expression: "tutoriels.TypeScriptBasic.itemSelected"
                     }
-                  ]
-                }
-              },
-              _vm._l(_vm.tutoriels.TypeScriptBasic.listItem(), function(
-                item,
-                index
-              ) {
-                return _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
-                ])
-              })
-            ),
-            _vm._v(" "),
-            _vm._m(2),
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.tutoriels.TypeScriptBasic,
+                          "itemSelected",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.tutoriels.TypeScriptBasic.selectedItem()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: true, value: "" } }, [
+                    _vm._v("--Sélectionner--")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tutoriels.TypeScriptBasic.listItem(), function(
+                    item,
+                    index
+                  ) {
+                    return _c("option", { domProps: { value: item.id } }, [
+                      _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("p", [
               _c("iframe", {
+                staticStyle: { width: "100%" },
                 attrs: {
-                  width: "580",
                   height: "315",
                   src: _vm.tutoriels.TypeScriptBasic.url,
                   frameborder: "1",
@@ -48232,65 +48296,76 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "hpanel col-md-9" }, [
-      _vm._m(3),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-6 border-right" }, [
-            _c("label", { staticClass: "col-sm-2 control-label" }, [
-              _vm._v("Vidéo : ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tutoriels.Nodejs.itemSelected,
-                    expression: "tutoriels.Nodejs.itemSelected"
-                  }
-                ],
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.tutoriels.Nodejs,
-                        "itemSelected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    function($event) {
-                      _vm.tutoriels.Nodejs.selectedItem()
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-4" }, [
+        _c("div", { staticClass: "hpanel hgreen" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("p", [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Vidéo :")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tutoriels.Nodejs.itemSelected,
+                      expression: "tutoriels.Nodejs.itemSelected"
                     }
-                  ]
-                }
-              },
-              _vm._l(_vm.tutoriels.Nodejs.listItem(), function(item, index) {
-                return _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
-                ])
-              })
-            ),
-            _vm._v(" "),
-            _vm._m(4),
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.tutoriels.Nodejs,
+                          "itemSelected",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.tutoriels.Nodejs.selectedItem()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: true, value: "" } }, [
+                    _vm._v("--Sélectionner--")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tutoriels.Nodejs.listItem(), function(
+                    item,
+                    index
+                  ) {
+                    return _c("option", { domProps: { value: item.id } }, [
+                      _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("p", [
               _c("iframe", {
+                staticStyle: { width: "100%" },
                 attrs: {
-                  width: "580",
                   height: "315",
                   src: _vm.tutoriels.Nodejs.url,
                   frameborder: "1",
@@ -48339,62 +48414,76 @@ var render = function() {
                 [_vm._v("Suivant")]
               )
             ])
-          ]),
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-4" }, [
+        _c("div", { staticClass: "hpanel hgreen" }, [
+          _vm._m(3),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-6" }, [
-            _c("label", { staticClass: "col-sm-2 control-label" }, [
-              _vm._v("Vidéo : ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tutoriels.PHP7.itemSelected,
-                    expression: "tutoriels.PHP7.itemSelected"
-                  }
-                ],
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.tutoriels.PHP7,
-                        "itemSelected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    function($event) {
-                      _vm.tutoriels.PHP7.selectedItem()
+          _c("div", { staticClass: "panel-body" }, [
+            _c("p", [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Vidéo :")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tutoriels.PHP7.itemSelected,
+                      expression: "tutoriels.PHP7.itemSelected"
                     }
-                  ]
-                }
-              },
-              _vm._l(_vm.tutoriels.PHP7.listItem(), function(item, index) {
-                return _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
-                ])
-              })
-            ),
-            _vm._v(" "),
-            _vm._m(5),
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.tutoriels.PHP7,
+                          "itemSelected",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.tutoriels.PHP7.selectedItem()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: true, value: "" } }, [
+                    _vm._v("--Sélectionner--")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tutoriels.PHP7.listItem(), function(item, index) {
+                    return _c("option", { domProps: { value: item.id } }, [
+                      _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("p", [
               _c("iframe", {
+                staticStyle: { width: "100%" },
                 attrs: {
-                  width: "580",
                   height: "315",
                   src: _vm.tutoriels.PHP7.url,
                   frameborder: "1",
@@ -48448,65 +48537,76 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "hpanel col-md-9" }, [
-      _vm._m(6),
-      _vm._v(" "),
-      _c("div", { staticClass: "panel-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-6 border-right" }, [
-            _c("label", { staticClass: "col-sm-2 control-label" }, [
-              _vm._v("Vidéo : ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tutoriels.Python3.itemSelected,
-                    expression: "tutoriels.Python3.itemSelected"
-                  }
-                ],
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.tutoriels.Python3,
-                        "itemSelected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    function($event) {
-                      _vm.tutoriels.Python3.selectedItem()
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-4" }, [
+        _c("div", { staticClass: "hpanel hgreen" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _c("p", [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Vidéo : ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tutoriels.Python3.itemSelected,
+                      expression: "tutoriels.Python3.itemSelected"
                     }
-                  ]
-                }
-              },
-              _vm._l(_vm.tutoriels.Python3.listItem(), function(item, index) {
-                return _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
-                ])
-              })
-            ),
-            _vm._v(" "),
-            _vm._m(7),
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.tutoriels.Python3,
+                          "itemSelected",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.tutoriels.Python3.selectedItem()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: true, value: "" } }, [
+                    _vm._v("--Sélectionner--")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tutoriels.Python3.listItem(), function(
+                    item,
+                    index
+                  ) {
+                    return _c("option", { domProps: { value: item.id } }, [
+                      _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                    ])
+                  })
+                ],
+                2
+              )
+            ]),
             _vm._v(" "),
             _c("p", [
               _c("iframe", {
+                staticStyle: { width: "100%" },
                 attrs: {
-                  width: "580",
                   height: "315",
                   src: _vm.tutoriels.Python3.url,
                   frameborder: "1",
@@ -48555,62 +48655,72 @@ var render = function() {
                 [_vm._v("Suivant")]
               )
             ])
-          ]),
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-4" }, [
+        _c("div", { staticClass: "hpanel hgreen" }, [
+          _vm._m(5),
           _vm._v(" "),
-          _c("div", { staticClass: "col-lg-6" }, [
-            _c("label", { staticClass: "col-sm-2 control-label" }, [
-              _vm._v("Vidéo : ")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.tutoriels.PythonOOP.itemSelected,
-                    expression: "tutoriels.PythonOOP.itemSelected"
-                  }
-                ],
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.tutoriels.PythonOOP,
-                        "itemSelected",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    function($event) {
-                      _vm.tutoriels.PythonOOP.selectedItem()
+          _c("div", { staticClass: "panel-body" }, [
+            _c("p", [
+              _c("label", { staticClass: "control-label" }, [
+                _vm._v("Vidéo : ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tutoriels.PythonOOP.itemSelected,
+                      expression: "tutoriels.PythonOOP.itemSelected"
                     }
-                  ]
-                }
-              },
-              _vm._l(_vm.tutoriels.PythonOOP.listItem(), function(item, index) {
-                return _c("option", { domProps: { value: item.id } }, [
-                  _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
-                ])
-              })
-            ),
-            _vm._v(" "),
-            _vm._m(8),
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.tutoriels.PythonOOP,
+                          "itemSelected",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.tutoriels.PythonOOP.selectedItem()
+                      }
+                    ]
+                  }
+                },
+                _vm._l(_vm.tutoriels.PythonOOP.listItem(), function(
+                  item,
+                  index
+                ) {
+                  return _c("option", { domProps: { value: item.id } }, [
+                    _vm._v(_vm._s(index + 1) + " - " + _vm._s(item.titre))
+                  ])
+                })
+              )
+            ]),
             _vm._v(" "),
             _c("p", [
               _c("iframe", {
+                staticStyle: { width: "100%" },
                 attrs: {
-                  width: "580",
                   height: "315",
                   src: _vm.tutoriels.PythonOOP.url,
                   frameborder: "1",
@@ -48676,23 +48786,7 @@ var staticRenderFns = [
           _c("i", { staticClass: "fa fa-chevron-up" })
         ])
       ]),
-      _vm._v("\n            Vue JS 2, TypeScript Basics\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "title" }, [
-      _c("strong", [_vm._v("Vue JS 2")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "title" }, [
-      _c("strong", [_vm._v("TypeScript Basics")])
+      _vm._v("\n                    Vue JS 2\n                ")
     ])
   },
   function() {
@@ -48705,23 +48799,7 @@ var staticRenderFns = [
           _c("i", { staticClass: "fa fa-chevron-up" })
         ])
       ]),
-      _vm._v("\n            Node JS, PHP7 New Features\n        ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "title" }, [
-      _c("strong", [_vm._v("Node JS")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "title" }, [
-      _c("strong", [_vm._v("PHP7 New Features")])
+      _vm._v("\n                    TypeScript Basics\n                ")
     ])
   },
   function() {
@@ -48734,23 +48812,46 @@ var staticRenderFns = [
           _c("i", { staticClass: "fa fa-chevron-up" })
         ])
       ]),
-      _vm._v("\n            Python 3 for beginners, Python OOP, \n        ")
+      _vm._v("\n                    Node JS\n                ")
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "title" }, [
-      _c("strong", [_vm._v("Python 3 for beginners")])
+    return _c("div", { staticClass: "panel-heading hbuilt" }, [
+      _c("div", { staticClass: "panel-tools" }, [
+        _c("a", { staticClass: "showhide" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ])
+      ]),
+      _vm._v("\n                    PHP 7 New Features \n                ")
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "title" }, [
-      _c("strong", [_vm._v("Python OOP")])
+    return _c("div", { staticClass: "panel-heading hbuilt" }, [
+      _c("div", { staticClass: "panel-tools" }, [
+        _c("a", { staticClass: "showhide" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ])
+      ]),
+      _vm._v("\n                    Python 3 for beginners\n                ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "panel-heading hbuilt" }, [
+      _c("div", { staticClass: "panel-tools" }, [
+        _c("a", { staticClass: "showhide" }, [
+          _c("i", { staticClass: "fa fa-chevron-up" })
+        ])
+      ]),
+      _vm._v("\n                    Python OOP\n                ")
     ])
   }
 ]
@@ -49085,7 +49186,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49097,6 +49198,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(59);
+//
+//
 //
 //
 //
@@ -50752,111 +50855,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "table",
-    { staticClass: "table table-bordered", style: _vm.tableStyle },
-    [
-      _c("thead", [
+  return _c("div", { staticClass: "table-responsive" }, [
+    _c(
+      "table",
+      { staticClass: "table table-bordered", style: _vm.tableStyle },
+      [
+        _c("thead", [
+          _c(
+            "tr",
+            [
+              _c("th", { staticStyle: { width: "20px" } }),
+              _vm._v(" "),
+              _c("th", { staticStyle: { width: "20px" } }),
+              _vm._v(" "),
+              _vm._l(_vm.data, function(items, key) {
+                return key === 0
+                  ? _vm._l(items, function(item, index) {
+                      return index !== "id"
+                        ? _c("th", [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(index) +
+                                "\n                    "
+                            )
+                          ])
+                        : _vm._e()
+                    })
+                  : _vm._e()
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
         _c(
-          "tr",
+          "tbody",
           [
-            _c("th", { staticStyle: { width: "20px" } }),
-            _vm._v(" "),
-            _c("th", { staticStyle: { width: "20px" } }),
-            _vm._v(" "),
-            _vm._l(_vm.data, function(items, key) {
-              return key === 0
-                ? _vm._l(items, function(item, index) {
-                    return index !== "id"
-                      ? _c("th", [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(index) +
-                              "\n                "
+            _vm._l(_vm.data, function(items) {
+              return [
+                _c(
+                  "tr",
+                  [
+                    _c("td", [
+                      items["Active"] === 1
+                        ? _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.removeItem(items["id"])
+                                }
+                              }
+                            },
+                            [_vm._v("supprimer")]
                           )
-                        ])
-                      : _vm._e()
-                  })
-                : _vm._e()
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.redirect(items["id"])
+                            }
+                          }
+                        },
+                        [_vm._v("modifier")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(items, function(item, key) {
+                      return key !== "id"
+                        ? _c("td", { style: _vm.itemStyle[key] }, [
+                            key === "Image"
+                              ? _c("span", [
+                                  _c("img", {
+                                    attrs: {
+                                      src: items[key],
+                                      width: "100",
+                                      height: "100"
+                                    }
+                                  })
+                                ])
+                              : key === "Active" && items[key] === 1
+                                ? _c("span", [
+                                    _c("i", {
+                                      staticClass: "fa fa-check-square"
+                                    })
+                                  ])
+                                : _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        items[key] ? items[key] : ""
+                                      )
+                                    }
+                                  })
+                          ])
+                        : _vm._e()
+                    })
+                  ],
+                  2
+                )
+              ]
             })
           ],
           2
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        [
-          _vm._l(_vm.data, function(items) {
-            return [
-              _c(
-                "tr",
-                [
-                  _c("td", [
-                    items["Active"] === 1
-                      ? _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.removeItem(items["id"])
-                              }
-                            }
-                          },
-                          [_vm._v("supprimer")]
-                        )
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.redirect(items["id"])
-                          }
-                        }
-                      },
-                      [_vm._v("modifier")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(items, function(item, key) {
-                    return key !== "id"
-                      ? _c("td", { style: _vm.itemStyle[key] }, [
-                          key === "Image"
-                            ? _c("span", [
-                                _c("img", { attrs: { src: items[key] } })
-                              ])
-                            : key === "Active" && items[key] === 1
-                              ? _c("span", [
-                                  _c("i", { staticClass: "fa fa-check-square" })
-                                ])
-                              : _c("span", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      items[key] ? items[key] : ""
-                                    )
-                                  }
-                                })
-                        ])
-                      : _vm._e()
-                  })
-                ],
-                2
-              )
-            ]
-          })
-        ],
-        2
-      )
-    ]
-  )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

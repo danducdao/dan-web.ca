@@ -1,4 +1,5 @@
 <template>
+    <div class="table-responsive">
         <table class="table table-bordered" :style="tableStyle">
             <thead>
                 <tr>
@@ -17,7 +18,7 @@
                         <td><a v-if="items['Active'] === 1" href="#" @click.prevent="removeItem(items['id'])">supprimer</a></td>
                         <td><a href="#" @click.prevent="redirect(items['id'])">modifier</a></td>
                         <td v-for="(item,key) in items" v-if="key !== 'id'" :style="itemStyle[key]">
-                           <span v-if="key === 'Image'"><img :src="items[key]" /></span>
+                           <span v-if="key === 'Image'"><img :src="items[key]" width="100" height="100" /></span>
                            <span  v-else-if="key === 'Active' && items[key] === 1"><i class='fa fa-check-square'></i></span>
                            <span v-else v-html="items[key]?items[key]:''"></span>
                         </td>
@@ -25,6 +26,7 @@
                 </template>
             </tbody>
         </table>
+    </div>
 </template>
 
 <script>

@@ -1,22 +1,24 @@
 <template>
-    <section id="main">
-        <div class="hpanel col-md-9">
-            <div class="panel-heading hbuilt">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                </div>
-                Vue JS 2, TypeScript Basics
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6 border-right">
-                        <label class="col-sm-2 control-label">Vidéo : </label>
-                        <select v-model="tutoriels.Vuejs2.itemSelected" v-on:change="tutoriels.Vuejs2.selectedItem()">
-                                <option v-for="(item,index) in tutoriels.Vuejs2.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
-                        </select>
-                        <h2 class="title"><strong>Vue JS 2</strong></h2>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Vue JS 2
+                    </div>
+                    <div class="panel-body">
                         <p>
-                                <iframe width="580" height="315" v-bind:src="tutoriels.Vuejs2.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <label class="control-label">Vidéo :</label>
+                            <select v-model="tutoriels.Vuejs2.itemSelected" v-on:change="tutoriels.Vuejs2.selectedItem()" class="form-control">
+                                    <option :disabled="true" value="">--Sélectionner--</option>
+                                    <option v-for="(item,index) in tutoriels.Vuejs2.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                            </select>
+                        </p>
+                        <p>
+                            <iframe style="width:100%;" height="315" v-bind:src="tutoriels.Vuejs2.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </p>
                         <p class="titre">
                             <span>{{tutoriels.Vuejs2.count}} - {{ tutoriels.Vuejs2.titre }}</span>
@@ -26,14 +28,26 @@
                             <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.Vuejs2.next()">Suivant</button>
                         </p>
                     </div>
-                    <div class="col-lg-6">
-                        <label class="col-sm-2 control-label">Vidéo : </label>
-                        <select v-model="tutoriels.TypeScriptBasic.itemSelected" v-on:change="tutoriels.TypeScriptBasic.selectedItem()">
-                                <option v-for="(item,index) in tutoriels.TypeScriptBasic.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
-                        </select>
-                        <h2 class="title"><strong>TypeScript Basics</strong></h2>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        TypeScript Basics
+                    </div>
+                    <div class="panel-body">
                         <p>
-                                <iframe width="580" height="315" v-bind:src="tutoriels.TypeScriptBasic.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <label class="control-label">Vidéo : </label>
+                            <select v-model="tutoriels.TypeScriptBasic.itemSelected" v-on:change="tutoriels.TypeScriptBasic.selectedItem()" class="form-control">
+                                <option :disabled="true" value="">--Sélectionner--</option>
+                                <option v-for="(item,index) in tutoriels.TypeScriptBasic.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                            </select>
+                        </p>
+                        <p>
+                            <iframe style="width:100%;" height="315" v-bind:src="tutoriels.TypeScriptBasic.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </p>
                         <p class="titre">
                             <span>{{tutoriels.TypeScriptBasic.count}} - {{ tutoriels.TypeScriptBasic.titre }}</span>
@@ -46,23 +60,25 @@
                 </div>
             </div>
         </div>
-        <div class="hpanel col-md-9">
-            <div class="panel-heading hbuilt">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                </div>
-                Node JS, PHP7 New Features
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6 border-right">
-                        <label class="col-sm-2 control-label">Vidéo : </label>
-                        <select v-model="tutoriels.Nodejs.itemSelected" v-on:change="tutoriels.Nodejs.selectedItem()">
-                                <option v-for="(item,index) in tutoriels.Nodejs.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
-                        </select>
-                        <h2 class="title"><strong>Node JS</strong></h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Node JS
+                    </div>
+                    <div class="panel-body">
                         <p>
-                                <iframe width="580" height="315" v-bind:src="tutoriels.Nodejs.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <label class="control-label">Vidéo :</label>
+                            <select v-model="tutoriels.Nodejs.itemSelected" v-on:change="tutoriels.Nodejs.selectedItem()" class="form-control">
+                                <option :disabled="true" value="">--Sélectionner--</option>
+                                <option v-for="(item,index) in tutoriels.Nodejs.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                            </select>
+                        </p>
+                        <p>
+                            <iframe style="width:100%;" height="315" v-bind:src="tutoriels.Nodejs.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </p>
                         <p class="titre">
                             <span>{{tutoriels.Nodejs.count}} - {{ tutoriels.Nodejs.titre }}</span>
@@ -72,43 +88,57 @@
                             <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.Nodejs.next()">Suivant</button>
                         </p>
                     </div>
-                    <div class="col-lg-6">
-                         <label class="col-sm-2 control-label">Vidéo : </label>
-                            <select v-model="tutoriels.PHP7.itemSelected" v-on:change="tutoriels.PHP7.selectedItem()">
-                                    <option v-for="(item,index) in tutoriels.PHP7.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        PHP 7 New Features 
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <label class="control-label">Vidéo :</label>
+                            <select v-model="tutoriels.PHP7.itemSelected" v-on:change="tutoriels.PHP7.selectedItem()" class="form-control">
+                                <option :disabled="true" value="">--Sélectionner--</option>
+                                <option v-for="(item,index) in tutoriels.PHP7.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
                             </select>
-                            <h2 class="title"><strong>PHP7 New Features</strong></h2>
-                            <p>
-                                    <iframe width="580" height="315" v-bind:src="tutoriels.PHP7.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                            </p>
-                            <p class="titre">
-                                <span>{{tutoriels.PHP7.count}} - {{ tutoriels.PHP7.titre }}</span>
-                            </p>
-                            <p>
-                                <button type="button" class="btn btn-primary" id="previous"  v-on:click="tutoriels.PHP7.previous()">Précédent</button>
-                                <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.PHP7.next()">Suivant</button>
-                            </p>    
-                    </div>  
+                        </p>
+                        <p>
+                            <iframe style="width:100%;" height="315" v-bind:src="tutoriels.PHP7.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </p>
+                        <p class="titre">
+                            <span>{{tutoriels.PHP7.count}} - {{ tutoriels.PHP7.titre }}</span>
+                        </p>
+                        <p>
+                            <button type="button" class="btn btn-primary" id="previous"  v-on:click="tutoriels.PHP7.previous()">Précédent</button>
+                            <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.PHP7.next()">Suivant</button>
+                        </p>   
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hpanel col-md-9">
-            <div class="panel-heading hbuilt">
-                <div class="panel-tools">
-                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                </div>
-                Python 3 for beginners, Python OOP, 
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6 border-right">
-                        <label class="col-sm-2 control-label">Vidéo : </label>
-                        <select v-model="tutoriels.Python3.itemSelected" v-on:change="tutoriels.Python3.selectedItem()">
-                                <option v-for="(item,index) in tutoriels.Python3.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
-                        </select>
-                        <h2 class="title"><strong>Python 3 for beginners</strong></h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Python 3 for beginners
+                    </div>
+                    <div class="panel-body">
                         <p>
-                                <iframe width="580" height="315" v-bind:src="tutoriels.Python3.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <label class="control-label">Vidéo : </label>
+                            <select v-model="tutoriels.Python3.itemSelected" v-on:change="tutoriels.Python3.selectedItem()" class="form-control">
+                                <option :disabled="true" value="">--Sélectionner--</option>
+                                <option v-for="(item,index) in tutoriels.Python3.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                            </select>
+                        </p>
+                        <p>
+                            <iframe style="width:100%;" height="315" v-bind:src="tutoriels.Python3.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </p>
                         <p class="titre">
                             <span>{{tutoriels.Python3.count}} - {{ tutoriels.Python3.titre }}</span>
@@ -118,14 +148,25 @@
                             <button type="button" class="btn btn-primary" id="next" v-on:click="tutoriels.Python3.next()">Suivant</button>
                         </p>
                     </div>
-                    <div class="col-lg-6">
-                        <label class="col-sm-2 control-label">Vidéo : </label>
-                        <select v-model="tutoriels.PythonOOP.itemSelected" v-on:change="tutoriels.PythonOOP.selectedItem()">
-                                <option v-for="(item,index) in tutoriels.PythonOOP.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
-                        </select>
-                        <h2 class="title"><strong>Python OOP</strong></h2>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Python OOP
+                    </div>
+                    <div class="panel-body">
                         <p>
-                                <iframe width="580" height="315" v-bind:src="tutoriels.PythonOOP.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <label class="control-label">Vidéo : </label>
+                            <select v-model="tutoriels.PythonOOP.itemSelected" v-on:change="tutoriels.PythonOOP.selectedItem()" class="form-control">
+                                    <option v-for="(item,index) in tutoriels.PythonOOP.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
+                            </select>
+                        </p>
+                        <p>
+                            <iframe style="width:100%;" height="315" v-bind:src="tutoriels.PythonOOP.url" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </p>
                         <p class="titre">
                             <span>{{tutoriels.PythonOOP.count}} - {{ tutoriels.PythonOOP.titre }}</span>
@@ -138,14 +179,12 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
-
 import Tuto from '../classes/tuto';
 import youtubeEmbedUrls from '../inc/tutoriel';
-
 export default {
         name: 'Home',
         data () {

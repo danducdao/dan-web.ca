@@ -1,49 +1,67 @@
 @extends('layouts.default')
-
 @section('content')
-
 @php
-    $categorie = App\Models\Movies\Categorie::where('id',$id)->where('active',1)->firstOrFail();
-@endphp
 
+    $films = App\Models\Movies\Categorie::selectRaw("sum(categories.id),categories.nom,films.*")
+                                          ->leftJoin('categorie_films','categorie_films.categorie_id','=','categories.id')
+                                          ->leftJoin('films','films.id','=','categorie_films.film_id')
+                                          ->where('categories.id',$id)
+                                          ->groupBy('categories.id','films.id')
+                                          ->paginate(10);
+@endphp
 <section>
-    <div class="col-lg-6">
-        <h2> Catégorie {{  $categorie->nom }}</h2>
-        @foreach($categorie->films as $movie) 
-            <div class="hpanel">
-                <div class="panel-body" style="display:block">
-                    <div class="h-100">
-                        <div class="col-lg-2">
-                            <img alt="{{$movie->titre}}" src="{{URL::asset($movie->filmArtUrl)}}" />
+    @if(count($films) > 0)
+        <div class="normalheader">
+        <div class="hpanel">
+                <div class="panel-body">
+                    <a href="#" class="small-header-action">
+                        <div class="clip-header">
+                            <i class="fa fa-arrow-up"></i>
                         </div>
-                        <div class="col-lg-10">
-                            <div>
-                                    Titre : <span><em>{{$movie->titre}}</em></span>
-                            </div>
-                            @php
-                                $acteurs = array();
-                                foreach($movie->acteurs as $acteur){
-                                    $acteurs[] = $acteur->fullName($acteur->prenom,$acteur->nom);
-                                } 
-                            @endphp
-                            <div>
-                                    Acteur(s) : <span>{{ implode(",",$acteurs) }}</span>
-                            </div>
-                            <div>
-                                    Durée : <span>{{ $movie->longeur }} min</span>
-                            </div>
-                            <div>
-                                    Prix : <span>${{ number_format($movie->prix,2, '.' , '.') }}</span>
-                            </div>
-                            <div>
-                                    Description : <div class="truncate">{{$movie->description}}</div>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
+                    @foreach($films as $film) 
+                        @if ($loop->first)
+                           <h2 class="font-light m-b-xs"><em>Catégorie {{  $film->nom }}</em></h2>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-        @endforeach
-    </div>
+        </div>
+        <div class="content">
+            <p>{{ $films->links() }}</p>  
+            <div class="store">
+                    @foreach($films as $movie) 
+                        <div>
+                            <div class="hpanel ">
+                                <div class="panel-body col-lg-12">
+                                    <div>
+                                        <img alt="{{$movie->titre}}" src="{{URL::asset($movie->filmArtUrl?$movie->filmArtUrl:'images/placeholder.gif')}}" />
+                                    </div>
+                                    <div>
+                                        <div><strong>Titre :</strong> <span><em>{{$movie->titre}}</em></span></div>
+                                        @php 
+                                            $acteurs = App\Models\Movies\Acteur::selectRaw("CONCAT(acteurs.prenom,' ',acteurs.nom) AS nom")
+                                                                                ->leftJoin('acteur_films','acteur_films.acteur_id','=','acteurs.id')
+                                                                                ->leftJoin('films','films.id','=','acteur_films.film_id')
+                                                                                ->where('films.id',$film->id)
+                                                                                ->groupBy('acteurs.id')->get();
+                                            $acteurNom="";                                
+                                            if(count($acteurs) > 0)
+                                            foreach($acteurs as $acteur)
+                                                $acteurNom .= $acteur->nom . ", ";
+                                        @endphp
+                                        <div><strong>Acteurs :</strong> <span>{{rtrim($acteurNom,', ')}}</span></div>
+                                        <div><strong>Durée :</strong> <span>{{ $movie->longeur?$movie->longeur . "min":"" }}</span></div>
+                                        <div><strong>Prix :</strong> <span>${{ number_format($movie->prix,2, '.' , '.') }}</span></div>
+                                        <div><strong> Description : </strong><div class="truncate">{{$movie->description}}</div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+            </div>
+            <p>{{ $films->links() }}</p>  
+        </div>
+    @endif
 </section>
-
 @stop

@@ -1,42 +1,44 @@
 <template>
-    <section id="shopping-cart-index-container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="hpanel hblue col-md-12">
-                    <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
-                    <div class="panel-body">
-                        <label class="control-label" for="categoryId">Catégories</label>&nbsp;<span style="color:red;">*</span>
-                        <select :class="{
-                                            input_form_error:!$v.categoryId.$error,
-                                            input_form_valid:!$v.categoryId.$invalid,
-                                            'form-control':true
-                                        }" 
-                                    name="categoryId" 
-                                    required
-                                    v-model.trim="$v.categoryId.$model" @change="selectedItem">
-                            <option :disabled="true" value="">--Sélectionner--</option>
-                            <option v-for="categorie in categories" :value="categorie.id">{{categorie.nom}}</option>
-                        </select>
-                        <div v-if="$v.categoryId.$error">
-                            <div v-if="!$v.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>
+    <section>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="hpanel col-md-12">
+                        <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
+                        <div class="panel-body">
+                            <label class="control-label" for="categoryId">Catégories</label>&nbsp;<span style="color:red;">*</span>
+                            <select :class="{
+                                                input_form_error:!$v.categoryId.$error,
+                                                input_form_valid:!$v.categoryId.$invalid,
+                                                'form-control':true
+                                            }" 
+                                        name="categoryId" 
+                                        required
+                                        v-model.trim="$v.categoryId.$model" @change="selectedItem">
+                                <option :disabled="true" value="">--Sélectionner--</option>
+                                <option v-for="categorie in categories" :value="categorie.id">{{categorie.nom}}</option>
+                            </select>
+                            <div v-if="$v.categoryId.$error">
+                                <div v-if="!$v.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="hpanel col-md-7">
+                        <div class="panel-heading hbuilt"><strong>Votre panier</strong></div>
+                        <div class="panel-body">
+                            <app-shopping-cart-basket></app-shopping-cart-basket>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
-                <div class="hpanel hblue col-md-12">
-                    <div class="panel-heading hbuilt"><strong>Votre panier</strong></div>
+            <div class="row" v-if="shoppingCartData.length > 0">
+                <div class="hpanel col-md-12">
+                    <div class="panel-heading hbuilt"><strong>{{shoppingCartData[0].nom}}</strong></div>
                     <div class="panel-body">
-                        <app-shopping-cart-basket></app-shopping-cart-basket>
+                        <app-shopping-cart-produit v-bind:categoryId="shoppingCartData[0].id"></app-shopping-cart-produit>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" v-if="shoppingCartData.length > 0">
-            <div class="hpanel hblue col-md-12">
-                <div class="panel-heading hbuilt"><strong>{{shoppingCartData[0].nom}}</strong></div>
-                <div class="panel-body">
-                    <app-shopping-cart-produit v-bind:categoryId="shoppingCartData[0].id"></app-shopping-cart-produit>
                 </div>
             </div>
         </div>

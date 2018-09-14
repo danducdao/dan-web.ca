@@ -1,21 +1,21 @@
 <template>
-    <section id="shopping-cart-basket-container">
+    <section>
         <div v-if="baskets.length > 0">
-            <table class="table table-bordered" cellspacing="1" cellpadding="1">
+            <table class="table table-bordered" style="width:100%;">
                 <thead>
                     <tr>
                       <th></th>
-                      <th :class="center">Nom</th>
-                      <th :class="center">Quantité</th>
-                      <th :class="center">Prix</th>
+                      <th :style="{'text-align':'center'}">Nom</th>
+                      <th :style="{'text-align':'center'}">Quantité</th>
+                      <th :style="{'text-align':'center'}">Prix</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="basket in baskets">
                         <td style="width:8%;"><a href="#" @click.prevent="removeItem(basket.id)">Supprimer</a></td>
                         <td>{{basket.nom}}</td>
-                        <td :class="right" style="width:5%;">{{basket.quantite}}</td>
-                        <td :class="right" style="width:8%;">{{basket.prix | currency}}</td>
+                        <td :style="{'text-align':'right'}" style="width:5%;">{{basket.quantite}}</td>
+                        <td :style="{'text-align':'right'}">{{basket.prix | currency}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -35,12 +35,9 @@ import { LocalStorage } from "../../classes/localstorage";
 import { bus } from "../../main";
 
 export default {
-  name: "ShoppingCartBasket",
   data() {
     return {
       baskets: [],
-      center: { colCenter: true },
-      right: { colRight: true },
       localStorage: new LocalStorage()
     };
   },
@@ -58,7 +55,7 @@ export default {
         this.baskets = [];
       } else {
         this.baskets = this.baskets.filter(
-          data => data.id === parseInt(shoppingCartId)
+          data => data.id !== parseInt(shoppingCartId)
         );
       }
       this.localStorage.setItem("carts", this.baskets);
@@ -69,7 +66,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-table {
-  width: 50%;
-}
 </style>

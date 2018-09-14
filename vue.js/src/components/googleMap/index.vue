@@ -1,21 +1,20 @@
 <template>
-    <section id="google-map-index-container">
+    <section>
+      <div class="content">
         <div class="row">
-            <div class="col-md-3">
-                <div class="hpanel hblue col-md-12">
-                    <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
-                    <div class="panel-body">
-                        <label class="control-label">Ville</label>
-                        <select class="form-control" v-model="id" v-on:change="afficherGoogleMap">
-                        <template v-for="pays in listPays">
-                            <optgroup  v-bind:label="pays.nom">
-                                <template  v-for="ville in filtrerParPays(pays.nom)">
-                                    <option v-bind:value="ville._id">{{ville.ville + "," + ville.province}}</option>
-                                </template>
-                            </optgroup>
-                        </template>
-                        </select>
-                    </div>
+            <div class="hpanel hblue col-md-3">
+                <div class="panel-heading hbuilt"><strong>Sélection</strong></div>
+                <div class="panel-body">
+                    <label class="control-label">Ville</label>
+                    <select class="form-control" v-model="id" v-on:change="afficherGoogleMap">
+                    <template v-for="pays in listPays">
+                        <optgroup  v-bind:label="pays.nom">
+                            <template  v-for="ville in filtrerParPays(pays.nom)">
+                                <option v-bind:value="ville._id">{{ville.ville + "," + ville.province}}</option>
+                            </template>
+                        </optgroup>
+                    </template>
+                    </select>
                 </div>
             </div>
         </div>
@@ -35,6 +34,7 @@
                 </gmap-map>
             </div>
         </div>
+      </div>
     </section>
 </template>
 
@@ -120,7 +120,7 @@ export default {
           }
         }
       }
-    });
+    }.bind(this));
   },
   mounted() {
     this.geolocate();

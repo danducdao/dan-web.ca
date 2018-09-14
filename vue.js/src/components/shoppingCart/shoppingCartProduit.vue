@@ -1,5 +1,5 @@
 <template>
-    <section id="shopping-cart-product-container">
+    <section>
         <div class="row show-grid" v-if="shoppingCartList(categoryId).length > 0">
             <div class="col-sm-2" style="max-height:220px;" v-for="shoppingCart in shoppingCartList(categoryId)" >
                 <div><img src="../../assets/images/placeholder.gif" /></div>
@@ -27,7 +27,6 @@ import { LocalStorage } from "../../classes/localstorage";
 import { bus } from "../../main";
 
 export default {
-  name: "ShoppingCart",
   props: {
     categoryId: {
       type: Number,
@@ -60,13 +59,19 @@ export default {
       );
     },
     onSubmit(event, shoppingCartId) {
-      let input = document.getElementById(shoppingCartId);
-      let quantite = parseInt(input.value);
-      if (!quantite) {
-        alert("Veuillez entrer une quantité");
+      let quantite = document.getElementById(shoppingCartId).value;
+      if(quantite === "")
+      {
+        alert("La quantité est obligatoire");
+        input.focus();
+        return
+      }
+      if (!quantite.match(/^[1-9][0-9]*$/)) {
+        alert("La quantité doit être digit et ne contient pas de zéro");
         input.focus();
         return;
       }
+      quantite = parseInt(quantite);
       let carts = [];
       let item = this.shoppingCartData.filter(
         data => data.id === parseInt(shoppingCartId)

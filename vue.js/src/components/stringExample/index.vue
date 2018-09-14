@@ -1,23 +1,28 @@
 <template>
-    <section id="string-container">
-       <form>
-            <div>
-                <div class="form-group">
-                      <label for="texte" class="control-label">Text:</label>
-                      <textarea style="width:400px;" rows="5" name="texte" id="text" v-model="texte" v-on:keyup="afficher()" autofocus class="form-control" /></textarea>
-                </div>
-                <div>
-                    <ul>
-                        <li v-for="myString in myStrings">
-                            <span class="col-sm-1">{{ myString.texte}}</span>
-                            <span class="col-sm-1">=====></span>
-                            <span class="col-sm-1">{{myString.count + " fois " }}</span>
-                        </li>
-                    </ul>
-
-                </div>
+    <section>
+      <div class="content">
+        <div class="row">
+            <div class="hpanel hblue col-md-6">
+                  <div class="panel-heading hbuilt"><strong>Compter le nombre de caractère</strong></div>
+                  <div class="panel-body">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <label for="texte" class="control-label">Text:</label>
+                          <textarea rows="5" name="texte" id="text" v-model="texte" v-on:keyup="afficher()" autofocus class="form-control" /></textarea>
+                        </div>
+                        <div class="col-lg-6">
+                          <div style="border-bottom:1px solid grey;"><h5>Résultat:</h5></div>
+                          <ul style="list-style-type:none;padding-left:0px;">
+                              <li v-for="myString in myStrings">
+                                  <span><em><strong>{{ myString.texte}} : {{myString.count + " fois " }}</strong></em></span>
+                              </li>
+                          </ul>
+                        </div>
+                      </div>
+                  </div>
             </div>
-        </form>
+        </div>
+      </div>
      </section>
 </template>
 

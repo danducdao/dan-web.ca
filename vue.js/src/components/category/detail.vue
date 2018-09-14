@@ -1,85 +1,84 @@
 <template>
-    <article id="category-detail-container">
-        <form v-on:submit.prevent="onSubmit">
-            <div class="row">
-                <div class="col-md-12">
-                  <h2><em>{{ isAdd?'Ajouter':'Modifier' }} la catégorie</em></h2>
-                </div>
+  <section>
+    <div class="normalheader">
+       <div class="hpanel">
+            <div class="panel-body">
+                <h2><em>{{ isAdd?'Ajouter':'Modifier' }} la catégorie</em></h2>
             </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
-                    <input  type="text" 
-                            name="nom" 
-                            v-input-bar-color-error=[!$v.model.nom.$error,!$v.model.nom.$invalid]
-                            required
-                            v-model.trim="$v.model.nom.$model"/>
-                        <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
-                        <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
-                    </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <label class="control-label" for="description">Description</label>
-                    <input type="text" name="description" class="form-control" v-model="model.description">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <label class="control-label" for="image">Image</label>
-                    <app-file-upload 
-                            name="image"
-                            maxFiles = 1
-                            maxSize = 2
-                            fileExt ="JPG, GIF, PNG, JPEG"
-                            v-on:UploadStatus="UploadStatus($event)" 
-                            v-on:FileToSave="FileToSave($event)">
-                    </app-file-upload>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="well" v-if="model.photo">
-                        <div class="parent">
+        </div>
+    </div>
+    <form v-on:submit.prevent="onSubmit">
+        <div class="content">
+          <div class="row">
+              <div class="hpanel col-md-4">
+                  <div class="panel-heading hbuilt"><strong>Information</strong></div>
+                  <div class="panel-body">
+                      <p> 
+                          <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
+                          <input  type="text" 
+                                  name="nom" 
+                                  v-input-bar-color-error=[!$v.model.nom.$error,!$v.model.nom.$invalid]
+                                  required
+                                  v-model.trim="$v.model.nom.$model"/>
+                          <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
+                          <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
+                      </p>
+                      <p>
+                          <label class="control-label" for="description">Description</label>
+                          <input type="text" name="description" class="form-control" v-model="model.description">
+                      </p>
+                      <p>
+                          <label class="control-label" for="image">Image</label>
+                          <app-file-upload 
+                                  name="image"
+                                  maxFiles = 1
+                                  maxSize = 2
+                                  fileExt ="JPG, GIF, PNG, JPEG"
+                                  v-on:UploadStatus="UploadStatus($event)" 
+                                  v-on:FileToSave="FileToSave($event)">
+                          </app-file-upload>
+                      </p>
+                      <p>
+                        <div v-if="model.photo">
+                          <p>
                             <img v-bind:src="model.photo" :alt="model.nom" :height="fileUpload.height" :width="fileUpload.height" />
-                            <button class="btn btn-danger"
-                                    :style="fileUpload.styleXRemove"
-                                    @click.prevent="removeImage">X
+                          </p>
+                          <p>
+                            <button class="btn btn-danger" @click.prevent="removeImage">supprimer
                             </button>
+                          </p>
                         </div>
-                    </div>
-                </div>
+                      </p>
+                      <p v-if="!isAdd && !model.active">
+                        <div>
+                          <label class="control-label">Active</label><br>
+                          <span v-for="(radioButton,index) in containerActiveRadioButton">
+                              <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="selectedActiveItem(index)">
+                                  <input type="radio" :name="radioButton.Name" style="position: absolute; opacity: 0;" :value="radioButton.Value">
+                                  <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                              </div>&nbsp;{{radioButton.Text}}&nbsp;
+                          </span> 
+                        </div>
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="hpanel col-md-4">
+                <button type="submit" name="ok" class="btn btn-success" :disabled="!$v.model.nom.required || !$v.model.nom.alpha">
+                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+                </button>&nbsp;
+                <button name="back" class="btn btn-success" onclick="window.location.href='/admin/categorie';return false;">
+                    <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
+                    <span style="margin-left:5px;font-weight:bold;font-size:18px;" >BACK</span>
+                </button>
+                <input type="hidden" class="form-control" name="id" v-model="model.id" />
             </div>
-             <div class="row" v-if="!isAdd && !model.active">
-                <div class="hpanel hblue col-md-4">
-                    <div class="panel-heading hbuilt"><strong>Active</strong></div>
-                    <div class="panel-body">
-                        <span v-for="(radioButton,index) in containerActiveRadioButton">
-                            <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="selectedActiveItem(index)">
-                                <input type="radio" :name="radioButton.Name" style="position: absolute; opacity: 0;" :value="radioButton.Value">
-                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
-                            </div>&nbsp;{{radioButton.Text}}&nbsp;
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                    <div class="col-md-8">
-                    <button type="submit" name="ok" class="btn btn-success" :disabled="!$v.model.nom.required || !$v.model.nom.alpha">
-                        <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                        <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
-                    </button>&nbsp;
-                    <button name="back" class="btn btn-success" onclick="window.location.href='/admin/categorie';return false;">
-                        <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
-                        <span style="margin-left:5px;font-weight:bold;font-size:18px;" >BACK</span>
-                    </button>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" class="form-control" name="id" v-model="model.id">
-                </div>
-            </div>
-        </form>
-    </article>    
+          </div>
+        </div>
+    </form>
+  </section>
 </template>
 
 <script>
@@ -206,7 +205,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#category-detail-container .row {
-  margin: 0 0 5px 0;
-}
 </style>

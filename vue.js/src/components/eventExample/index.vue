@@ -1,6 +1,13 @@
 <template>
-    <div>
-        <div id="canvas" v-on:mousemove="updateXY">{{x}},{{y}}</div>
+    <div class="content">
+        <div class="row">
+            <div class="hpanel hblue col-md-6">
+                  <div class="panel-heading hbuilt"><strong>Event</strong></div>
+                  <div class="panel-body">
+                      <div id="canvas" v-on:mousemove="updateXY">{{x}},{{y}}</div>
+                  </div>
+            </div>
+        </div>
     </div>
 </template>
 

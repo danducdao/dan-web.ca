@@ -1,50 +1,60 @@
 <template>
-    <section id="category-index-container">
-        <div class="row" style="margin-bottom:20px;">
+  <section>
+    <div class="normalheader">
+       <div class="hpanel">
+            <div class="panel-body">
+               <h2 class="font-light m-b-xs">Admin - Catégorie</h2>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row">
             <div class="col-lg-12">
-                <router-link :to="{ path: $route.path==='/admin'?'categorie/new':'new'}" append class="btn btn-primary">Nouveau</router-link>
+                <div class="hpanel">
+                    <div class="panel-body">
+                      <p>
+                        <router-link :to="{ path: $route.path==='/admin'?'categorie/new':'new'}" append class="btn btn-primary">Nouveau</router-link>
+                      </p>
+                      <p v-if="!loading && categories.length > 0" class="table-responsive">
+                          <table class="table table-bordered">
+                              <thead>
+                                  <tr>
+                                      <th :style="{width:'5%'}"></th>
+                                      <th :style="{width:'5%'}"></th>
+                                      <th>Nom</th>
+                                      <th>Description</th>
+                                      <th>Image</th>
+                                      <th>Active</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr v-for="categorie in categories">
+                                      <td>
+                                        <span v-if='categorie.active === 1'>
+                                          <a href="#" @click.prevent="removeCategorie(categorie.id)">Supprimer</a>
+                                        </span>
+                                      </td>
+                                      <td>
+                                        <router-link :to="{ path: 'categorie/' + categorie.id}">Modifier</router-link>
+                                      </td>
+                                      <td>{{categorie.nom}}</td>
+                                      <td>{{categorie.description}}</td>
+                                      <td :style="{'text-align':'center'}"><img :src="categorie.photo" :alt="categorie.photo" :style="imgStyle" /></td>
+                                      <td :style="{'text-align':'center'}">
+                                          <span v-if='categorie.active === 1'><i class='fa fa-check-square'></i></span>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </p>
+                      <p style="color:red;" v-else-if="!loading">Aucun catégorie a été trouvé</p>
+                      <p style="color:red;text-align:center;" v-else><img src="../../assets/images/ajax-loader.gif" /></p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row" style="margin-bottom:20px;">
-            <div class="col-lg-9">
-                <span style="font-size:25px;"><strong>Liste des catégories</strong></span>
-            </div>
-        </div>
-        <div class="row" v-if="!loading && categories.length > 0">
-                <table class="table table-bordered" cellspacing="1" cellpadding="1">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th :class="center">Nom</th>
-                            <th :class="center">Description</th>
-                            <th :class="center">Image</th>
-                            <th :class="center">Active</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="categorie in categories">
-                            <td :class="center" :style="verticalAlign">
-                              <span v-if='categorie.active === 1'>
-                                <a href="#" @click.prevent="removeCategorie(categorie.id)">Supprimer</a>
-                              </span>
-                            </td>
-                            <td :class="center" :style="verticalAlign">
-                              <router-link :to="{ path: 'categorie/' + categorie.id}">Modifier</router-link>
-                            </td>
-                            <td :style="verticalAlign">{{categorie.nom}}</td>
-                            <td :style="verticalAlign">{{categorie.description}}</td>
-                            <td :class="center"><img :src="categorie.photo" :alt="categorie.photo" :style="imgStyle" /></td>
-                            <td :class="center" :style="verticalAlign">
-                                <span v-if='categorie.active === 1'><i class='fa fa-check-square'></i></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-        </div>
-        <div style="color:red;" v-else-if="!loading">Aucun catégorie a été trouvé</div>
-        <div style="color:red;text-align:center;" v-else><img src="../../assets/images/ajax-loader.gif" /></div>
-    </section>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -106,4 +116,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+th{
+  text-align:center;
+}
 </style>

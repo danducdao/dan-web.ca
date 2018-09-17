@@ -32,7 +32,7 @@
         <nav role="navigation">
             <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
             <div class="small-logo">
-                <span class="text-primary">Laravel</span>
+                <span class="text-primary">Exemple - Laravel</span>
             </div>
             <div class="navbar-right">
                 <ul class="nav navbar-nav no-borders">
@@ -72,7 +72,7 @@
         <div id="navigation">
             <div class="profile-picture">
                 <a href="index.html">
-                    <img src={{URL::asset('images/logo.jpg')}} class="img-circle m-b" alt="logo" width="100" height=="100" />
+                    <img src={{URL::asset('images/logo.jpg')}} class="img-circle m-b" alt="logo" width="150" height="100" />
                 </a>
             </div>
             <ul class="nav" id="side-menu">
@@ -124,7 +124,6 @@
             <span class="pull-right">
                 Example - Laravel
             </span>
-            Exemple 2015-2020
         </footer>
     </div>
 

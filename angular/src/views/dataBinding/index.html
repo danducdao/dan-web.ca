@@ -1,12 +1,23 @@
-<p>
-    <input type="text" [disabled]="isDisabled" value="Data binding">
-</p>
-<p>
-    <input type="text" [id]="myId" [value]="myBinding">
-</p>
-<p>
-    <input type="text" id="{{myId2}}" bind-value="myBinding2">
-</p>
-<p>
-    <input type="text" id="{{myId2}}" bind-value="myBinding2">
-</p>
+<section>
+    <div class="content">
+        <div class="row">
+            <div class="hpanel hblue col-md-4">
+                <div class="panel-heading hbuilt"><strong>Data binding</strong></div>
+                <div class="panel-body">
+                    <p>
+                        <input type="text" [disabled]="isDisabled" value="Data binding">
+                    </p>
+                    <p>
+                        <input type="text" [id]="myId" [value]="myBinding">
+                    </p>
+                    <p>
+                        <input type="text" id="{{myId2}}" bind-value="myBinding2">
+                    </p>
+                    <p>
+                        <input type="text" id="{{myId2}}" bind-value="myBinding2">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

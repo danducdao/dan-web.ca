@@ -97,7 +97,7 @@
                     <div class="row" >
                       <div class="col-lg-12">
                         <div class="hpanel">
-                            <div class="panel-heading hbuilt"><strong>Quantité</strong></div>
+                            <div class="panel-heading hbuilt"><strong>Discontinue</strong></div>
                             <div class="panel-body">
                               <span v-for="(radioButton,index) in containerDiscontinueRadioButton">
                                 <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="selectedDiscontinueItem(index)">
@@ -127,7 +127,7 @@
                 </div>
           </div>
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
               <button type="submit" 
                       name="ok"
                       class="btn btn-success" 

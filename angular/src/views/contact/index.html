@@ -1,3 +1,119 @@
+<section>
+  <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="form-horizontal">
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="hpanel">
+            <div class="panel-heading hbuilt"><strong>Contact Form</strong></div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="label-control col-sm-3"><strong>Nom</strong><br>Obligatoire</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="nom" #nom="ngModel" required [(ngModel)]="email.nom" [pattern]="nodigitPattern">
+                  <div *ngIf="nom.errors">
+                    <div [hidden]="!nom.errors.required || nom.pristine" class="alert alert-danger">
+                      Nom est obligatoire
+                    </div>
+                    <div [hidden]="!nom.errors.pattern" class="alert alert-danger">
+                      Nom contient seulement des caractères
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="label-control col-sm-3"><strong>Courriel</strong><br>Obligatoire</label>
+                <div class="col-sm-6">
+                  <input type="email" class="form-control" name="courriel" #courriel="ngModel" required [(ngModel)]="email.courriel" [pattern]="emailPattern">
+                  <div *ngIf="courriel.errors">
+                    <div [hidden]="!courriel.errors.required || courriel.pristine" class="alert alert-danger">
+                      Courriel est obligatoire
+                    </div>
+                    <div [hidden]="!courriel.errors.pattern" class="alert alert-danger">
+                      Courriel est invalid
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="label-control col-sm-3"><strong>Sujet</strong><br>Obligatoire</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="sujet" #sujet="ngModel" [(ngModel)]="email.sujet" required>
+                  <div *ngIf="sujet.errors">
+                    <div [hidden]="!sujet.errors.required || sujet.pristine" class="alert alert-danger">
+                      Sujet est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="label-control col-sm-3"><strong>Message</strong><br>Obligatoire</label>
+                <div class="col-sm-9">
+                  <simple-tiny [(ngModel)]="email.message" #message="ngModel" name="message" required></simple-tiny>
+                  <div *ngIf="message.errors">
+                    <div [hidden]="!message.errors.required || message.pristine" class="alert alert-danger">
+                      Message est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="hpanel">
+            <div class="panel-heading hbuilt"><strong>Information</strong></div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-2">
+                  <span>
+                    <strong>Téléphone</strong>
+                  </span>
+                </div>
+                <div class="col-lg-4">
+                  <span>(514)999-9999</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <span>
+                    <strong>Courriel</strong>
+                  </span>
+                </div>
+                <div class="col-lg-4">
+                  <span>exemple@gmail.com</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2">
+                  <span>
+                    <strong>Address</strong>
+                  </span>
+                </div>
+                <address class="col-lg-4">
+                  <div>
+                    123 Peel
+                    <br> Montréal, Québec
+                    <br> H0Z-0X0
+                  </div>
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">
+            <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
+            <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<!--
 <section id="contact">
   <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
     <div class="row">
@@ -8,68 +124,54 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-lg-3">
-              <label class="label-control">
-                <strong>Nom</strong>
-                <br>Obligatoire</label>
+             
+
+
+
             </div>
             <div class="col-md-8">
-              <input type="text" class="form-control" name="nom" #nom="ngModel" required [(ngModel)]="email.nom" [pattern]="nodigitPattern">
-              <div *ngIf="nom.errors">
-                <div [hidden]="!nom.errors.required || nom.pristine" class="alert alert-danger">
-                  Nom est obligatoire
-                </div>
-                <div [hidden]="!nom.errors.pattern" class="alert alert-danger">
-                  Nom contient seulement des caractères
-                </div>
-              </div>
+              
+
+
+
             </div>
           </div>
           <div class="row">
             <div class="col-lg-3">
-              <label class="label-control">
-                <strong>Courriel</strong>
-                <br>Obligatoire</label>
+              
             </div>
             <div class="col-lg-8">
-              <input type="email" class="form-control" name="courriel" #courriel="ngModel" required [(ngModel)]="email.courriel" [pattern]="emailPattern">
-              <div *ngIf="courriel.errors">
-                <div [hidden]="!courriel.errors.required || courriel.pristine" class="alert alert-danger">
-                  Courriel est obligatoire
-                </div>
-                <div [hidden]="!courriel.errors.pattern" class="alert alert-danger">
-                  Courriel est invalid
-                </div>
-              </div>
+              
+
+
+
             </div>
           </div>
           <div class="row">
             <div class="col-lg-3">
-              <label class="label-control">
-                <strong>Sujet</strong>
-                <br>Obligatoire</label>
+              
+
+
+
             </div>
             <div class="col-lg-8">
-              <input type="text" class="form-control" name="sujet" #sujet="ngModel" [(ngModel)]="email.sujet" required>
-              <div *ngIf="sujet.errors">
-                <div [hidden]="!sujet.errors.required || sujet.pristine" class="alert alert-danger">
-                  Sujet est obligatoire
-                </div>
-              </div>
+             
+
+
+
             </div>
           </div>
           <div class="row">
             <div class="col-lg-3">
-              <label class="label-control">
-                <strong>Message</strong>
-                <br>Obligatoire</label>
+              
+
+
+
             </div>
             <div class="col-lg-9">
-              <simple-tiny [(ngModel)]="email.message" #message="ngModel" name="message" required></simple-tiny>
-              <div *ngIf="message.errors">
-                <div [hidden]="!message.errors.required || message.pristine" class="alert alert-danger">
-                  Message est obligatoire
-                </div>
-              </div>
+              
+
+
             </div>
           </div>
         </div>
@@ -79,40 +181,7 @@
           <strong>Information</strong>
         </div>
         <div class="panel-body">
-          <div class="row">
-            <div class="col-lg-2">
-              <span>
-                <strong>Téléphone</strong>
-              </span>
-            </div>
-            <div class="col-lg-4">
-              <span>(514)999-9999</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-2">
-              <span>
-                <strong>Courriel</strong>
-              </span>
-            </div>
-            <div class="col-lg-4">
-              <span>exemple@gmail.com</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-2">
-              <span>
-                <strong>Address</strong>
-              </span>
-            </div>
-            <address class="col-lg-4">
-              <div>
-                123 Peel
-                <br> Montréal, Québec
-                <br> H0Z-0X0
-              </div>
-            </address>
-          </div>
+         
         </div>
       </div>
     </div>
@@ -126,3 +195,5 @@
     </div>
   </form>
 </section>
+
+-->

@@ -22,7 +22,7 @@
     <div id="navigation">
         <div class="profile-picture">
             <a href="index.html">
-               <img src="./assets/images/av1.png" class="img-circle m-b" alt="logo" />
+               <img src="./assets/images/logo.jpg" class="img-circle m-b" alt="logo" width="100" height="100" />
             </a>
         </div>
         <ul class="nav" id="side-menu">
@@ -73,7 +73,6 @@
     <span class="pull-right">
         Exemple - Vue.js
     </span>
-    Exemple - Vue.js 2018-2020
 </footer>
 
 </div>

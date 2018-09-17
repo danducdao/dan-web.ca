@@ -1,4 +1,6 @@
 <section>
+
+    
     <div *ngIf="baskets.length > 0;else emptyCart">
         <table class="table table-bordered" cellspacing="1" cellpadding="1">
             <thead>
@@ -9,7 +11,7 @@
             <tbody>
                 <tr *ngFor="let basket of baskets">
                     <td style="width:8%;">
-                        <a href="#" (click)="removeItem($event,basket._id)">Supprimer</a>
+                        <a href="#" (click)="removeItem($event,basket.id)">Supprimer</a>
                     </td>
                     <td>{{basket.nom}}</td>
                     <td style="width:5%;" [ngClass]="right">{{basket.quantite}}</td>

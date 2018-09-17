@@ -24,7 +24,7 @@ export class ShoppingCartBasketComponent implements OnInit {
       this.baskets = [];
     } else {
       this.baskets = this.baskets.filter(
-        data => data.id === parseInt(shoppingCartId)
+        data => data.id !== parseInt(shoppingCartId)
       );
     }
     LocalStorage.setItem("carts", this.baskets);

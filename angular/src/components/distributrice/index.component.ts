@@ -5,6 +5,7 @@ Program : La distributrice
 
 import { Component, OnInit } from "@angular/core";
 import { Regex } from "../../classes/regex";
+import { RadioButton } from "../../classes/radiobutton";
 
 @Component({
   selector: "app-distributrice-index",
@@ -21,30 +22,19 @@ import { Regex } from "../../classes/regex";
         font-size: 30px;
         background: blue;
       }
-
-      #logo {
-        opacity: 1;
-        -moz-transition: all 1s ease;
-        -webkit-transition: all 1s ease;
-        transition: all 1s ease;
-        -o-transition: all 1s ease;
-        -ms-transition: all 1s ease;
-      }
     `
   ]
 })
 export class DistributriceComponent implements OnInit {
   public produits: any[];
-  public i: number = -1;
-  public montant: string;
-  public isSelectedProduct: boolean;
+  public index: number;
+  public radioButtons: RadioButton[] = [];
+  public total: number = 0;
+  public decimalPattern: string = Regex.DecimalPattern();
   public insuffisant: number;
   public surplus: number;
+  public isMatch: boolean;
   public depot: string;
-  private total: number = 0;
-  public messages: any;
-  public ProduitNotSelect: boolean = true;
-  public decimalPattern: string = Regex.DecimalPattern();
 
   constructor() {
     this.produits = [
@@ -91,65 +81,44 @@ export class DistributriceComponent implements OnInit {
     ];
   }
   ngOnInit() {
-    this.montant = "0.00";
-    this.messages = {
-      isMatch: false,
-      isEmpty: false,
-      isNotDigit: false,
-      isSelectedProduct: false
-    };
+    this.produits.forEach(
+      function(item) {
+        this.radioButtons.push(
+          new RadioButton("distributrice", item.prix, item.nom, false)
+        );
+      }.bind(this)
+    );
   }
-  choisir(event) {
-    var target = event.target;
-    if (target.checked) {
-      this.isSelectedProduct = true;
-      this.i = event.target.value;
-      this.montant = "";
-      this.ProduitNotSelect = false;
-      this.montant = "0.00";
-      this.depot = "";
+  selectedItem(index: number) {
+    this.initRadioButton();
+    let radioButtons: RadioButton[] = this.radioButtons;
+    radioButtons[index].clsAttribut = radioButtons[index].iradioButtonSquare;
+    this.index = index;
+  }
+
+  initRadioButton() {
+    for (let radioButton of this.radioButtons) {
+      radioButton.clsAttribut = radioButton.iradioButtonSquare.split(" ")[0];
     }
   }
   onSubmit() {
-    this.initMessageError();
-
-    if (this.i == -1) {
-      this.messages.isSelectedProduct = true;
+    if (typeof this.index === "undefined") {
+      alert("Veuillez sélectionner un produit");
       return;
     }
-
-    if (!this.depot) {
-      this.messages.isEmpty = true;
-      return;
-    }
-
-    if (isNaN(Number(this.depot))) {
-      this.messages.isNotDigit = true;
-      return;
-    }
-
-    this.total = this.total + Number(this.depot);
-
-    if (this.total > this.produits[this.i].prix) {
-      this.surplus = this.total - this.produits[this.i].prix;
-      this.montant = this.total.toString();
+    let total: number = this.total;
+    this.surplus = this.insuffisant = 0;
+    this.isMatch = false;
+    total += parseFloat(this.depot);
+    if (total > this.produits[this.index].prix) {
+      this.surplus = total - this.produits[this.index].prix;
       this.total = 0;
-    } else if (this.total < this.produits[this.i].prix) {
-      this.insuffisant = this.produits[this.i].prix - this.total;
-      this.montant = this.total.toString();
+    } else if (total < this.produits[this.index].prix) {
+      this.insuffisant = this.produits[this.index].prix - total;
+      this.total = total;
     } else {
-      this.messages.isMatch = true;
-      this.montant = this.total.toString();
+      this.isMatch = true;
       this.total = 0;
     }
-    this.depot = "";
-  }
-  private initMessageError() {
-    this.insuffisant = 0;
-    this.surplus = 0;
-    this.messages.isEmpty = false;
-    this.messages.isNotDigit = false;
-    this.messages.isSelectedProduct = false;
-    this.messages.isMatch = false;
   }
 }

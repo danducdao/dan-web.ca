@@ -51,16 +51,22 @@ export class AddToCartComponent implements OnInit {
     return (this.calcTotal() * this.TVQ) / 100;
   }
   updateCart(cartId): void {
-    var quantite = parseInt(
-      (<HTMLInputElement>document.getElementById(cartId)).value
-    );
-    if (!quantite) {
-      alert("Désolé! Veuillez entrer une quantité");
+    let quantite: string = (<HTMLInputElement>document.getElementById(cartId))
+      .value;
+    if (quantite === "") {
+      alert("La quantité est obligatoire");
+      (<HTMLInputElement>document.getElementById(cartId)).focus();
+      return;
+    }
+    if (!quantite.match(/^[1-9][0-9]*$/)) {
+      alert("La quantité doit être digit et ne contient pas de zéro");
+      (<HTMLInputElement>document.getElementById(cartId)).focus();
       return;
     }
     this.carts.map(function(value) {
       if (value.id === parseInt(cartId)) {
-        value.quantite = quantite;
+        console.log("yyyy" + quantite);
+        value.quantite = parseInt(quantite);
         value.total = value.prix * value.quantite;
         return value;
       }
@@ -69,7 +75,7 @@ export class AddToCartComponent implements OnInit {
   }
   removeCart(cartId): void {
     if (confirm("Êtes-vous sûre de vouloir supprimer cet item?")) {
-      this.carts = this.carts.filter(data => data.id === parseInt(cartId));
+      this.carts = this.carts.filter(data => data.id !== parseInt(cartId));
       LocalStorage.setItem("carts", this.carts);
     }
   }

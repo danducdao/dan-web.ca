@@ -4,7 +4,7 @@
 */
 
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { CategorieService } from "../../services/categorie.service";
 import { ICategorie } from "../../interfaces/categorie";
 
@@ -17,12 +17,14 @@ export class ListeCategorieComponent implements OnInit {
   public imgWidth: number = 50;
   public imgMargin: number = 2;
   public showImage: boolean = false;
-  public center: any = { colCenter: true };
+  public Clscenter: object = { colCenter: true };
   public enabledButton: boolean = false;
-  public verticalAlign: object = { verticalAlign: "middle" };
+  public StyleVerticalAlign: object = { verticalAlign: "middle" };
   public paths: any;
   public loading: boolean;
-
+  public styleObject(): object {
+    return { color: "green", width: 1000 };
+  }
   constructor(
     private _categorieService: CategorieService,
     private route: ActivatedRoute

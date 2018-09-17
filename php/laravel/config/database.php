@@ -90,10 +90,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ]  
-        
-        
-        
+        ]     
 /*
         'sqlite' => [
             'driver' => 'sqlite',

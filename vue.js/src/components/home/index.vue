@@ -12,7 +12,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                <label class="control-label">Vidéo :</label>
+                                <label class="control-label">Vidéo :</label>&nbsp;
                                 <select v-model="tutoriels.Vuejs2.itemSelected" v-on:change="tutoriels.Vuejs2.selectedItem()" class="form-control">
                                         <option :disabled="true" value="">--Sélectionner--</option>
                                         <option v-for="(item,index) in tutoriels.Vuejs2.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                <label class="control-label">Vidéo : </label>
+                                <label class="control-label">Vidéo : </label>&nbsp;
                                 <select v-model="tutoriels.TypeScriptBasic.itemSelected" v-on:change="tutoriels.TypeScriptBasic.selectedItem()" class="form-control">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="(item,index) in tutoriels.TypeScriptBasic.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                <label class="control-label">Vidéo :</label>
+                                <label class="control-label">Vidéo :</label>&nbsp;
                                 <select v-model="tutoriels.Nodejs.itemSelected" v-on:change="tutoriels.Nodejs.selectedItem()" class="form-control">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="(item,index) in tutoriels.Nodejs.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                <label class="control-label">Vidéo :</label>
+                                <label class="control-label">Vidéo :</label>&nbsp;
                                 <select v-model="tutoriels.PHP7.itemSelected" v-on:change="tutoriels.PHP7.selectedItem()" class="form-control">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="(item,index) in tutoriels.PHP7.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                <label class="control-label">Vidéo : </label>
+                                <label class="control-label">Vidéo : </label>&nbsp;
                                 <select v-model="tutoriels.Python3.itemSelected" v-on:change="tutoriels.Python3.selectedItem()" class="form-control">
                                     <option :disabled="true" value="">--Sélectionner--</option>
                                     <option v-for="(item,index) in tutoriels.Python3.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
@@ -161,7 +161,7 @@
                         </div>
                         <div class="panel-body">
                             <p>
-                                <label class="control-label">Vidéo : </label>
+                                <label class="control-label">Vidéo : </label>&nbsp;
                                 <select v-model="tutoriels.PythonOOP.itemSelected" v-on:change="tutoriels.PythonOOP.selectedItem()" class="form-control">
                                         <option v-for="(item,index) in tutoriels.PythonOOP.listItem()" v-bind:value="item.id">{{ index + 1 }} - {{ item.titre}}</option>
                                 </select>

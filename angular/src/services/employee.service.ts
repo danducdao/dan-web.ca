@@ -30,8 +30,4 @@ export class EmployeeService extends Service {
       { id: 4, name: "Elena", age: 28 }
     ];
   }
-
-  getEmployeesDetail(): Observable<IEmployee[]> {
-    return this.http.get<IEmployee[]>(this.Url);
-  }
 }

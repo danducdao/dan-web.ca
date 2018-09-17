@@ -64,7 +64,7 @@
               </div>
           </div>
           <div class="row">
-            <div class="hpanel col-md-4">
+            <div class="col-md-4">
                 <button type="submit" name="ok" class="btn btn-success" :disabled="!$v.model.nom.required || !$v.model.nom.alpha">
                     <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
                     <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>

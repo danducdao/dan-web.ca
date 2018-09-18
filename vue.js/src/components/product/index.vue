@@ -12,8 +12,13 @@
                 <div class="col-lg-12">
                     <div class="hpanel">
                         <div class="panel-body">
+                            <div class="row" >
+                                <div class="col-lg-4"  >
+                                    <app-search :search-criteria="searchCriteria" :items="produits" :name="'Produit'" @refreshItems="refreshItems($event)"></app-search> 
+                                </div>
+                            </div>
                             <p>
-                                <router-link :to="{ path: 'new'}" append class="btn btn-primary">Nouveau</router-link>
+                                 <router-link :to="{ path: 'new'}" append class="btn btn-primary">Nouveau</router-link>
                             </p>
                             <p v-if="!loading && produits.length > 0" class="table-responsive">
                                 <table class="table table-bordered">
@@ -34,7 +39,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="produit in produits">
+                                        <tr v-for="produit in produitList">
                                             <td>
                                                 <span v-if='produit.active'>
                                                     <a href="#" @click.prevent="removeProduit(produit.id)">Supprimer</a>
@@ -74,14 +79,24 @@
 <script>
 import { ProduitService } from "../../services/produit";
 import { htmlTag } from "../../inc/helper";
+import searchComponent from "../search";
 
 export default {
-  name: "ListeProduit",
+  components: {
+    "app-search": searchComponent
+  },
   data() {
     return {
       produits: [],
+      produitList:[],
       produitService: new ProduitService(),
-      loading: ""
+      loading: "",
+      searchCriteria:[ 
+                        {name:"nom", value:"0",text:"Nom",checked:true,colType:"string"},
+                        {name:"categorie_nom", value:"1",text:"Catégorie",checked:false,colType:"string"},
+                        {name:"quantite_en_stock", value:"2",text:"Quantité en stock",checked:false,colType:"number"},
+                        {name:"prix", value:"3",text:"Prix",checked:false,colType:"number"}
+                    ]
     };
   },
   methods: {
@@ -100,11 +115,12 @@ export default {
         );
       }
     },
-
     loadData() {
       this.produitService.produitListe().then(
         res => {
-          if (Object.keys(res.body).length > 0) this.produits = res.body;
+          if (Object.keys(res.body).length > 0){
+              this.produitList = this.produits = res.body;
+          } 
           this.loading = false;
         },
         err => {
@@ -112,6 +128,9 @@ export default {
           this.loading = true;
         }
       );
+    },
+    refreshItems(items){
+        this.produitList = items;
     }
   },
   created() {

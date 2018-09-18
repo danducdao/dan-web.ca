@@ -3,11 +3,12 @@
 * Écrit par : Dan Duc Dao
 */
 
-export var CheckBox = function(name, value, text, checked = false) {
+export var CheckBox = function(name, value, text, colType, checked = false) {
   this.icheckboxSquare = "icheckbox_square-green checked";
   this.name = name;
   this.text = text;
   this.value = value;
+  this.colType = colType;
   this.clsAttribut =
     checked === true
       ? this.icheckboxSquare

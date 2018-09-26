@@ -33,8 +33,11 @@ module.exports = function(app, music) {
   });
 
   app.get("/shoppingCartMusic/album/:id", function(req, res, next) {
+    if (!req.params.id) {
+      return res.status(500).send();
+    }
     music.query(
-      "SELECT artistes.nom AS artiste_nom, " +
+      "SELECT artistes.nom_complet AS artiste_nom, " +
         "genres.id AS genre_id, " +
         "genres.nom AS genre_nom, " +
         "albums.* " +
@@ -48,7 +51,7 @@ module.exports = function(app, music) {
       function(error, result) {
         if (error) status = 500;
         else if (result.length === 0) status = 204;
-        return res.status(status).send(result[0]);
+        return res.status(status).send(result);
       }
     );
   });

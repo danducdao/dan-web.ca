@@ -46,108 +46,148 @@ export default class HomeComponent extends Component {
   render() {
     let tutoriels = this.state.tutoriels;
     return (
-      <section id="main">
-        <div className="hpanel col-md-9">
-          <div className="panel-heading hbuilt">
-            React Tutorial with Examples, React Tutorials
-          </div>
-          <div className="panel-body">
-            <div className="row">
-              <div className="col-lg-6 border-right">
-                <label className="col-sm-2 control-label">Vidéo : </label>
-                <select
-                  name="titre"
-                  id="selReactjs"
-                  onChange={this.selectedItem}
-                >
-                  {tutoriels.Reactjs.listItem().map((value, key) => (
-                    <option value={key} key={key}>
-                      {value.titre}
-                    </option>
-                  ))}
-                </select>
-                <h2 className="title">
-                  <strong>React Tutorial with Examples </strong>
-                </h2>
-                <p>
-                  <iframe
-                    width="580"
-                    height="315"
-                    src={tutoriels.Reactjs.url}
-                    allow="autoplay; encrypted-media"
-                  />
-                </p>
-                <p className="titre">
-                  <span>
-                    {tutoriels.Reactjs.count} - {tutoriels.Reactjs.titre}
-                  </span>
-                </p>
-                <p>
-                  <button
-                    type="button"
-                    className="btn btn-primary previous"
-                    id="Reactjs"
-                    onClick={this.previous}
+      <section>
+        <div className="content">
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="hpanel hgreen">
+                <div className="panel-heading hbuilt">
+                  <div className="panel-tools">
+                    <a className="showhide">
+                      <i className="fa fa-chevron-up" />
+                    </a>
+                  </div>
+                  React Tutorial with Examples
+                </div>
+                <div className="panel-body">
+                  <p>
+                    <label className="col-sm-2 control-label">Vidéo:</label>
+                    <select
+                      name="titre"
+                      id="selReactjs"
+                      onChange={this.selectedItem}
+                    >
+                      {tutoriels.Reactjs.listItem().map((value, key) => (
+                        <option value={key} key={key}>
+                          {value.titre}
+                        </option>
+                      ))}
+                    </select>
+                  </p>
+                  <p>
+                    <iframe
+                      style={{ width: "100%" }}
+                      height="315"
+                      src={tutoriels.Reactjs.url}
+                      allow="autoplay; encrypted-media"
+                    />
+                  </p>
+                  <p
+                    style={{
+                      "min-height": "50px",
+                      padding: "10px",
+                      "font-weight": "bold",
+                      "font-size": "18px",
+                      "text-align": "center",
+                      border: "1px solid #ccc"
+                    }}
                   >
-                    Précédent
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary next"
-                    id="Reactjs"
-                    onClick={this.next}
-                  >
-                    Suivant
-                  </button>
-                </p>
+                    <span>
+                      {tutoriels.Reactjs.count} - {tutoriels.Reactjs.titre}
+                    </span>
+                  </p>
+                  <p>
+                    <button
+                      type="button"
+                      className="btn btn-primary previous"
+                      style={{ float: "left" }}
+                      id="Reactjs"
+                      onClick={this.previous}
+                    >
+                      Précédent
+                    </button>
+                    &nbsp;
+                    <button
+                      type="button"
+                      className="btn btn-primary next"
+                      style={{ float: "right" }}
+                      id="Reactjs"
+                      onClick={this.next}
+                    >
+                      Suivant
+                    </button>
+                  </p>
+                </div>
               </div>
-              <div className="col-lg-6">
-                <label className="col-sm-2 control-label">Vidéo : </label>
-                <select
-                  name="titre"
-                  id="selReactjs2"
-                  onChange={this.selectedItem}
-                >
-                  {tutoriels.Reactjs2.listItem().map((value, key) => (
-                    <option value={key} key={key}>
-                      {value.titre}
-                    </option>
-                  ))}
-                </select>
-                <h2 className="title">
-                  <strong>React Tutorials</strong>
-                </h2>
-                <p>
-                  <iframe
-                    width="580"
-                    height="315"
-                    src={tutoriels.Reactjs2.url}
-                    allow="autoplay; encrypted-media"
-                  />
-                </p>
-                <p className="titre">
-                  <span>
-                    {tutoriels.Reactjs2.count} - {tutoriels.Reactjs2.titre}
-                  </span>
-                </p>
-                <p>
-                  <button
-                    type="button"
-                    className="btn btn-primary previous"
-                    id="Reactjs2"
-                    onClick={this.previous}
+            </div>
+            <div className="col-lg-4">
+              <div className="hpanel hgreen">
+                <div className="panel-heading hbuilt">
+                  <div className="panel-tools">
+                    <a className="showhide">
+                      <i className="fa fa-chevron-up" />
+                    </a>
+                  </div>
+                  React Tutorials
+                </div>
+                <div className="panel-body">
+                  <p>
+                    <label className="col-sm-2 control-label">Vidéo:</label>
+                    <select
+                      name="titre"
+                      id="selReactjs2"
+                      onChange={this.selectedItem}
+                    >
+                      {tutoriels.Reactjs2.listItem().map((value, key) => (
+                        <option value={key} key={key}>
+                          {value.titre}
+                        </option>
+                      ))}
+                    </select>
+                  </p>
+                  <p>
+                    <iframe
+                      style={{ width: "100%" }}
+                      height="315"
+                      src={tutoriels.Reactjs2.url}
+                      allow="autoplay; encrypted-media"
+                    />
+                  </p>
+                  <p
+                    style={{
+                      "min-height": "50px",
+                      padding: "10px",
+                      "font-weight": "bold",
+                      "font-size": "18px",
+                      "text-align": "center",
+                      border: "1px solid #ccc"
+                    }}
                   >
-                    Précédent
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary next"
-                    id="Reactjs2"
-                    onClick={this.next}
-                  >
-                    Suivant
-                  </button>
-                </p>
+                    <span>
+                      {tutoriels.Reactjs2.count} - {tutoriels.Reactjs2.titre}
+                    </span>
+                  </p>
+                  <p>
+                    <button
+                      type="button"
+                      className="btn btn-primary previous"
+                      id="Reactjs2"
+                      style={{ float: "left" }}
+                      onClick={this.previous}
+                    >
+                      Précédent
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary next"
+                      style={{ float: "right" }}
+                      id="Reactjs2"
+                      onClick={this.next}
+                    >
+                      Suivant
+                    </button>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

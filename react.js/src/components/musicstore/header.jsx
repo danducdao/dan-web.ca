@@ -1,29 +1,45 @@
-import React, { Component } from "react";
+/*
+* Program : Header Component
+* Écrit par : Dan Duc Dao
+*/
+
+import React from "react";
 import { Link } from "react-router-dom";
 require("./css/style.css");
 
-export default class HeaderComponent extends Component {
-  render() {
-    return (
-      <div id="header">
-        <h1>
-          <Link to="/">BOUTIQUE DE MUSIC</Link>
-        </h1>
-        <ul id="navlist">
-          <li className="first">
-            <a href="#" id="current">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#">Store</a>
-          </li>
-          <li />
-          <li>
-            <a href="#">Admin</a>
-          </li>
-        </ul>
-      </div>
+const header = props => {
+  let myCart =
+    props.myCart.length > 0 ? (
+      <a href="#" className="showNumItem">
+        {props.myCart.length} item(s)
+      </a>
+    ) : (
+      ""
     );
-  }
-}
+  return (
+    <div className="normalheader">
+      <div className="hpanel">
+        <div className="panel-body">
+          <div id="header">
+            <h1>BOUTIQUE DE MUSIC</h1>
+            <ul id="navlist">
+              <li>
+                <a href="#">Admin</a>
+              </li>
+              <li>{myCart}</li>
+              {myCart ? (
+                <li>
+                  <Link to="/checkout">checkout</Link>
+                </li>
+              ) : (
+                ""
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default header;

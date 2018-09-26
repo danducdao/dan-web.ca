@@ -3,6 +3,7 @@
 }
 .colCenter {
   text-align: center;
+  vertical-align: middle;
 }
 
 .ng-valid[required],
@@ -21,22 +22,4 @@ table th {
 .parent {
   position: relative;
   display: inline-block;
-}
-
-#main .title {
-  text-align: left;
-}
-.previous {
-  float: left;
-}
-.next {
-  float: right;
-}
-.titre {
-  min-height: 50px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 18px;
-  text-align: center;
-  border: 1px solid #ccc;
 }

@@ -7,31 +7,33 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Service } from "../../services/service";
 import HeaderComponent from "./header";
-import { CheckBox } from "../../classes/checkBox";
+import { LocalStorage } from "../../classes/localstorage";
+import { ShoppingCart } from "../../classes/shoppingCart";
+import CurrencyFormat from "react-currency-format";
 require("./css/style.css");
 
 export default class MusicStoreListComponent extends Component {
   constructor() {
     super();
-    this.state.service = new Service();
+    this.service = new Service();
+    this.localstorage = new LocalStorage();
+    this.acheter = this.acheter.bind(this);
   }
   state = {
     chargement: true,
     erreur: "",
     genres: null,
     albums: null,
-    albumsSearch: null,
-    checkBoxContainer: [
-      new CheckBox("nom", "nom", "Nom", true),
-      new CheckBox("prix", "prix", "Prix")
-    ],
-    service: null
+    carts: []
   };
   componentDidMount() {
     this.loadData();
+    if (this.localstorage.itemExist("cart")) {
+      this.setState({ carts: this.localstorage.getItem("cart") });
+    }
   }
   loadData = () => {
-    this.state.service
+    this.service
       .get("/shoppingCartMusic/genre")
       .then(result => {
         let genres = result.data;
@@ -39,7 +41,7 @@ export default class MusicStoreListComponent extends Component {
           this.setState({
             genres: genres
           });
-          return this.state.service.get("/shoppingCartMusic/album");
+          return this.service.get("/shoppingCartMusic/album");
         }
       })
       .then(result => {
@@ -61,44 +63,49 @@ export default class MusicStoreListComponent extends Component {
         });
       });
   };
-  selectItem = event => {
-    this.state.checkBoxContainer[event.target.id].selectItem(this);
-    this.forceUpdate();
-  };
-  search = () => {
-    const { checkBoxContainer, albumsSearch } = this.state;
-    let data = [];
-    for (let checkbox of checkBoxContainer) {
-      if (checkbox.isChecked) {
-        if (checkbox.value === "prix") {
-          data = data.concat(
-            albumsSearch.filter(
-              value => value.prix === parseFloat(this.refs.search.value)
-            )
-          );
+
+  acheter(event, albumId) {
+    event.preventDefault();
+    let album = [];
+    let carts = [];
+    this.service.get("/shoppingCartMusic/album/" + albumId).then(res => {
+      album = res.data;
+      if (album.length > 0) {
+        if (this.localstorage.itemExist("cart")) {
+          carts = this.localstorage.getItem("cart");
+          let index = carts.findIndex(res => res.id === album[0].id);
+          if (index !== -1) {
+            carts[index].quantite += 1;
+            carts[index].total += carts[index].quantite * carts[index].prix;
+          } else {
+            carts.push(
+              new ShoppingCart(
+                album[0].id,
+                1,
+                album[0].prix,
+                album[0].titre,
+                album[0].prix
+              )
+            );
+          }
         } else {
-          data = data.concat(
-            albumsSearch.filter(
-              value =>
-                value.titre
-                  .toLowerCase()
-                  .indexOf(this.refs.search.value.toLowerCase()) !== -1
+          carts.push(
+            new ShoppingCart(
+              album[0].id,
+              1,
+              album[0].prix,
+              album[0].titre,
+              album[0].prix
             )
           );
         }
+        this.localstorage.setItem("cart", carts);
+        this.setState({ carts: carts });
       }
-    }
-    this.setState({ albums: data });
-  };
-
+    });
+  }
   render() {
-    const {
-      chargement,
-      erreur,
-      genres,
-      albums,
-      checkBoxContainer
-    } = this.state;
+    const { chargement, erreur, genres, albums, carts } = this.state;
     if (chargement) {
       return <p>Chargement ...</p>;
     }
@@ -112,90 +119,81 @@ export default class MusicStoreListComponent extends Component {
     }
     return (
       <React.Fragment>
-        <HeaderComponent />
-        <div id="main">
-          <div className="row">
-            <div className="col-sm-10">
-              <h3>
-                {genres.map(
-                  (value, key) =>
-                    value.id == this.props.match.params.id ? (
-                      <em key={key}>
-                        <strong>{value.nom}</strong> Album
-                      </em>
-                    ) : (
-                      ""
-                    )
-                )}
-              </h3>
-            </div>
-            <div className="col-sm-2">
-              <label className="label-form">Trouver</label>
-              <input
-                type="text"
-                className="form-control"
-                name="search"
-                ref="search"
-                onKeyUp={this.search}
-              />
-              <br />
-              <div>
-                {checkBoxContainer.map((checkbox, key) => (
-                  <React.Fragment key={key}>
-                    <div
-                      className={checkbox.clsAttribut}
-                      style={{ position: "relative" }}
-                      onClick={this.selectItem}
-                    >
-                      <input
-                        type="checkbox"
-                        name={checkbox.name}
-                        {...{ value: checkbox.value }}
-                        style={{ position: "absolute", opacity: 0 }}
-                      />
-                      <ins
-                        className="iCheck-helper"
-                        {...{ id: key }}
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: "0%",
-                          display: "block",
-                          width: "100%",
-                          height: "100%",
-                          margin: 0,
-                          padding: 0,
-                          background:
-                            "rgb(255, 255, 255) none repeat scroll 0% 0%",
-                          border: "0px none",
-                          opacity: 0
-                        }}
-                      />
-                    </div>
-                    &nbsp;
-                    {checkbox.value}
-                    &nbsp;
-                  </React.Fragment>
-                ))}
+        <section>
+          <HeaderComponent myCart={carts} />
+          <div className="content">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="hpanel">
+                  <div className="panel-heading hbuilt">
+                    {genres.map(
+                      (value, key) =>
+                        value.id == this.props.match.params.id ? (
+                          <em key={key}>
+                            <strong>{value.nom}</strong> Album{" "}
+                          </em>
+                        ) : (
+                          ""
+                        )
+                    )}
+                  </div>
+                  <div className="panel-body">
+                    <ul id="album-list">
+                      {albums.map(
+                        (value, key) =>
+                          value.genre_id == this.props.match.params.id ? (
+                            <li key={key}>
+                              <Link to={"/album/" + value.id}>
+                                <div>
+                                  <img alt={value.titre} src={value.photo} />
+                                </div>
+                                <div>
+                                  <span>{value.titre}</span>
+                                </div>
+                              </Link>
+                              <div>
+                                Prix :{" "}
+                                <CurrencyFormat
+                                  value={value.prix}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                  prefix={"$"}
+                                />
+                              </div>
+
+                              <div>
+                                <button
+                                  type="submit"
+                                  name="ok"
+                                  className="btn btn-success"
+                                  onClick={event =>
+                                    this.acheter(event, value.id)
+                                  }
+                                >
+                                  <span
+                                    style={{
+                                      fontWeight: "bold",
+                                      padding: 3,
+                                      fontSize: 12,
+                                      color: "#fff"
+                                    }}
+                                  >
+                                    Acheter
+                                  </span>
+                                </button>
+                              </div>
+                            </li>
+                          ) : (
+                            ""
+                          )
+                      )}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <ul id="album-list">
-            {albums.map(
-              (value, key) =>
-                value.genre_id == this.props.match.params.id ? (
-                  <li key={key}>
-                    <Link to={"/album/" + value.id}>
-                      <img alt={value.titre} src={value.albumArtUrl} />
-                      <span>{value.titre}</span>
-                    </Link>
-                  </li>
-                ) : (
-                  ""
-                )
-            )}
-          </ul>
-        </div>
+        </section>
       </React.Fragment>
     );
   }

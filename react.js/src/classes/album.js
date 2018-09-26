@@ -1,5 +1,5 @@
 /*
-* Program : Class CheckBox
+* Program : Class Album
 * Écrit par : Dan Duc Dao
 */
 

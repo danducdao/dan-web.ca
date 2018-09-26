@@ -3,9 +3,10 @@ import "./App.css";
 import HomeComponent from "./components/home/index";
 import HelloWorldComponent from "./components/helloworld/index";
 import MusicStoreListComponent from "./components/musicstore/index";
+import CheckoutComponent from "./components/musicstore/checkout";
 import AlbumComponent from "./components/musicstore/album";
 import { Service } from "./services/service";
-import { Route, Link, Switch, HashRouter, NavLink } from "react-router-dom";
+import { Route, Switch, HashRouter, NavLink } from "react-router-dom";
 
 export class App extends Component {
   constructor() {
@@ -63,49 +64,45 @@ export class App extends Component {
           <div id="header">
             <div className="color-line" />
             <div id="logo" className="light-version">
-              <span>Dan Duc Dao</span>
+              <span>React.js - Exemple</span>
             </div>
-            <nav>
+            <nav role="navigation">
               <div className="header-link hide-menu">
                 <i className="fa fa-bars" />
               </div>
               <div className="small-logo">
-                <span className="text-primary">Dan Duc Dao</span>
+                <span className="text-primary">React.js - Exemple</span>
               </div>
             </nav>
           </div>
           <aside id="menu">
             <div id="navigation">
               <div className="profile-picture">
-                <img
-                  src="./assets/images/av1.png"
-                  className="img-circle m-b"
-                  alt="logo"
-                />
+                <a href="index.html">
+                  <img
+                    src="../assets/images/logo.jpg"
+                    className="img-circle m-b"
+                    alt="logo"
+                    width="100"
+                    height="100"
+                  />
+                </a>
               </div>
               <ul className="nav" id="side-menu">
                 <li>
                   <NavLink to={"/"}>Home</NavLink>
                 </li>
                 <li>
-                  <a href="#">
-                    <span className="nav-label">React.js</span>
-                    <span className="fa arrow" />
-                  </a>
-                  <ul className="nav nav-second-level">
-                    <li>
-                      <NavLink
-                        to={"/helloworld"}
-                        activeStyle={this.state.styleObject}
-                      >
-                        Hello world
-                      </NavLink>
-                    </li>
-                  </ul>
+                  <NavLink
+                    to={"/helloworld"}
+                    activeStyle={this.state.styleObject}
+                  >
+                    Hello world
+                  </NavLink>
                 </li>
                 <li>
                   <a href="#">
-                    <span className="nav-label">Shopping cart</span>
+                    <span className="nav-label">Music store</span>
                     <span className="fa arrow" />
                   </a>
                   <ul className="nav nav-second-level">
@@ -126,30 +123,23 @@ export class App extends Component {
             </div>
           </aside>
           <div id="wrapper">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="hpanel">
-                  <div className="panel-body">
-                    <Switch>
-                      <Route exact path="/" component={HomeComponent} />
-                      <Route
-                        exact
-                        path="/helloworld"
-                        component={HelloWorldComponent}
-                      />
-                      <Route
-                        exact
-                        path="/genre/:id"
-                        component={MusicStoreListComponent}
-                      />
-                      <Route
-                        exact
-                        path="/album/:id"
-                        component={AlbumComponent}
-                      />
-                    </Switch>
-                  </div>
-                </div>
+            <div className="p-lg">
+              <div className="content" data-child="row">
+                <Switch>
+                  <Route exact path="/" component={HomeComponent} />
+                  <Route
+                    exact
+                    path="/helloworld"
+                    component={HelloWorldComponent}
+                  />
+                  <Route exact path="/album/:id" component={AlbumComponent} />
+                  <Route
+                    exact
+                    path="/genre/:id"
+                    component={MusicStoreListComponent}
+                  />
+                  <Route exact path="/checkout" component={CheckoutComponent} />
+                </Switch>
               </div>
             </div>
           </div>

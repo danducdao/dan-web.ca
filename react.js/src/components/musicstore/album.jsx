@@ -5,12 +5,10 @@
 
 import React, { Component } from "react";
 import HeaderComponent from "./header";
-import AddToCartComponent from "./addToCart";
 import { Service } from "../../services/service";
 import { LocalStorage } from "../../classes/localstorage";
 import { Album } from "../../classes/album";
 import CurrencyFormat from "react-currency-format";
-import { Link } from "react-router-dom";
 
 require("./css/style.css");
 
@@ -38,7 +36,7 @@ export default class AlbumComponent extends Component {
       .get("/shoppingCartMusic/album/" + this.props.match.params.id)
       .then(result => {
         let album = result.data;
-        if (Object.keys(album).length > 0) {
+        if (album.length > 0) {
           this.setState({
             album: result.data,
             erreur: false,
@@ -54,40 +52,8 @@ export default class AlbumComponent extends Component {
         });
       });
   };
-
-  addToCart = () => {
-    const { localstorage, album, myAlbum } = this.state;
-    let cart = [];
-    if (localstorage.itemExist("cart")) {
-      cart = localstorage.getItem("cart");
-      let cartFound = cart.filter(value => value.id === parseInt(album.id));
-      if (cartFound.length > 0) {
-        cart.map(value => {
-          value.quantite =
-            value.id === album.id ? (value.quantite += 1) : value.quantite;
-          return value;
-        });
-      } else {
-        this.setMyAlbum(myAlbum, album);
-        cart.push(myAlbum);
-      }
-    } else {
-      this.setMyAlbum(myAlbum, album);
-      cart.push(myAlbum);
-    }
-    localstorage.setItem("cart", cart);
-    this.setState({ cart: localstorage.getItem("cart") });
-  };
-
-  setMyAlbum(myAlbum, album) {
-    myAlbum.id = album.id;
-    myAlbum.prix = album.prix;
-    myAlbum.titre = album.titre;
-    myAlbum.quantite = 1;
-  }
-
   render() {
-    const { album, cart, erreur, chargement } = this.state;
+    const { album, erreur, chargement } = this.state;
 
     if (chargement) {
       return <p>Chargement ...</p>;
@@ -103,75 +69,42 @@ export default class AlbumComponent extends Component {
     }
     return (
       <React.Fragment>
-        <HeaderComponent />
-        <div id="main">
-          <div className="row">
-            <div className="col-md-3">
-              <h2>{album["titre"]}</h2>
-              <p>
-                <img alt={album["titre"]} src={album["albumArtUrl"]} />
-              </p>
-              <div id="album-details">
-                <p>
-                  <em>Genre : </em>
-                  {album["genre_nom"]}
-                </p>
-                <p>
-                  <em>Artist : </em>
-                  {album["artiste_nom"]}
-                </p>
-                <p>
-                  <em>Price : </em>
-                  <CurrencyFormat
-                    value={album["prix"]}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
-                </p>
-              </div>
-              <div>
-                <br />
-                <button className="btn btn-success" onClick={this.addToCart}>
-                  <i
-                    className="fa fa-check-square-o"
-                    style={{ fontSize: 24, float: "left" }}
-                  />
-                  <span
-                    style={{ marginLeft: 5, fontWeight: "bold", fontSize: 18 }}
-                  >
-                    Ajouter au panier
-                  </span>
-                </button>
-                &nbsp;
-                <Link
-                  className="btn btn-success"
-                  to={"/genre/" + album["genre_id"]}
-                >
-                  <i
-                    className="fa fa-backward"
-                    style={{ fontSize: 24, float: "left" }}
-                  />
-                  <span
-                    style={{ marginLeft: 5, fontWeight: "bold", fontSize: 18 }}
-                  >
-                    BACK
-                  </span>
-                </Link>
-              </div>
-            </div>
-            <div className="col-md-9">
-              <div className="hpanel hblue col-md-6">
-                <div className="panel-heading hbuilt">
-                  <strong>Votre panier</strong>
-                </div>
-                <div className="panel-body">
-                  <AddToCartComponent myCart={cart} />
+        <section>
+          <HeaderComponent myCart={""} />
+          <div className="content">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="hpanel">
+                  <div className="panel-body">
+                    <h2>{album[0]["titre"]}</h2>
+                    <p>
+                      <img alt={album[0]["titre"]} src={album[0]["photo"]} />
+                    </p>
+                    <div id="album-details">
+                      <p>
+                        <em>Genre : </em>
+                        {album[0]["genre_nom"]}
+                      </p>
+                      <p>
+                        <em>Artist : </em>
+                        {album[0]["artiste_nom"]}
+                      </p>
+                      <p>
+                        <em>Price : </em>
+                        <CurrencyFormat
+                          value={album[0]["prix"]}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"$"}
+                        />
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </React.Fragment>
     );
   }

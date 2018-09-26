@@ -21,7 +21,7 @@
                                     <td :class="right" style="width:20%;">{{ cart.total | currency }}</td>
                                     <td style="width:18%;">
                                         <button type="submit" class="btn btn-success" @click="updateCart(cart.id)">Modifier</button>&nbsp;
-                                        <button type="submit" class="btn btn-danger" @click="removeCart(cart.id)">Enlever</button>
+                                        <button type="submit" class="btn btn-danger" @click="removeCart(cart.id)">Supprimer</button>
                                     </td>
                             </tr>
                             <tr>

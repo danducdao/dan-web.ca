@@ -7,9 +7,9 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { AppRoutingModule, routingComponents } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { MyDatePickerModule } from "mydatepicker";
+import { RouterModule } from "@angular/router";
 
 //Components
 import { AppComponent } from "./app.component";
@@ -52,6 +52,70 @@ import { FiltreHtmlTagPipe } from "../pipes/filtre-html-tag.pipe";
 //Directives
 import { EqualValidator } from "../directives/equal-validator.directive";
 
+const routes = [
+  {
+    path: "",
+    component: HomeComponent
+  },
+  {
+    path: "helloworld",
+    component: HelloWorldComponent
+  },
+  {
+    path: "databinding",
+    component: DataBindingComponent
+  },
+  {
+    path: "classbinding",
+    component: ClassBindingComponent
+  },
+  {
+    path: "ngFor",
+    component: NgForComponent
+  },
+  {
+    path: "distributrice",
+    component: DistributriceComponent
+  },
+  {
+    path: "admin",
+    component: AdminComponent,
+    children: [
+      { path: "", component: ListeCategorieComponent },
+      { path: "categorie", component: ListeCategorieComponent },
+      { path: "categorie/new", component: DetailCategorieComponent },
+      { path: "categorie/:id", component: DetailCategorieComponent },
+      { path: "produit", component: ListeProduitComponent },
+      { path: "produit/new", component: DetailProduitComponent },
+      { path: "produit/:id", component: DetailProduitComponent }
+    ]
+  },
+  {
+    path: "shoppingcart",
+    component: ShoppingCartComponent
+  },
+  {
+    path: "addtocart",
+    component: AddToCartComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
+  },
+  {
+    path: "contact",
+    component: ContactComponent
+  },
+  {
+    path: "**",
+    component: HomeComponent
+  }
+];
+
 @NgModule({
   declarations: [
     AddToCartComponent,
@@ -74,18 +138,17 @@ import { EqualValidator } from "../directives/equal-validator.directive";
     LoginComponent,
     NgForComponent,
     RegisterComponent,
-    routingComponents,
     SimpleTinyComponent,
     ShoppingCartComponent,
     ShoppingCartProduitComponent,
     ShoppingCartBasketComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     AdminService,

@@ -4,7 +4,6 @@
 */
 
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-admin-index",
@@ -41,22 +40,5 @@ import { Router } from "@angular/router";
   ]
 })
 export class AdminComponent implements OnInit {
-  public category: any = { active: true };
-  public product: any = { active: false };
-
-  constructor(private router: Router) {}
-
   ngOnInit() {}
-
-  redirect(event: any): void {
-    if (event.target.id == "category") {
-      this.category.active = true;
-      this.product.active = !this.category.active;
-      this.router.navigateByUrl("/admin/categorie");
-    } else if (event.target.id == "product") {
-      this.product.active = true;
-      this.category.active = !this.product.active;
-      this.router.navigateByUrl("/admin/produit");
-    }
-  }
 }

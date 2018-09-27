@@ -1,10 +1,10 @@
 <section>
     <ul>
-        <li>
-            <a [ngClass]="category" id="category" (click)="redirect($event)">Catégories</a>
+        <li routerLinkActive="active">
+            <a routerLink="/admin/categorie">Catégories</a>
         </li>
-        <li>
-            <a [ngClass]="product" id="product" (click)="redirect($event)">Produits</a>
+        <li routerLinkActive="active">
+            <a routerLink="/admin/produit">Produits</a>
         </li>
     </ul>
     <router-outlet></router-outlet>

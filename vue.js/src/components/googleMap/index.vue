@@ -7,10 +7,10 @@
                 <div class="panel-body">
                     <label class="control-label">Ville</label>
                     <select class="form-control" v-model="id" v-on:change="afficherGoogleMap">
-                    <template v-for="pays in listPays">
-                        <optgroup  v-bind:label="pays.nom">
-                            <template  v-for="ville in filtrerParPays(pays.nom)">
-                                <option v-bind:value="ville._id">{{ville.ville + "," + ville.province}}</option>
+                    <template v-for="(pays,key) in listPays">
+                        <optgroup  v-bind:label="pays.nom" :key="key">
+                            <template  v-for="(ville,key) in filtrerParPays(pays.nom)">
+                                <option :value="ville._id" :key="key">{{ville.ville + "," + ville.province}}</option>
                             </template>
                         </optgroup>
                     </template>
@@ -23,7 +23,7 @@
                 <gmap-map
                     :center="center"
                     :zoom="12"
-                    style="width:100%;height: 400px;"
+                    :style="{width:'100%',height:'400px'}"
                     >
                         <gmap-marker
                             :key="index"
@@ -103,24 +103,26 @@ export default {
     }
   },
   created() {
-    this.googleMapService.getGoogleMapVilles().then(function(data) {
-      this.listVilles = data.body;
-      for (var i = 0; i < this.listVilles.length; i++) {
-        var pays = new Object();
-        pays.id = this.listVilles[i]._id;
-        pays.nom = this.listVilles[i].pays;
-        if (this.listPays.length === 0) {
-          this.listPays.push(pays);
-        } else {
-          var paysTrouve = this.listPays.filter(function(data) {
-            return data.nom.indexOf(pays.nom) !== -1;
-          });
-          if (paysTrouve.length == 0) {
+    this.googleMapService.getGoogleMapVilles().then(
+      function(data) {
+        this.listVilles = data.body;
+        for (var i = 0; i < this.listVilles.length; i++) {
+          var pays = new Object();
+          pays.id = this.listVilles[i]._id;
+          pays.nom = this.listVilles[i].pays;
+          if (this.listPays.length === 0) {
             this.listPays.push(pays);
+          } else {
+            var paysTrouve = this.listPays.filter(function(data) {
+              return data.nom.indexOf(pays.nom) !== -1;
+            });
+            if (paysTrouve.length == 0) {
+              this.listPays.push(pays);
+            }
           }
         }
-      }
-    }.bind(this));
+      }.bind(this)
+    );
   },
   mounted() {
     this.geolocate();

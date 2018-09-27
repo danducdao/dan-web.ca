@@ -20,8 +20,10 @@
                                   v-input-bar-color-error=[!$v.model.nom.$error,!$v.model.nom.$invalid]
                                   required
                                   v-model.trim="$v.model.nom.$model"/>
-                          <div v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</div>
-                          <div v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div>
+                          <ul class="error">
+                            <li v-if="$v.model.nom.$error && !$v.model.nom.required" class="alert alert-danger">Nom est obligatoire</li>
+                            <li v-if="!$v.model.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</li>
+                          </ul>
                       </p>
                       <p>
                           <label class="control-label" for="description">Description</label>
@@ -38,27 +40,22 @@
                                   v-on:FileToSave="FileToSave($event)">
                           </app-file-upload>
                       </p>
-                      <p>
-                        <div v-if="model.photo">
-                          <p>
-                            <img v-bind:src="model.photo" :alt="model.nom" :height="fileUpload.height" :width="fileUpload.height" />
-                          </p>
-                          <p>
-                            <button class="btn btn-danger" @click.prevent="removeImage">supprimer
-                            </button>
-                          </p>
-                        </div>
+                      <p v-if="model.photo">
+                          <img :src="model.photo" 
+                               :alt="model.nom" 
+                               :height="fileUpload.height" 
+                               :width="fileUpload.height" 
+                               :style="{display:'block'}" />
+                          <button class="btn btn-danger" @click.prevent="removeImage" :style="{display:'block',marginTop:'10px'}">supprimer</button>
                       </p>
-                      <p v-if="!isAdd && !model.active">
-                        <div>
+                      <p v-if="!isAdd">
                           <label class="control-label">Active</label><br>
-                          <span v-for="(radioButton,index) in containerActiveRadioButton">
-                              <div :class="radioButton.ClsAttribut" style="position: relative;" @click.prevent="selectedActiveItem(index)">
-                                  <input type="radio" :name="radioButton.Name" style="position: absolute; opacity: 0;" :value="radioButton.Value">
-                                  <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                          <span v-for="(radioButton,index) in containerActiveRadioButton" v-bind:key="index">
+                              <div :class="radioButton.ClsAttribut" :style="{position: 'relative'}" @click.prevent="selectedActiveItem(index)">
+                                  <input type="radio" :name="radioButton.Name" :style="{position: 'absolute', opacity: 0}" :value="radioButton.Value">
+                                  <ins class="iCheck-helper"></ins>
                               </div>&nbsp;{{radioButton.Text}}&nbsp;
                           </span> 
-                        </div>
                       </p>
                   </div>
               </div>
@@ -66,12 +63,12 @@
           <div class="row">
             <div class="col-md-4">
                 <button type="submit" name="ok" class="btn btn-success" :disabled="!$v.model.nom.required || !$v.model.nom.alpha">
-                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+                    <i class="fa fa-check-square-o" :style="{fontSize:'24px',float:'left'}"></i>
+                    <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">OK</span>
                 </button>&nbsp;
                 <button name="back" class="btn btn-success" onclick="window.location.href='/admin/categorie';return false;">
-                    <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
-                    <span style="margin-left:5px;font-weight:bold;font-size:18px;" >BACK</span>
+                    <i class="fa fa-backward" :style="{fontSize:'24px',float:'left'}"></i>
+                    <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}" >BACK</span>
                 </button>
                 <input type="hidden" class="form-control" name="id" v-model="model.id" />
             </div>

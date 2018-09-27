@@ -10,16 +10,20 @@
                         <table class="table table-bordered" role="grid">
                             <thead>
                                 <tr>
-                                    <th v-for="header in ['Nom','Quantité','Prix','Total','']" :class="center">{{header}}</th>
+                                    <th v-for="(header,key) in ['Nom','Quantité','Prix','Total','']" 
+                                        v-bind:key="key" 
+                                        :style="{textAlign:'center'}">{{header}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="cart in carts">
-                                    <td>{{cart.nom}}</td>
-                                    <td :class="right" style="width:10%;"><input type="text" :id="cart.id" size="3" :value="cart.quantite"></td>
-                                    <td :class="right" style="width:10%;">{{ cart.prix | currency }}</td>
-                                    <td :class="right" style="width:20%;">{{ cart.total | currency }}</td>
-                                    <td style="width:18%;">
+                            <tr v-for="(cart,key) in carts" v-bind:key="key">
+                                    <td >{{cart.nom}}</td>
+                                    <td :style="{width:'10%',textAlign:'right'}">
+                                      <input type="text" :id="cart.id" size="3" :value="cart.quantite">
+                                    </td>
+                                    <td :style="{width:'10%',textAlign:'right'}">{{ cart.prix | currency }}</td>
+                                    <td :style="{width:'20%',textAlign:'right'}">{{ cart.total | currency }}</td>
+                                    <td :style="{width:'20%'}">
                                         <button type="submit" class="btn btn-success" @click="updateCart(cart.id)">Modifier</button>&nbsp;
                                         <button type="submit" class="btn btn-danger" @click="removeCart(cart.id)">Supprimer</button>
                                     </td>
@@ -30,19 +34,19 @@
                                       <table class="table table-border">
                                           <tr>
                                               <td><strong>Total:</strong></td>
-                                              <td style="text-align:right;"><strong>{{ Total() | currency}}</strong></td>
+                                              <td :style="{textAlign:'right'}"><strong>{{ Total() | currency}}</strong></td>
                                           </tr>
                                           <tr>
                                               <td><strong>TPS({{TPS}}%):</strong></td>
-                                              <td style="text-align:right;"><strong>{{ TaxeTPS() | currency}}</strong></td>
+                                              <td :style="{textAlign:'right'}"><strong>{{ TaxeTPS() | currency}}</strong></td>
                                           </tr>
                                           <tr>
                                               <td><strong>TVQ({{TVQ}}%):</strong></td>
-                                              <td style="text-align:right;"><strong>{{ TaxeTVQ() | currency}}</strong></td>
+                                              <td :style="{textAlign:'right'}"><strong>{{ TaxeTVQ() | currency}}</strong></td>
                                           </tr>
                                           <tr>
                                               <td><strong>Grande Total:</strong></td>
-                                              <td style="text-align:right;"><strong>{{ GrandeTotal() | currency}}</strong></td>
+                                              <td :style="{textAlign:'right'}"><strong>{{ GrandeTotal() | currency}}</strong></td>
                                           </tr>
                                         </table>
                                   </td>
@@ -55,8 +59,8 @@
             </div>  
             <div>
                 <router-link :to="{ path: '/shoppingcart'}" append class="btn btn-info">
-                    <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
-                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">Continue magasiner</span>
+                    <i class="fa fa-backward" :style="{fontSize:'24px',float:'left'}"></i>
+                    <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">Continue magasiner</span>
                 </router-link>
             </div>
           </div>
@@ -66,7 +70,6 @@
 </template>
 
 <script>
-
 import { LocalStorage } from "../../classes/localstorage";
 
 export default {
@@ -75,9 +78,7 @@ export default {
       carts: [],
       localStorage: new LocalStorage(),
       TPS: 9.15,
-      TVQ: 7.13,
-      center: { colCenter: true },
-      right: { colRight: true }
+      TVQ: 7.13
     };
   },
   created() {
@@ -93,10 +94,10 @@ export default {
       return total;
     },
     TaxeTPS() {
-       return parseFloat(this.calcTotal() * this.TPS / 100).toFixed(2);
+      return parseFloat((this.calcTotal() * this.TPS) / 100).toFixed(2);
     },
     TaxeTVQ() {
-       return parseFloat(this.calcTotal() * this.TVQ / 100).toFixed(2);
+      return parseFloat((this.calcTotal() * this.TVQ) / 100).toFixed(2);
     },
     Total() {
       return this.calcTotal();
@@ -109,11 +110,20 @@ export default {
       );
     },
     updateCart(cartId) {
-      var quantite = parseInt(document.getElementById(cartId).value);
-      if (!quantite) {
-        alert("Désolé! Veuillez entrer une quantité");
+      let input = document.getElementById(cartId);
+      let quantite = input.value;
+      if (quantite === "") {
+        alert("La quantité est obligatoire");
+        input.focus();
         return;
       }
+      if (!quantite.match(/^[1-9][0-9]*$/)) {
+        alert("La quantité doit être digit et ne contient pas de zéro");
+        input.value = "";
+        input.focus();
+        return;
+      }
+      quantite = parseInt(quantite);
       this.carts.map(function(value) {
         if (value.id === parseInt(cartId)) {
           value.quantite = quantite;

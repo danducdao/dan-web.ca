@@ -1,28 +1,28 @@
 <template>
     <section>
         <div v-if="baskets.length > 0">
-            <table class="table table-bordered" style="width:100%;">
+            <table class="table table-bordered" :style="{width:'100%'}">
                 <thead>
                     <tr>
                       <th></th>
-                      <th :style="{'text-align':'center'}">Nom</th>
-                      <th :style="{'text-align':'center'}">Quantité</th>
-                      <th :style="{'text-align':'center'}">Prix</th>
+                      <th :style="{textAlign:'center'}">Nom</th>
+                      <th :style="{textAlign:'center'}">Quantité</th>
+                      <th :style="{textAlign:'center'}">Prix</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="basket in baskets">
-                        <td style="width:8%;"><a href="#" @click.prevent="removeItem(basket.id)">Supprimer</a></td>
+                    <tr v-for="(basket,key) in baskets" v-bind:key="key">
+                        <td :style="{width:'8%'}"><a href="#" @click.prevent="removeItem(basket.id)">Supprimer</a></td>
                         <td>{{basket.nom}}</td>
-                        <td :style="{'text-align':'right'}" style="width:5%;">{{basket.quantite}}</td>
-                        <td :style="{'text-align':'right'}">{{basket.prix | currency}}</td>
+                        <td :style="{textAlign:'right',width:'5%'}">{{basket.quantite}}</td>
+                        <td :style="{textAlign:'right'}">{{basket.prix | currency}}</td>
                     </tr>
                 </tbody>
             </table>
             <div>
-                <router-link :to="{ path: '/addtocart'}" append class="btn btn-success">
-                    <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                    <span style="margin-left:5px;font-weight:bold;font-size:18px;">Checkout</span>
+                <router-link :to="{ path:'/addtocart'}" append class="btn btn-success">
+                    <i class="fa fa-check-square-o" :style="{fontSize:'24px',float:'left'}"></i>
+                    <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">Checkout</span>
                 </router-link>
             </div>
         </div>

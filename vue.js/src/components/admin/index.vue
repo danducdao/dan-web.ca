@@ -10,7 +10,6 @@
 
 <script>
 export default {
-  name: "Admin",
   data() {
     return {
       category: { active: true },

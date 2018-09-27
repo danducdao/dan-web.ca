@@ -100,4 +100,5 @@ export default {
 @import "./assets/css/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css";
 @import "./assets/css/fonts/pe-icon-7-stroke/css/helper.css";
 @import "./assets/css/styles/style.css";
+@import "./assets/css/styles/myStyle.css";
 </style>

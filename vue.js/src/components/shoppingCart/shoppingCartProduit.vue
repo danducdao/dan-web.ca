@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="row show-grid" v-if="shoppingCartList(categoryId).length > 0">
-            <div class="col-sm-2" style="max-height:220px;" v-for="shoppingCart in shoppingCartList(categoryId)" >
+            <div class="col-sm-2" style="max-height:220px;" v-for="(shoppingCart,key) in shoppingCartList(categoryId)" v-bind:key="key">
                 <div><img src="../../assets/images/placeholder.gif" /></div>
                 <div>{{shoppingCart.nom}}</div>
                 <div>{{shoppingCart.prix | currency}}</div>
@@ -10,8 +10,8 @@
                 </div><br>
                 <div>
                     <button type="submit" class="btn btn-success" @click.prevent="onSubmit($event,shoppingCart.id)">
-                        <i class="fa fa-check-square-o" style="font-size:18px;float:left;"></i>
-                        <span style="margin-left:5px;font-weight:bold;font-size:12px;">Ajouter</span>
+                        <i class="fa fa-check-square-o" :style="{fontSize:'18px',float:'left'}"></i>
+                        <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'12px'}">Ajouter</span>
                     </button>
                 </div>
             </div>
@@ -40,7 +40,6 @@ export default {
       shoppingCartData: []
     };
   },
-
   created() {
     this.shoppingCartService
       .shoppingCartListe()
@@ -59,15 +58,16 @@ export default {
       );
     },
     onSubmit(event, shoppingCartId) {
-      let quantite = document.getElementById(shoppingCartId).value;
-      if(quantite === "")
-      {
+      let input = document.getElementById(shoppingCartId);
+      let quantite = input.value;
+      if (quantite === "") {
         alert("La quantité est obligatoire");
         input.focus();
-        return
+        return;
       }
       if (!quantite.match(/^[1-9][0-9]*$/)) {
         alert("La quantité doit être digit et ne contient pas de zéro");
+        input.value = "";
         input.focus();
         return;
       }

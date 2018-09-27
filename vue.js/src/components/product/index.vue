@@ -39,7 +39,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="produit in produitList">
+                                        <tr v-for="(produit,key) in produitList" :key="key">
                                             <td>
                                                 <span v-if='produit.active'>
                                                     <a href="#" @click.prevent="removeProduit(produit.id)">Supprimer</a>
@@ -49,25 +49,25 @@
                                             <td>{{ produit.nom }}</td>
                                             <td>{{ produit.categorie_nom }}</td>
                                             <td>{{ produit.fournisseur_nom }}</td>
-                                            <td :style="{'text-align':'right'}">
+                                            <td :style="{textAlign:'right'}">
                                                 <span v-if="produit.prix">{{ produit.prix | currency}}</span>
                                             </td>
-                                            <td :style="{'text-align':'right'}">{{ produit.quantite_par_unite }}</td>
-                                            <td :style="{'text-align':'right'}">{{ produit.quantite_en_stock }}</td>
-                                            <td :style="{'text-align':'right'}">{{ produit.quantite_commande }}</td>
-                                            <td :style="{'text-align':'right'}">{{ produit.reapprovisionnement }}</td>
-                                            <td :style="{'text-align':'center'}">
+                                            <td :style="{textAlign:'right'}">{{ produit.quantite_par_unite }}</td>
+                                            <td :style="{textAlign:'right'}">{{ produit.quantite_en_stock }}</td>
+                                            <td :style="{textAlign:'right'}">{{ produit.quantite_commande }}</td>
+                                            <td :style="{textAlign:'right'}">{{ produit.reapprovisionnement }}</td>
+                                            <td :style="{textAlign:'center'}">
                                                 <span v-if='produit.discontinue'><i class='fa fa-check-square'></i></span>
                                             </td>
-                                            <td :style="{'text-align':'center'}">
+                                            <td :style="{textAlign:'center'}">
                                                 <span v-if='produit.active'><i class='fa fa-check-square'></i></span>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </p>
-                            <p style="color:red;" v-else-if="!loading">Aucun produit a été trouvé</p>
-                            <p style="color:red;text-align:center;" v-else><img src="../../assets/images/ajax-loader.gif" /></p>
+                            <p :style="{color:'red'}" v-else-if="!loading">Aucun produit a été trouvé</p>
+                            <p :style="{color:'red',textAlign:'center'}" v-else><img src="../../assets/images/ajax-loader.gif" /></p>
                         </div>
                     </div>
                 </div>
@@ -88,15 +88,39 @@ export default {
   data() {
     return {
       produits: [],
-      produitList:[],
+      produitList: [],
       produitService: new ProduitService(),
       loading: "",
-      searchCriteria:[ 
-                        {name:"nom", value:"0",text:"Nom",checked:true,colType:"string"},
-                        {name:"categorie_nom", value:"1",text:"Catégorie",checked:false,colType:"string"},
-                        {name:"quantite_en_stock", value:"2",text:"Quantité en stock",checked:false,colType:"number"},
-                        {name:"prix", value:"3",text:"Prix",checked:false,colType:"number"}
-                    ]
+      searchCriteria: [
+        {
+          name: "nom",
+          value: "0",
+          text: "Nom",
+          checked: true,
+          colType: "string"
+        },
+        {
+          name: "categorie_nom",
+          value: "1",
+          text: "Catégorie",
+          checked: false,
+          colType: "string"
+        },
+        {
+          name: "quantite_en_stock",
+          value: "2",
+          text: "Quantité en stock",
+          checked: false,
+          colType: "number"
+        },
+        {
+          name: "prix",
+          value: "3",
+          text: "Prix",
+          checked: false,
+          colType: "number"
+        }
+      ]
     };
   },
   methods: {
@@ -118,9 +142,9 @@ export default {
     loadData() {
       this.produitService.produitListe().then(
         res => {
-          if (Object.keys(res.body).length > 0){
-              this.produitList = this.produits = res.body;
-          } 
+          if (Object.keys(res.body).length > 0) {
+            this.produitList = this.produits = res.body;
+          }
           this.loading = false;
         },
         err => {
@@ -129,8 +153,8 @@ export default {
         }
       );
     },
-    refreshItems(items){
-        this.produitList = items;
+    refreshItems(items) {
+      this.produitList = items;
     }
   },
   created() {
@@ -142,8 +166,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-th{
-    text-align:center;
+th {
+  text-align: center;
 }
-
 </style>

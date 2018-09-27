@@ -6,11 +6,11 @@
                     <div class="panel-heading hbuilt"><strong>Loop condition</strong></div>
                     <div class="panel-body">
                         <ul>
-                            <li v-for="language in languages">{{language}}</li>
+                            <li v-for="(language,key) in languages" :key="key">{{language}}</li>
                         </ul>
                         <hr>
                         <ul>
-                            <li v-for="(pers,index) in persons">{{++index}} . {{pers.name}} - {{pers.age}} ans</li>
+                            <li v-for="(pers,index) in persons" :key="index">{{++index}} . {{pers.name}} - {{pers.age}} ans</li>
                         </ul>
                         <hr>
                         <table class="table-striped">
@@ -23,7 +23,7 @@
                         </thead>
                         <tbody>
                                 <template v-for="(job,index) in jobs">
-                                <tr>
+                                <tr :key="index">
                                     <td>{{++index}}</td>
                                     <td>{{job.id}}</td>
                                     <td>{{job.title}}</td>
@@ -32,9 +32,9 @@
                             </tbody>
                         </table>
                         <hr>
-                        <template v-for="job in jobs">
-                            <ul>
-                                <li v-for="(val,key) in job">{{key}} - {{val}}</li>
+                        <template v-for="(job,key) in jobs">
+                            <ul :key="key">
+                                <li v-for="(val,key) in job" :key="key">{{key}} - {{val}}</li>
                             </ul>
                         </template>
                     </div>
@@ -46,29 +46,28 @@
 
 <script>
 export default {
-  name: 'Loop',
-  data () {
+  name: "Loop",
+  data() {
     return {
-      languages:['PHP','C#','JavaScript','Java','C++','Python'],
-      persons:[
-                {name:'Jonh',age:34},
-                {name:'Mary',age:45},
-                {name:'Mario',age:23},
-                {name:'Steve',age:60}
-              ],
-      jobs:[
-              {id:1,title:'Programmeur-Analyste'},
-              {id:2,title:'Représentant de vente'},
-              {id:3,title:'Commis de bureau'},
-              {id:4,title:'Technicien en informatique'},
-              {id:5,title:'Commis comptable'}
-            ]
-      }
+      languages: ["PHP", "C#", "JavaScript", "Java", "C++", "Python"],
+      persons: [
+        { name: "Jonh", age: 34 },
+        { name: "Mary", age: 45 },
+        { name: "Mario", age: 23 },
+        { name: "Steve", age: 60 }
+      ],
+      jobs: [
+        { id: 1, title: "Programmeur-Analyste" },
+        { id: 2, title: "Représentant de vente" },
+        { id: 3, title: "Commis de bureau" },
+        { id: 4, title: "Technicien en informatique" },
+        { id: 5, title: "Commis comptable" }
+      ]
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

@@ -20,33 +20,37 @@
                                             v-input-bar-color-error=[true,!$v.employee.abrege.$invalid]
                                             v-model.trim="$v.employee.abrege.$model">
                                         <option :disabled="true" value="">--Sélectionner--</option>
-                                        <option v-for="abrege in employee.AbregeOpt" :value="abrege.value">{{abrege.name}}</option>
+                                        <option v-for="(abrege,key) in employee.AbregeOpt" :key="key" :value="abrege.value">{{abrege.name}}</option>
                                     </select>
-                                    <div v-if="$v.employee.abrege.$error && !$v.employee.abrege.required" class="alert alert-danger">Titre de civilité est obligatoire</div>
+                                    <ul class='error'>
+                                        <li v-if="$v.employee.abrege.$error && !$v.employee.abrege.required" class="alert alert-danger">Titre de civilité est obligatoire</li>
+                                    </ul>
                                 </p>
                                 <p>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
-                                            <input  type="text"
-                                                    name="nom" 
-                                                    v-input-bar-color-error=[!$v.employee.nom.$error,!$v.employee.nom.$invalid]
-                                                    required 
-                                                    v-model.trim="$v.employee.nom.$model"/>
-                                            <div v-if="$v.employee.nom.$error && !$v.employee.nom.required" class="alert alert-danger">Nom est obligatoire</div>
-                                            <div v-if="!$v.employee.nom.alpha" class="alert alert-danger">Nom contient seulement des caractères</div> 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="control-label" for="prenom">Prénom</label>&nbsp;<span style="color:red;">*</span>
-                                            <input  type="text"
-                                                    name="prenom" 
-                                                    v-input-bar-color-error=[!$v.employee.prenom.$error,!$v.employee.prenom.$invalid]
-                                                    required 
-                                                    v-model.trim="$v.employee.prenom.$model"/>
-                                            <div v-if="$v.employee.prenom.$error && !$v.employee.prenom.required" class="alert alert-danger">Prénom est obligatoire</div>
-                                            <div v-if="!$v.employee.prenom.alpha" class="alert alert-danger">Prénom contient seulement des caractères</div>
-                                        </div>
-                                    </div>   
+                                    <span>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="nom">Nom</label>&nbsp;<span style="color:red;">*</span>
+                                                <input  type="text"
+                                                        name="nom" 
+                                                        v-input-bar-color-error=[!$v.employee.nom.$error,!$v.employee.nom.$invalid]
+                                                        required 
+                                                        v-model.trim="$v.employee.nom.$model"/>
+                                                <div v-if="$v.employee.nom.$error && !$v.employee.nom.required" class="alert alert-danger">Nom est obligatoire</div>
+                                                <div v-if="!$v.employee.nom.alpha" class="alert alert-danger">Nom ne contient que des caractères</div> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="prenom">Prénom</label>&nbsp;<span style="color:red;">*</span>
+                                                <input  type="text"
+                                                        name="prenom" 
+                                                        v-input-bar-color-error=[!$v.employee.prenom.$error,!$v.employee.prenom.$invalid]
+                                                        required 
+                                                        v-model.trim="$v.employee.prenom.$model"/>
+                                                <div v-if="$v.employee.prenom.$error && !$v.employee.prenom.required" class="alert alert-danger">Prénom est obligatoire</div>
+                                                <div v-if="!$v.employee.prenom.alpha" class="alert alert-danger">Prénom ne contient que des caractères</div>
+                                            </div>
+                                        </div> 
+                                    </span>  
                                 </p>
                                 <p>
                                     <label class="control-label" for="titre">Titre</label>&nbsp;<span style="color:red;">*</span>
@@ -55,8 +59,10 @@
                                             v-input-bar-color-error=[!$v.employee.titre.$error,!$v.employee.titre.$invalid]
                                             required 
                                             v-model.trim="$v.employee.titre.$model" />
-                                    <div v-if="$v.employee.titre.$error && !$v.employee.titre.required" class="alert alert-danger">Titre est obligatoire</div>
-                                    <div v-if="!$v.employee.titre.alpha" class="alert alert-danger">Titre contient seulement des caractères</div>    
+                                    <ul class='error'>
+                                        <li v-if="$v.employee.titre.$error && !$v.employee.titre.required" class="alert alert-danger">Titre est obligatoire</li>
+                                        <li v-if="!$v.employee.titre.alpha" class="alert alert-danger">Titre contient seulement des caractères</li>
+                                    </ul>    
                                 </p>
                                 <p>
                                     <label class="control-label" for="statut">Statut&nbsp;<span style="color:red;">*</span></label>
@@ -66,9 +72,11 @@
                                             v-model.trim="$v.employee.statut.$model" 
                                             required>
                                         <option :disabled="true" value="">--Sélectionner--</option>
-                                        <option v-for="statut in employee.StatutOpt" :value="statut.value">{{statut.name}}</option> 
+                                        <option v-for="(statut,key) in employee.StatutOpt" :key="key" :value="statut.value">{{statut.name}}</option> 
                                     </select>
-                                    <div v-if="$v.employee.statut.$error && !$v.employee.statut.required" class="alert alert-danger">Statut est obligatoire</div>
+                                    <ul class='error'>
+                                        <li v-if="$v.employee.statut.$error && !$v.employee.statut.required" class="alert alert-danger">Statut est obligatoire</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="genre">Genre&nbsp;<span style="color:red;">*</span></label>
@@ -78,22 +86,25 @@
                                             v-model.trim="$v.employee.genre.$model"
                                             required>
                                         <option :disabled="true" value="">--Sélectionner--</option>
-                                        <option v-for="genre in employee.GenreOpt" :value="genre.value">{{genre.name}}</option>
+                                        <option v-for="(genre,key) in employee.GenreOpt" :key="key" :value="genre.value">{{genre.name}}</option>
                                     </select> 
-                                    <div v-if="$v.employee.genre.$error && !$v.employee.genre.required" class="alert alert-danger">Genre est obligatoire</div> 
+                                    <ul class='error'>
+                                        <li v-if="$v.employee.genre.$error && !$v.employee.genre.required" class="alert alert-danger">Genre est obligatoire</li> 
+                                    </ul>
                                 </p>
                                 <p>
-                                    <div>
-                                    <label class="control-label" for="date_naissance">Date de naissance</label>&nbsp;<span style="color:red;">*</span>
-                                    </div>
-                                    <div>
-                                    <date-picker  name="date_naissance"
-                                                v-model.trim="$v.employee.date_naissance.$model" 
-                                                lang="fr"
-                                                :style="DatePickerStyle" 
-                                                required ></date-picker>            
-                                    <div v-if="$v.employee.date_naissance.$error && !$v.employee.date_naissance.required" class="alert alert-danger" :style="DatePickerStyle">Date de naissance est obligatoire</div> 
-                                    </div>
+                                    <span :style="{display:'block'}">
+                                        <label class="control-label" for="date_naissance">Date de naissance</label>&nbsp;<span style="color:red;">*</span>
+                                    </span>
+                                    <span :style="{display:'block'}">
+                                        <date-picker  name="date_naissance"
+                                                    v-model.trim="$v.employee.date_naissance.$model" 
+                                                    lang="fr"
+                                                    :style="DatePickerStyle" 
+                                                    required ></date-picker>  
+                                                  
+                                        <div v-if="$v.employee.date_naissance.$error && !$v.employee.date_naissance.required" class="alert alert-danger" :style="DatePickerStyle">Date de naissance est obligatoire</div> 
+                                    </span>
                                 </p>
                             </div>
                         </div>
@@ -113,7 +124,7 @@
                                             @change.prevent="selectedPays()"
                                             class="form-control">
                                         <option value="">--Sélectionner--</option>
-                                        <option v-for="pays in paysOpt" :value="pays.value">{{pays.name}}</option>
+                                        <option v-for="(pays,key) in paysOpt" :key="key" :value="pays.value">{{pays.name}}</option>
                                     </select>
                                 </p>
                                 <p>
@@ -122,7 +133,7 @@
                                             v-model="employee.ville"
                                             class="form-control" >
                                         <option value="">--Sélectionner--</option>
-                                        <option v-for="ville in villesOpt" :value="ville.value">{{ville.name}}</option>
+                                        <option v-for="(ville,key) in villesOpt" :key="key" :value="ville.value">{{ville.name}}</option>
                                     </select>
                                 </p>
                                 <p>
@@ -131,7 +142,7 @@
                                             v-model="employee.region"
                                             class="form-control">
                                         <option value="">--Sélectionner--</option>
-                                        <option v-for="region in regionsOpt" :value="region.value">{{region.name}}</option>
+                                        <option v-for="(region,key) in regionsOpt" :key="key" :value="region.value">{{region.name}}</option>
                                     </select>
                                 </p>
                                 <p>
@@ -153,7 +164,9 @@
                                             required
                                             v-model.trim="$v.employee.telephone.$model"
                                             placeholder="(___)___-____"/>
-                                    <div v-if="$v.employee.telephone.$error && !$v.employee.telephone.required" class="alert alert-danger">Téléphone est obligatoire</div>
+                                    <ul class="error">
+                                        <li v-if="$v.employee.telephone.$error && !$v.employee.telephone.required" class="alert alert-danger">Téléphone est obligatoire</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="cellulaire">Cellulaire</label>
@@ -166,7 +179,9 @@
                                         v-input-bar-color-error=[true,!$v.employee.courriel.$invalid]
                                         v-model.trim="$v.employee.courriel.$model" 
                                         placeholder="exemple@gmail.com"/>
-                                    <div v-if="!$v.employee.courriel.email" class="alert alert-danger">Courriel est invalid</div>    
+                                    <ul class='error'>
+                                        <li v-if="!$v.employee.courriel.email" class="alert alert-danger">Courriel est invalid</li>
+                                    </ul>    
                                 </p>
                                 <p>
                                     <label class="control-label" for="note">Note</label>
@@ -182,17 +197,17 @@
                             <div class="panel-heading hbuilt"><strong>Statut d'emploi</strong></div>
                             <div class="panel-body">
                                 <p>
-                                    <div>
+                                    <span :style="{display:'block'}">
                                         <label class="control-label" for="date_embauche">Date d'embauche</label>&nbsp;<span style="color:red;">*</span>
-                                    </div>
-                                    <div>
+                                    </span>
+                                    <span :style="{display:'block'}">
                                         <date-picker name="date_embauche" 
                                                     v-model.trim="$v.employee.date_embauche.$model" 
                                                     lang="fr"
                                                     :style="DatePickerStyle"
                                                     required ></date-picker>
                                         <div v-if="$v.employee.date_embauche.$error && !$v.employee.date_embauche.required" class="alert alert-danger" :style="DatePickerStyle">Date d'embauche est obligatoire</div>
-                                    </div>
+                                    </span>
                                 </p>
                                 <p>
                                     <label class="control-label" for="salaire">Salaire</label>&nbsp;<span style="color:red;">*</span>
@@ -201,8 +216,10 @@
                                             v-input-bar-color-error=[!$v.employee.salaire.$error,!$v.employee.salaire.$invalid]
                                             required
                                             v-model="$v.employee.salaire.$model" />
-                                    <div v-if="$v.employee.salaire.$error && !$v.employee.salaire.required" class="alert alert-danger">Salaire est obligatoire</div>
-                                    <div v-if="!$v.employee.salaire.decimal" class="alert alert-danger">Salaire doit être décimal</div>
+                                    <ul class='error'>
+                                        <li v-if="$v.employee.salaire.$error && !$v.employee.salaire.required" class="alert alert-danger">Salaire est obligatoire</li>
+                                        <li v-if="!$v.employee.salaire.decimal" class="alert alert-danger">Salaire doit être décimal</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="par">Par</label>&nbsp;<span style="color:red;">*</span>
@@ -211,9 +228,11 @@
                                             v-model.trim="$v.employee.par.$model"
                                             required>
                                         <option :disabled="true" value="">--Sélectionner--</option>
-                                        <option v-for="par in employee.ParOpt" :value="par.value">{{par.name}}</option>
+                                        <option v-for="(par,key) in employee.ParOpt" :key="key" :value="par.value">{{par.name}}</option>
                                     </select>
-                                    <div v-if="$v.employee.par.$error && !$v.employee.par.required" class="alert alert-danger" :style="DatePickerStyle">Payé par est obligatoire</div>
+                                    <ul class='error'>
+                                        <li v-if="$v.employee.par.$error && !$v.employee.par.required" class="alert alert-danger" :style="DatePickerStyle">Payé par est obligatoire</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="conge_vacance">Congé vacance&nbsp;<span style="color:red;">*</span></label>
@@ -222,18 +241,22 @@
                                         v-input-bar-color-error=[!$v.employee.conge_vacance.$error,!$v.employee.conge_vacance.$invalid]
                                         v-model.trim="$v.employee.conge_vacance.$model" 
                                         required />
-                                    <div class="alert alert-danger" v-if="$v.employee.conge_vacance.$error && !$v.employee.conge_vacance.required">Congé vacance est obligatoire</div>
-                                    <div class="alert alert-danger" v-if="!$v.employee.conge_vacance.numeric">Congé vacance doit être digit</div>
+                                    <ul class='error'>    
+                                        <li class="alert alert-danger" v-if="$v.employee.conge_vacance.$error && !$v.employee.conge_vacance.required">Congé vacance est obligatoire</li>
+                                        <li class="alert alert-danger" v-if="!$v.employee.conge_vacance.numeric">Congé vacance doit être digit</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="conge_maladie">Congé maladie&nbsp;<span style="color:red;">*</span></label>
                                     <input type="text"
-                                        name="conge_maladie"
-                                        v-input-bar-color-error=[!$v.employee.conge_maladie.$error,!$v.employee.conge_maladie.$invalid]
-                                        v-model.trim="$v.employee.conge_maladie.$model"
-                                        required />
-                                    <div class="alert alert-danger" v-if="$v.employee.conge_maladie.$error && !$v.employee.conge_maladie.required">Congé maladie est obligatoire</div>
-                                    <div class="alert alert-danger" v-if="!$v.employee.conge_maladie.numeric">Congé maladie doit être digit</div>
+                                           name="conge_maladie"
+                                           v-input-bar-color-error=[!$v.employee.conge_maladie.$error,!$v.employee.conge_maladie.$invalid]
+                                           v-model.trim="$v.employee.conge_maladie.$model"
+                                           required />
+                                    <ul class='error'>
+                                        <li class="alert alert-danger" v-if="$v.employee.conge_maladie.$error && !$v.employee.conge_maladie.required">Congé maladie est obligatoire</li>
+                                        <li class="alert alert-danger" v-if="!$v.employee.conge_maladie.numeric">Congé maladie doit être digit</li>
+                                    </ul>
                                 </p>
                             </div>
                         </div>
@@ -251,10 +274,10 @@
                                             v-model.trim="$v.admin.username.$model" 
                                             placeholder="exemple@gmail.com" 
                                             title="Veuillez entrer votre nom d'utilisateur">
-                                    <div v-if="$v.admin.username.$error">
-                                        <div class="alert alert-danger" v-if="!$v.admin.username.required">Nom d'utilisateur est obligatoire</div>
-                                        <div class="alert alert-danger" v-if="!$v.admin.username.email">Nom d'utilisateur est invalid</div>
-                                    </div>
+                                    <ul class='error' v-if="$v.admin.username.$error">
+                                        <li class="alert alert-danger" v-if="!$v.admin.username.required">Nom d'utilisateur est obligatoire</li>
+                                        <li class="alert alert-danger" v-if="!$v.admin.username.email">Nom d'utilisateur est invalid</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="password">Mot de passe</label>&nbsp;<span style="color:red;">*</span>
@@ -265,9 +288,9 @@
                                             v-model.trim="$v.admin.password.$model" 
                                             placeholder="******" 
                                             title="Veuillez entrer votre mot de passe">
-                                    <div v-if="$v.admin.password.$error">
-                                        <div class="alert alert-danger" v-if="!$v.admin.password.required">Mot de passe est obligatoire</div>
-                                        <div class="alert alert-danger" v-if="!$v.admin.password.password">
+                                    <ul class='error' v-if="$v.admin.password.$error">
+                                        <li class="alert alert-danger" v-if="!$v.admin.password.required">Mot de passe est obligatoire</li>
+                                        <li class="alert alert-danger" v-if="!$v.admin.password.password">
                                             <div>Mot de passe doit contenir:</div>
                                             <ul style="margin-left:-10px;">
                                                 <li>Au moins un majuscule</li>
@@ -276,8 +299,8 @@
                                                 <li>Au moins un caractère spéciaux</li>
                                                 <li>Minimum huit de longeur</li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                        </li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <label class="control-label" for="confirm_password">Confirme mot de passe</label>
@@ -288,9 +311,9 @@
                                             placeholder="******" 
                                             title="Veuillez confimer votre mot de passe"
                                             required >
-                                    <div v-if="$v.admin.confirm_password.$error">
-                                        <div class="alert alert-danger" v-if="!$v.admin.confirm_password.sameAsPassword">Mots de passe doivent être identiques</div>
-                                    </div>
+                                    <ul class='error' v-if="$v.admin.confirm_password.$error">
+                                        <li class="alert alert-danger" v-if="!$v.admin.confirm_password.sameAsPassword">Mots de passe doivent être identiques</li>
+                                    </ul>
                                 </p>
                                 <p>
                                     <button type="submit" class="btn btn-success" :disabled="!$v.employee.nom.required 
@@ -317,12 +340,12 @@
                                                                                 || !$v.admin.password.required
                                                                                 || !$v.admin.password.password
                                                                                 || !$v.admin.confirm_password.sameAsPassword">
-                                        <i class="fa fa-check-square-o" style="font-size:24px;float:left;"></i>
-                                        <span style="margin-left:5px;font-weight:bold;font-size:18px;">OK</span>
+                                        <i class="fa fa-check-square-o" :style="{fontSize:'24px',float:'left'}"></i>
+                                        <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">OK</span>
                                     </button>&nbsp;
                                     <router-link :to="'/login'" append class="btn btn-success">
-                                        <i class="fa fa-backward" style="font-size:24px;float:left;"></i>
-                                        <span style="margin-left:5px;font-weight:bold;font-size:18px;">BACK</span>
+                                        <i class="fa fa-backward" :style="{fontSize:'24px',float:'left'}"></i>
+                                        <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">BACK</span>
                                     </router-link>
                                 </p>
                             </div>
@@ -384,7 +407,6 @@ import {
 } from "vuelidate/lib/validators";
 
 export default {
-  name: "Enregistrer",
   components: {
     DatePicker,
     "app-file-upload": fileUpload
@@ -457,17 +479,17 @@ export default {
         required,
         alpha
       },
-      statut:{
+      statut: {
         required
       },
-      genre:{
-          required
+      genre: {
+        required
       },
       telephone: {
         required
       },
-      courriel:{
-          email
+      courriel: {
+        email
       },
       date_embauche: {
         required
@@ -476,11 +498,11 @@ export default {
         required
       },
       salaire: {
-          required,
-          decimal
+        required,
+        decimal
       },
-      par:{
-          required
+      par: {
+        required
       },
       conge_vacance: {
         required,
@@ -510,9 +532,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#register-container .row {
-  margin: 0 0 5px 0;
-}
 </style>
 
 

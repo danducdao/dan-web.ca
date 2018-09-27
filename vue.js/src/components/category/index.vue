@@ -28,7 +28,7 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr v-for="categorie in categories">
+                                  <tr v-for="(categorie,key) in categories" :key="key">
                                       <td>
                                         <span v-if='categorie.active === 1'>
                                           <a href="#" @click.prevent="removeCategorie(categorie.id)">Supprimer</a>
@@ -39,16 +39,18 @@
                                       </td>
                                       <td>{{categorie.nom}}</td>
                                       <td>{{categorie.description}}</td>
-                                      <td :style="{'text-align':'center'}"><img :src="categorie.photo" :alt="categorie.photo" :style="imgStyle" /></td>
-                                      <td :style="{'text-align':'center'}">
+                                      <td :style="{textAlign:'center'}">
+                                        <img :src="categorie.photo" :alt="categorie.photo" :style="imgStyle" />
+                                      </td>
+                                      <td :style="{textAlign:'center'}">
                                           <span v-if='categorie.active === 1'><i class='fa fa-check-square'></i></span>
                                       </td>
                                   </tr>
                               </tbody>
                           </table>
                       </p>
-                      <p style="color:red;" v-else-if="!loading">Aucun catégorie a été trouvé</p>
-                      <p style="color:red;text-align:center;" v-else><img src="../../assets/images/ajax-loader.gif" /></p>
+                      <p :style="{color:'red'}" v-else-if="!loading">Aucun catégorie a été trouvé</p>
+                      <p :style="{color:'red',textAlign:'center'}" v-else><img src="../../assets/images/ajax-loader.gif" /></p>
                     </div>
                 </div>
             </div>
@@ -66,7 +68,6 @@ export default {
   data() {
     return {
       categories: [],
-      center: { colCenter: true },
       categorieService: new CategorieService(),
       produitService: new ProduitService(this.$http),
       imgStyle: {
@@ -116,7 +117,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-th{
-  text-align:center;
+th {
+  text-align: center;
 }
 </style>

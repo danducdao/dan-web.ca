@@ -11,9 +11,9 @@
                           <textarea rows="5" name="texte" id="text" v-model="texte" v-on:keyup="afficher()" autofocus class="form-control" /></textarea>
                         </div>
                         <div class="col-lg-6">
-                          <div style="border-bottom:1px solid grey;"><h5>Résultat:</h5></div>
-                          <ul style="list-style-type:none;padding-left:0px;">
-                              <li v-for="myString in myStrings">
+                          <div :style="{borderBottom:'1px solid grey'}"><h5>Résultat:</h5></div>
+                          <ul :style="{listStyleType:'none',paddingLeft:'0px'}">
+                              <li v-for="(myString,key) in myStrings" :key="key">
                                   <span><em><strong>{{ myString.texte}} : {{myString.count + " fois " }}</strong></em></span>
                               </li>
                           </ul>

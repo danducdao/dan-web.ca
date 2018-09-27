@@ -16,7 +16,9 @@
                                         required
                                         v-model.trim="$v.categoryId.$model" @change="selectedItem">
                                 <option :disabled="true" value="">--Sélectionner--</option>
-                                <option v-for="categorie in categories" :value="categorie.id">{{categorie.nom}}</option>
+                                <option v-for="(categorie,key) in categories" 
+                                        v-bind:key="key"  
+                                        :value="categorie.id">{{categorie.nom}}</option>
                             </select>
                             <div v-if="$v.categoryId.$error">
                                 <div v-if="!$v.categoryId.required" class="alert alert-danger">Catégorie est obligatoire</div>

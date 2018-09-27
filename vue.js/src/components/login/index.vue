@@ -42,9 +42,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div :class="checkbox.clsAttribut" style="position: relative;" @click="checkbox.selectedItem()">
-                                    <input type="checkbox" :name="checkbox.name" style="position: absolute; opacity: 0;" :value="checkbox.value">
-                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                <div :class="checkbox.clsAttribut" :style="{position: 'relative'}" @click="checkbox.selectedItem()">
+                                    <input type="checkbox" 
+                                          :name="checkbox.name" 
+                                          :style="{position: 'absolute', opacity: 0}" 
+                                          :value="checkbox.value" />
+                                    <ins class="iCheck-helper"></ins>
                                 </div>&nbsp;{{checkbox.text}}
                                 <p class="help-block small">(s'il s'agit d'un ordinateur privé)</p>
                                 <button type="submit" 

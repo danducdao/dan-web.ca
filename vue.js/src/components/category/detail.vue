@@ -66,10 +66,10 @@
                     <i class="fa fa-check-square-o" :style="{fontSize:'24px',float:'left'}"></i>
                     <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">OK</span>
                 </button>&nbsp;
-                <button name="back" class="btn btn-success" onclick="window.location.href='/admin/categorie';return false;">
-                    <i class="fa fa-backward" :style="{fontSize:'24px',float:'left'}"></i>
-                    <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}" >BACK</span>
-                </button>
+                <router-link to="/admin/categorie" class="btn btn-success"> 
+                  <i class="fa fa-backward" :style="{fontSize:'24px',float:'left'}"></i>
+                  <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}" >BACK</span>
+                </router-link>
                 <input type="hidden" class="form-control" name="id" v-model="model.id" />
             </div>
           </div>

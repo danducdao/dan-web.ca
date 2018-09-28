@@ -160,10 +160,10 @@
                   <i class="fa fa-check-square-o" :style="{fontSize:'24px',float:'left'}"></i>
                   <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">OK</span>
               </button>&nbsp;
-              <button name="back" class="btn btn-success" onclick="window.location.href='/admin/produit';return false;">
+              <router-link to="/admin/produit" class="btn btn-success"> 
                   <i class="fa fa-backward" :style="{fontSize:'24px',float:'left'}"></i>
-                  <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}">BACK</span>
-              </button>
+                  <span :style="{marginLeft:'5px',fontWeight:'bold',fontSize:'18px'}" >BACK</span>
+              </router-link>
               <input type="hidden" name="active" class="form-control" id="active" v-model="model.active">
             </div>
           </div>

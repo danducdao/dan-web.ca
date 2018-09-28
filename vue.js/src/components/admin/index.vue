@@ -1,35 +1,15 @@
 <template>
     <section id="admin-container">
-        <ul>
-            <li><a v-bind:class="category" id="category" v-on:click="redirect($event)">Catégories</a></li>
-            <li><a v-bind:class="product" id="product" v-on:click="redirect($event)">Produits</a></li>
+         <ul>
+            <router-link to="/admin/categorie" tag="li" active-class="active"><a>Catégories</a></router-link>
+            <li><router-link to="/admin/produit" tag="li" active-class="active"><a>Produits</a></router-link></li>
         </ul>
         <router-view></router-view>
     </section>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      category: { active: true },
-      product: { active: false }
-    };
-  },
-  methods: {
-    redirect(event) {
-      if (event.target.id == "category") {
-        this.category.active = true;
-        this.product.active = !this.category.active;
-        this.$router.push("/admin/categorie");
-      } else if (event.target.id == "product") {
-        this.product.active = true;
-        this.category.active = !this.product.active;
-        this.$router.push("/admin/produit");
-      }
-    }
-  }
-};
+export default {};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

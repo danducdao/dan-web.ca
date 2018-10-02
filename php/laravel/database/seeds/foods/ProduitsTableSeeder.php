@@ -103,7 +103,7 @@ class ProduitsTableSeeder extends Seeder
                 'quantite_commande' => $produit[7],
                 'reapprovisionnement' => $produit[8],
                 'discontinue'=>$produit[9],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

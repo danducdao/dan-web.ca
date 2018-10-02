@@ -1019,7 +1019,7 @@ class CategorieFilmsTableSeeder extends Seeder
                 'film_id' => $categorieFilm[0], 
                 'categorie_id' => $categorieFilm[1],
                 'created_at' => new \DateTime(),
-                'updated_at' => $categorieFilm[2],
+                'updated_at' => $categorieFilm[2]
             ]);
         }
     }

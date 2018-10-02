@@ -22,7 +22,7 @@ class ExpediteursTableSeeder extends Seeder
                 'id' => $expediteur[0],
                 'nom' => $expediteur[1],
                 'telephone' => $expediteur[2],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

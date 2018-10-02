@@ -31,7 +31,7 @@ class CategoriesTableSeeder extends Seeder
                 'nom' => $categorie[1],
                 'description' => $categorie[2],
                 'photo' => $categorie[3],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

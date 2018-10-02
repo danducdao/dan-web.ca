@@ -118,7 +118,7 @@ class ClientsTableSeeder extends Seeder
                 'pays' => $client[8],
                 'telephone' => $client[9],
                 'fax' => $client[10],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

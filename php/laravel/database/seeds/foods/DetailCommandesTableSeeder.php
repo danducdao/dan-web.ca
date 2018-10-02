@@ -2176,7 +2176,7 @@ class DetailCommandesTableSeeder extends Seeder
                 'prix' => $detailCommande[2],
                 'quantite'  => $detailCommande[3],
                 'discount' => $detailCommande[4],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

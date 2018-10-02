@@ -1029,7 +1029,7 @@ class FilmsTableSeeder extends Seeder
                 'evaluation' => $film[10],
                 'nouveaute' => $film[11],
                 'created_at' => new \DateTime(),
-                'updated_at' => $film[12],
+                'updated_at' => $film[12]
             ]);
         }
     }

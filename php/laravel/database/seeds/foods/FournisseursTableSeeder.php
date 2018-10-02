@@ -57,7 +57,7 @@ class FournisseursTableSeeder extends Seeder
                 'telephone' => $fournisseur[9],
                 'fax' => $fournisseur[10],
                 'site_web' => $fournisseur[11],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

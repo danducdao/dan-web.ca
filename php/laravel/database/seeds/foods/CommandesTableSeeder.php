@@ -3355,7 +3355,7 @@ class CommandesTableSeeder extends Seeder
                 'region_livraison' => $commande[11],
                 'code_postale_livraison' => $commande[12],
                 'pays_livraison' => $commande[13],
-                'created_at' => new \DateTime(),
+                'created_at' => new \DateTime()
             ]);
         }
     }

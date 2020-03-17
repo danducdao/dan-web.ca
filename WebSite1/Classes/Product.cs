@@ -11,5 +11,10 @@ namespace WebSite1.Classes
         public decimal UnitPrice { get; set; }
         [JsonProperty("UnitsInStock")]
         public Int16? UnitsInStock { get; set; }
+        [JsonProperty("Categorie")]
+        public Categorie Categorie { get; set;}
+        [JsonProperty("Supplier")]
+        public Supplier Supplier { get; set; }
+       
     }
 }

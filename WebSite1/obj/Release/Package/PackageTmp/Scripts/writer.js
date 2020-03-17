@@ -5,29 +5,51 @@ $("#sortWriter").on("change", function () {
         $("#result").html("");
         return;
     }
-
     if ($(this).val() == "1") {
         $.ajax({
             method: "GET",
             url: "http://webapi.com/writer/sortByName",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
-                var table = "<table class='ui celled striped table'>";
-                table += "<tbody>";
+                var html = "<h2>Writer Sorted By Name</h2>";
+                html += "<table class='ui celled striped table'>";
+                html += "<tbody>";
                 response.forEach(function (writer) {
-                    table += "<tr>";
-                    table += "<td>" + writer.Name + "</td>";
-                    table += "<td>" + writer.HomeState + "</td>";
-                    table += "</tr>";
+                    html += "<tr>";
+                    html += "<td>" + writer.Name + "</td>";
+                    html += "<td>" + writer.HomeState + "</td>";
+                    html += "</tr>";
                 });
-                table += "</tbody>";
-                table += "</table>";
-                $("#result").html(table);
+                html += "</tbody>";
+                html += "</table>";
+                $("#result").html(html);
             },
             error: function (jqXHR, exception) {
                 console.log(jqXHR.status);
-                console.log(exception);
             }
         });
-    }   
+    } else if ($(this).val() == "2") {
+        $.ajax({
+            method: "GET",
+            url: "http://webapi.com/writer/sortByState",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                var html = "<h2>Writer Sorted By State</h2>";
+                html += "<table class='ui celled striped table'>";
+                html += "<tbody>";
+                response.forEach(function (writer) {
+                    html += "<tr>";
+                    html += "<td>" + writer.Name + "</td>";
+                    html += "<td>" + writer.HomeState + "</td>";
+                    html += "</tr>";
+                });
+                html += "</tbody>";
+                html += "</table>";
+                $("#result").html(html);
+            },
+            error: function (jqXHR, exception) {
+                console.log(jqXHR.status);
+            }
+        });
+    }
 });

@@ -101,7 +101,7 @@ C:\website1\WebSite1\bin\Microsoft.Owin.Security.Twitter.xml
 C:\website1\WebSite1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\website1\WebSite1\bin\Microsoft.Owin.Security.OAuth.xml
 C:\website1\WebSite1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\website1\WebSite1\obj\Debug\WebSite1.csprojAssemblyReference.cache
 C:\website1\WebSite1\obj\Debug\WebSite1.csproj.CopyComplete
 C:\website1\WebSite1\obj\Debug\WebSite1.dll
 C:\website1\WebSite1\obj\Debug\WebSite1.pdb
+C:\website1\WebSite1\obj\Debug\WebSite1.csprojAssemblyReference.cache

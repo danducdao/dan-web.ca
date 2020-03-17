@@ -22,11 +22,16 @@ namespace WebSite1
             bundles.Add(new ScriptBundle("~/bundles/semantic").Include(
                         "~/Scripts/semantic.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/datatables.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/writer").Include(
                         "~/Scripts/writer.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/semantic.min.css"));
+                        "~/Content/semantic.min.css",
+                        "~/Content/components/icon.min.css",
+                        "~/Content/datatables.min.css"));
         }
     }
 }

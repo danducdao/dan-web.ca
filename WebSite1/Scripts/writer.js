@@ -11,8 +11,14 @@ $("#sortWriter").on("change", function () {
             url: "http://webapi.com/writer/sortByName",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
-                var html = "<h2>Writer Sorted By Name</h2>";
-                html += "<table class='ui celled striped table'>";
+                var html = "<h4>Sorted By Name</h4>";
+                html += "<table class='ui collapsing striped table'>";
+                html += "<thead>";
+                html += "<tr>";
+                html += "<th>Name</th>";
+                html += "<th>State</th>";
+                html += "</tr>";
+                html += "</thead>";
                 html += "<tbody>";
                 response.forEach(function (writer) {
                     html += "<tr>";
@@ -34,8 +40,14 @@ $("#sortWriter").on("change", function () {
             url: "http://webapi.com/writer/sortByState",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
-                var html = "<h2>Writer Sorted By State</h2>";
-                html += "<table class='ui celled striped table'>";
+                var html = "<h4>Sorted By State</h4>";
+                html += "<table class='ui collapsing striped table'>";
+                html += "<thead>";
+                html += "<tr>";
+                html += "<th>Name</th>";
+                html += "<th>State</th>";
+                html += "</tr>";
+                html += "</thead>";
                 html += "<tbody>";
                 response.forEach(function (writer) {
                     html += "<tr>";

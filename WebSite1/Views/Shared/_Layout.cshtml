@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
 
 
 </head>
@@ -17,6 +17,7 @@
         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "item " + (controllerName.Equals("Home", StringComparison.InvariantCultureIgnoreCase) ? "active" : "") })
         @Html.ActionLink("Writer", "Index", "Writer", null, new { @class = "item " + (controllerName.Equals("Writer", StringComparison.InvariantCultureIgnoreCase) ? "active" : "") })
         @Html.ActionLink("Product", "Index", "Product", null, new { @class = "item " + (controllerName.Equals("Product", StringComparison.InvariantCultureIgnoreCase) ? "active" : "") })
+        @Html.ActionLink("Category", "Index", "Category", null, new { @class = "item " + (controllerName.Equals("Category", StringComparison.InvariantCultureIgnoreCase) ? "active" : "") })
         <div class="right menu">
             <div class="item">
                 <div class="ui transparent icon input">
@@ -35,5 +36,6 @@
     @Scripts.Render("~/bundles/datatables")
     @Scripts.Render("~/bundles/writer")
     @RenderSection("scripts", required: false)
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
